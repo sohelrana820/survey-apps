@@ -1,2 +1,6 @@
 <?php
-$app->get('/test', \App\Controller\HomeController::class . ':home');
+
+use Slim\Http\Request;
+use Slim\Http\Response;
+
+$app->get('/', \App\Controller\HomeController::class . ':home');
