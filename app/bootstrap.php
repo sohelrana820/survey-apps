@@ -1,16 +1,19 @@
 <?php
+
+use Slim\Container;
+
 // Getting application container;
 $container = $app->getContainer();
 $settings = $container->get('settings');
 
 /**
- * @param \Slim\Container $container
+ * @param Container $container
  * @return \Slim\Views\Twig
  * @throws \Interop\Container\Exception\ContainerException
  *
  * Configuring application view files [twig]
  */
-$container['view'] = function (\Slim\Container $container) {
+$container['view'] = function (Container $container) {
     $settings = $container->get('settings');
     $view = new \Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
     $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $container['request']->getUri()));
@@ -19,6 +22,15 @@ $container['view'] = function (\Slim\Container $container) {
     $twigExtra->addGlobal('session', $_SESSION);
     $twigExtra->addGlobal('config', $settings);
     return $view;
+};
+
+/**
+ * @param Container $container
+ * @return mixed
+ * @throws \Interop\Container\Exception\ContainerException
+ */
+$container['config'] = function (Container $container) {
+    return $container->get('settings');
 };
 
 // Loading application routes
