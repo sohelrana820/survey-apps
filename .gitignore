@@ -3,4 +3,4 @@
 tmp/*
 logs/*
 vendor/*
-sample.php
+config.php
