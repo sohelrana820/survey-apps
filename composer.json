@@ -36,10 +36,11 @@
   "autoload": {
     "psr-4": {
       "App\\": "src",
+      "App\\Components\\": "app/src/components",
+      "App\\Helpers\\": "app/src/helpers",
       "App\\Model\\": "app/model",
       "App\\Middleware\\": "app/middleware",
-      "App\\Controller\\": "app/controller",
-      "App\\Controller\\Components\\": "app/controller/component"
+      "App\\Controller\\": "app/controller"
     }
   }
 }
