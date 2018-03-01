@@ -2,3 +2,5 @@
 .git/*
 tmp/*
 logs/*
+vendor/*
+sample.php
