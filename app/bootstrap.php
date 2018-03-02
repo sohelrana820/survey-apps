@@ -1,5 +1,6 @@
 <?php
 
+use Monolog\Handler\StreamHandler;
 use Slim\Container;
 
 // Getting application container;
@@ -32,6 +33,29 @@ $container['view'] = function (Container $container) {
 $container['config'] = function (Container $container) {
     return $container->get('settings');
 };
+
+/**
+ * @return \Slim\Flash\Messages
+ */
+$container['flash'] = function () {
+    return new Slim\Flash\Messages();
+};
+
+/**
+ * @param Container $container
+ * @return \Monolog\Logger
+ * @throws Exception
+ */
+$container['logger'] = function (Container $container) {
+    $config = $container['config'];
+    $logger = new Monolog\Logger($config['logger']['name']);
+    $logger->pushProcessor(new \Monolog\Processor\ProcessIdProcessor());
+    $logger->pushProcessor(new \Monolog\Processor\PsrLogMessageProcessor());
+    $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
+    $logger->pushHandler(new StreamHandler($config['logger']['path'], $config['logger']['level']));
+    return $logger;
+};
+
 
 // Loading application routes
 require ROOT_DIR . DIRECTORY_SEPARATOR . 'app/routes.php';
