@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Events\Dispatcher;
 use Monolog\Handler\StreamHandler;
 use Slim\Container;
 
@@ -55,6 +56,13 @@ $container['logger'] = function (Container $container) {
     $logger->pushHandler(new StreamHandler($config['logger']['path'], $config['logger']['level']));
     return $logger;
 };
+
+$databaseConf = $container['settings']['databases'];
+$capsule = new Illuminate\Database\Capsule\Manager();
+$capsule->addConnection($databaseConf);
+$capsule->setEventDispatcher(new Dispatcher(new Container));
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
 
 // Loading application routes
