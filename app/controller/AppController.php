@@ -6,6 +6,10 @@ use Noodlehaus\Config;
 use Slim\Container;
 use Slim\Views\Twig;
 
+/**
+ * Class AppController
+ * @package App\Controller
+ */
 class AppController
 {
     /**

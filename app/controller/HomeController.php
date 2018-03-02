@@ -5,6 +5,10 @@ namespace App\Controller;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+/**
+ * Class HomeController
+ * @package App\Controller
+ */
 class HomeController extends AppController
 {
     /**
