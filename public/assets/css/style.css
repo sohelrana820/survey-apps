@@ -5,12 +5,12 @@ body {
     color: #777;
 }
 
-.container {
+.section {
+    margin-top: 200px;
     text-align: center;
 }
 
 .welcome {
-    margin-top: 200px;
     font-size: 66px;
     font-weight: 300;
 
