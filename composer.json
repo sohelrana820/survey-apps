@@ -42,5 +42,10 @@
       "App\\Middleware\\": "app/middleware",
       "App\\Controller\\": "app/controller"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests"
+    }
   }
 }
