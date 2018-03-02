@@ -24,6 +24,7 @@ return [
             'level' => \Monolog\Logger::DEBUG,
             'monolog_handlers' => ['php://stdout', 'file']
         ],
+        "database_require" => false,
         'databases' => [
             'driver' => 'mysql',
             'host' => 'DATABASE_HOST',
