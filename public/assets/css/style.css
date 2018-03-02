@@ -5,18 +5,18 @@ body {
     color: #777;
 }
 
-.container{
+.container {
     text-align: center;
 }
 
-.welcome{
+.welcome {
     margin-top: 200px;
     font-size: 66px;
     font-weight: 300;
 
 }
 
-.desc{
+.desc {
     font-size: 14px;
     font-style: italic;
 }
