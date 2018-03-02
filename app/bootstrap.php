@@ -3,6 +3,8 @@
 use Illuminate\Events\Dispatcher;
 use Monolog\Handler\StreamHandler;
 use Slim\Container;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 // Getting application container;
 $container = $app->getContainer();
@@ -42,6 +44,7 @@ $container['flash'] = function () {
     return new Slim\Flash\Messages();
 };
 
+
 /**
  * @param Container $container
  * @return \Monolog\Logger
@@ -57,12 +60,52 @@ $container['logger'] = function (Container $container) {
     return $logger;
 };
 
-$databaseConf = $container['settings']['databases'];
-$capsule = new Illuminate\Database\Capsule\Manager();
-$capsule->addConnection($databaseConf);
-$capsule->setEventDispatcher(new Dispatcher(new Container));
-$capsule->setAsGlobal();
-$capsule->bootEloquent();
+
+/**
+ * @param Container $container
+ * @return Closure
+ */
+$container['notFoundHandler'] = function (Container $container) {
+    return function (Request $request, Response $response) use ($container) {
+        $container['logger']->error('Not Found', ['request_target' => $request->getRequestTarget()]);
+        return $container['view']->render($response->withStatus(404), '404.twig');
+    };
+};
+
+/**
+ * @param Container $container
+ * @return Closure
+ */
+$container['errorHandler'] = function (Container $container) {
+    return function (Request $request, Response $response, Exception $exception) use ($container) {
+        $container['logger']->error($exception->getMessage(), [$request->getQueryParams()]);
+        $container['logger']->debug($exception->getTraceAsString(), [$request->getQueryParams()]);
+        return $container['view']->render($response->withStatus(500), '500.twig');
+    };
+};
+
+/**
+ * @param Container $container
+ * @return Closure
+ */
+$container['phpErrorHandler'] = function (Container $container) {
+    return function (Request $request, Response $response) use ($container) {
+        $container['logger']->error("[phpErrorHandler] 500 error caught");
+        return $container['view']->render($response->withStatus(500), '500.twig');
+    };
+};
+
+
+// Connecting to database
+if($container['config']['database_require']) {
+    $databaseConf = $container['settings']['databases'];
+    $capsule = new Illuminate\Database\Capsule\Manager();
+    $capsule->addConnection($databaseConf);
+    $capsule->setEventDispatcher(new Dispatcher(new Container));
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+}
+
 
 
 // Loading application routes
