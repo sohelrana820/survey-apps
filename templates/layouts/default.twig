@@ -1,31 +1,690 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <!-- External CSS libraries -->
-    <link type="text/css" rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Binary Pack">
+    <meta name="author" content="Binary Pack Ltd.">
+    <link rel="icon" href="img/favicon.ico">
+    <title>Binary Pack</title>
 
-    <!-- Custom Stylesheet -->
-    <link type="text/css" rel="stylesheet" href="/assets/css/style.css">
+    <!-- CSS libraries-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome-4.5.0//assets/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- Custom stylesheet -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.min.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
-<div class="container section">
-    {% include 'elements/flash.twig' %}
-    {% block content %}
-    {% endblock %}
+<!-- TOP HEADER AREA START -->
+<section class="top-header hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="clearfix">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="tel:+880 1721137958"><i class="fa fa-phone pr-5 pl-10"></i> +880 1721137958</a>
+                        </li>
+                        <li>
+                            <a href="mailto:me.sohelrana@gmail.com">
+                                <i class="fa fa-envelope-o pr-5 pl-10"></i> me.sohelrana@gmail.com
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                <div class="clearfix">
+                    <div class="top-buttons">
+                        <a href="#" class="btn btn-grey btn-sm text-uppercase"><i class="fa fa-user pr-10"></i> Sign Up</a>
+                        <a href="#" class="btn btn-grey btn-sm text-uppercase"><i class="fa fa-lock pr-10"></i> Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- TOP HEADER AREA END -->
+
+<!-- HEADER AREA START -->
+<header class="header">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand theme-color" href="#">Binary<span class="grey-color">Pack</span></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="http://themes.pressapps.io/knowledgepress-1/faq-2/">FAQs</a></li>
+                    <li><a href="http://kb.binarypack.com/">Knowledge Base</a></li>
+                    <li><a href="http://blog.binarypack.com/">Blog</a></li>
+                    <li><a href="http://kb.binarypack.com/">Support</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Choose Categories <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">PHP</a></li>
+                            <li><a href="#">CakePHP 3.X</a></li>
+                            <li><a href="#">Laravel 5.X</a></li>
+                            <li><a>Slim 3.0</a></li>
+                            <li><a href="#">Twig</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://static.binarypack.com/about-us">Privacy Policy</a></li>
+                    <li><a href="http://static.binarypack.com/about-us">About Us</a></li>
+                    <li><a href="http://static.binarypack.com/contact">Contact Us</a></li>
+                    <li class="visible-xs">
+                        <a href="#">Sign Up</a>
+                    </li>
+                    <li class="visible-xs">
+                        <a href="#">Login</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+</header>
+<!-- HEADER AREA END -->
+
+<!-- BANNER AREA START -->
+<div class="banner">
+    <div class="container">
+        <div class="banner-content">
+            <h1>24,232 Website Templates and Themes From $2</h1>
+            <p>
+                WordPress themes, web templates and more. Brought to you by the largest global community of creatives.
+            </p>
+            <form class="search-form">
+                <div class="row">
+                    <div class="col-lg-offset-2 col-lg-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Search your desire item">
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" class="search-item-btn">Search Item</button>
+                    </div>
+                </div>
+            </form>
+            <p class="buttons">
+                <a href="#" class="btn btn-theme-inverse"><span>Most Sold Items</span></a>
+                <a href="#" class="btn btn-theme-inverse"><span>Featured Items</span></a>
+                <a href="#" class="btn btn-theme-inverse"><span>Popular Items</span></a>
+            </p>
+        </div>
+    </div>
 </div>
+<!-- BANNER AREA END -->
 
-<!-- External JS libraries -->
+<!-- ITEMS AREA START -->
+<div class="items-area">
+    <div class="container">
+        <div class="item-header">
+            <h2>Popular Items</h2>
+            <small>All popular items list</small>
+        </div>
+        <div class="row">
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon"><span>New</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0412697.jpg?v=1.9.4" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB011H985.jpg?v=1.6.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB04HF123.jpg?v=3.3.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB02R1485.jpg?v=1.3.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon"><span>New</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB05F069P.jpg?v=2.3" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0TF1117.jpg?v=1.4" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0L06586.jpg?v=1.6.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ITEMS AREA END -->
+
+<!-- ITEMS AREA START -->
+<div class="items-area">
+    <div class="container">
+        <div class="item-header">
+            <h2>Most sold Items</h2>
+            <small>Most sold items list</small>
+        </div>
+        <div class="row">
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon"><span>New</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0412697.jpg?v=1.9.4" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB011H985.jpg?v=1.6.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB04HF123.jpg?v=3.3.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB02R1485.jpg?v=1.3.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon"><span>New</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB05F069P.jpg?v=2.3" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0TF1117.jpg?v=1.4" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+
+            <!-- Single item -->
+            <div class="col-lg-3 col-md-3 col-sm-6">
+                <div class="item-grid">
+                    <div class="ribbon ribbon-red"><span>Featured</span></div>
+                    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0L06586.jpg?v=1.6.1" class="thumb">
+                    <div class="intro">
+                        <ul class="list-inline ratings pull-left">
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star orange-color"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li>(4.5)</li>
+                        </ul>
+                        <a class="pull-right review-link">
+                            <i class="fa fa-comments"></i> (5 review)
+                        </a>
+                        <div class="clearfix"></div>
+                        <h2 class="title"><a href="">Twitter oAuth-2 authentication</a></h2>
+                        <strong class="price">$22.00</strong>
+                    </div>
+                    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ITEMS AREA END -->
+
+<!-- FOOTER AREA START -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
+                <h2 class="footer-logo">
+                    <a href="/" class="white-color">
+                        Binary<span class="grey2-color">Pack</span>
+                    </a>
+                </h2>
+                <p>Marketplaces and platforms can use Stripe Connect to let sellers around the world get paid. Marketplaces and platforms can use Stripe Connect to let sellers around the world get paid.</p>
+            </div>
+
+            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
+                <h2 class="footer-title">Contact Us</h2>
+                <ul class="contact-nav">
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <span>
+                            4567 Street name, 012 12 City name, Country
+                        </span>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i>
+                        <span>
+                            <a href="tel:+8801721137958">+08801721137958</a>
+                        </span>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope"></i>
+                        <span>
+                            <a href="mailto:me.sohelrana@gmail.com">me.sohelrana@gmail.com</a>
+                        </span>
+                    </li>
+                    <li>
+                        <i class="fa fa-globe"></i>
+                        <span>
+                            <a href="www.bublinastudio.com">www.binarypack.com</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
+                <h2 class="footer-title">Recent Items</h2>
+                <div class="footer-items">
+                    <img src="https://thumb-tf.s3.envato.com/files/187386894/furnicom.png" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/187386393/urline.jpg" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/190517741/thumbnail.jpg" class="footer-item">
+                    <img src="https://thumb-cc.s3.envato.com/files/179710142/80x80-php-watch-movies-script-brandedv3.jpg" class="footer-item">
+
+                    <img src="https://thumb-tf.s3.envato.com/files/189872554/80x80.png" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/189861331/thumbnail.jpg" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/189832651/snw_80x80.png" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/187386393/urline.jpg" class="footer-item">
+                    <img src="https://thumb-tf.s3.envato.com/files/187226833/thumbnail.png" class="footer-item">
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <h2 class="footer-title">Newsletter</h2>
+                <p>arketplaces and platforms can use Stripe Connect to let sellers around the world get paid.</p>
+                <form class="newsletter">
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your email address">
+                    </div>
+                    <button type="submit" class="newsletter-submit btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<section class="footer-copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6">
+                <p class="copyright">
+                    Copyright
+                    ©
+                    2016 binarypack.com
+                </p>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <ul class="social-links">
+                    <li>
+                        <a class="social-icons" href="#">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-icons" href="#">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-icons" href="#">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-icons" href="#">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="social-icons" href="#">
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FOOTER AREA END -->
+
 <script src="/assets/js/jquery-2.2.0.min.js"></script>
-<script src="/assets/js/popper.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/ie-emulation-modes-warning.js"></script>
-
-<!-- Custom JS Script -->
-<script  src="assets/js/app.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<!-- Custom javascript -->
+<script src="/assets/js/app.js"></script>
 </body>
 </html>
