@@ -1,0 +1,42 @@
+paths:
+    migrations: sql_migration/migrations
+    seeds: %%PHINX_CONFIG_DIR%%/sql_migration/seeds
+
+environments:
+    default_migration_table: phinxlog
+    default_database: development
+    production:
+        adapter: mysql
+        host: localhost
+        name: xxxxxxxxxxxxxx
+        user: xxxxxxxxxxxx
+        pass: 'xxxxxxx'
+        unix_socket: xxxxxxxxxxxxxxxxxxxx
+        port: 3306
+        charset: utf8
+
+    development:
+        adapter: mysql
+        host: office.previewtechs.net
+        name: myaccount_portal_dev
+        user: myaccount_portal_dev
+        pass: 'Preview@Dev!@#'
+        port: 3306
+        charset: utf8
+
+    testing:
+        adapter: mysql
+        host: office.previewtechs.net
+        name: previewtechs_accounts_dev_testing
+        user: root
+        pass: 'chocolate12'
+        port: 3306
+        charset: utf8
+
+    test-sqlite:
+       adapter: sqlite
+       host: localhost
+       name: tests/myaccount_portal_dev.db
+       charset: utf8
+
+version_order: creation
