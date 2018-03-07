@@ -62,9 +62,4 @@ class UsersModel extends Model
     {
         $this->cache = $cache;
     }
-
-    public function test()
-    {
-        $this->logger ? $this->logger->info('logger running from model') : null;
-    }
 }
