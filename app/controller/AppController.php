@@ -81,9 +81,12 @@ class AppController
 
     /**
      * @return ModelLoader
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function loadModel()
     {
-        return new ModelLoader();
+        $models = new ModelLoader();
+        $models->setLogger($this->getLogger());
+        return $models;
     }
 }

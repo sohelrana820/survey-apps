@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Monolog\Logger;
 
 /**
  * Class UsersModel
@@ -10,6 +11,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UsersModel extends Model
 {
+    /**
+     * @var Logger
+     */
+    private $logger;
+
+    /**
+     * @var \Memcache;
+     */
+    private $cache;
+
     /**
      * @var string
      */
@@ -35,7 +46,25 @@ class UsersModel extends Model
      */
     protected $hidden = ['password'];
 
-    public function test() {
-        return true;
+    /**
+     * @param Logger $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+        return $this;
+    }
+
+    /**
+     * @param \Memcache $cache
+     */
+    public function setCache($cache)
+    {
+        $this->cache = $cache;
+    }
+
+    public function test()
+    {
+        $this->logger ? $this->logger->info('logger running from model') : null;
     }
 }
