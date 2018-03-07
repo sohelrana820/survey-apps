@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ModelLoader;
 use Monolog\Logger;
 use Noodlehaus\Config;
 use Slim\Container;
@@ -76,5 +77,13 @@ class AppController
     {
         $this->logger = $this->container->get('logger');
         return $this->logger;
+    }
+
+    /**
+     * @return ModelLoader
+     */
+    public function loadModel()
+    {
+        return new ModelLoader();
     }
 }
