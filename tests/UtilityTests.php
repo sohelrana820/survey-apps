@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-
 use App\helpers\Utility;
 
 class UtilityTests extends \PHPUnit_Framework_TestCase

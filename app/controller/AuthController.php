@@ -9,7 +9,7 @@ use Slim\Http\Response;
  * Class AuthController
  * @package App\Controller
  */
-class AuthController  extends AppController
+class AuthController extends AppController
 {
     /**
      * @param Request $request
@@ -30,7 +30,8 @@ class AuthController  extends AppController
      */
     public function signup(Request $request, Response $response, $args)
     {
-        var_dump($request->getParsedBody()); die();
+        var_dump($request->getParsedBody());
+        die();
     }
 
     /**
@@ -52,7 +53,7 @@ class AuthController  extends AppController
      */
     public function login(Request $request, Response $response, $args)
     {
-        var_dump($request->getParsedBody()); die();
+        var_dump($request->getParsedBody());
+        die();
     }
-
 }

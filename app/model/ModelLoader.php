@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-
 use Monolog\Logger;
 
 class ModelLoader

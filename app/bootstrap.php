@@ -97,7 +97,7 @@ $container['phpErrorHandler'] = function (Container $container) {
 
 
 // Connecting to database
-if($container['config']['database_require']) {
+if ($container['config']['database_require']) {
     $databaseConf = $container['settings']['databases'];
     $capsule = new Illuminate\Database\Capsule\Manager();
     $capsule->addConnection($databaseConf);
