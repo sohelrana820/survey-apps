@@ -1,3 +1,177 @@
-.signup-box{
-    margin-top: 150px;
+/** Content form box STARTED **/
+.content-box{
+    background: #fff;
+}
+
+.register-bg{
+    background: red;
+    height: 100vh;
+}
+
+.content-form-box .form-control{
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 13px;
+    border: 1px solid #efefef;
+    outline: 0;
+    color: #6c6c6c;
+    height: 42px;
+    border-radius: 3px;
+}
+
+.content-form-box .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #efefef;
+    outline: 0;
+    box-shadow: none;
+}
+
+.content-form-box .form-group{
+    margin-bottom: 25px;
+}
+
+.content-form-box .btn{
+    cursor: pointer;
+    padding: 11px 20px 10px;
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: none;
+    border-radius: 3px;
+}
+
+.login-header {
+    font-weight: 600;
+    margin: 0 0 30px;
+    font-size: 22px;
+    color: #515365;
+}
+
+.login-header h4{
+    font-size: 22px;
+    color: #515365;
+}
+
+.login-header img{
+    height: 30px;
+}
+
+.form-check{
+    font-size: 13px;
+}
+
+.form-check a{
+    color: #ff002b;
+}
+
+.form-check a:hover{
+    color: #bd0221;
+}
+
+.content-form-box {
+    padding: 0 70px;
+    left: 0;
+    height: 100vh;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.content-form-box p{
+    font-size: 13px;
+    color: #80828e;
+}
+
+.form-check-label{
+    font-size: 13px;
+    color: #80828e;
+}
+
+.login-footer img{
+    height: 20px;
+}
+
+.login-footer{
+    padding: 20px;
+    border-top: solid 1px #ececec;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.content-form-box.register-box .login-footer{
+    width: 100%;
+    position: inherit;
+}
+
+.content-form-box.register-box {
+
+}
+
+.content-form-box.forgot-box {
+    width: 100%;
+    position: inherit;
+    bottom: 0;
+}
+
+.login-footer p{
+    font-size: 13px;
+    margin: 0;
+}
+
+.login-footer p a{
+    color: #ff002b;
+}
+
+.login-footer p a:hover{
+    color: #bd0221;
+}
+
+.login-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 30px;
+    max-width: 600px;
+}
+
+.login-info h3{
+    color: #fff;
+}
+
+.login-info p{
+    color: #fff;
+}
+
+.register-box{
+    max-width: 450px;
+}
+
+.register-info{
+    position: absolute;
+    top: 30%;
+    left: 0;
+    padding: 30px 80px;
+    text-align: right;
+}
+
+.register-info img{
+    height: 50px;
+    margin-bottom: 40px;
+}
+
+.register-info p{
+    color: #fff;
+    font-size: 19px;
+    line-height: 30px;
+    font-weight: 300;
+}
+
+.forgot-box{
+    max-width: 420px;
+    border-radius: 8px;
+    margin: 120px auto;
+    background: #fff;
+    padding: 50px;
 }
