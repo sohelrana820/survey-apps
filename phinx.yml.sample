@@ -17,9 +17,9 @@ environments:
 
     development:
         adapter: mysql
-        host: office.previewtechs.net
-        name: myaccount_portal_dev
-        user: myaccount_portal_dev
+        host: cloud-sql01.previewtechs.net
+        name: rana_tvshop
+        user: sohelrana
         pass: 'Preview@Dev!@#'
         port: 3306
         charset: utf8
