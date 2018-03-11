@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
