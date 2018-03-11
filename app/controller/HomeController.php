@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -24,5 +23,29 @@ class HomeController extends AppController
         $this->getFlash()->addMessage('success', 'You are ready to work!');
         $this->getLogger()->info('Application has been running successfully!');
         return $this->getView()->render($response, 'home.twig', ['message' => $this->getFlash()->getMessages()]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function notFoundPage(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response->withStatus(404), '404.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function ServerErrorPage(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response->withStatus(500), '500.twig');
     }
 }
