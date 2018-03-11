@@ -1,6 +1,6 @@
 /** COMMON CSS START **/
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -299,8 +299,7 @@ a {
 }
 
 .header {
-    font-family: 'Open Sans Condensed', sans-serif;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .header h2 {
@@ -324,17 +323,37 @@ a {
     padding: 5px 0px;
 }
 
-.top-header a {
-    color: #FFF;
+.top-header a,
+.top-header a:hover
+{
+    text-decoration: none;
+    color: #fff;
+    font-size: 12px;
 }
 
 .top-header .list-inline {
-    margin-top: 6px;
+    margin-top: 3px;
     margin-bottom: 0px;
 }
 
 .top-buttons {
     text-align: right;
+}
+
+.top-header .top-social-media{
+    margin-bottom: 0px;
+}
+
+.top-header .top-social-media li {
+    padding: 0 4px;
+    display: inline-block;
+    text-align: center;
+    font-size: 12px;
+    line-height: 26px;
+}
+
+.top-header .top-social-media li a{
+    color: #fff;
 }
 
 /** TOP HEADER AREA END **/
@@ -354,7 +373,6 @@ a {
 
 .header .navbar-brand {
     text-transform: uppercase;
-    font-family: 'Open Sans Condensed', sans-serif;
     font-weight: 700;
     font-size: 25px;
     padding: 25px 15px;
@@ -502,7 +520,6 @@ a {
 }
 
 .item-header {
-    font-family: 'Open Sans Condensed', sans-serif;
     margin-bottom: 15px;
 }
 
@@ -673,7 +690,6 @@ a {
 
 .found-result {
     margin: 0px 0px 15px 0px;
-    font-family: 'Open Sans Condensed', sans-serif;
     color: #777;
 }
 
@@ -883,8 +899,8 @@ a {
 }
 
 .footer-copyright {
-    background-color: #bfbfbf;
-    color: #565f73;
+    background-color: #2c619a;
+    color: #fff;
     padding: 20px 0;
 }
 
@@ -905,11 +921,7 @@ a {
 }
 
 .social-icons {
-    background-color: #434955;
-    border-color: #434955;
     color: #aab2bd;
-    width: 36px;
-    height: 35px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     -ms-border-radius: 100%;
