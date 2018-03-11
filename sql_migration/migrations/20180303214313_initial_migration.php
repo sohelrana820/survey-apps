@@ -3,7 +3,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class FirstMigration extends AbstractMigration
+class InitialMigration extends AbstractMigration
 {
     /**
      * Change Method.
@@ -49,7 +49,7 @@ class FirstMigration extends AbstractMigration
             ->create();
 
         $productTable = $this->table('products')
-            ->addColumn('uuid', 'integer', ['limit' => 36])
+            ->addColumn('uuid', 'uuid')
             ->addColumn('title', 'string')
             ->addColumn('slug', 'string')
             ->addColumn('description', 'text')
@@ -67,10 +67,11 @@ class FirstMigration extends AbstractMigration
         $productCategoriesTable = $this->table('products_categories')
             ->addColumn('product_id', 'integer')
             ->addColumn('category_id', 'integer')
+            ->addIndex(['product_id', 'category_id'])
             ->addIndex('product_id')
             ->addIndex('category_id')
-            ->addForeignKey(['product_id'], 'products', ['id'], ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['category_id'], 'categories', ['id'], ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['product_id'], 'products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['category_id'], 'categories', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }
