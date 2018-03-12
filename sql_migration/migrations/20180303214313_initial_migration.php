@@ -54,6 +54,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('slug', 'string')
             ->addColumn('thumb_image', 'string', ['default' => null])
             ->addColumn('main_image', 'string')
+            ->addColumn('demo_url', 'string')
             ->addColumn('description', 'text')
             ->addColumn('price', 'decimal')
             ->addColumn('sells', 'integer', ['limit' => 5])
