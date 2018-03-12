@@ -8,6 +8,36 @@ class CreateProducts extends AbstractSeed
 
     public function run()
     {
+        $categories = [
+            [
+                'name'    => 'Website Template',
+                'slug'    => 'website-template',
+                'created_at' => '2018-01-30 16:30:45',
+                'modified_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name'    => 'WordPress Theme',
+                'slug'    => 'wordpress-theme',
+                'created_at' => '2018-01-30 16:30:45',
+                'modified_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name'    => 'UI Kits',
+                'slug'    => 'ui-kits',
+                'created_at' => '2018-01-30 16:30:45',
+                'modified_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name'    => 'Graphics',
+                'slug'    => 'graphics',
+                'created_at' => '2018-01-30 16:30:45',
+                'modified_at' => date('Y-m-d H:i:s'),
+            ],
+        ];
+        $categoriesTable = $this->table('categories');
+        $categoriesTable->insert($categories)
+            ->save();
+
         $products = [
             [
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd330eb6141',
@@ -27,6 +57,7 @@ class CreateProducts extends AbstractSeed
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
+                'is_featured' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
@@ -48,6 +79,7 @@ class CreateProducts extends AbstractSeed
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
+                'is_featured' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
@@ -69,6 +101,7 @@ class CreateProducts extends AbstractSeed
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
+                'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
@@ -90,6 +123,7 @@ class CreateProducts extends AbstractSeed
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
+                'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
@@ -111,13 +145,40 @@ class CreateProducts extends AbstractSeed
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
+                'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ]
         ];
+        $productsTable = $this->table('products');
+        $productsTable->insert($products)
+            ->save();
 
-        $posts = $this->table('products');
-        $posts->insert($products)
+
+        $productCategories = [
+            [
+                'product_id'    => 1,
+                'category_id'    => 1,
+            ],
+            [
+                'product_id'    => 2,
+                'category_id'    => 1,
+            ],
+            [
+                'product_id'    => 3,
+                'category_id'    => 1,
+            ],
+            [
+                'product_id'    => 4,
+                'category_id'    => 1,
+            ],
+            [
+                'product_id'    => 4,
+                'category_id'    => 2,
+            ],
+        ];
+        $productsCategoriesTable = $this->table('products_categories');
+        $productsCategoriesTable->insert($productCategories)
             ->save();
     }
 }
