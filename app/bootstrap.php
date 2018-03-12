@@ -68,7 +68,13 @@ $container['cache'] = function ($container) {
     if ($container['config']['enable_memcache']) {
         $config = $container['config'];
         $memcache = new Memcached();
-        $memcache->addServers($config['app']['memcache']['hosts']);
+
+        if(!$memcache) {
+            $container->get('logger')->emergency("[memcache] server is down");
+            return null;
+        }
+
+        $memcache->addServers($config['memcache']['hosts']);
         //If memcache server not found, then log this as emergency
         if ($memcache->getStats() === false) {
             $container->get('logger')->emergency("[memcache] server is down");
