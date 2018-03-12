@@ -35,6 +35,11 @@ class AppController
     protected $logger;
 
     /**
+     * @var \Memcached
+     */
+    protected $cache;
+
+    /**
      * @var Config;
      */
     protected $config;
@@ -80,13 +85,27 @@ class AppController
     }
 
     /**
+     * @return mixed|Logger
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function getCache()
+    {
+        $this->cache = $this->container->get('cache');
+        return $this->cache;
+    }
+
+    /**
      * @return ModelLoader
      * @throws \Interop\Container\Exception\ContainerException
      */
     public function loadModel()
     {
+        var_dump(111);
         $models = new ModelLoader();
         $models->setLogger($this->getLogger());
+        $models->setCache($this->getCache());
+        var_dump(111);
+        die();
         return $models;
     }
 }

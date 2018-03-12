@@ -17,6 +17,8 @@ return [
                 'auto_reload' => true,
             ],
         ],
+        'attachment_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'public/attachments',
+        'download_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'templates/download_items',
         // Monolog settings
         'logger' => [
             'name' => 'logger_name',
@@ -36,6 +38,7 @@ return [
             'collation' => 'utf8_general_ci',
             'prefix' => ''
         ],
+        "enable_memcache" => false,
         'memcache' => [
             'active' => true,
             'hosts' => [

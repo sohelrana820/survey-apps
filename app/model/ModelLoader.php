@@ -22,6 +22,11 @@ class ModelLoader
     private $userModel;
 
     /**
+     * @var ProductsModel
+     */
+    private $productsModel;
+
+    /**
      * @param Logger $logger
      */
     public function setLogger($logger)
@@ -44,5 +49,17 @@ class ModelLoader
     {
         $this->userModel = new UsersModel();
         return $this->userModel->setLogger($this->logger);
+    }
+
+    /**
+     * @return ProductsModel
+     */
+    public function getProductsModel()
+    {
+        $this->productsModel = new ProductsModel();
+        $this->productsModel->setLogger($this->logger);
+        $this->productsModel->setCache($this->cache);
+        var_dump($this->productsModel); die();
+        return $this->productsModel;
     }
 }

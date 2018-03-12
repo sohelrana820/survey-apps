@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use http\Env\Response;
 use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class ProductsController
@@ -20,6 +20,8 @@ class ProductsController extends AppController
      */
     public function products(Request $request, Response $response, $args)
     {
+        $model = $this->loadModel();
+        var_dump($model); die();
         return $this->getView()->render($response, 'products/products.twig');
     }
 }

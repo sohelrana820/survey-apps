@@ -60,6 +60,26 @@ $container['logger'] = function (Container $container) {
     return $logger;
 };
 
+/**
+ * @param $container
+ * @return Memcached
+ */
+$container['cache'] = function ($container) {
+    if ($container['config']['enable_memcache']) {
+        $config = $container['config'];
+        $memcache = new Memcached();
+        $memcache->addServers($config['app']['memcache']['hosts']);
+        //If memcache server not found, then log this as emergency
+        if ($memcache->getStats() === false) {
+            $container->get('logger')->emergency("[memcache] server is down");
+        }
+        //Finish taking memcache server up log
+        return $memcache;
+    }
+
+    return null;
+};
+
 
 /**
  * @param Container $container
