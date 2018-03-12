@@ -60,7 +60,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('rating', 'decimal')
             ->addColumn('total_viewed', 'integer', ['limit' => 6])
             ->addColumn('total_downloaded', 'integer', ['limit' => 5])
-            ->addColumn('download_url', 'string')
+            ->addColumn('download_path', 'string')
             ->addColumn('tags', 'string')
             ->addColumn('layout', 'char', ['default' => 'Responsive'])
             ->addColumn('product_type', 'char', ['default' => 'paid'])
