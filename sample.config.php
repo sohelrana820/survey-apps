@@ -17,7 +17,7 @@ return [
                 'auto_reload' => true,
             ],
         ],
-        'attachment_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'templates/attachments',
+        'attachment_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'public/attachments',
         'download_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'templates/download_items',
         // Monolog settings
         'logger' => [
