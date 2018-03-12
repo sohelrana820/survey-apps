@@ -7,6 +7,7 @@ use Monolog\Logger;
 
 /**
  * Class ProductsModel
+ *
  * @package App\Model
  */
 class ProductsModel extends Model

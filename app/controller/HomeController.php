@@ -7,12 +7,13 @@ use Slim\Http\Response;
 
 /**
  * Class HomeController
+ *
  * @package App\Controller
  */
 class HomeController extends AppController
 {
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
@@ -26,7 +27,7 @@ class HomeController extends AppController
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
@@ -38,7 +39,7 @@ class HomeController extends AppController
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface

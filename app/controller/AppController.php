@@ -11,6 +11,7 @@ use Slim\Views\Twig;
 
 /**
  * Class AppController
+ *
  * @package App\Controller
  */
 class AppController
@@ -46,6 +47,7 @@ class AppController
 
     /**
      * AppController constructor.
+     *
      * @param Container $container
      */
     public function __construct(Container $container)

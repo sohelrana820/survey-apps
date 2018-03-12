@@ -7,6 +7,7 @@ use Monolog\Logger;
 
 /**
  * Class UsersModel
+ *
  * @package App\Model
  */
 class UsersModel extends Model

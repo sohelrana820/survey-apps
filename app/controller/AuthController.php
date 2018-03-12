@@ -7,12 +7,13 @@ use Slim\Http\Response;
 
 /**
  * Class AuthController
+ *
  * @package App\Controller
  */
 class AuthController extends AppController
 {
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
@@ -24,7 +25,7 @@ class AuthController extends AppController
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      */
@@ -35,7 +36,7 @@ class AuthController extends AppController
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
@@ -47,7 +48,7 @@ class AuthController extends AppController
     }
 
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      */

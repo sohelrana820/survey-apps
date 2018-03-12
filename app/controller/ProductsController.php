@@ -7,12 +7,13 @@ use Slim\Http\Response;
 
 /**
  * Class ProductsController
+ *
  * @package App\Controller
  */
 class ProductsController extends AppController
 {
     /**
-     * @param Request $request
+     * @param Request  $request
      * @param Response $response
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface

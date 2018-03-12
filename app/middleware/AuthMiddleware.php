@@ -7,6 +7,7 @@ use Slim\Http\Response;
 
 /**
  * Class AuthMiddleware
+ *
  * @package App\Middleware
  */
 class AuthMiddleware
