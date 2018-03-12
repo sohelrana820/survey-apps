@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use http\Env\Response;
 use Slim\Http\Request;
+use Slim\Http\Response;
 
 /**
  * Class ProductsController
