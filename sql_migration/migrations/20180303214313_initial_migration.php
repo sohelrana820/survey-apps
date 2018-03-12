@@ -69,6 +69,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('browsers_compatible', 'string',  ['default' => null])
             ->addColumn('created_at', 'datetime')
             ->addColumn('modified_at', 'datetime')
+            ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
             ->create();
 
