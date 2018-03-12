@@ -59,7 +59,6 @@ class ModelLoader
         $this->productsModel = new ProductsModel();
         $this->productsModel->setLogger($this->logger);
         $this->productsModel->setCache($this->cache);
-        var_dump($this->productsModel); die();
         return $this->productsModel;
     }
 }

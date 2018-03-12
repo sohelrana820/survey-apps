@@ -82,8 +82,4 @@ class ProductsModel extends Model
         return $this;
     }
 
-    public function test()
-    {
-        return 111;
-    }
 }
