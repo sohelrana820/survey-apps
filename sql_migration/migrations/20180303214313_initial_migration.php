@@ -64,6 +64,8 @@ class InitialMigration extends AbstractMigration
             ->addColumn('tags', 'string')
             ->addColumn('layout', 'char', ['default' => 'Responsive'])
             ->addColumn('product_type', 'char', ['default' => 'paid'])
+            ->addColumn('key_features', 'string')
+            ->addColumn('browsers_compatible', 'string')
             ->addColumn('created_at', 'datetime')
             ->addColumn('modified_at', 'datetime')
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
