@@ -100,9 +100,12 @@ class AppController
      */
     public function loadModel()
     {
+        var_dump(111);
         $models = new ModelLoader();
         $models->setLogger($this->getLogger());
         $models->setCache($this->getCache());
+        var_dump(111);
+        die();
         return $models;
     }
 }

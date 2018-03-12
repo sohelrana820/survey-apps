@@ -81,4 +81,9 @@ class ProductsModel extends Model
         $this->cache = $cache;
         return $this;
     }
+
+    public function test()
+    {
+        return 111;
+    }
 }
