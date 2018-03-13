@@ -127,12 +127,16 @@ if ($container['config']['database_require']) {
     $databaseConf = $container['settings']['databases'];
     $capsule = new Illuminate\Database\Capsule\Manager();
     $capsule->addConnection($databaseConf);
-    $capsule->setEventDispatcher(new Dispatcher(new Container));
+    $events = new Dispatcher(new Illuminate\Container\Container());
+    $events->listen('Illuminate\Database\Events\QueryExecuted', function ($query) use ($container) {
+        $logger = $container->get('logger');
+        $logger->info(sprintf("[mysql_query] %s executed in %f seconds", $query->sql, $query->time),
+            ['pdo_bindings' => $query->bindings]);
+    });
+    $capsule->setEventDispatcher($events);
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
 }
-
-
 
 // Loading application routes
 require ROOT_DIR . DIRECTORY_SEPARATOR . 'app/routes.php';
