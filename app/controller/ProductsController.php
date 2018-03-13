@@ -21,6 +21,7 @@ class ProductsController extends AppController
      */
     public function products(Request $request, Response $response, $args)
     {
-        return $this->getView()->render($response, 'products/products.twig');
+        $products = $this->loadModel()->getProductsModel()->searchProducts();
+        return $this->getView()->render($response, 'products/products.twig', ['products' => $products]);
     }
 }

@@ -131,12 +131,12 @@ $container['errorHandler'] = function (Container $container) {
  * @param Container $container
  * @return Closure
  */
-$container['phpErrorHandler'] = function (Container $container) {
+/*$container['phpErrorHandler'] = function (Container $container) {
     return function (Request $request, Response $response) use ($container) {
         $container['logger']->error("[phpErrorHandler] 500 error caught");
         return $container['view']->render($response->withStatus(500), '500.twig');
     };
-};
+};*/
 
 
 // Connecting to database
