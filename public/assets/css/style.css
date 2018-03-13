@@ -542,6 +542,13 @@ a {
     margin-bottom: 30px;
     position: relative;
     cursor: pointer;
+    max-height: 280px;
+}
+
+
+
+.item-grid:hover {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.10), 0 3px 3px 0 rgba(0, 0, 0, 0.10);
 }
 
 .item-grid .ratings li {
@@ -574,7 +581,9 @@ a {
 }
 
 .rating-number{
-    color: #777;
+
+    color: #999;
+    font-size: 12px;
 }
 
 .item-grid .thumb {
@@ -628,6 +637,10 @@ a {
     top: 40%;
     right: 24%;
     font-size: 16px;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
 }
 
 .item-grid:hover .live-preview {

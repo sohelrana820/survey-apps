@@ -2,7 +2,7 @@
     {% if product.is_featured %}
     <div class="ribbon ribbon-red"><span>Featured</span></div>
     {% endif %}
-    <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
+    <img src="{{ product.thumb_image }}" class="thumb" alt="{{ product.title }}">
     <div class="intro">
         <div class="pull-left">
             <span class="rating-box">
@@ -14,8 +14,8 @@
             Sales: {{ product.sales }}
         </a>
         <div class="clearfix"></div>
-        <h2 class="title"><a href="">{{ product.title }}</a></h2>
+        <h2 class="title"><a href="/products/{{ product.slug }}">{{ product.title |truncate(30) }}</a></h2>
         <strong class="price">${{ product.price | number_format(2) }}</strong>
     </div>
-    <a href="/products/{{ product.slug }}" class="btn live-preview"><span>Live Preview</span></a>
+    {#<a href="/products/{{ product.slug }}" class="btn live-preview"><span>Live Preview</span></a>#}
 </div>
