@@ -183,26 +183,55 @@ class ProductsModel extends Model
     }
 
     /**
+     * @param array $queryParams
+     * @param array $options
      * @return array
      */
-    public function searchProducts()
+    public function searchProducts($queryParams = [], $options = [])
     {
+        $page = 1;
+        $perPage = 12;
+
+        if(array_key_exists('page', $queryParams)) {
+            $page = intval($queryParams['page']);
+        }
+
+        if(array_key_exists('perPage', $queryParams)) {
+            $perPage = intval($queryParams['perPage']);
+        }
+
         $products = [];
         try {
-            $productsObj = $this->select('uuid')->get();
-            if($productsObj) {
-                $products = $productsObj->toArray();
-            }
+            $productsObj = $this;
+            $productsObj = $productsObj->select('products.uuid');
+            $productsObj = $productsObj->paginate(
+                $perPage,
+                ['*'],
+                'products',
+                $page
+            );
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
 
         $uuids = [];
-        foreach ($products as $product) {
+        foreach ($productsObj as $product) {
             array_push($uuids, $product['uuid']);
         }
-        return $this->getProductBatch($uuids);
+
+        $products = $this->getProductBatch($uuids);
+        return [
+            'products' => $products,
+            'searchedParams' => $queryParams,
+            'pagination' => [
+                'total' => $productsObj->total(),
+                'lastPage' => $productsObj->lastPage(),
+                'perPage' => $productsObj->perPage(),
+                'currentPage' => $productsObj->currentPage(),
+                'pageName' => $productsObj->getPageName(),
+            ]
+        ];
     }
 
     /**
