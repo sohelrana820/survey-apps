@@ -1,5 +1,7 @@
 <div class="item-grid">
+    {% if product.is_featured %}
     <div class="ribbon ribbon-red"><span>Featured</span></div>
+    {% endif %}
     <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
     <div class="intro">
         <ul class="list-inline ratings pull-left">
@@ -15,7 +17,7 @@
         </a>
         <div class="clearfix"></div>
         <h2 class="title"><a href="">{{ product.title }}</a></h2>
-        <strong class="price">$22.00</strong>
+        <strong class="price">${{ product.price | number_format(2) }}</strong>
     </div>
-    <a href="#" class="btn live-preview"><span>Live Preview</span></a>
+    <a href="/products/{{ product.slug }}" class="btn live-preview"><span>Live Preview</span></a>
 </div>
