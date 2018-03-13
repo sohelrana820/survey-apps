@@ -106,30 +106,79 @@ class CategoriesModel extends Model
 
 
     /**
+     * @param $categorySlug
      * @param bool $forceCacheGenerate
-     * @return array|mixed
+     * @return mixed|null
      */
-    public function getCategories($forceCacheGenerate = false)
+    public function getCategory($categorySlug, $forceCacheGenerate = false)
     {
-        $cacheKeys = 'categories_list';
-        $categories = $this->cache->get($cacheKeys);
-        if($categories && $forceCacheGenerate === false) {
-            $this->logger ? $this->logger->info('Categories Returned From Cache') : null;
-            return $categories;
+        $cacheKey = sprintf('category_slug_%s', str_replace('-', '_', $categorySlug));
+        $details = $this->cache ? $this->cache->get($cacheKey) : null;
+
+        if($forceCacheGenerate === false && $details) {
+            $this->logger ? $this->logger->info('Category Returned From Cache', ['category_slug' => $categorySlug]) : null;
+            return $details;
         }
 
-        try {
-            $categoriesObj = $this->select('id', 'name', 'slug')->get();
-            if($categoriesObj) {
-                $this->cache ? $this->cache->set($cacheKeys, $categoriesObj->toArray(), self::CACHE_VALIDITY_LONG) : null;
-                $this->logger ? $this->logger->info('Categories Returned From DB') : null;
-                return $categoriesObj->toArray();
+        try{
+            $details = $this->where('slug', $categorySlug)->first();
+            if($details) {
+                $this->logger ? $this->logger->info('Category Returned From DB', ['category_slug' => $categorySlug]) : null;
+                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
+                return $details->toArray();
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
 
-        return [];
+        return null;
+    }
+
+    /**
+     * @param $categorySlugs
+     * @return array|mixed
+     */
+    public function getCategoryBatch($categorySlugs)
+    {
+        $cacheKeys = [];
+        foreach ($categorySlugs as $key => $value) {
+            $cacheKeys[] = sprintf('category_slug_%s', str_replace('-', '_', $value));
+        }
+
+        $categories = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
+        if($categories && sizeof($categories) === sizeof($categorySlugs)) {
+            return array_values($categories);
+        }
+
+        $categories = [];
+        foreach ($categorySlugs as $key => $value) {
+            array_push($categories, $this->getCategory($value));
+        }
+        return $categories;
+    }
+
+
+    /**
+     * @return array|mixed
+     */
+    public function getCategories()
+    {
+        $categories = [];
+        try {
+            $categoryObj = $this->select('slug')->get();
+            if($categoryObj) {
+                $categories = $categoryObj->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        $uuids = [];
+        foreach ($categories as $category) {
+            array_push($uuids, $category['slug']);
+        }
+        return $this->getCategoryBatch($uuids);
     }
 }
