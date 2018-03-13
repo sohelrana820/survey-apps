@@ -57,7 +57,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('demo_url', 'string')
             ->addColumn('description', 'text')
             ->addColumn('price', 'decimal')
-            ->addColumn('sells', 'integer', ['limit' => 5])
+            ->addColumn('sales', 'integer', ['limit' => 5])
             ->addColumn('rating', 'decimal')
             ->addColumn('total_viewed', 'integer', ['limit' => 6])
             ->addColumn('total_downloaded', 'integer', ['limit' => 5, 'default' => 0])
