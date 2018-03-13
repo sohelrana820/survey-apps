@@ -213,6 +213,10 @@ class ProductsModel extends Model
             $productsObj = $this;
             $productsObj = $productsObj->select('products.uuid');
 
+            if(array_key_exists('title', $queryParams)) {
+                $productsObj = $productsObj->where('title', 'LIKE' ,'%' .$queryParams['title']. '%');
+            }
+
             // Search on product's category
             if(array_key_exists('cat', $queryParams)) {
                 $catModel = new CategoriesModel();
