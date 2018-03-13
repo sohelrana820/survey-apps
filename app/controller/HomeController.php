@@ -21,7 +21,7 @@ class HomeController extends AppController
      */
     public function home(Request $request, Response $response, $args)
     {
-        $products = $this->loadModel()->getProductsModel()->getLists();
+        $products = $this->loadModel()->getProductsModel()->getPopularProducts();
         $data = [
             'products' => $products
         ];
