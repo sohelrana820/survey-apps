@@ -63,7 +63,7 @@ class ProductsModel extends Model
     private $logger;
 
     /**
-     * @var \Memcache;
+     * @var \Memcached;
      */
     private $cache;
 
@@ -129,25 +129,25 @@ class ProductsModel extends Model
     }
 
     /**
-     * @param $uuid
+     * @param $productUuid
      * @param bool $forceCacheGenerate
      * @return array|null|string
      */
-    public function getProduct($uuid, $forceCacheGenerate = false)
+    public function getProduct($productUuid, $forceCacheGenerate = false)
     {
-        $cacheKey = sprintf('product_uuid_%s', $uuid);
+        $cacheKey = sprintf('product_uuid_%s', $productUuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
 
         if($forceCacheGenerate === false && $details) {
-            $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $uuid]) : null;
+            $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $productUuid]) : null;
             return $details;
         }
 
         try{
-            $details = $this->where('uuid', $uuid)->first();
+            $details = $this->where('uuid', $productUuid)->first();
             if($details) {
-                $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $uuid]) : null;
+                $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $details->toArray();
             }
@@ -157,5 +157,51 @@ class ProductsModel extends Model
         }
 
         return null;
+    }
+
+    /**
+     * @param $productUuids
+     * @return array
+     */
+    public function getProductBatch($productUuids)
+    {
+        $cacheKeys = [];
+        foreach ($productUuids as $key => $value) {
+            $cacheKeys[] = sprintf('product_uuid_%s', $value);
+        }
+
+        $products = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
+        if($products && sizeof($products) === sizeof($productUuids)) {
+            return array_values($products);
+        }
+
+        $products = [];
+        foreach ($productUuids as $key => $value) {
+            array_push($products, $this->getProduct($value));
+        }
+        return $products;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLists()
+    {
+        $products = [];
+        try {
+            $productsObj = $this->select('uuid')->get();
+            if($productsObj) {
+                $products = $productsObj->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        $uuids = [];
+        foreach ($products as $product) {
+            array_push($uuids, $product['uuid']);
+        }
+        return $this->getProductBatch($uuids);
     }
 }
