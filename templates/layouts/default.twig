@@ -98,18 +98,16 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
                     <li><a href="/products">Products</a></li>
-                    {#<li class="dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Choose Categories <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">PHP</a></li>
-                            <li><a href="#">CakePHP 3.X</a></li>
-                            <li><a href="#">Laravel 5.X</a></li>
-                            <li><a>Slim 3.0</a></li>
-                            <li><a href="#">Twig</a></li>
+                            {% for category in categories %}
+                                <li><a href="/products?cat={{ category.slug }}">{{ category.name }}</a></li>
+                            {% endfor %}
                         </ul>
-                    </li>#}
+                    </li>
                 </ul>
                 {#<ul class="nav navbar-nav navbar-right">
                     <li><a href="http://static.binarypack.com/about-us">Privacy Policy</a></li>

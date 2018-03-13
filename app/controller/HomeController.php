@@ -22,8 +22,10 @@ class HomeController extends AppController
     public function home(Request $request, Response $response, $args)
     {
         $products = $this->loadModel()->getProductsModel()->getPopularProducts();
+        $categories = $this->loadModel()->getCategoryModel()->getCategories();
         $data = [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ];
         return $this->getView()->render($response, 'home.twig', $data);
     }
