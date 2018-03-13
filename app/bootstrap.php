@@ -25,6 +25,7 @@ $container['view'] = function (Container $container) {
     $twigExtra = $view->getEnvironment();
     $twigExtra->addGlobal('session', $_SESSION);
     $twigExtra->addGlobal('config', $settings);
+    $twigExtra->addGlobal('queryParams', $_GET);
 
 
     // Creating rating filter.
