@@ -9,18 +9,7 @@
                 <p>
                     Buy creative, modern WordPress themes, web templates, UI kits, graphics and more.
                 </p>
-                <form class="search-form">
-                    <div class="row">
-                        <div class="col-lg-offset-2 col-lg-6">
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Search your desire item">
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <button type="submit" class="search-item-btn">Search Item</button>
-                        </div>
-                    </div>
-                </form>
+                {% include 'elements/banner-form.twig' %}
                 <p class="buttons">
                     <a href="#" class="btn btn-theme-inverse"><span>Most Sold Items</span></a>
                     <a href="#" class="btn btn-theme-inverse"><span>Featured Items</span></a>
@@ -44,7 +33,7 @@
                 <!-- Single item -->
                 {% for product in products %}
                     <div class="col-lg-3 col-md-3 col-sm-6">
-                        {% include 'elements/product_grid.twig' %}
+                        {% include 'elements/product-grid.twig' %}
                     </div>
                 {% endfor %}
             </div>
