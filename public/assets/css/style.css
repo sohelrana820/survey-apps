@@ -550,6 +550,33 @@ a {
     color: #999;
 }
 
+.rating-box {
+    position: relative;
+    vertical-align: middle;
+    font-size: 1em;
+    font-family: FontAwesome;
+    display: inline-block;
+    color: #ffc12b;
+}
+.rating-box:before {
+    content: "\f006 \f006 \f006 \f006 \f006";
+}
+.rating-box .rating {
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #ffc12b;
+}
+.rating-box .rating:before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+}
+
+.rating-number{
+    color: #777;
+}
+
 .item-grid .thumb {
     width: 100%;
 }

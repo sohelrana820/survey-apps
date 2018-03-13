@@ -4,16 +4,12 @@
     {% endif %}
     <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
     <div class="intro">
-        <ul class="list-inline ratings pull-left">
-            <li><i class="fa fa-star orange-color"></i></li>
-            <li><i class="fa fa-star orange-color"></i></li>
-            <li><i class="fa fa-star orange-color"></i></li>
-            <li><i class="fa fa-star orange-color"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li>(4.5)</li>
-        </ul>
+        <div class="rating-box">
+            <div class="rating" style="width:70%;"></div>
+            <span class="rating-number">({{ product.rating | number_format(2) }})</span>
+        </div>
         <a class="pull-right review-link">
-            <i class="fa fa-comments"></i> (5 review)
+            Sales: {{ product.sales }}
         </a>
         <div class="clearfix"></div>
         <h2 class="title"><a href="">{{ product.title }}</a></h2>
