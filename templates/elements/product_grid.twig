@@ -4,8 +4,10 @@
     {% endif %}
     <img src="https://d85wutc1n854v.cloudfront.net/live/products/icons/WB0R5L90S.jpg?v=2.5" class="thumb">
     <div class="intro">
-        <div class="rating-box">
-            <div class="rating" style="width:70%;"></div>
+        <div class="pull-left">
+            <span class="rating-box">
+            <span class="rating" style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
+        </span>
             <span class="rating-number">({{ product.rating | number_format(2) }})</span>
         </div>
         <a class="pull-right review-link">

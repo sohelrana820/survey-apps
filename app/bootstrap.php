@@ -25,6 +25,15 @@ $container['view'] = function (Container $container) {
     $twigExtra = $view->getEnvironment();
     $twigExtra->addGlobal('session', $_SESSION);
     $twigExtra->addGlobal('config', $settings);
+
+
+    // Creating rating filter.
+    $twigCustomFilter = new Twig_SimpleFilter('rating_percentage', function ($rating, $totalRating) {
+        $percentage = ($rating * 100) / $totalRating;
+        return $percentage;
+    });
+    $view->getEnvironment()->addFilter($twigCustomFilter);
+
     return $view;
 };
 

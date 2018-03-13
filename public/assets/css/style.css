@@ -586,10 +586,11 @@ a {
 }
 
 .item-grid .title {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
-    margin: 0px;
+    margin: 10px 0px 10px;
     margin-bottom: 10px;
+    line-height: 20px;
 }
 
 .item-grid .title a {
@@ -598,6 +599,7 @@ a {
 
 .item-grid .title a:hover {
     color: #08598c;
+    text-decoration: none;
 }
 
 .item-grid .price {
