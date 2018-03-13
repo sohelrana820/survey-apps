@@ -104,6 +104,13 @@ class CategoriesModel extends Model
         return $this;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products()
+    {
+        return $this->belongsToMany(ProductsModel::class, 'products_categories', 'category_id', 'product_id');
+    }
 
     /**
      * @param $categorySlug
@@ -114,7 +121,6 @@ class CategoriesModel extends Model
     {
         $cacheKey = sprintf('category_slug_%s', str_replace('-', '_', $categorySlug));
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
-
         if($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Category Returned From Cache', ['category_slug' => $categorySlug]) : null;
             return $details;

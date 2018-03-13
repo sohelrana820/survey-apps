@@ -104,6 +104,14 @@ class ProductsModel extends Model
     ];
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(CategoriesModel::class, 'products_categories', 'product_id', 'category_id');
+    }
+
+    /**
      * @var array
      */
     protected $hidden = ['password'];
@@ -205,11 +213,16 @@ class ProductsModel extends Model
             $productsObj = $this;
             $productsObj = $productsObj->select('products.uuid');
 
-
+            // Search on product's category
             if(array_key_exists('cat', $queryParams)) {
-                $productsObj = $productsObj->where('products_categories.category_id', 1);
+                $catModel = new CategoriesModel();
+                $catModel->setCache($this->cache);
+                $catModel->setLogger($this->logger);
+                $category = $catModel->getCategory($queryParams['cat']);
+                $productsObj = $productsObj->whereHas('categories', function ($query) use ($category) {
+                    $query->where('category_id', $category['id']);
+                });
             }
-
             $productsObj = $productsObj->paginate(
                 $perPage,
                 ['*'],
