@@ -28,17 +28,21 @@
     <!-- ITEMS AREA START -->
     <div class="items-area">
         <div class="container">
-            <div class="item-header">
-                <h2>List of Items</h2>
-            </div>
-            <div class="row">
-                <!-- Single item -->
-                {% for product in products.products %}
-                    <div class="col-lg-3 col-md-3 col-sm-6">
-                        {% include 'elements/product_grid.twig' %}
-                    </div>
-                {% endfor %}
-            </div>
+            {% if products.products is not empty %}
+                <div class="item-header">
+                    <h2>List of Items</h2>
+                </div>
+                <div class="row">
+                    <!-- Single item -->
+                    {% for product in products.products %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            {% include 'elements/product_grid.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {% include 'elements/empty.twig' %}
+            {% endif %}
         </div>
     </div>
     <!-- ITEMS AREA END -->

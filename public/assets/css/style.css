@@ -312,6 +312,17 @@ a {
     color: #999;
 }
 
+.empty-box {
+    height: 200px;
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.empty-box h2{
+    display: table-cell;
+    vertical-align: middle;
+}
 /** COMMON CSS END **/
 
 /** TOP HEADER AREA START **/
