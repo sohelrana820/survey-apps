@@ -207,13 +207,7 @@ class ProductsModel extends Model
 
 
             if(array_key_exists('cat', $queryParams)) {
-                $catSlug = $queryParams['cat'];
-                $categoryModel = new CategoriesModel();
-                var_dump($categoryModel);
-                //$categoryModel->setLogger($this->logger);
-                //$categoryModel->setCache($this->cache);
-                $category = $categoryModel->getCategory($catSlug);
-                var_dump($category);
+                $productsObj = $productsObj->where('products_categories.category_id', 1);
             }
 
             $productsObj = $productsObj->paginate(
