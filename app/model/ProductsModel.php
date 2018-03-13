@@ -204,6 +204,18 @@ class ProductsModel extends Model
         try {
             $productsObj = $this;
             $productsObj = $productsObj->select('products.uuid');
+
+
+            if(array_key_exists('cat', $queryParams)) {
+                $catSlug = $queryParams['cat'];
+                $categoryModel = new CategoriesModel();
+                var_dump($categoryModel);
+                //$categoryModel->setLogger($this->logger);
+                //$categoryModel->setCache($this->cache);
+                $category = $categoryModel->getCategory($catSlug);
+                var_dump($category);
+            }
+
             $productsObj = $productsObj->paginate(
                 $perPage,
                 ['*'],
