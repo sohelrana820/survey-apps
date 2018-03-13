@@ -21,9 +21,11 @@ class HomeController extends AppController
      */
     public function home(Request $request, Response $response, $args)
     {
-        $this->getFlash()->addMessage('success', 'You are ready to work!');
-        $this->getLogger()->info('Application has been running successfully!');
-        return $this->getView()->render($response, 'home.twig', ['message' => $this->getFlash()->getMessages()]);
+        $products = $this->loadModel()->getProductsModel()->getLists();
+        $data = [
+            'products' => $products
+        ];
+        return $this->getView()->render($response, 'home.twig', $data);
     }
 
     /**

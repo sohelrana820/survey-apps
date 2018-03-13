@@ -1,5 +1,54 @@
 {% extends 'layouts/default.twig' %}
 
-{% block content %}
+{% block banner %}
+    <!-- BANNER AREA START -->
+    <div class="banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1>Website Templates, Themes, UI Kits From $0.99</h1>
+                <p>
+                    Buy creative, modern WordPress themes, web templates, UI kits, graphics and more.
+                </p>
+                <form class="search-form">
+                    <div class="row">
+                        <div class="col-lg-offset-2 col-lg-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Search your desire item">
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="search-item-btn">Search Item</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="buttons">
+                    <a href="#" class="btn btn-theme-inverse"><span>Most Sold Items</span></a>
+                    <a href="#" class="btn btn-theme-inverse"><span>Featured Items</span></a>
+                    <a href="#" class="btn btn-theme-inverse"><span>Popular Items</span></a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- BANNER AREA END -->
+{% endblock %}
 
+{% block content %}
+    <!-- ITEMS AREA START -->
+    <div class="items-area">
+        <div class="container">
+            <div class="item-header">
+                <h2>Popular Items</h2>
+                <small>All popular items list</small>
+            </div>
+            <div class="row">
+                <!-- Single item -->
+                {% for product in products %}
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                        {% include 'elements/product_grid.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- ITEMS AREA END -->
 {% endblock %}
