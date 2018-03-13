@@ -199,6 +199,8 @@ class ProductsModel extends Model
     {
         $page = 1;
         $perPage = 12;
+        $orderBy = 'id';
+        $sortBy = 'DESC';
 
         if(array_key_exists('page', $queryParams)) {
             $page = intval($queryParams['page']);
@@ -208,16 +210,35 @@ class ProductsModel extends Model
             $perPage = intval($queryParams['perPage']);
         }
 
+        if(array_key_exists('order', $queryParams)) {
+            $orderBy = $queryParams['order'];
+        }
+
+        if(array_key_exists('sort', $queryParams)) {
+            $sortBy = $queryParams['sort'];
+        }
+
         $products = [];
         try {
             $productsObj = $this;
             $productsObj = $productsObj->select('products.uuid');
 
+            // Search by product's title
             if(array_key_exists('title', $queryParams)) {
                 $productsObj = $productsObj->where('title', 'LIKE' ,'%' .$queryParams['title']. '%');
             }
 
-            // Search on product's category
+            // Search by featured
+            if(array_key_exists('featured', $queryParams)) {
+                $productsObj = $productsObj->where('is_featured', 1);
+            }
+
+            // Search by featured
+            if(array_key_exists('popular', $queryParams)) {
+                $orderBy = 'total_viewed';
+            }
+
+            // Search by product's category
             if(array_key_exists('cat', $queryParams)) {
                 $catModel = new CategoriesModel();
                 $catModel->setCache($this->cache);
@@ -227,7 +248,7 @@ class ProductsModel extends Model
                     $query->where('category_id', $category['id']);
                 });
             }
-            $productsObj = $productsObj->paginate(
+            $productsObj = $productsObj->orderBy($orderBy, $sortBy)->paginate(
                 $perPage,
                 ['*'],
                 'products',
@@ -265,7 +286,7 @@ class ProductsModel extends Model
     {
         $products = [];
         try {
-            $productsObj = $this->select('uuid')->orderBy('sales', 'DESC')->limit($limit)->get();
+            $productsObj = $this->select('uuid')->orderBy('total_viewed', 'DESC')->limit($limit)->get();
             if($productsObj) {
                 $products = $productsObj->toArray();
             }
