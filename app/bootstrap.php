@@ -62,7 +62,7 @@ $container['logger'] = function (Container $container) {
 
 /**
  * @param $container
- * @return Memcached
+ * @return Memcached|null
  */
 $container['cache'] = function ($container) {
     if ($container['config']['enable_memcache']) {
@@ -128,11 +128,11 @@ if ($container['config']['database_require']) {
     $capsule = new Illuminate\Database\Capsule\Manager();
     $capsule->addConnection($databaseConf);
     $events = new Dispatcher(new Illuminate\Container\Container());
-    $events->listen('Illuminate\Database\Events\QueryExecuted', function ($query) use ($container) {
+    /*$events->listen('Illuminate\Database\Events\QueryExecuted', function ($query) use ($container) {
         $logger = $container->get('logger');
         $logger->info(sprintf("[mysql_query] %s executed in %f seconds", $query->sql, $query->time),
             ['pdo_bindings' => $query->bindings]);
-    });
+    });*/
     $capsule->setEventDispatcher($events);
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
