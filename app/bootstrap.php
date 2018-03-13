@@ -28,12 +28,20 @@ $container['view'] = function (Container $container) {
 
 
     // Creating rating filter.
-    $twigCustomFilter = new Twig_SimpleFilter('rating_percentage', function ($rating, $totalRating) {
+    $twigFilter = new Twig_SimpleFilter('rating_percentage', function ($rating, $totalRating) {
         $percentage = ($rating * 100) / $totalRating;
         return $percentage;
     });
-    $view->getEnvironment()->addFilter($twigCustomFilter);
 
+    $truncateFilter = (new Twig_SimpleFilter('truncate', function($string, $length) {
+        if(strlen($string) < $length)
+            return $string;
+        else
+            return array_shift(str_split($string, $length)) . "...";
+    }));
+
+    $view->getEnvironment()->addFilter($twigFilter);
+    $view->getEnvironment()->addFilter($truncateFilter);
     return $view;
 };
 
