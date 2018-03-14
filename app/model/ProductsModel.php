@@ -233,12 +233,12 @@ class ProductsModel extends Model
                 $productsObj = $productsObj->where('is_featured', 1);
             }
 
-            // Search by featured
+            // Search by recent
             if(array_key_exists('recent', $queryParams)) {
                 $orderBy = 'id';
             }
 
-            // Search by featured
+            // Search by popular
             if(array_key_exists('popular', $queryParams)) {
                 $orderBy = 'total_viewed';
             }
