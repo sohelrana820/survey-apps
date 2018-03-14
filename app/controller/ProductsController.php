@@ -46,7 +46,8 @@ class ProductsController extends AppController
     public function productDetails(Request $request, Response $response, $args)
     {
         $productSlug = $request->getAttribute('slug');
-        $product = $this->loadModel()->getProductsModel()->getProduct($productSlug);
+        $productUuid = $this->loadModel()->getProductsModel()->getProductUuidBySlug($productSlug);
+        $product = $this->loadModel()->getProductsModel()->getProduct($productUuid);
         $data = [
             'product' => $product,
         ];
