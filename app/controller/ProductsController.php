@@ -45,9 +45,10 @@ class ProductsController extends AppController
      */
     public function productDetails(Request $request, Response $response, $args)
     {
-        $products = $this->loadModel()->getProductsModel()->searchProducts($request->getQueryParams());
+        $productSlug = $request->getAttribute('slug');
+        $product = $this->loadModel()->getProductsModel()->getProduct($productSlug);
         $data = [
-            'products' => $products,
+            'product' => $product,
         ];
         return $this->getView()->render($response, 'products/product-details.twig', $data);
     }
