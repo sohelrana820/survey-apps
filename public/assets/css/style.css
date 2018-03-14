@@ -11,7 +11,7 @@ a {
 
 /* CSS colors **/
 .theme-color {
-    color: #08598c !important;
+    color: #22d05d !important;
 }
 
 .grey-color {
@@ -32,7 +32,7 @@ a {
 
 /* Background colors **/
 .theme-bg {
-    background: #08598c !important;
+    background: #22d05d !important;
 }
 
 /* CSS buttons **/
@@ -57,26 +57,26 @@ a {
 }
 
 .btn-theme {
-    background: #08598c;
-    border: 2px solid #08598c;
+    background: #22d05d;
+    border: 2px solid #22d05d;
     color: #FFF !important;
 }
 
 .btn-theme:hover {
     background: transparent;
-    border: 2px solid #08598c;
-    color: #08598c !important;
+    border: 2px solid #22d05d;
+    color: #22d05d !important;
 }
 
 .btn-theme-inverse {
     background: transparent;
-    border: 2px solid #08598c;
-    color: #08598c !important;
+    border: 2px solid #22d05d;
+    color: #22d05d !important;
 }
 
 .btn-theme-inverse:hover {
-    background: #08598c;
-    border: 2px solid #08598c;
+    background: #22d05d;
+    border: 2px solid #22d05d;
     color: #FFF !important;
 }
 
@@ -273,8 +273,8 @@ a {
 }
 
 .checkbox-theme input[type="checkbox"]:checked + label::before {
-    background-color: #08598c;
-    border-color: #08598c;
+    background-color: #22d05d;
+    border-color: #22d05d;
 }
 
 .checkbox-info input[type="checkbox"]:checked + label::after {
@@ -327,8 +327,8 @@ a {
 
 /** TOP HEADER AREA START **/
 .top-header {
-    background-color: #08598c;
-    border-bottom: 1px solid #08598c;
+    background-color: #22d05d;
+    border-bottom: 1px solid #22d05d;
     padding: 5px 0px;
 }
 
@@ -431,11 +431,11 @@ a {
 }
 
 .navbar-toggle, .navbar-toggle:hover {
-    background-color: #08598c !important;
+    background-color: #22d05d !important;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #08598c;
+    border-color: #22d05d;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -618,7 +618,7 @@ a {
 }
 
 .item-grid .title a:hover {
-    color: #08598c;
+    color: #22d05d;
     text-decoration: none;
 }
 
@@ -633,14 +633,14 @@ a {
 }
 
 .item-grid .review-link:hover {
-    color: #08598c;
+    color: #22d05d;
     text-decoration: none;
 }
 
 .item-grid .live-preview,
 .item-grid .live-preview:hover {
-    background: #08598c;
-    border: 2px solid #08598c;
+    background: #22d05d;
+    border: 2px solid #22d05d;
     color: #fff;
     position: absolute;
     display: none;
@@ -744,7 +744,7 @@ a {
 }
 
 .change-view-btn {
-    color: #08598c;
+    color: #22d05d;
     border-radius: 2px;
     background: #f8f8f8;
     padding: 7px 10px;
@@ -753,11 +753,11 @@ a {
 }
 
 .active-view-btn, .active-view-btn:hover {
-    background: #08598c;
+    background: #22d05d;
     color: #FFF;
     padding: 7px 10px;
     margin-left: 5px;
-    border: 1px solid #08598c;
+    border: 1px solid #22d05d;
 }
 
 .option-bar .sorting {
@@ -835,7 +835,7 @@ a {
 }
 
 .item-list .extra a:hover {
-    color: #08598c;
+    color: #22d05d;
     text-decoration: none;
 }
 
@@ -853,8 +853,8 @@ a {
 
 /** FOOTER AREA START **/
 .footer {
-    background-color: #08598c;
-    color: #aab2bd;
+    background-color: #22d05d;
+    color: #fff;
     padding: 25px 0px;
 }
 
@@ -874,7 +874,7 @@ a {
 }
 
 .footer-title {
-    color: #aab2bd;
+    color: #fff;
     font-size: 24px;
     font-weight: 300;
     margin-bottom: 20px;
@@ -891,7 +891,7 @@ a {
 }
 
 .contact-nav li a {
-    color: #aab2bd;
+    color: #fff;
 }
 
 .footer-nav li {
@@ -946,7 +946,7 @@ a {
 }
 
 .footer-copyright {
-    background-color: #bfbfbf;
+    background-color: #fff;
     color: #565f73;
     padding: 20px 0;
 }
@@ -980,9 +980,7 @@ a {
 }
 
 .social-icons:hover {
-    background-color: #88929f;
-    border-color: #88929f;
-    color: white;
+    color: #aab2bd;
 }
 
 /** ITEM **/
