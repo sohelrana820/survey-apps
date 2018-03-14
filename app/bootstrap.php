@@ -76,6 +76,10 @@ $container['view'] = function (Container $container) {
         'select_sorting', function ($pagination, $selectValue) {
             $selected = '';
             $query = $pagination['paginationSuffixRaw'];
+            if(array_key_exists('title', $query)) {
+                unset($query['title']);
+            }
+
             if(sizeof($query) == 0 && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
             }
