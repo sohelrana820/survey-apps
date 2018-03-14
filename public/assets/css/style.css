@@ -1266,6 +1266,10 @@ a:hover, a:focus, a:active {
     color: #fff;
 }
 
+.single-product .thumbnail-single img{
+    width: 100%;
+}
+
 /** Changelog COLOR **/
 .changelog h4 {
     font-size: 16px;

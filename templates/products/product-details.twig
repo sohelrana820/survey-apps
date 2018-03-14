@@ -7,7 +7,7 @@
                 <div class="col-lg-8 col-md-7">
                     <div class="pl-20 single-product">
                         <div class="thumbnail-single mb-30">
-                            <img src="/assets/img/sample.png" alt="thumbnail" class="img-responsive">
+                            <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
 
                         <div class="item-meta row mb-30">
@@ -99,35 +99,35 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="sidebars mb-50">
-                        <h1 class="item-name mb-30">Edustar Educational HTML5 Template</h1>
+                        <h1 class="item-name mb-30">{{ product.title }}</h1>
                         <div class="item-price-container mb-30 clearfix">
-                            <div class="div price labels">Price</div><div class="div item-price">$17.00</div>
+                            <div class="div price labels">Price</div><div class="div item-price">${{ product.price | number_format(2) }}</div>
                         </div>
                         <div class="item-info mb-30">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
-                                    <div class="div">
-                                        <a href="#"><span>Kh</span> khanalprem</a>
-                                    </div>
+                                    <span class="rating-box">
+                                        <span class="rating" style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
+                                    </span>
+                                    <span class="rating-number">({{ product.rating | number_format(2) }})</span>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="div">
-                                        <i class="fa fa-cart-arrow-down"></i> Total Sales:<strong>15</strong>
+                                        <i class="fa fa-cart-arrow-down"></i> Total Sales:<strong>{{ product.sales }}</strong>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                {#<div class="col-md-6">
                                     <div class="div">
                                         <i class="fa fa-heart"></i> Favorites:<strong>6</strong>
                                     </div>
-                                </div>
+                                </div>#}
                             </div>
                         </div>
                         <ul class="item-purchase-options mb-30">
-                            <li><i class="fa fa-check"></i> <strong>1 Year</strong> support from the Author</li>
-                            <li><i class="fa fa-check"></i> <strong> 30-Day 100%</strong> moneyback guarantee</li>
+                            <li><i class="fa fa-check"></i> <strong>1 Year</strong> support from the ThemeVessel</li>
                             <li><i class="fa fa-check"></i> Future updates</li>
-                            <li><i class="fa fa-check"></i> Quality checked by ThemeHunt</li>
-                            <li><i class="fa fa-check"></i> Documentation included</li>
+                            <li><i class="fa fa-check"></i> Quality checked by ThemeVessel</li>
+                            <li><i class="fa fa-check"></i> Well documented</li>
                         </ul>
                         <div class="mb-20">
                             <form action="index.html" method="GET" enctype="multipart/form-data">
