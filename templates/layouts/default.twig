@@ -20,6 +20,9 @@
 
     <!-- Custom stylesheet -->
     <link href="/assets/css/style.css" rel="stylesheet">
+    {% block cssBottom %}
+        <!-- Inject CSS codes from template files here -->
+    {% endblock %}
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -33,6 +36,9 @@
     <script src="/assets/js/html5shiv.min.js"></script>
     <script src="/assets/js/respond.min.js"></script>
     <![endif]-->
+    {% block jsTop %}
+        <!-- Inject JS codes from template files here -->
+    {% endblock %}
 </head>
 <body>
 
@@ -123,11 +129,11 @@
 <!-- HEADER AREA END -->
 
 {% block banner %}
-
+    <!-- Inject banner content from template file here -->
 {% endblock %}
 
 {% block content %}
-
+    <!-- Inject template content here -->
 {% endblock %}
 
 <!-- FOOTER AREA START -->
@@ -248,5 +254,9 @@
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
 <!-- Custom javascript -->
 <script src="/assets/js/app.js"></script>
+
+{% block jsBottom %}
+    <!-- Inject JS codes from template files here -->
+{% endblock %}
 </body>
 </html>
