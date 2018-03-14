@@ -47,13 +47,23 @@ class AppController
 
     /**
      * AppController constructor.
-     *
      * @param Container $container
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function __construct(Container $container)
     {
         $this->container = $container;
         $this->config = $this->container['config'];
+        $this->beforeRender();
+    }
+
+    /**
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function beforeRender()
+    {
+        $categories = $this->loadModel()->getCategoryModel()->getMostProductsCategories();
+        $this->getView()['categories'] = $categories;
     }
 
     /**
