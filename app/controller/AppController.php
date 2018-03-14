@@ -62,8 +62,8 @@ class AppController
      */
     public function beforeRender()
     {
-        $categories = $this->loadModel()->getCategoryModel()->getMostProductsCategories();
-        $this->getView()['categories'] = $categories;
+        $this->getView()['categories'] = $this->loadModel()->getCategoryModel()->getMostProductsCategories();
+        $this->getView()['recent_products'] = $this->loadModel()->getProductsModel()->getRecentProducts(9);
     }
 
     /**

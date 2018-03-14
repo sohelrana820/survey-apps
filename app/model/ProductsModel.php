@@ -301,4 +301,28 @@ class ProductsModel extends Model
         }
         return $this->getProductBatch($uuids);
     }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    public function getRecentProducts($limit = 9)
+    {
+        $products = [];
+        try {
+            $productsObj = $this->select('uuid')->orderBy('id', 'DESC')->limit($limit)->get();
+            if($productsObj) {
+                $products = $productsObj->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        $uuids = [];
+        foreach ($products as $product) {
+            array_push($uuids, $product['uuid']);
+        }
+        return $this->getProductBatch($uuids);
+    }
 }

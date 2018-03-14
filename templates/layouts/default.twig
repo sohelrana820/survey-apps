@@ -180,16 +180,9 @@
             <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
                 <h2 class="footer-title">Recent Items</h2>
                 <div class="footer-items">
-                    <img src="https://thumb-tf.s3.envato.com/files/187386894/furnicom.png" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/187386393/urline.jpg" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/190517741/thumbnail.jpg" class="footer-item">
-                    <img src="https://thumb-cc.s3.envato.com/files/179710142/80x80-php-watch-movies-script-brandedv3.jpg" class="footer-item">
-
-                    <img src="https://thumb-tf.s3.envato.com/files/189872554/80x80.png" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/189861331/thumbnail.jpg" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/189832651/snw_80x80.png" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/187386393/urline.jpg" class="footer-item">
-                    <img src="https://thumb-tf.s3.envato.com/files/187226833/thumbnail.png" class="footer-item">
+                    {% for thumb in recent_products %}
+                        <img src="{{ thumb.thumb_image }}" alt="{{ thumb.title }}" class="footer-item">
+                    {% endfor %}
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
