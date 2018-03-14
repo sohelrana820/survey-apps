@@ -81,7 +81,7 @@ class CategoriesModel extends Model
      */
     protected $casts = [
         'name' => 'string',
-        'slug'    => 'string',
+        'slug' => 'string',
     ];
 
     /**
@@ -121,14 +121,14 @@ class CategoriesModel extends Model
     {
         $cacheKey = sprintf('category_slug_%s', str_replace('-', '_', $categorySlug));
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Category Returned From Cache', ['category_slug' => $categorySlug]) : null;
             return $details;
         }
 
-        try{
+        try {
             $details = $this->where('slug', $categorySlug)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Category Returned From DB', ['category_slug' => $categorySlug]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $details->toArray();
@@ -153,7 +153,7 @@ class CategoriesModel extends Model
         }
 
         $categories = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
-        if($categories && sizeof($categories) === sizeof($categorySlugs)) {
+        if ($categories && sizeof($categories) === sizeof($categorySlugs)) {
             return array_values($categories);
         }
 
@@ -168,12 +168,40 @@ class CategoriesModel extends Model
     /**
      * @return array|mixed
      */
+    public function getMostProductsCategories()
+    {
+        $categories = [];
+        try {
+            $categoryObj = $this->selectRaw('categories.slug, count(products_categories.product_id) as total_products')
+                ->leftjoin('products_categories', function ($join) {
+                    $join->on('categories.id', '=', 'products_categories.category_id');
+                })
+                ->groupBy('categories.id')->orderBy('total_products', 'DESC')
+                ->get();
+            $categories = $categoryObj->toArray();
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        $uuids = [];
+        foreach ($categories as $category) {
+            array_push($uuids, $category['slug']);
+        }
+
+        return $this->getCategoryBatch($uuids);
+    }
+
+
+    /**
+     * @return array|mixed
+     */
     public function getCategories()
     {
         $categories = [];
         try {
             $categoryObj = $this->select('slug')->get();
-            if($categoryObj) {
+            if ($categoryObj) {
                 $categories = $categoryObj->toArray();
             }
         } catch (\Exception $exception) {
