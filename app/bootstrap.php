@@ -59,14 +59,55 @@ $container['view'] = function (Container $container) {
             unset($pagination['paginationSuffixRaw']['sort']);
         }
 
+        if(array_key_exists('featured', $pagination['paginationSuffixRaw'] )) {
+            unset($pagination['paginationSuffixRaw']['featured']);
+        }
+
+        if(array_key_exists('popular', $pagination['paginationSuffixRaw'] )) {
+            unset($pagination['paginationSuffixRaw']['popular']);
+        }
+
         $link = sprintf('%s?%s', $pagination['pageName'], http_build_query($pagination['paginationSuffixRaw']));
         return $link;
     }
     ));
 
+    $selectSortingFilter = (new Twig_SimpleFilter(
+        'select_sorting', function ($pagination, $selectValue) {
+            $selected = '';
+            $query = $pagination['paginationSuffixRaw'];
+            if(sizeof($query) == 0 && $selectValue == 'newest') {
+                $selected = 'selected="selected"';
+            }
+            else if(sizeof($query) == 1 && $query['sort'] == 'desc' && $selectValue == 'newest') {
+                $selected = 'selected="selected"';
+            }
+            else if(sizeof($query) == 1 && $query['sort'] == 'asc' && $selectValue == 'oldest') {
+                $selected = 'selected="selected"';
+            }
+            else if(sizeof($query) == 2 && $query['order'] == 'sales'  && $query['sort'] == 'desc' && $selectValue == 'most-sold') {
+                $selected = 'selected="selected"';
+            }
+            else if(array_key_exists('featured', $query) && $selectValue == 'featured') {
+                $selected = 'selected="selected"';
+            }
+            else if(array_key_exists('popular', $query) && $selectValue == 'popular') {
+                $selected = 'selected="selected"';
+            }
+            else if(sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'desc' && $selectValue == 'price_h_l') {
+                $selected = 'selected="selected"';
+            }
+            else if(sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'asc' && $selectValue == 'price_l_h') {
+                $selected = 'selected="selected"';
+            }
+            return $selected;
+        }
+    ));
+
     $view->getEnvironment()->addFilter($twigFilter);
     $view->getEnvironment()->addFilter($truncateFilter);
     $view->getEnvironment()->addFilter($buildSortingLinkFilter);
+    $view->getEnvironment()->addFilter($selectSortingFilter);
     return $view;
 };
 
