@@ -1,0 +1,24 @@
+<div class="pagination">
+    <div class="text-muted pagi-str">
+        Showing
+        {{((pagination.page - 1) * pagination.perPage)}} -
+        {{pagination.page * pagination.perPage > pagination.total ? pagination.total : pagination.page * pagination.perPage}}
+        of {{pagination.total}} Records
+    </div>
+    <div class="previous pull-left">
+        {% if pagination.page > 1%}
+            <a href="/{{ pagination.pageName }}?{{ pagination.paginationSuffix }}&page={{ pagination.page - 1 }}">Previous</a>
+        {% elseif pagination.page == 1%}
+            <a style="pointer-events: none;" href="/{{ pagination.pageName }}?{{ pagination.paginationSuffix }}&page={{ pagination.page  }}">Previous</a>
+        {% endif %}
+    </div>
+
+    <div class="next pull-right">
+        {% if pagination.page < pagination.totalPage %}
+            <a href="/{{ pagination.pageName }}?{{ pagination.paginationSuffix }}&page={{ pagination.page + 1}}">Next</a>
+        {% elseif pagination.page >= pagination.totalPage %}
+            <a style="pointer-events: none;" href="/{{ pagination.pageName }}?{{ pagination.paginationSuffix }}&page={{ pagination.page }}">Next</a>
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+</div>
