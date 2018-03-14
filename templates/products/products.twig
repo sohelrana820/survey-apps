@@ -14,13 +14,40 @@
 {% endblock %}
 
 {% block content %}
+
+    <!-- Option bar start -->
+    <div class="container">
+        <div class="option-bar">
+            <div class="row">
+                <div class="col-lg-6 col-md-5 col-sm-5 col-xs-2">
+                    <h4>
+                        <span class="heading-icon">
+                            <i class="fa fa-th-list"></i>
+                        </span>
+                        <span class="hidden-xs">Item Lists</span>
+                    </h4>
+                </div>
+                <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
+                    <div class="sorting-options">
+                        <select class="sorting">
+                            <option>New To Old</option>
+                            <option>Old To New</option>
+                            <option>Properties (High To Low)</option>
+                            <option>Properties (Low To High)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <small class="result-found text-muted">Result found</small>
+        </div>
+    </div>
+    <!-- Option bar end -->
+    <div class="clearfix"></div>
+
     <!-- ITEMS AREA START -->
     <div class="items-area">
         <div class="container">
             {% if products.products is not empty %}
-                <div class="item-header">
-                    <h2>List of Items</h2>
-                </div>
                 <div class="row">
                     <!-- Single item -->
                     {% for product in products.products %}

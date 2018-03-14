@@ -1312,6 +1312,70 @@ a:hover, a:focus, a:active {
     border-radius: 2px;
 }
 
+/** BLOCK HEADING AREA START **/
+.option-bar {
+    border-radius: 3px;
+    height: 70px;
+    margin: 30px 0px;
+    background: #f8f8f8;;
+}
+
+.option-bar h4 {
+    line-height: 70px;
+    display: inline-block;
+    padding-right: 20px;
+    border-radius: 3px 0 0 3px;
+    margin: 0 0 0;
+    font-weight: 600;
+}
+
+.option-bar .heading-icon {
+    width: 70px;
+    text-align: center;
+    margin-right: 20px;
+    display: inline-block;
+    border-radius: 3px 0 0 3px;
+    position: relative;
+    color: #fff;
+    background: #95c41f;
+}
+
+.option-bar .sorting {
+    padding: 8px 12px;
+    background: #FFF;
+    border: 1px solid #EEE;
+    color: #999;
+    margin-right: 5px;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.option-bar .sorting-options {
+    margin: 16px 15px 0 0;
+    text-align: right;
+}
+
+.option-bar .sorting {
+    font-size: 14px;
+    font-weight: 300;
+    padding: 9px 12px;
+    border: solid 1px #e7e7e7;
+}
+
+.option-bar .sorting:focus {
+    outline: none;
+}
+
+.option-bar a {
+    text-decoration: none;
+}
+
+
+.option-bar .result-found {
+    display: block;
+    margin-top: 10px;
+}
+
 /** SOCIAL COLOR **/
 .fa-facebook:hover {
     color: #4A65BA;
