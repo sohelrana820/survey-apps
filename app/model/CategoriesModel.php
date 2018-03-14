@@ -7,6 +7,7 @@ use Monolog\Logger;
 
 /**
  * Class CategoriesModel
+ *
  * @package App\Model
  */
 class CategoriesModel extends Model
@@ -114,7 +115,7 @@ class CategoriesModel extends Model
 
     /**
      * @param $categorySlug
-     * @param bool $forceCacheGenerate
+     * @param bool         $forceCacheGenerate
      * @return mixed|null
      */
     public function getCategory($categorySlug, $forceCacheGenerate = false)
@@ -173,9 +174,11 @@ class CategoriesModel extends Model
         $categories = [];
         try {
             $categoryObj = $this->selectRaw('categories.slug, count(products_categories.product_id) as total_products')
-                ->leftjoin('products_categories', function ($join) {
-                    $join->on('categories.id', '=', 'products_categories.category_id');
-                })
+                ->leftjoin(
+                    'products_categories', function ($join) {
+                        $join->on('categories.id', '=', 'products_categories.category_id');
+                    }
+                )
                 ->groupBy('categories.id')->orderBy('total_products', 'DESC')
                 ->get();
             $categories = $categoryObj->toArray();

@@ -47,7 +47,8 @@ class AppController
 
     /**
      * AppController constructor.
-     * @param Container $container
+     *
+     * @param  Container $container
      * @throws \Interop\Container\Exception\ContainerException
      */
     public function __construct(Container $container)

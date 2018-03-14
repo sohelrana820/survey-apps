@@ -138,7 +138,7 @@ class ProductsModel extends Model
 
     /**
      * @param $productUuid
-     * @param bool $forceCacheGenerate
+     * @param bool        $forceCacheGenerate
      * @return array|null|string
      */
     public function getProduct($productUuid, $forceCacheGenerate = false)
@@ -225,7 +225,7 @@ class ProductsModel extends Model
 
             // Search by product's title
             if(array_key_exists('title', $queryParams)) {
-                $productsObj = $productsObj->where('title', 'LIKE' ,'%' .$queryParams['title']. '%');
+                $productsObj = $productsObj->where('title', 'LIKE', '%' .$queryParams['title']. '%');
             }
 
             // Search by featured
@@ -249,9 +249,11 @@ class ProductsModel extends Model
                 $catModel->setCache($this->cache);
                 $catModel->setLogger($this->logger);
                 $category = $catModel->getCategory($queryParams['cat']);
-                $productsObj = $productsObj->whereHas('categories', function ($query) use ($category) {
-                    $query->where('category_id', $category['id']);
-                });
+                $productsObj = $productsObj->whereHas(
+                    'categories', function ($query) use ($category) {
+                        $query->where('category_id', $category['id']);
+                    }
+                );
             }
             $productsObj = $productsObj->orderBy($orderBy, $sortBy)->paginate(
                 $perPage,
