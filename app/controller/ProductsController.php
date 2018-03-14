@@ -35,4 +35,20 @@ class ProductsController extends AppController
         ];
         return $this->getView()->render($response, 'products/products.twig', $data);
     }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function productDetails(Request $request, Response $response, $args)
+    {
+        $products = $this->loadModel()->getProductsModel()->searchProducts($request->getQueryParams());
+        $data = [
+            'products' => $products,
+        ];
+        return $this->getView()->render($response, 'products/product-details.twig', $data);
+    }
 }

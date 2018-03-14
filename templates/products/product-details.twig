@@ -1,0 +1,65 @@
+{% extends 'layouts/default.twig' %}
+
+{% block banner %}
+    <!-- BANNER AREA START -->
+    <div class="banner">
+        <div class="container">
+            <div class="banner-content">
+                <h1>Website Templates, Themes, UI Kits From $0.99</h1>
+                {% include 'elements/banner-form.twig' %}
+            </div>
+        </div>
+    </div>
+    <!-- BANNER AREA END -->
+{% endblock %}
+
+{% block content %}
+
+    <!-- Option bar start -->
+    <div class="container">
+        <div class="option-bar">
+            <div class="row">
+                <div class="col-lg-6 col-md-5 col-sm-5 col-xs-2">
+                    <h4>
+                        <span class="heading-icon">
+                            <i class="fa fa-th-list"></i>
+                        </span>
+                        <span class="hidden-xs">Item Lists</span>
+                    </h4>
+                </div>
+                <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
+                    <div class="sorting-options">
+                        <select class="sorting">
+                            <option>New To Old</option>
+                            <option>Old To New</option>
+                            <option>Properties (High To Low)</option>
+                            <option>Properties (Low To High)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <small class="result-found text-muted">Result found</small>
+        </div>
+    </div>
+    <!-- Option bar end -->
+    <div class="clearfix"></div>
+
+    <!-- ITEMS AREA START -->
+    <div class="items-area">
+        <div class="container">
+            {% if products.products is not empty %}
+                <div class="row">
+                    <!-- Single item -->
+                    {% for product in products.products %}
+                        <div class="col-lg-3 col-md-3 col-sm-6">
+                            {% include 'elements/product-grid.twig' %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {% include 'elements/empty.twig' %}
+            {% endif %}
+        </div>
+    </div>
+    <!-- ITEMS AREA END -->
+{% endblock %}
