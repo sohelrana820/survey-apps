@@ -1,65 +1,171 @@
 {% extends 'layouts/default.twig' %}
 
-{% block banner %}
-    <!-- BANNER AREA START -->
-    <div class="banner">
-        <div class="container">
-            <div class="banner-content">
-                <h1>Website Templates, Themes, UI Kits From $0.99</h1>
-                {% include 'elements/banner-form.twig' %}
-            </div>
-        </div>
-    </div>
-    <!-- BANNER AREA END -->
-{% endblock %}
-
 {% block content %}
-
-    <!-- Option bar start -->
-    <div class="container">
-        <div class="option-bar">
+    <div class="main-body ptb-70-0">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-5 col-sm-5 col-xs-2">
-                    <h4>
-                        <span class="heading-icon">
-                            <i class="fa fa-th-list"></i>
-                        </span>
-                        <span class="hidden-xs">Item Lists</span>
-                    </h4>
+                <div class="col-lg-8 col-md-7">
+                    <div class="pl-20 single-product">
+                        <div class="thumbnail-single mb-30">
+                            <img src="/assets/img/sample.png" alt="thumbnail" class="img-responsive">
+                        </div>
+
+                        <div class="item-meta row mb-30">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="meta-info meta-version">
+                                    <p>Version</p>
+                                    <span>1.1</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="meta-info meta-category">
+                                    <p>Category</p>
+                                    <span><a href="#">Corporate &amp; Business</a></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="meta-info meta-released">
+                                    <p>Released</p>
+                                    <span>17 January 2018</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="meta-info meta-updated">
+                                    <p>Updated</p>
+                                    <span>10 March 2018</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav class="nav nav-justified mb-30">
+                            <a class="nav-link active" href="#"><i class="fa fa-caret-down"></i> Details</a>
+                            <a class="nav-link" href="#"><i class="fa fa-support"></i> Support (0)</a>
+                            <a class="nav-link" href="#"><i class="fa fa-comments"></i> Comments (0)</a>
+                            <a class="nav-link" href="#"><span class="fa fa-star"></span> Reviews (0)</a>
+                        </nav>
+
+                        <div class="item-description">
+                            <p>Edustar – Multipurpose Education Template is a clean and modern HTML5 , Bootstrap Education Template. It’s a solution for any university, college, school, Business,Charity , course hub or any kind of educational institution. With all it features you can build something great. It is ultimate flexible with  nice options and features.</p>
+
+                            <p>It’s fully responsive design and clean was tested on all major handheld devices.Unlimited possibilities and flexible that will easily be able to support every site development.</p>
+                        </div>
+
+                        <div class="th-block">
+                            <h3 class="th-block-title">Key Features</h3>
+                            <ul class="ul-check clearfix">
+                                <li><i class="fa fa-check"></i> Responsive Layout</li>
+                                <li><i class="fa fa-check"></i> Bootstrap 4.x</li>
+                                <li><i class="fa fa-check"></i> Documentation</li>
+                                <li><i class="fa fa-check"></i> Retina Ready</li>
+                            </ul>
+
+                            <hr>
+                            <h3 class="th-block-title">Compatible Browsers</h3>
+                            <ul class="ul-check clearfix">
+                                <li><i class="fa fa-check"></i> Chrome</li>
+                                <li><i class="fa fa-check"></i> Firefox</li>
+                                <li><i class="fa fa-check"></i> Opera</li>
+                                <li><i class="fa fa-check"></i> Safari</li>
+                                <li><i class="fa fa-check"></i> Edge</li>
+                                <li><i class="fa fa-check"></i> IE10</li>
+                                <li><i class="fa fa-check"></i> IE11</li>
+                            </ul>
+
+                            <hr>
+                            <h3 class="th-block-title">Tags</h3>
+                            <ul class="ul-tags">
+                                <li><a href="#">Academic</a></li>
+                                <li><a href="#"> Agency</a></li>
+                                <li><a href="#"> Child</a></li>
+                                <li><a href="#"> College</a></li>
+                                <li><a href="#"> Education</a></li>
+                                <li><a href="#"> Education Template</a></li>
+                                <li><a href="#"> Event</a></li>
+                                <li><a href="#"> Course </a></li>
+                                <li><a href="#"> Portfolio</a></li>
+                                <li><a href="#"> School</a></li>
+                                <li><a href="#"> Student</a></li>
+                                <li><a href="#"> Study</a></li>
+                                <li><a href="#"> Teacher</a></li>
+                                <li><a href="#"> University</a></li>
+                                <li><a href="#">Charity </a></li>
+                                <li><a href="#">Business</a></li>
+                            </ul>
+
+                            <hr>
+                            <h3 class="th-block-title">Changelog</h3>
+                            <div id="changelog" class="changelog">
+                                <h4>Version 1.1 - 10 March 18</h4>
+                                <ul>
+                                    <li class="fix">Issue Fixed</li>
+
+                                    <li class="update">Bootstrap 4.0</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
-                    <div class="sorting-options">
-                        <select class="sorting">
-                            <option>New To Old</option>
-                            <option>Old To New</option>
-                            <option>Properties (High To Low)</option>
-                            <option>Properties (Low To High)</option>
-                        </select>
+                <div class="col-lg-4 col-md-5">
+                    <div class="sidebars mb-50">
+                        <h1 class="item-name mb-30">Edustar Educational HTML5 Template</h1>
+                        <div class="item-price-container mb-30 clearfix">
+                            <div class="div price labels">Price</div><div class="div item-price">$17.00</div>
+                        </div>
+                        <div class="item-info mb-30">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="div">
+                                        <a href="#"><span>Kh</span> khanalprem</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="div">
+                                        <i class="fa fa-cart-arrow-down"></i> Total Sales:<strong>15</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="div">
+                                        <i class="fa fa-heart"></i> Favorites:<strong>6</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="item-purchase-options mb-30">
+                            <li><i class="fa fa-check"></i> <strong>1 Year</strong> support from the Author</li>
+                            <li><i class="fa fa-check"></i> <strong> 30-Day 100%</strong> moneyback guarantee</li>
+                            <li><i class="fa fa-check"></i> Future updates</li>
+                            <li><i class="fa fa-check"></i> Quality checked by ThemeHunt</li>
+                            <li><i class="fa fa-check"></i> Documentation included</li>
+                        </ul>
+                        <div class="mb-20">
+                            <form action="index.html" method="GET" enctype="multipart/form-data">
+                                <a href="#" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
+                                <a href="#" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</a>
+                            </form>
+                            <div class="purchase-intro mb-20">
+                                All the items on ThemeHunt are guaranteed to have top notch quality and state of the art functionalities. Purchase and get started!
+                            </div>
+                            <form action="index.html" method="GET" enctype="multipart/form-data">
+                                <a href="#" class="btn btn-default btn-md mb-10 btn-block"><i class="fa fa-heart"></i> Add to Favorites</a>
+                            </form>
+                        </div>
+                        <div class="mb-30 clearfix">
+                            <div class="social-share">Social Share</div>
+                            <div class="social-list">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <small class="result-found text-muted">Result found</small>
         </div>
     </div>
-    <!-- Option bar end -->
-    <div class="clearfix"></div>
-
-    <!-- ITEMS AREA START -->
-    <div class="items-area">
-        <div class="container">
-            {% if products.products is not empty %}
-                <div class="row">
-                    <!-- Single item -->
-                    {% for product in products.products %}
-                        <div class="col-lg-3 col-md-3 col-sm-6">
-                            {% include 'elements/product-grid.twig' %}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                {% include 'elements/empty.twig' %}
-            {% endif %}
-        </div>
-    </div>
-    <!-- ITEMS AREA END -->
 {% endblock %}

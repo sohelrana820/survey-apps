@@ -182,7 +182,9 @@
                 <h2 class="footer-title">Recent Items</h2>
                 <div class="footer-items">
                     {% for thumb in recent_products %}
-                        <img src="{{ thumb.thumb_image }}" alt="{{ thumb.title }}" class="footer-item">
+                        <a href="/products/{{ thumb.slug }}">
+                            <img src="{{ thumb.thumb_image }}" alt="{{ thumb.title }}" class="footer-item">
+                        </a>
                     {% endfor %}
                 </div>
             </div>
