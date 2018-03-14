@@ -79,6 +79,9 @@ $container['view'] = function (Container $container) {
             if(array_key_exists('title', $query)) {
                 unset($query['title']);
             }
+            if(array_key_exists('recent', $query)) {
+                unset($query['recent']);
+            }
 
             if(sizeof($query) == 0 && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
