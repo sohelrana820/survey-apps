@@ -61,7 +61,7 @@
                 {% include 'elements/empty.twig' %}
             {% endif %}
 
-
+            {% include 'elements/pagination.twig' with {'pagination': products.pagination} %}
         </div>
     </div>
     <!-- ITEMS AREA END -->
