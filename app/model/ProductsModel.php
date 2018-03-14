@@ -341,4 +341,41 @@ class ProductsModel extends Model
         }
         return $this->getProductBatch($uuids);
     }
+
+    /**
+     * @param $slug
+     * @param bool $forceCacheGenerate
+     * @return bool|mixed
+     */
+    public function getProductUuidBySlug($slug, $forceCacheGenerate = false)
+    {
+        $cacheKey = 'all_product_list';
+        $list = $this->cache ? $this->cache->get($cacheKey) : false;
+        if ($list && $forceCacheGenerate == false) {
+            if(array_key_exists($slug, $list) && $list[$slug]) {
+                $this->logger ? $this->logger->info('Product UUID Returned from Cache') : null;
+                return $list[$slug];
+            }
+        }
+
+        try {
+            $productsObj = $this->select('uuid', 'slug')->get();
+            $list = [];
+            foreach ($productsObj as $product) {
+                $list[$product->slug] = $product->uuid;
+            }
+
+            if(array_key_exists($slug, $list) && $list[$slug]) {
+                $this->logger ? $this->logger->info('Product UUID Returned from DB') : null;
+                $this->logger ? $this->logger->info('Product UUID Returned from DB') : null;
+                $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_VERY_LONG) : null;
+                return $list[$slug];
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
 }
