@@ -234,6 +234,11 @@ class ProductsModel extends Model
             }
 
             // Search by featured
+            if(array_key_exists('recent', $queryParams)) {
+                $orderBy = 'id';
+            }
+
+            // Search by featured
             if(array_key_exists('popular', $queryParams)) {
                 $orderBy = 'total_viewed';
             }
