@@ -198,7 +198,7 @@ class ProductsModel extends Model
     public function searchProducts($queryParams = [], $options = [])
     {
         $page = 1;
-        $perPage = 12;
+        $perPage = 1;
         $orderBy = 'id';
         $sortBy = 'DESC';
 
@@ -216,6 +216,11 @@ class ProductsModel extends Model
 
         if(array_key_exists('sort', $queryParams)) {
             $sortBy = $queryParams['sort'];
+        }
+
+        $paginationSuffix = $queryParams;
+        if(array_key_exists('page')) {
+            unset($paginationSuffix['page']);
         }
 
         $products = [];
@@ -278,10 +283,12 @@ class ProductsModel extends Model
             'searchedParams' => $queryParams,
             'pagination' => [
                 'total' => $productsObj->total(),
-                'lastPage' => $productsObj->lastPage(),
+                'page' => $page,
+                'totalPage' => $productsObj->lastPage(),
                 'perPage' => $productsObj->perPage(),
                 'currentPage' => $productsObj->currentPage(),
                 'pageName' => $productsObj->getPageName(),
+                'paginationSuffix' => http_build_query($paginationSuffix),
             ]
         ];
     }

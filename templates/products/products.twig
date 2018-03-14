@@ -45,7 +45,6 @@
     </div>
     <!-- Option bar end -->
     <div class="clearfix"></div>
-
     <!-- ITEMS AREA START -->
     <div class="items-area">
         <div class="container">
@@ -61,6 +60,8 @@
             {% else %}
                 {% include 'elements/empty.twig' %}
             {% endif %}
+
+            {% include 'elements/pagination.twig' with {'pagination': products.pagination} %}
         </div>
     </div>
     <!-- ITEMS AREA END -->
