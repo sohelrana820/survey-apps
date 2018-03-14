@@ -240,6 +240,7 @@ class ProductsModel extends Model
 
             // Search by popular
             if(array_key_exists('popular', $queryParams)) {
+                $productsObj = $productsObj->where('sales', '>', 0);
                 $orderBy = 'total_viewed';
             }
 
@@ -293,7 +294,7 @@ class ProductsModel extends Model
     {
         $products = [];
         try {
-            $productsObj = $this->select('uuid')->orderBy('total_viewed', 'DESC')->limit($limit)->get();
+            $productsObj = $this->select('uuid')->where('sales', '>', 0)->orderBy('total_viewed', 'DESC')->limit($limit)->get();
             if($productsObj) {
                 $products = $productsObj->toArray();
             }
