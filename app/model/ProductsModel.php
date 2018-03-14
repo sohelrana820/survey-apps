@@ -198,7 +198,7 @@ class ProductsModel extends Model
     public function searchProducts($queryParams = [], $options = [])
     {
         $page = 1;
-        $perPage = 1;
+        $perPage = 2;
         $orderBy = 'id';
         $sortBy = 'DESC';
 

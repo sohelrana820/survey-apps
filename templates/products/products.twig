@@ -29,13 +29,13 @@
                 <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
                     <div class="sorting-options">
                         <select class="sorting" id="soritng">
-                            <option value="/products?sort=desc">Newest Items</option>
-                            <option value="/products?sort=asc">Oldest Items</option>
+                            <option value="/products?{{ products.pagination.paginationSuffix }}&sort=desc">Newest Items</option>
+                            <option value="/products?{{ products.pagination.paginationSuffix }}&sort=asc">Oldest Items</option>
                             <option value="/products?order=sales&sort=desc">Most Sold Items</option>
                             <option value="/products?featured=true">Featured Items</option>
                             <option value="/products?popular=true">Popular Items</option>
-                            <option value="/products?order=price&sort=desc">Price (High To Low)</option>
-                            <option value="/products?order=price&sort=asc">Price (Low To High)</option>
+                            <option value="/products?{{ products.pagination.paginationSuffix }}&order=price&sort=desc">Price (High To Low)</option>
+                            <option value="/products?{{ products.pagination.paginationSuffix }}&order=price&sort=asc">Price (Low To High)</option>
                         </select>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                 {% include 'elements/empty.twig' %}
             {% endif %}
 
-            {% include 'elements/pagination.twig' with {'pagination': products.pagination} %}
+
         </div>
     </div>
     <!-- ITEMS AREA END -->
