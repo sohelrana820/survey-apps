@@ -13,6 +13,14 @@ use Slim\Http\Response;
 class HomeController extends AppController
 {
     /**
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function beforeRender()
+    {
+        parent::beforeRender();
+    }
+
+    /**
      * @param Request  $request
      * @param Response $response
      * @param $args
@@ -22,10 +30,8 @@ class HomeController extends AppController
     public function home(Request $request, Response $response, $args)
     {
         $products = $this->loadModel()->getProductsModel()->getPopularProducts();
-        $categories = $this->loadModel()->getCategoryModel()->getCategories();
         $data = [
             'products' => $products,
-            'categories' => $categories
         ];
         return $this->getView()->render($response, 'home.twig', $data);
     }
