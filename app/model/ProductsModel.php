@@ -289,6 +289,7 @@ class ProductsModel extends Model
                 'currentPage' => $productsObj->currentPage(),
                 'pageName' => $productsObj->getPageName(),
                 'paginationSuffix' => http_build_query($paginationSuffix),
+                'paginationSuffixRaw' => $paginationSuffix,
             ]
         ];
     }

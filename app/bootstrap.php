@@ -27,27 +27,46 @@ $container['view'] = function (Container $container) {
     $twigExtra->addGlobal('config', $settings);
     $twigExtra->addGlobal('queryParams', $_GET);
 
-
     // Creating rating filter.
     $twigFilter = new Twig_SimpleFilter(
-        'rating_percentage', function ($rating, $totalRating) {
-            $percentage = ($rating * 100) / $totalRating;
-            return $percentage;
-        }
+        'rating_percentage', function ($rating, $totalRating = 5) {
+        $percentage = ($rating * 100) / $totalRating;
+        return $percentage;
+    }
     );
 
     $truncateFilter = (new Twig_SimpleFilter(
         'truncate', function ($string, $length) {
-            if(strlen($string) < $length) {
-                return $string;
-            } else {
-                return array_shift(str_split($string, $length)) . "...";
-            }
+        if (strlen($string) < $length) {
+            return $string;
+        } else {
+            return array_shift(str_split($string, $length)) . "...";
         }
+    }
+    ));
+
+    $buildSortingLinkFilter = (new Twig_SimpleFilter(
+        'build_sorting_link', function ($pagination, $order = null, $sort = null) {
+        if ($order) {
+            $pagination['paginationSuffixRaw']['order'] = $order;
+        } else {
+            unset($pagination['paginationSuffixRaw']['order']);
+        }
+
+        if ($sort) {
+            $pagination['paginationSuffixRaw']['sort'] = $sort;
+        } else {
+            unset($pagination['paginationSuffixRaw']['sort']);
+        }
+
+        $link = sprintf('%s?%s', $pagination['pageName'], http_build_query($pagination['paginationSuffixRaw']));
+        return $link;
+    }
     ));
 
     $view->getEnvironment()->addFilter($twigFilter);
     $view->getEnvironment()->addFilter($truncateFilter);
+    $view->getEnvironment()->addFilter($buildSortingLinkFilter);
     return $view;
 };
 
@@ -92,7 +111,7 @@ $container['cache'] = function ($container) {
         $config = $container['config'];
         $memcache = new Memcached();
 
-        if(!$memcache) {
+        if (!$memcache) {
             $container->get('logger')->emergency("[memcache] server is down");
             return null;
         }
