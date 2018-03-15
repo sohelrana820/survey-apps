@@ -14,41 +14,39 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Option bar start -->
-    <div class="container">
-        <div class="option-bar">
-            <div class="row">
-                <div class="col-lg-6 col-md-5 col-sm-5 col-xs-2">
-                    <h4>
-                        <span class="heading-icon">
-                            <i class="fa fa-th-list"></i>
-                        </span>
-                        <span class="hidden-xs">Item Lists</span>
-                    </h4>
-                </div>
-                <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
-                    <div class="sorting-options">
-                        <select class="sorting" id="soritng">
-                            <option value="{{ products.pagination |build_sorting_link('', 'desc') }}" {{ products.pagination | select_sorting('newest') }}>Newest Items</option>
-                            <option value="{{ products.pagination |build_sorting_link('', 'asc') }}" {{ products.pagination | select_sorting('oldest') }}>Oldest Items</option>
-                            <option value="/products?order=sales&sort=desc" {{ products.pagination | select_sorting('most-sold') }}>Most Sold Items</option>
-                            <option value="/products?featured=true" {{ products.pagination | select_sorting('featured') }}>Featured Items</option>
-                            <option value="/products?popular=true" {{ products.pagination | select_sorting('popular') }}>Popular Items</option>
-                            <option value="{{ products.pagination |build_sorting_link('price', 'desc') }}" {{ products.pagination | select_sorting('price_h_l') }}>Price (High To Low)</option>
-                            <option value="{{ products.pagination |build_sorting_link('price', 'asc') }}" {{ products.pagination | select_sorting('price_l_h') }}>Price (Low To High)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <small class="result-found text-muted">{{ products.pagination.total }} Result found</small>
-        </div>
-    </div>
-    <!-- Option bar end -->
-    <div class="clearfix"></div>
-    <!-- ITEMS AREA START -->
+
     <div class="items-area">
         <div class="container">
             {% if products.products is not empty %}
+                <div class="option-bar">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-5 col-sm-5 col-xs-2">
+                            <h4>
+                        <span class="heading-icon">
+                            <i class="fa fa-th-list"></i>
+                        </span>
+                                <span class="hidden-xs">Item Lists</span>
+                            </h4>
+                        </div>
+                        <div class="col-lg-6 col-md-7 col-sm-7 col-xs-10 cod-pad">
+                            <div class="sorting-options">
+                                <select class="sorting" id="soritng">
+                                    <option value="{{ products.pagination |build_sorting_link('', 'desc') }}" {{ products.pagination | select_sorting('newest') }}>Newest Items</option>
+                                    <option value="{{ products.pagination |build_sorting_link('', 'asc') }}" {{ products.pagination | select_sorting('oldest') }}>Oldest Items</option>
+                                    <option value="/products?order=sales&sort=desc" {{ products.pagination | select_sorting('most-sold') }}>Most Sold Items</option>
+                                    <option value="/products?featured=true" {{ products.pagination | select_sorting('featured') }}>Featured Items</option>
+                                    <option value="/products?popular=true" {{ products.pagination | select_sorting('popular') }}>Popular Items</option>
+                                    <option value="{{ products.pagination |build_sorting_link('price', 'desc') }}" {{ products.pagination | select_sorting('price_h_l') }}>Price (High To Low)</option>
+                                    <option value="{{ products.pagination |build_sorting_link('price', 'asc') }}" {{ products.pagination | select_sorting('price_l_h') }}>Price (Low To High)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="result-found text-muted">{{ products.pagination.total }} Result found</small>
+                </div>
+                <!-- Option bar end -->
+                <div class="clearfix"></div>
+
                 <div class="row">
                     <!-- Single item -->
                     {% for product in products.products %}
@@ -57,14 +55,14 @@
                         </div>
                     {% endfor %}
                 </div>
+                {% include 'elements/pagination.twig' with {'pagination': products.pagination} %}
             {% else %}
                 {% include 'elements/empty.twig' %}
             {% endif %}
-
-            {% include 'elements/pagination.twig' with {'pagination': products.pagination} %}
+            <!-- Option bar start -->
         </div>
     </div>
-    <!-- ITEMS AREA END -->
+
 {% endblock %}
 
 {% block jsBottom %}
