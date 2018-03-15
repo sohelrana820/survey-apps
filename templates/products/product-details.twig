@@ -48,43 +48,25 @@
                         <div class="th-block">
                             <h3 class="th-block-title">Key Features</h3>
                             <ul class="ul-check clearfix">
-                                <li><i class="fa fa-check"></i> Responsive Layout</li>
-                                <li><i class="fa fa-check"></i> Bootstrap 4.x</li>
-                                <li><i class="fa fa-check"></i> Documentation</li>
-                                <li><i class="fa fa-check"></i> Retina Ready</li>
+                                {% for feature in product.key_features %}
+                                    <li><i class="fa fa-check"></i> {{ feature }}</li>
+                                {% endfor %}
                             </ul>
 
                             <hr>
                             <h3 class="th-block-title">Compatible Browsers</h3>
                             <ul class="ul-check clearfix">
-                                <li><i class="fa fa-check"></i> Chrome</li>
-                                <li><i class="fa fa-check"></i> Firefox</li>
-                                <li><i class="fa fa-check"></i> Opera</li>
-                                <li><i class="fa fa-check"></i> Safari</li>
-                                <li><i class="fa fa-check"></i> Edge</li>
-                                <li><i class="fa fa-check"></i> IE10</li>
-                                <li><i class="fa fa-check"></i> IE11</li>
+                                {% for browser in product.browsers_compatible %}
+                                    <li><i class="fa fa-check"></i> {{ browser }}</li>
+                                {% endfor %}
                             </ul>
 
                             <hr>
                             <h3 class="th-block-title">Tags</h3>
                             <ul class="ul-tags">
-                                <li><a href="#">Academic</a></li>
-                                <li><a href="#"> Agency</a></li>
-                                <li><a href="#"> Child</a></li>
-                                <li><a href="#"> College</a></li>
-                                <li><a href="#"> Education</a></li>
-                                <li><a href="#"> Education Template</a></li>
-                                <li><a href="#"> Event</a></li>
-                                <li><a href="#"> Course </a></li>
-                                <li><a href="#"> Portfolio</a></li>
-                                <li><a href="#"> School</a></li>
-                                <li><a href="#"> Student</a></li>
-                                <li><a href="#"> Study</a></li>
-                                <li><a href="#"> Teacher</a></li>
-                                <li><a href="#"> University</a></li>
-                                <li><a href="#">Charity </a></li>
-                                <li><a href="#">Business</a></li>
+                                {% for tag in product.tags %}
+                                    <li><a href="#">{{ tag }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
