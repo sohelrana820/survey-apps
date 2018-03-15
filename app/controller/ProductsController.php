@@ -48,6 +48,8 @@ class ProductsController extends AppController
         $productSlug = $request->getAttribute('slug');
         $productUuid = $this->loadModel()->getProductsModel()->getProductUuidBySlug($productSlug);
         $product = $this->loadModel()->getProductsModel()->getProduct($productUuid);
+        var_dump($product);
+        die();
         $data = [
             'product' => $product,
         ];

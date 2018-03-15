@@ -32,6 +32,11 @@ class ModelLoader
     private $categoryModel;
 
     /**
+     * @var ProductsCategoriesModel;
+     */
+    private $productsCategories;
+
+    /**
      * @param Logger $logger
      */
     public function setLogger($logger)
@@ -76,5 +81,16 @@ class ModelLoader
         $this->categoryModel->setLogger($this->logger);
         $this->categoryModel->setCache($this->cache);
         return $this->categoryModel;
+    }
+
+    /**
+     * @return ProductsCategoriesModel
+     */
+    public function getProductsCategooriesModel()
+    {
+        $this->productsCategories = new ProductsCategoriesModel();
+        $this->productsCategories->setLogger($this->logger);
+        $this->productsCategories->setCache($this->cache);
+        return $this->productsCategories;
     }
 }
