@@ -146,39 +146,40 @@ class ProductsModel extends Model
         $cacheKey = sprintf('product_uuid_%s', $productUuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-
         if($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $productUuid]) : null;
-            return $details;
+            return $this->mappingProductDetails($details);
         }
 
-        $productDetails = false;
         try{
             $details = $this->where('uuid', $productUuid)->first();
             if($details) {
-                $productDetails = $details->toArray();
                 $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
-                $this->cache ? $this->cache->set($cacheKey, $productDetails, self::CACHE_VALIDITY_1WEEK) : null;
+                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
+                return $this->mappingProductDetails($details->toArray());
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
 
-
-        if($productDetails)
-        {
-            $categoryModel = new CategoriesModel();
-            $categoryModel->setCache($this->cache);
-            $categoryModel->setLogger($this->logger);
-            $productDetails['category'] = $categoryModel->getCategoryById($productDetails['category_id']);
-            unset($productDetails['category_id']);
-            $productDetails['tags'] = explode(',', $productDetails['tags']);
-            $productDetails['key_features'] = explode(',', $productDetails['key_features']);
-            $productDetails['browsers_compatible'] = explode(',', $productDetails['browsers_compatible']);
-        }
-
         return null;
+    }
+
+    /**
+     * @param $details
+     * @return mixed
+     */
+    private function mappingProductDetails($details)
+    {
+        $categoryModel = new CategoriesModel();
+        $categoryModel->setCache($this->cache);
+        $categoryModel->setLogger($this->logger);
+        $details['category'] = $categoryModel->getCategoryById($details['category_id']);
+        $details['tags'] = explode(',', $details['tags']);
+        $details['key_features'] = explode(',', $details['key_features']);
+        $details['browsers_compatible'] = explode(',', $details['browsers_compatible']);
+        return $details;
     }
 
     /**
