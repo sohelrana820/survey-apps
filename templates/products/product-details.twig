@@ -10,64 +10,65 @@
                             <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
 
-                        <div class="item-meta row mb-30">
-                            <div class="col-md-3 col-sm-3 col-xs-6">
-                                <div class="meta-info meta-version">
-                                    <p>Version</p>
-                                    <span>{{ product.version }}</span>
+                        <div class="item-details">
+                            <div class="item-meta row mb-30">
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="meta-info meta-version">
+                                        <p>Version</p>
+                                        <span>{{ product.version }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="meta-info meta-category">
+                                        <p>Category</p>
+                                        <span><a href="#">{{ product.category.name }}</a></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="meta-info meta-released">
+                                        <p>Released</p>
+                                        <span>{{ product.created_at | date('M d, Y') }}</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="meta-info meta-updated">
+                                        <p>Last Updated</p>
+                                        <span>{{ product.modified_at | date('M d, Y') }}</span>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-6">
-                                <div class="meta-info meta-category">
-                                    <p>Category</p>
-                                    <span><a href="#">{{ product.category.name }}</a></span>
-                                </div>
+                            <div class="item-description">
+                                {{ product.description | raw }}
                             </div>
 
-                            <div class="col-md-3 col-sm-3 col-xs-6">
-                                <div class="meta-info meta-released">
-                                    <p>Released</p>
-                                    <span>{{ product.created_at | date('M d, Y') }}</span>
-                                </div>
+                            <div class="th-block">
+                                <h3 class="th-block-title">Key Features</h3>
+                                <ul class="ul-check clearfix">
+                                    {% for feature in product.key_features %}
+                                        <li><i class="fa fa-check"></i> {{ feature }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                                <hr>
+                                <h3 class="th-block-title">Compatible Browsers</h3>
+                                <ul class="ul-check clearfix">
+                                    {% for browser in product.browsers_compatible %}
+                                        <li><i class="fa fa-check"></i> {{ browser }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                                <hr>
+                                <h3 class="th-block-title">Tags</h3>
+                                <ul class="ul-tags">
+                                    {% for tag in product.tags %}
+                                        <li><a href="/products?tag={{tag}}">{{ tag }}</a></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
-
-                            <div class="col-md-3 col-sm-3 col-xs-6">
-                                <div class="meta-info meta-updated">
-                                    <p>Last Updated</p>
-                                    <span>{{ product.modified_at | date('M d, Y') }}</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="item-description">
-                            {{ product.description | raw }}
-                        </div>
-
-                        <div class="th-block">
-                            <h3 class="th-block-title">Key Features</h3>
-                            <ul class="ul-check clearfix">
-                                {% for feature in product.key_features %}
-                                    <li><i class="fa fa-check"></i> {{ feature }}</li>
-                                {% endfor %}
-                            </ul>
-
-                            <hr>
-                            <h3 class="th-block-title">Compatible Browsers</h3>
-                            <ul class="ul-check clearfix">
-                                {% for browser in product.browsers_compatible %}
-                                    <li><i class="fa fa-check"></i> {{ browser }}</li>
-                                {% endfor %}
-                            </ul>
-
-                            <hr>
-                            <h3 class="th-block-title">Tags</h3>
-                            <ul class="ul-tags">
-                                {% for tag in product.tags %}
-                                    <li><a href="/products?tag={{tag}}">{{ tag }}</a></li>
-                                {% endfor %}
-                            </ul>
                         </div>
                     </div>
                 </div>

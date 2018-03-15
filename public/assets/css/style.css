@@ -1195,6 +1195,10 @@ a:hover, a:focus, a:active {
     border-right: 1px solid transparent;
 }
 
+.single-product .item-details{
+    margin-top: 50px;
+}
+
 .single-product .item-description{
     margin-bottom: 30px;
     color: #525252;
@@ -1265,8 +1269,11 @@ a:hover, a:focus, a:active {
     color: #fff;
 }
 
-.single-product .thumbnail-single img{
+.single-product .thumbnail-single img {
     width: 100%;
+    border: 1px solid #eee;
+    padding: 3px;
+    border-radius: 3px;
 }
 
 /** Changelog COLOR **/
