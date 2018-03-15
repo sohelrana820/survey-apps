@@ -14,37 +14,35 @@
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <div class="meta-info meta-version">
                                     <p>Version</p>
-                                    <span>1.1</span>
+                                    <span>{{ product.version }}</span>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <div class="meta-info meta-category">
                                     <p>Category</p>
-                                    <span><a href="#">Corporate &amp; Business</a></span>
+                                    <span><a href="#">{{ product.category.name }}</a></span>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <div class="meta-info meta-released">
                                     <p>Released</p>
-                                    <span>17 January 2018</span>
+                                    <span>{{ product.created_at | date('M d, Y') }}</span>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-3 col-xs-6">
                                 <div class="meta-info meta-updated">
-                                    <p>Updated</p>
-                                    <span>10 March 2018</span>
+                                    <p>Last Updated</p>
+                                    <span>{{ product.modified_at | date('M d, Y') }}</span>
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="item-description">
-                            <p>Edustar – Multipurpose Education Template is a clean and modern HTML5 , Bootstrap Education Template. It’s a solution for any university, college, school, Business,Charity , course hub or any kind of educational institution. With all it features you can build something great. It is ultimate flexible with  nice options and features.</p>
-
-                            <p>It’s fully responsive design and clean was tested on all major handheld devices.Unlimited possibilities and flexible that will easily be able to support every site development.</p>
+                            {{ product.description | raw }}
                         </div>
 
                         <div class="th-block">
