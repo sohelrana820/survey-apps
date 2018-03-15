@@ -363,7 +363,6 @@ class ProductsModel extends Model
 
             if(array_key_exists($slug, $list) && $list[$slug]) {
                 $this->logger ? $this->logger->info('Product UUID Returned from DB') : null;
-                $this->logger ? $this->logger->info('Product UUID Returned from DB') : null;
                 $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_VERY_LONG) : null;
                 return $list[$slug];
             }
