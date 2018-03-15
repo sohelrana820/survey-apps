@@ -1195,12 +1195,11 @@ a:hover, a:focus, a:active {
     border-right: 1px solid transparent;
 }
 
-.single-product .item-description p {
+.single-product .item-description{
     margin-bottom: 30px;
-    color: #000000;
-    line-height: 30px;
-    font-weight: 300;
-    font-size: 16px;
+    color: #525252;
+    font-size: 14px;
+    line-height: 25px;
 }
 
 .single-product .th-block .ul-check {
