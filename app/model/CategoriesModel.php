@@ -106,11 +106,11 @@ class CategoriesModel extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function products()
     {
-        return $this->belongsToMany(ProductsModel::class, 'products_categories', 'category_id', 'product_id');
+        return $this->hasMany(ProductsModel::class, 'category_id');
     }
 
     /**
@@ -173,10 +173,10 @@ class CategoriesModel extends Model
     {
         $categories = [];
         try {
-            $categoryObj = $this->selectRaw('categories.slug, count(products_categories.product_id) as total_products')
+            $categoryObj = $this->selectRaw('categories.slug, count(products.id) as total_products')
                 ->leftjoin(
-                    'products_categories', function ($join) {
-                        $join->on('categories.id', '=', 'products_categories.category_id');
+                    'products', function ($join) {
+                        $join->on('categories.id', '=', 'products.category_id');
                     }
                 )
                 ->groupBy('categories.id')->orderBy('total_products', 'DESC')

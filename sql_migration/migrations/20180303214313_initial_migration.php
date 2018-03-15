@@ -52,6 +52,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('uuid', 'uuid')
             ->addColumn('title', 'string')
             ->addColumn('slug', 'string')
+            ->addColumn('category_id', 'integer')
             ->addColumn('thumb_image', 'string', ['default' => null])
             ->addColumn('main_image', 'string')
             ->addColumn('demo_url', 'string')
@@ -72,16 +73,6 @@ class InitialMigration extends AbstractMigration
             ->addColumn('modified_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
-            ->create();
-
-        $productCategoriesTable = $this->table('products_categories')
-            ->addColumn('product_id', 'integer')
-            ->addColumn('category_id', 'integer')
-            ->addIndex(['product_id', 'category_id'])
-            ->addIndex('product_id')
-            ->addIndex('category_id')
-            ->addForeignKey(['product_id'], 'products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['category_id'], 'categories', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
     }
 }

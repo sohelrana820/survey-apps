@@ -104,11 +104,11 @@ class ProductsModel extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function categories()
+    public function category()
     {
-        return $this->belongsToMany(CategoriesModel::class, 'products_categories', 'product_id', 'category_id');
+        return $this->belongsTo(CategoriesModel::class, 'category_id');
     }
 
     /**
@@ -255,11 +255,7 @@ class ProductsModel extends Model
                 $catModel->setCache($this->cache);
                 $catModel->setLogger($this->logger);
                 $category = $catModel->getCategory($queryParams['cat']);
-                $productsObj = $productsObj->whereHas(
-                    'categories', function ($query) use ($category) {
-                        $query->where('category_id', $category['id']);
-                    }
-                );
+                $productsObj = $productsObj->where('category_id', $category['id']);
             }
             $productsObj = $productsObj->orderBy($orderBy, $sortBy)->paginate(
                 $perPage,

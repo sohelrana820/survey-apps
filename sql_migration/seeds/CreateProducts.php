@@ -43,6 +43,7 @@ class CreateProducts extends AbstractSeed
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd330eb6141',
                 'title'    => 'Car Zone - Car Dealer HTML Template',
                 'slug'    => 'car-zone-car-dealer-html-template',
+                'category_id' => 1,
                 'thumb_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/thumb.jpg',
                 'main_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/main.jpg',
                 'demo_url' => 'http://demo.themevessel.com/car-shop',
@@ -66,6 +67,7 @@ class CreateProducts extends AbstractSeed
                 'uuid'    => 'ee6366cc-d14b-4e6f-8d43-bfd3304b6121',
                 'title'    => 'Auto Car - Car Dealer HTML Template',
                 'slug'    => 'auto-car-estate-html-template',
+                'category_id' => 1,
                 'thumb_image' => 'attachments/ee6366cc-d14b-4e6f-8d43-bfd3304b6121/thumb.jpg',
                 'main_image' => 'attachments/ee6366cc-d14b-4e6f-8d43-bfd3304b6121/main.jpg',
                 'demo_url' => 'http://demo.themevessel.com/car-shop',
@@ -89,6 +91,7 @@ class CreateProducts extends AbstractSeed
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6141',
                 'title'    => 'Realty - Real Estate HTML Template',
                 'slug'    => 'realty-real-estate-html-template',
+                'category_id' => 2,
                 'thumb_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd3304b6141/thumb.jpg',
                 'main_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd3304b6141/main.jpg',
                 'demo_url' => 'http://demo.themevessel.com/car-shop',
@@ -112,6 +115,7 @@ class CreateProducts extends AbstractSeed
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6121',
                 'title'    => 'The Nest - Real Estate HTML Template',
                 'slug'    => 'the-nest-estate-html-template',
+                'category_id' => 3,
                 'thumb_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd3304b6121/thumb.jpg',
                 'main_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd3304b6121/main.jpg',
                 'demo_url' => 'http://demo.themevessel.com/car-shop',
@@ -135,6 +139,7 @@ class CreateProducts extends AbstractSeed
                 'uuid'    => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
                 'title'    => 'Hotel Alpha - Hotel HTML Responsive Template',
                 'slug'    => 'hotel-alpha-hotel-responsive-template',
+                'category_id' => 1,
                 'thumb_image' => 'attachments/ae6366c1-d14b-4e6f-8d43-bfd3304b6121/thumb.jpg',
                 'main_image' => 'attachments/ae6366c1-d14b-4e6f-8d43-bfd3304b6121/main.jpg',
                 'demo_url' => 'http://demo.themevessel.com/car-shop',
@@ -157,33 +162,6 @@ class CreateProducts extends AbstractSeed
         ];
         $productsTable = $this->table('products');
         $productsTable->insert($products)
-            ->save();
-
-
-        $productCategories = [
-            [
-                'product_id'    => 1,
-                'category_id'    => 1,
-            ],
-            [
-                'product_id'    => 2,
-                'category_id'    => 1,
-            ],
-            [
-                'product_id'    => 3,
-                'category_id'    => 1,
-            ],
-            [
-                'product_id'    => 4,
-                'category_id'    => 1,
-            ],
-            [
-                'product_id'    => 4,
-                'category_id'    => 2,
-            ],
-        ];
-        $productsCategoriesTable = $this->table('products_categories');
-        $productsCategoriesTable->insert($productCategories)
             ->save();
     }
 }
