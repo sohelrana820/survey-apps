@@ -218,4 +218,40 @@ class CategoriesModel extends Model
         }
         return $this->getCategoryBatch($uuids);
     }
+
+    /**
+     * @param $categoryId
+     * @param bool $forceCacheGenerate
+     * @return bool|mixed
+     */
+    public function getCategoryById($categoryId, $forceCacheGenerate = false)
+    {
+        $cacheKey = 'all_category_list';
+        $list = $this->cache ? $this->cache->get($cacheKey) : false;
+        if ($list && $forceCacheGenerate == false) {
+            if(array_key_exists($categoryId, $list) && $list[$categoryId]) {
+                $this->logger ? $this->logger->info('Category Slug Returned from Cache') : null;
+                return $this->getCategory($list[$categoryId]);
+            }
+        }
+
+        try {
+            $categoriesObj = $this->select('id', 'slug')->get();
+            $list = [];
+            foreach ($categoriesObj as $category) {
+                $list[$category->id] = $category->slug;
+            }
+
+            if(array_key_exists($categoryId, $list) && $list[$categoryId]) {
+                $this->logger ? $this->logger->info('Category Slug Returned from DB') : null;
+                $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_VERY_LONG) : null;
+                return $this->getCategory($list[$categoryId]);
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
 }
