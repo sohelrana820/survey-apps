@@ -264,6 +264,11 @@ class ProductsModel extends Model
                 $orderBy = 'total_viewed';
             }
 
+            // Search by product's tag
+            if(array_key_exists('tag', $queryParams)) {
+                $productsObj = $productsObj->where('tags', 'LIKE', '%' .$queryParams['tag']. '%');
+            }
+
             // Search by product's category
             if(array_key_exists('cat', $queryParams)) {
                 $catModel = new CategoriesModel();
