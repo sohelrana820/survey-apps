@@ -152,16 +152,30 @@ class ProductsModel extends Model
             return $details;
         }
 
+        $productDetails = false;
         try{
             $details = $this->where('uuid', $productUuid)->first();
             if($details) {
+                $productDetails = $details->toArray();
                 $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
-                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
-                return $details->toArray();
+                $this->cache ? $this->cache->set($cacheKey, $productDetails, self::CACHE_VALIDITY_1WEEK) : null;
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+
+        if($productDetails)
+        {
+            $categoryModel = new CategoriesModel();
+            $categoryModel->setCache($this->cache);
+            $categoryModel->setLogger($this->logger);
+            $productDetails['category'] = $categoryModel->getCategoryById($productDetails['category_id']);
+            unset($productDetails['category_id']);
+            $productDetails['tags'] = explode(',', $productDetails['tags']);
+            $productDetails['key_features'] = explode(',', $productDetails['key_features']);
+            $productDetails['browsers_compatible'] = explode(',', $productDetails['browsers_compatible']);
         }
 
         return null;
