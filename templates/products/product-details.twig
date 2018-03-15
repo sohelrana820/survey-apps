@@ -9,7 +9,6 @@
                         <div class="thumbnail-single mb-30">
                             <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
-
                         <div class="item-details">
                             <div class="item-meta row mb-30">
                                 <div class="col-md-3 col-sm-3 col-xs-6">
@@ -40,11 +39,9 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="item-description">
                                 {{ product.description | raw }}
                             </div>
-
                             <div class="th-block">
                                 <h3 class="th-block-title">Key Features</h3>
                                 <ul class="ul-check clearfix">
@@ -91,11 +88,6 @@
                                         <i class="fa fa-cart-arrow-down"></i> Total Sales:<strong>{{ product.sales }}</strong>
                                     </div>
                                 </div>
-                                {#<div class="col-md-6">
-                                    <div class="div">
-                                        <i class="fa fa-heart"></i> Favorites:<strong>6</strong>
-                                    </div>
-                                </div>#}
                             </div>
                         </div>
                         <ul class="item-purchase-options mb-30">
@@ -106,15 +98,12 @@
                         </ul>
                         <div class="mb-20">
                             <form action="index.html" method="GET" enctype="multipart/form-data">
-                                <a href="#" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
-                                <a href="#" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</a>
+                                <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
+                                <a href="{{ product.demo_url }}" target="_parent" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</a>
                             </form>
                             <div class="purchase-intro mb-20">
                                 All the items on ThemeHunt are guaranteed to have top notch quality and state of the art functionalities. Purchase and get started!
                             </div>
-                            <form action="index.html" method="GET" enctype="multipart/form-data">
-                                <a href="#" class="btn btn-default btn-md mb-10 btn-block"><i class="fa fa-heart"></i> Add to Favorites</a>
-                            </form>
                         </div>
                         <div class="mb-30 clearfix">
                             <div class="social-share">Social Share</div>
