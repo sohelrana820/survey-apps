@@ -76,7 +76,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['category_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['category_id'], 'categories', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
             ->create();
 
         $orderTable = $this->table('orders')
