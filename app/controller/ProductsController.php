@@ -50,6 +50,7 @@ class ProductsController extends AppController
         $product = $this->loadModel()->getProductsModel()->getProduct($productUuid);
         $data = [
             'product' => $product,
+            'url' => $request->getUri()->getBaseUrl() . $request->getUri()->getPath()
         ];
         return $this->getView()->render($response, 'products/product-details.twig', $data);
     }

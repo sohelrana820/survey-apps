@@ -1422,6 +1422,10 @@ a:hover, a:focus, a:active {
     color: #D0021B;
 }
 
+.fa-linkedin:hover {
+    color: #0177b5;
+}
+
 .fa-google-plus:hover {
     color: #E43B50;
 }
