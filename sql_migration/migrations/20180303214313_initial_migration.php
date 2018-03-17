@@ -30,10 +30,10 @@ class InitialMigration extends AbstractMigration
     {
         $usersTable = $this->table('users')
             ->addColumn('uuid', 'string')
-            ->addColumn('first_name', 'string', ['default' => null])
-            ->addColumn('last_name', 'string', ['default' => null])
+            ->addColumn('first_name', 'string', ['default' => null, 'null' => true])
+            ->addColumn('last_name', 'string', ['default' => null, 'null' => true])
             ->addColumn('email', 'string')
-            ->addColumn('password', 'string', ['default' => null])
+            ->addColumn('password', 'string', ['default' => null, 'null' => true])
             ->addColumn('is_auto_signup', 'boolean', ['default' => 0, 'comment' => 'is_auto_signup: 0 = No, 1 = Yes'])
             ->addColumn('created_at', 'datetime')
             ->addColumn('modified_at', 'datetime')
@@ -51,10 +51,11 @@ class InitialMigration extends AbstractMigration
 
         $productTable = $this->table('products')
             ->addColumn('uuid', 'string')
+            ->addColumn('user_id', 'integer', ['default' => null, 'null' => true])
             ->addColumn('title', 'string')
             ->addColumn('slug', 'string')
             ->addColumn('category_id', 'integer')
-            ->addColumn('thumb_image', 'string', ['default' => null])
+            ->addColumn('thumb_image', 'string', ['default' => null, 'null' => true])
             ->addColumn('main_image', 'string')
             ->addColumn('demo_url', 'string')
             ->addColumn('description', 'text')
@@ -74,6 +75,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('modified_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
+            ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
             ->addForeignKey(['category_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
             ->create();
 
