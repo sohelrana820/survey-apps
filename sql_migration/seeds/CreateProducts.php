@@ -12,24 +12,28 @@ class CreateProducts extends AbstractSeed
             [
                 'name'    => 'Website Template',
                 'slug'    => 'website-template',
+                'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'WordPress Theme',
                 'slug'    => 'wordpress-theme',
+                'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'UI Kits',
                 'slug'    => 'ui-kits',
+                'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'Graphics',
                 'slug'    => 'graphics',
+                'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
                 'modified_at' => date('Y-m-d H:i:s'),
             ],
