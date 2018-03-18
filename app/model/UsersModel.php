@@ -30,7 +30,7 @@ class UsersModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'first_name', 'last_name', 'email', 'password'];
+    protected $fillable = ['uuid', 'first_name', 'last_name', 'email', 'password', 'is_auto_signup'];
 
     /**
      * @var array
@@ -40,6 +40,7 @@ class UsersModel extends Model
         'first_name' => 'string',
         'last_name' => 'string',
         'email' => 'string',
+        'is_auto_signup' => 'boolean',
     ];
 
     /**
@@ -48,7 +49,8 @@ class UsersModel extends Model
     protected $hidden = ['password'];
 
     /**
-     * @param Logger $logger
+     * @param $logger
+     * @return $this
      */
     public function setLogger($logger)
     {
@@ -57,10 +59,28 @@ class UsersModel extends Model
     }
 
     /**
-     * @param \Memcache $cache
+     * @param $cache
+     * @return $this;
      */
     public function setCache($cache)
     {
         $this->cache = $cache;
+        return $this;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(ProductsModel::class, 'users_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(OrdersModel::class, 'users_id');
     }
 }
