@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Monolog\Logger;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  * Class UsersModel
@@ -73,6 +74,8 @@ class UsersModel extends Model
     protected $table = 'users';
 
     /**
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
     protected $fillable = ['uuid', 'first_name', 'last_name', 'email', 'password', 'is_auto_signup'];
@@ -127,5 +130,66 @@ class UsersModel extends Model
     public function orders()
     {
         return $this->hasMany(OrdersModel::class, 'users_id');
+    }
+
+    /**
+     * JobsModel constructor.
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    public function addUser($data)
+    {
+        if(!array_key_exists('uuid', $data) || !$data['uuid']) {
+            $data['uuid'] = Uuid::uuid4()->toString();
+        }
+
+        try {
+            var_dump($data);
+            $user = $this->create($data);
+            var_dump($user);
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $productUuid
+     * @param bool        $forceCacheGenerate
+     * @return array|null|string
+     */
+    public function getProduct($productUuid, $forceCacheGenerate = false)
+    {
+        $cacheKey = sprintf('product_uuid_%s', $productUuid);
+        $details = $this->cache ? $this->cache->get($cacheKey) : null;
+
+        if($forceCacheGenerate === false && $details) {
+            $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $productUuid]) : null;
+            return $this->mappingProductDetails($details);
+        }
+
+        try{
+            $details = $this->where('uuid', $productUuid)->first();
+            if($details) {
+                $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
+                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
+                return $this->mappingProductDetails($details->toArray());
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return null;
     }
 }
