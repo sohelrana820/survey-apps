@@ -80,7 +80,6 @@ class InitialMigration extends AbstractMigration
             ->create();
 
         $orderTable = $this->table('orders')
-            ->addColumn('order_id', 'integer', ['limit' => 8])
             ->addColumn('uuid', 'string')
             ->addColumn('user_id', 'integer')
             ->addColumn('fraud_check_status', 'string', ['default' => null, 'null' => true])
@@ -91,14 +90,13 @@ class InitialMigration extends AbstractMigration
             ->addColumn('notes', 'text', ['default' => null, 'null' => true])
             ->addColumn('created_at', 'datetime')
             ->addColumn('modified_at', 'datetime')
-            ->addIndex('order_id', ['unique' => true, 'name' => 'iux_order_id'])
             ->addIndex('user_id', ['name' => 'iux_invoice_user_id'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
 
         $invoiceTable = $this->table('invoices')
             ->addColumn('uuid', 'string')
-            ->addColumn('order_id', 'integer', ['limit' => 8])
+            ->addColumn('order_id', 'integer')
             ->addColumn('user_id', 'integer')
             ->addColumn('subtotal', 'float', ['default' => 0.00])
             ->addColumn('vat', 'float', ['default' => 0.00])
@@ -116,7 +114,7 @@ class InitialMigration extends AbstractMigration
             ->addForeignKey(['order_id'], 'orders', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
 
-        $invoiceProductsTable = $this->table('invoice_products')
+        $invoiceProductsTable = $this->table('invoices_products')
             ->addColumn('invoice_id', 'integer')
             ->addColumn('product_id', 'integer')
             ->addColumn('name', 'string')
@@ -132,16 +130,16 @@ class InitialMigration extends AbstractMigration
             ->create();
 
         $downloadLinksTable = $this->table('download_links')
-            ->addColumn('invoice_products', 'integer')
+            ->addColumn('invoices_products_id', 'integer')
             ->addColumn('product_id', 'integer')
             ->addColumn('link', 'string')
             ->addColumn('download_completed', 'boolean', ['default' => 0])
             ->addColumn('expired_at', 'datetime')
             ->addColumn('created_at', 'datetime')
             ->addColumn('modified_at', 'datetime')
-            ->addIndex('invoice_products', ['name' => 'iux_download_invoice_products_id'])
+            ->addIndex('invoices_products_id', ['name' => 'iux_download_invoices_products_id'])
             ->addIndex('product_id', ['name' => 'iux_download_products_id'])
-            ->addForeignKey(['invoice_products'], 'invoice_products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['invoices_products_id'], 'invoices_products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->addForeignKey(['product_id'], 'products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
     }
