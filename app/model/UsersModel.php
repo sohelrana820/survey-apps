@@ -145,7 +145,7 @@ class UsersModel extends Model
 
     /**
      * @param $data
-     * @return bool
+     * @return array|bool|null|string
      */
     public function addUser($data)
     {
@@ -157,7 +157,30 @@ class UsersModel extends Model
             $created = $this->create($data);
             if($created) {
                 $created = $created->toArray();
-                return $this->getDetails($created['uuid']);
+                $user = $this->getDetails($created['uuid']);
+                $this->logger ? $this->logger->error('New User Created', ['user_details' => $user]) : null;
+                unset($created, $data);
+                return $user;
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $email
+     * @return array|bool|null|string
+     */
+    public function getUserByEmail($email)
+    {
+        try {
+            $user = $this->select('uuid')->where('email', $email)->first();
+            if($user) {
+                $user = $user->toArray();
+                return array_key_exists('uuid', $user) ? $this->getDetails($user['uuid']) : false;
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
