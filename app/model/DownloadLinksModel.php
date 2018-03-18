@@ -18,11 +18,6 @@ class DownloadLinksModel extends Model
     private $logger;
 
     /**
-     * @var \Memcache;
-     */
-    private $cache;
-
-    /**
      * @var string
      */
     protected $table = 'download_links';
@@ -30,13 +25,19 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_completed', 'expired_at', 'created_at', 'modified_at'];
 
     /**
      * @var array
      */
     protected $casts = [
-        'uuid' => 'string',
+        'invoices_products_id' => 'integer',
+        'product_id' => 'integer',
+        'link' => 'string',
+        'download_completed' => 'string',
+        'expired_at' => 'datetime',
+        'created_at' => 'datetime',
+        'modified_at' => 'datetime',
     ];
 
     /**
@@ -50,12 +51,18 @@ class DownloadLinksModel extends Model
     }
 
     /**
-     * @param $cache
-     * @return $this;
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function setCache($cache)
+    public function invoiceProduct()
     {
-        $this->cache = $cache;
-        return $this;
+        return $this->belongsTo(InvoicesProductsModel::class, 'invoices_products_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function product()
+    {
+        return $this->belongsTo(ProductsModel::class, 'product_id');
     }
 }
