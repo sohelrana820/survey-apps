@@ -102,15 +102,6 @@ class ProductsModel extends Model
         'browsers_compatible' => 'string',
         'is_featured' => 'boolean',
     ];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function category()
-    {
-        return $this->belongsTo(CategoriesModel::class, 'category_id');
-    }
-
     /**
      * @var array
      */
@@ -134,6 +125,22 @@ class ProductsModel extends Model
     {
         $this->cache = $cache;
         return $this;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(UsersModel::class, 'user_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(CategoriesModel::class, 'category_id');
     }
 
     /**
