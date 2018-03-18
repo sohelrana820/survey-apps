@@ -83,6 +83,8 @@ class CategoriesModel extends Model
     protected $casts = [
         'name' => 'string',
         'slug' => 'string',
+        'created_at' => 'datetime',
+        'modified_at' => 'datetime',
     ];
 
     /**
