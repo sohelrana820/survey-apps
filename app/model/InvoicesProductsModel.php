@@ -75,7 +75,7 @@ class InvoicesProductsModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoice_id', 'product_id', 'name', 'unit_price', 'quantity', 'subtotal', 'created_at', 'modified_at'];
+    protected $fillable = ['invoice_id', 'product_id', 'name', 'unit_price', 'quantity', 'subtotal', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -88,7 +88,7 @@ class InvoicesProductsModel extends Model
         'quantity' => 'integer',
         'subtotal' => 'float',
         'created_at' => 'datetime',
-        'modified_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

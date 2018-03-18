@@ -23,7 +23,7 @@ class OrdersController extends AppController
         $array = [
             'product_id' => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6121',
             'amount' => rand(1, 15),
-            'email' => 'sohel@previewtechs.com',
+            'email' => rand(1, 20).'sohel@previewtechs.com',
         ];
         $this->completeOrder($array);
     }
@@ -38,6 +38,8 @@ class OrdersController extends AppController
             'email' => $data['email']
         ];
 
-        $this->loadModel()->getUserModel()->addUser($user);
+        $user = $this->loadModel()->getUserModel()->addUser($user);
+        var_dump($user);
+        die();
     }
 }

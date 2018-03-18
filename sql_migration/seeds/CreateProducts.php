@@ -14,28 +14,28 @@ class CreateProducts extends AbstractSeed
                 'slug'    => 'website-template',
                 'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'WordPress Theme',
                 'slug'    => 'wordpress-theme',
                 'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'UI Kits',
                 'slug'    => 'ui-kits',
                 'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name'    => 'Graphics',
                 'slug'    => 'graphics',
                 'status' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
         ];
         $categoriesTable = $this->table('categories');
@@ -66,7 +66,7 @@ class CreateProducts extends AbstractSeed
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
                 'is_featured' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'uuid'    => 'ee6366cc-d14b-4e6f-8d43-bfd3304b6121',
@@ -91,7 +91,7 @@ class CreateProducts extends AbstractSeed
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
                 'is_featured' => 1,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6141',
@@ -116,7 +116,7 @@ class CreateProducts extends AbstractSeed
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
                 'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6121',
@@ -141,7 +141,7 @@ class CreateProducts extends AbstractSeed
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
                 'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'uuid'    => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
@@ -166,7 +166,7 @@ class CreateProducts extends AbstractSeed
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
                 'is_featured' => 0,
                 'created_at' => '2018-01-30 16:30:45',
-                'modified_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ]
         ];
         $productsTable = $this->table('products');

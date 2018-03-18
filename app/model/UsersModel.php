@@ -78,7 +78,7 @@ class UsersModel extends Model
      *
      * @var array
      */
-    protected $fillable = ['uuid', 'first_name', 'last_name', 'email', 'password', 'is_auto_signup'];
+    protected $fillable = ['uuid', 'first_name', 'last_name', 'email', 'password', 'is_auto_signup', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -89,6 +89,8 @@ class UsersModel extends Model
         'last_name' => 'string',
         'email' => 'string',
         'is_auto_signup' => 'boolean',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**
@@ -152,9 +154,11 @@ class UsersModel extends Model
         }
 
         try {
-            var_dump($data);
-            $user = $this->create($data);
-            var_dump($user);
+            $created = $this->create($data);
+            if($created) {
+                $created = $created->toArray();
+                return $this->getDetails($created['uuid']);
+            }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
@@ -164,26 +168,26 @@ class UsersModel extends Model
     }
 
     /**
-     * @param $productUuid
-     * @param bool        $forceCacheGenerate
+     * @param $uuid
+     * @param bool $forceCacheGenerate
      * @return array|null|string
      */
-    public function getProduct($productUuid, $forceCacheGenerate = false)
+    public function getDetails($uuid, $forceCacheGenerate = false)
     {
-        $cacheKey = sprintf('product_uuid_%s', $productUuid);
+        $cacheKey = sprintf('user_uuid_%s', $uuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
         if($forceCacheGenerate === false && $details) {
-            $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $productUuid]) : null;
-            return $this->mappingProductDetails($details);
+            $this->logger ? $this->logger->info('User Returned From Cache', ['user_uuid' => $uuid]) : null;
+            return $details;
         }
 
         try{
-            $details = $this->where('uuid', $productUuid)->first();
+            $details = $this->where('uuid', $uuid)->first();
             if($details) {
-                $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
+                $this->logger ? $this->logger->info('User Returned From DB', ['user_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
-                return $this->mappingProductDetails($details->toArray());
+                return $details->toArray();
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;

@@ -75,7 +75,7 @@ class CategoriesModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'slug', 'created_at', 'modified_at'];
+    protected $fillable = ['name', 'slug', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -84,7 +84,7 @@ class CategoriesModel extends Model
         'name' => 'string',
         'slug' => 'string',
         'created_at' => 'datetime',
-        'modified_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

@@ -76,7 +76,7 @@ class OrdersModel extends Model
      * @var array
      */
     protected $fillable = ['uuid', 'user_id', 'fraud_check_status', 'fraud_check_result', 'ip_address',
-        'promo_code', 'amount', 'notes', 'created_at', 'modified_at'];
+        'promo_code', 'amount', 'notes', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -91,7 +91,7 @@ class OrdersModel extends Model
         'amount' => 'float',
         'notes' => 'string',
         'created_at' => 'datetime',
-        'modified_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

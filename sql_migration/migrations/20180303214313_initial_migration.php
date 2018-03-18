@@ -36,7 +36,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('password', 'string', ['default' => null, 'null' => true])
             ->addColumn('is_auto_signup', 'boolean', ['default' => 0, 'comment' => 'is_auto_signup: 0 = No, 1 = Yes'])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('email', ['unique' => true, 'name' => 'iux_users_email'])
             ->create();
 
@@ -45,7 +45,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('slug', 'string')
             ->addColumn('status', 'boolean', ['default' => 0, 'comment' => 'status: 0 = Inactive, 1 = Active'])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('slug', ['unique' => true, 'name' => 'iux_category_slug'])
             ->create();
 
@@ -72,7 +72,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('key_features', 'string', ['default' => null])
             ->addColumn('browsers_compatible', 'string',  ['default' => null])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
@@ -89,7 +89,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('amount', 'float', ['null' => false, 'default' => 0.00])
             ->addColumn('notes', 'text', ['default' => null, 'null' => true])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('user_id', ['name' => 'iux_invoice_user_id'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
             ->create();
@@ -107,7 +107,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('due_date', 'datetime')
             ->addColumn('status', 'enum', ['values' => ['paid', 'unpaid', 'invalid'], 'default' => 'unpaid'])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('order_id', ['name' => 'iux_invoice_order_id'])
             ->addIndex('user_id', ['name' => 'iux_invoice_user_id'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
@@ -122,7 +122,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('quantity', 'integer')
             ->addColumn('subtotal', 'float', ['default' => 0.00])
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('invoice_id', ['name' => 'iux_products_invoice_id'])
             ->addIndex('product_id', ['name' => 'iux_products_product_id'])
             ->addForeignKey(['invoice_id'], 'invoices', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
@@ -136,7 +136,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('download_completed', 'boolean', ['default' => 0])
             ->addColumn('expired_at', 'datetime')
             ->addColumn('created_at', 'datetime')
-            ->addColumn('modified_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
             ->addIndex('invoices_products_id', ['name' => 'iux_download_invoices_products_id'])
             ->addIndex('product_id', ['name' => 'iux_download_products_id'])
             ->addForeignKey(['invoices_products_id'], 'invoices_products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])

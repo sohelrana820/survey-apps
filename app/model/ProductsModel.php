@@ -78,7 +78,7 @@ class ProductsModel extends Model
     protected $fillable = ['uuid', 'title', 'slug', 'user_id', 'category_id', 'thumb_image', 'main_image',
         'demo_url', 'description', 'price', 'sales', 'rating', 'total_viewed', 'download_path',
         'version', 'tags', 'layout', 'product_type', 'key_features', 'browsers_compatible', 'is_featured',
-        'created_at', 'modified_at'];
+        'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -106,7 +106,7 @@ class ProductsModel extends Model
         'browsers_compatible' => 'string',
         'is_featured' => 'boolean',
         'create_at' => 'datetime',
-        'modified_at' => 'datetime'
+        'updated_at' => 'datetime'
     ];
 
     /**

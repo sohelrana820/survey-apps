@@ -76,7 +76,7 @@ class InvoicesModel extends Model
      * @var array
      */
     protected $fillable = ['uuid', 'order_id', 'user_id', 'subtotal', 'vat', 'tax', 'discount', 'total', 'invoice_date',
-        'due_date', 'status', 'created_at', 'modified_at'];
+        'due_date', 'status', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -94,7 +94,7 @@ class InvoicesModel extends Model
         'due_date' => 'datetime',
         'status' => 'string',
         'created_at' => 'datetime',
-        'modified_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**

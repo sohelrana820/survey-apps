@@ -25,7 +25,7 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_completed', 'expired_at', 'created_at', 'modified_at'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -37,7 +37,7 @@ class DownloadLinksModel extends Model
         'download_completed' => 'string',
         'expired_at' => 'datetime',
         'created_at' => 'datetime',
-        'modified_at' => 'datetime',
+        'updated_at' => 'datetime',
     ];
 
     /**
