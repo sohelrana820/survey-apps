@@ -75,9 +75,10 @@ class ProductsModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'title', 'slug', 'thumb_image', 'main_image',
-        'demo_url', 'description', 'price', 'sells', 'rating', 'total_viewed', 'download_path',
-        'tags', 'layout', 'product_type', 'key_features', 'browsers_compatible', 'is_featured'];
+    protected $fillable = ['uuid', 'title', 'slug', 'user_id', 'category_id', 'thumb_image', 'main_image',
+        'demo_url', 'description', 'price', 'sales', 'rating', 'total_viewed', 'download_path',
+        'version', 'tags', 'layout', 'product_type', 'key_features', 'browsers_compatible', 'is_featured',
+        'created_at', 'modified_at'];
 
     /**
      * @var array
@@ -86,22 +87,28 @@ class ProductsModel extends Model
         'uuid' => 'string',
         'title'    => 'string',
         'slug'    => 'string',
+        'user_id' => 'integer',
+        'category_id' => 'integer',
         'thumb_image' => 'string',
         'main_image' => 'string',
         'demo_url' => 'string',
         'description' => 'string',
-        'price' => 'decimal',
-        'sells' => 'integer',
-        'rating' => 'decimal',
+        'price' => 'float',
+        'sales' => 'integer',
+        'rating' => 'float',
         'total_viewed' => 'integer',
         'download_path' => 'string',
+        'version' => 'string',
         'tags' => 'string',
         'layout' => 'string',
         'product_type' => 'string',
         'key_features' => 'string',
         'browsers_compatible' => 'string',
         'is_featured' => 'boolean',
+        'create_at' => 'datetime',
+        'modified_at' => 'datetime'
     ];
+
     /**
      * @var array
      */
