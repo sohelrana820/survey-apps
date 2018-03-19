@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -120,6 +121,7 @@ class OrdersController extends AppController
             'due_date' => date('Y-m-d H:i:s'),
             'status' => 'paid',
             'products' => [
+                'uuid' => Uuid::uuid4()->toString(),
                 'product_id' => $productDetails['id'],
                 'name' => $productDetails['title'],
                 'unit_price' => $productDetails['price'],
