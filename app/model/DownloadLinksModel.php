@@ -26,7 +26,7 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'token', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'token', 'download_name', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -35,7 +35,9 @@ class DownloadLinksModel extends Model
         'invoices_products_id' => 'integer',
         'product_id' => 'integer',
         'link' => 'string',
-        'download_completed' => 'string',
+        'token' => 'string',
+        'download_name' => 'string',
+        'download_completed' => 'boolean',
         'expired_at' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -80,6 +82,7 @@ class DownloadLinksModel extends Model
                 'product_id' => $product['product_id'],
                 'link' => $link,
                 'token' => $token,
+                'download_name' => $product['name'],
                 'download_completed' => false,
                 'expired_at' => date('Y-m-d H:i:s', strtotime("+15 minutes", strtotime(date('Y-m-d'))))
             ];
