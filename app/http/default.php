@@ -8,4 +8,5 @@ $app->get('/500', \App\Controller\HomeController::class . ':ServerErrorPage');
 
 // Routes of orders
 $app->get('/back_to', \App\Controller\OrdersController::class . ':backTo');
+$app->get('/email', \App\Controller\OrdersController::class . ':email');
 

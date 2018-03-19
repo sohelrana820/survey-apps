@@ -68,8 +68,24 @@ class OrdersController extends AppController
         }
 
         $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
-        $downloadLink = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
-        var_dump($user, $order, $invoice, $downloadLink);
+        $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
+
+        $invoiceDetails = [
+            'user' => $user,
+            'order' => $order,
+            'invoice' => $invoice,
+            'downloadLinks' => $downloadLinks
+        ];
+        $_SESSION['invoice_details'] = $invoiceDetails;
+        var_dump($_SESSION['invoice_details']);
+        die();
+    }
+
+    public function email(Request $request, Response $response, $arfs)
+    {
+        $invoiceDetails = $_SESSION['invoice_details'];
+        $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
+        var_dump($invoiceRender);
         die();
     }
 
