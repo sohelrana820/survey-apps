@@ -21,7 +21,7 @@ class OrdersController extends AppController
     public function backTo(Request $request, Response $response, $args)
     {
         $array = [
-            'product_id' => 'ae6366cc-d14b-4e6f-8d43-bfd3304b6121',
+            'product_id' => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
             'amount' => rand(1, 15),
             'email' => 'sohel@previewtechs.com',
         ];
@@ -30,16 +30,16 @@ class OrdersController extends AppController
 
     /**
      * @param $data
+     * @return bool
      * @throws \Interop\Container\Exception\ContainerException
      */
     private function completeOrder($data)
     {
+        //  Create or update user.
         $userData  = [
             'email' => $data['email'],
             'is_auto_signup' => true
         ];
-
-        //  Create or update user.
         $user = $this->loadModel()->getUserModel()->getUserByEmail($userData['email']);
         if(!$user) {
             $user = $this->loadModel()->getUserModel()->addUser($userData);
@@ -52,7 +52,39 @@ class OrdersController extends AppController
             return false;
         }
 
+        // Create new order
+        $orderData = $this->prepareOrderData($data, $user);
+        $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
 
+        // Return [false] if order not create.
+        if(!$order) {
+            $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
+            $this->getLogger()->info('Stooped The Ordering Flow');
+            return false;
+        }
+
+        // Create new invoice
+        $invoiceData = $this->prepareInvoiceData($data, $user, $order);
+        $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
+
+        // Return [false] if invoice not create.
+        if(!$invoice) {
+            $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
+            $this->getLogger()->info('Stooped The Ordering Flow');
+            return false;
+        }
+
+        var_dump($user, $order, $invoice);
+        die();
+    }
+
+    /**
+     * @param $data
+     * @param $user
+     * @return array
+     */
+    private function prepareOrderData($data, $user)
+    {
         $orderData = [
             'user_id' => $user['id'],
             'fraud_check_status' => null,
@@ -63,7 +95,39 @@ class OrdersController extends AppController
             'notes' => 'Generic order',
         ];
 
-        $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
-        var_dump($order);
+        return $orderData;
+    }
+
+    /**
+     * @param $data
+     * @param $user
+     * @param $order
+     * @return array
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    private function prepareInvoiceData($data, $user, $order)
+    {
+        $productDetails = $this->loadModel()->getProductModel()->getProduct($data['product_id']);
+        $invoiceData = [
+            'order_id' => $order['id'],
+            'user_id' => $user['id'],
+            'subtotal' => $data['amount'],
+            'vat' => 0,
+            'tax' => 0,
+            'discount' => 0,
+            'total' => $data['amount'],
+            'invoice_date' => date('Y-m-d H:i:s'),
+            'due_date' => date('Y-m-d H:i:s'),
+            'status' => 'paid',
+            'products' => [
+                'product_id' => $productDetails['id'],
+                'name' => $productDetails['title'],
+                'unit_price' => $productDetails['price'],
+                'quantity' => 1,
+                'subtotal' => $productDetails['price'],
+            ],
+        ];
+
+        return $invoiceData;
     }
 }
