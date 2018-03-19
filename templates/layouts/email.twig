@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Theme Vessel</title>
+    <style type="text/css">
+        .email_content{
+            color: #777;
+            font-size: 13px;
+        }
+
+        .email_content h2 {
+            margin: 10px 0px 10px 0px;
+            font-size: 14px;
+        }
+
+        .email_content ul{
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .email_content li {
+            list-style: none;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .download_links li{
+            line-height: 24px;
+            margin-bottom: 25px;
+        }
+
+        .expire_notice{
+            font-size: 11px;
+        }
+
+        .product_name{
+            color: #22d05d;
+        }
+    </style>
+</head>
+<body style="margin:0px;font-family: Helvetica;background-color: #eee;">
+<table cellpadding="0" cellspacing="0" style="border-collapse: collapse; width: 650px;height: auto;margin: 15px auto;background: #FFF;
+border: 1px solid #DDD;border-top: 5px solid #22d05d;border-bottom: 5px solid #22d05d;">
+    <tr>
+        <td style="width: 100%;height: auto;padding-top: 0px;text-align: center;background: #FFF;border-bottom: 1px dashed #DDD;">
+            <h2 style="font-size: 24px;font-family: Calibri, 'Times New Roman', Times, serif; color: #22d05d">Theme Vessel Shop</h2>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" style="width: 100%;padding: 20px 50px;" class="email_content">
+            {% block content %} {% endblock %}
+
+            <br/>
+            <p>
+                Thanks,<br/>
+                Department of Sales <br/>
+                Theme Vessel <br/>
+                Phone: <a href="tel:+8801914467456">+8801914467456</a> <br/>
+                <a href="http://themevessel.com">http://themevessel.com</a>
+                <br/>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 100%;padding: 0px 50px;height: 60px;border-top: 1px dashed #DDD;text-align: center;">
+            <p style="color: #777;line-height: 25px;font-size: 13px;"><span>{{ now | date('Y') }} &copy; themevessel.com.  All rights reserved.</span></p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
