@@ -135,7 +135,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('invoices_products_id', 'integer')
             ->addColumn('product_id', 'integer')
             ->addColumn('link', 'string')
-            ->addColumn('download_name', 'string')
+            ->addColumn('token', 'string')
             ->addColumn('download_completed', 'boolean', ['default' => 0])
             ->addColumn('expired_at', 'datetime')
             ->addColumn('created_at', 'datetime')
