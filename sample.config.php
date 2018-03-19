@@ -45,5 +45,13 @@ return [
                 ['localhost', 11211, 33]
             ]
         ],
+        'mailgun' => [
+            'api_key' => 'key-8cef2210bed7c5c71ce94a1f5480b4f9',
+            'domain' => 'sohelrana.me'
+        ],
+        'email' => [
+            'from_name' => 'Theme Vessel',
+            'from_email' => 'no-reply@sohelrana.me',
+        ]
     ]
 ];
