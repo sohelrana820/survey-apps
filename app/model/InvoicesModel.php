@@ -149,8 +149,8 @@ class InvoicesModel extends Model
             if($created) {
                 $created->products()->create($data['products']);
                 $created = $created->toArray();
+                $this->logger ? $this->logger->info('New Invoice Created', ['invoice_details' => $data]) : null;
                 $invoice = $this->getDetails($created['uuid']);
-                $this->logger ? $this->logger->info('New Invoice Created', ['invoice_details' => $invoice]) : null;
                 unset($created, $data);
                 return $invoice;
             }
