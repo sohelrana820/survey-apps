@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\helpers\components\ComponentLoad;
 use App\Model\ModelLoader;
 use Monolog\Logger;
 use Noodlehaus\Config;
@@ -117,5 +118,12 @@ class AppController
         $models->setLogger($this->getLogger());
         $models->setCache($this->getCache());
         return $models;
+    }
+
+    public function loadComponent()
+    {
+        $compoents = new ComponentLoad();
+        $compoents->setConfig($this->config);
+        return $compoents;
     }
 }
