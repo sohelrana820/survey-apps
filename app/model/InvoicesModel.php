@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Monolog\Logger;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  * Class Invoicesodel
@@ -131,5 +132,63 @@ class InvoicesModel extends Model
     public function products()
     {
         return $this->hasMany(InvoicesProductsModel::class, 'invoice_id');
+    }
+
+    /**
+     * @param $data
+     * @return array|bool|null|string
+     */
+    public function createInvoice($data)
+    {
+        if(!array_key_exists('uuid', $data) || !$data['uuid']) {
+            $data['uuid'] = Uuid::uuid4()->toString();
+        }
+
+        try {
+            $created = $this->create($data);
+            if($created) {
+                $created = $created->toArray();
+                $invoice = $this->getDetails($created['uuid']);
+                $this->logger ? $this->logger->error('New Invoice Created', ['invoice_details' => $invoice]) : null;
+                unset($created, $data);
+                return $invoice;
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * @param $uuid
+     * @param bool $forceCacheGenerate
+     * @return array|null|string
+     */
+    public function getDetails($uuid, $forceCacheGenerate = false)
+    {
+        $cacheKey = sprintf('invoice_uuid_%s', $uuid);
+        $details = $this->cache ? $this->cache->get($cacheKey) : null;
+
+        if($forceCacheGenerate === false && $details) {
+            $this->logger ? $this->logger->info('Invoice Returned From Cache', ['invoice_uuid' => $uuid]) : null;
+            return $details;
+        }
+
+        try{
+            $details = $this->where('uuid', $uuid)->first();
+            if($details) {
+                $this->logger ? $this->logger->info('Invoice Returned From DB', ['invoice_uuid' => $uuid]) : null;
+                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
+                return $details->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return null;
     }
 }
