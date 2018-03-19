@@ -75,12 +75,13 @@ class InvoicesProductsModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoice_id', 'product_id', 'name', 'unit_price', 'quantity', 'subtotal', 'created_at', 'updated_at'];
+    protected $fillable = ['uuid', 'invoice_id', 'product_id', 'name', 'unit_price', 'quantity', 'subtotal', 'created_at', 'updated_at'];
 
     /**
      * @var array
      */
     protected $casts = [
+        'uuid' => 'string',
         'invoice_id' => 'integer',
         'product_id' => 'integer',
         'name' => 'string',
@@ -133,5 +134,83 @@ class InvoicesProductsModel extends Model
     public function downloadLinks()
     {
         return $this->hasMany(DownloadLinksModel::class, 'invoices_products_id');
+    }
+
+    /**
+     * @param $uuid
+     * @param bool $forceCacheGenerate
+     * @return array|null|string
+     */
+    public function getDetails($uuid, $forceCacheGenerate = false)
+    {
+        $cacheKey = sprintf('invoice_product_uuid_%s', $uuid);
+        $details = $this->cache ? $this->cache->get($cacheKey) : null;
+
+        if($forceCacheGenerate === false && $details) {
+            $this->logger ? $this->logger->info('Invoice Product Returned From Cache', ['invoice_product_uuid' => $uuid]) : null;
+            return $details;
+        }
+
+        try{
+            $details = $this->where('uuid', $uuid)->first();
+            if($details) {
+                $this->logger ? $this->logger->info('Invoice Product Returned From DB', ['invoice_product_uuid' => $uuid]) : null;
+                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
+                return $details->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return null;
+    }
+
+
+    /**
+     * @param $uuids
+     * @return array
+     */
+    public function getBatch($uuids)
+    {
+        $cacheKeys = [];
+        foreach ($uuids as $key => $value) {
+            $cacheKeys[] = sprintf('invoice_product_uuid_%s', $value);
+        }
+
+        $invoiceProducts = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
+        if($invoiceProducts && sizeof($invoiceProducts) === sizeof($uuids)) {
+            return array_values($invoiceProducts);
+        }
+
+        $invoiceProducts = [];
+        foreach ($uuids as $key => $value) {
+            array_push($invoiceProducts, $this->getDetails($value));
+        }
+        return $invoiceProducts;
+    }
+
+    /**
+     * @param $invoiceId
+     * @return array
+     */
+    public function getProductsByInvoiceId($invoiceId)
+    {
+        $products = [];
+        try {
+            $invoiceProductsObj = $this->select('uuid')->where('invoice_id', $invoiceId)->get();
+            if($invoiceProductsObj) {
+                $products = $invoiceProductsObj->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        $uuids = [];
+        foreach ($products as $product) {
+            array_push($uuids, $product['uuid']);
+        }
+        return $this->getBatch($uuids);
     }
 }
