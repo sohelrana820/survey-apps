@@ -115,6 +115,7 @@ class InitialMigration extends AbstractMigration
             ->create();
 
         $invoiceProductsTable = $this->table('invoices_products')
+            ->addColumn('uuid', 'string')
             ->addColumn('invoice_id', 'integer')
             ->addColumn('product_id', 'integer')
             ->addColumn('name', 'string')
