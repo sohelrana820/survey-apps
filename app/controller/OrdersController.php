@@ -21,21 +21,13 @@ class OrdersController extends AppController
      */
     public function backTo(Request $request, Response $response, $args)
     {
-        $array = [
+        $data = [
             'product_id' => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
             'amount' => rand(1, 15),
             'email' => 'sohel@previewtechs.com',
         ];
-        $this->completeOrder($array);
-    }
 
-    /**
-     * @param $data
-     * @return bool
-     * @throws \Interop\Container\Exception\ContainerException
-     */
-    private function completeOrder($data)
-    {
+
         //  Create or update user.
         $userData  = [
             'email' => $data['email'],
@@ -75,8 +67,9 @@ class OrdersController extends AppController
             return false;
         }
 
-        $downloadLink =
-        var_dump($user, $order, $invoice);
+        $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
+        $downloadLink = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
+        var_dump($user, $order, $invoice, $downloadLink);
         die();
     }
 
@@ -125,7 +118,7 @@ class OrdersController extends AppController
                 'uuid' => Uuid::uuid4()->toString(),
                 'product_id' => $productDetails['id'],
                 'name' => $productDetails['title'],
-                'file_path' => $productDetails['uuid'],
+                'file_path' => $this->config['download_path'] .'/' .$productDetails['uuid'],
                 'unit_price' => $productDetails['price'],
                 'quantity' => 1,
                 'subtotal' => $productDetails['price'],

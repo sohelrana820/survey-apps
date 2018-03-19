@@ -4,6 +4,7 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Monolog\Logger;
+use Rhumsaa\Uuid\Uuid;
 
 /**
  * Class DownloadLinksModel
@@ -25,7 +26,7 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_name', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'token', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -69,17 +70,23 @@ class DownloadLinksModel extends Model
     /**
      * @param $invoiceProducts
      */
-    public function generateDownLinks($invoiceProducts){
+    public function generateDownLinks($invoiceProducts, $home){
+        $result = [];
         foreach ($invoiceProducts as $product) {
-            $link =
+            $token = Uuid::uuid4()->toString();
+            $link = sprintf('%s?token=%s', $home, $token);
             $data = [
                 'invoices_products_id' => $product['id'],
                 'product_id' => $product['product_id'],
-                'link' => 'string',
-                'download_name' => $product['name'],
+                'link' => $link,
+                'token' => $token,
                 'download_completed' => false,
                 'expired_at' => date('Y-m-d H:i:s', strtotime("+15 minutes", strtotime(date('Y-m-d'))))
             ];
+            $created = $this->create($data);
+            $result[] = $created->toArray();
         }
+
+        return $result;
     }
 }
