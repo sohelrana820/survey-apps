@@ -75,7 +75,7 @@ class InvoicesProductsModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'invoice_id', 'product_id', 'name', 'unit_price', 'quantity', 'subtotal', 'created_at', 'updated_at'];
+    protected $fillable = ['uuid', 'invoice_id', 'product_id', 'name', 'file_path', 'unit_price', 'quantity', 'subtotal', 'created_at', 'updated_at'];
 
     /**
      * @var array

@@ -25,7 +25,7 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'download_name', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -64,5 +64,22 @@ class DownloadLinksModel extends Model
     public function product()
     {
         return $this->belongsTo(ProductsModel::class, 'product_id');
+    }
+
+    /**
+     * @param $invoiceProducts
+     */
+    public function generateDownLinks($invoiceProducts){
+        foreach ($invoiceProducts as $product) {
+            $link =
+            $data = [
+                'invoices_products_id' => $product['id'],
+                'product_id' => $product['product_id'],
+                'link' => 'string',
+                'download_name' => $product['name'],
+                'download_completed' => false,
+                'expired_at' => date('Y-m-d H:i:s', strtotime("+15 minutes", strtotime(date('Y-m-d'))))
+            ];
+        }
     }
 }

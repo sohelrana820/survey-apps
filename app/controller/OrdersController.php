@@ -75,6 +75,7 @@ class OrdersController extends AppController
             return false;
         }
 
+        $downloadLink =
         var_dump($user, $order, $invoice);
         die();
     }
@@ -124,6 +125,7 @@ class OrdersController extends AppController
                 'uuid' => Uuid::uuid4()->toString(),
                 'product_id' => $productDetails['id'],
                 'name' => $productDetails['title'],
+                'file_path' => $productDetails['uuid'],
                 'unit_price' => $productDetails['price'],
                 'quantity' => 1,
                 'subtotal' => $productDetails['price'],
