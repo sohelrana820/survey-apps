@@ -1,0 +1,35 @@
+{% extends '/layouts/email.twig' %}
+
+{% block content %}
+    <p>
+        <strong>Dear {{ data.user.email }},</strong>
+    </p>
+    <p>
+        We have just received your payment for this order. Please review your payment information and download your product.
+    </p>
+
+    <br/>
+    <h2>Payment Information:</h2>
+    <ul>
+        <li>Amount: <strong>${{ data.order.amount | number_format(2)}}</strong></li>
+        <li>Payment By: Paypal</li>
+        <li>Payment Email: {{ data.user.email }}</li>
+        <li>IP: {{ data.invoice.ip ? data.invoice.ip : 'N/A'}}</li>
+    </ul>
+
+    <br/>
+    <h2>Download Links</h2>
+    <ul class="download_links">
+        {% for link in data.downloadLinks %}
+            <li>
+                Product Name: <strong class="product_name">{{ link.download_name }}</strong>
+                <br/>
+                Download Link: <a href="{{ link.link }}">{{ link.link }}</a>
+                <br/>
+                <span class="expire_notice">This link will be expire after 20 mins</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <br/>
+    <p>You can send us e-mail at themevessel.us@gmail.com For Any Query or Support Related Issue</p>
+{% endblock %}
