@@ -29,7 +29,7 @@ class ProductsController extends AppController
      */
     public function products(Request $request, Response $response, $args)
     {
-        $products = $this->loadModel()->getProductsModel()->searchProducts($request->getQueryParams());
+        $products = $this->loadModel()->getProductModel()->searchProducts($request->getQueryParams());
         $data = [
             'products' => $products,
         ];
@@ -46,8 +46,8 @@ class ProductsController extends AppController
     public function productDetails(Request $request, Response $response, $args)
     {
         $productSlug = $request->getAttribute('slug');
-        $productUuid = $this->loadModel()->getProductsModel()->getProductUuidBySlug($productSlug);
-        $product = $this->loadModel()->getProductsModel()->getProduct($productUuid);
+        $productUuid = $this->loadModel()->getProductModel()->getProductUuidBySlug($productSlug);
+        $product = $this->loadModel()->getProductModel()->getProduct($productUuid);
         $data = [
             'product' => $product,
             'url' => $request->getUri()->getBaseUrl() . $request->getUri()->getPath()

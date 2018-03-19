@@ -79,7 +79,7 @@ class ModelLoader
     /**
      * @return ProductsModel
      */
-    public function getProductsModel()
+    public function getProductModel()
     {
         $this->productsModel = new ProductsModel();
         $this->productsModel->setLogger($this->logger);
