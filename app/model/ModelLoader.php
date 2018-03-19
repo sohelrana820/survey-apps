@@ -32,6 +32,26 @@ class ModelLoader
     private $categoryModel;
 
     /**
+     * @var OrdersModel
+     */
+    private $orderModel;
+
+    /**
+     * @var InvoicesModel
+     */
+    private $invoiceModel;
+
+    /**
+     * @var InvoicesProductsModel
+     */
+    private $invoiceProductModel;
+
+    /**
+     * @var DownloadLinksModel
+     */
+    private $downloadLinkModel;
+
+    /**
      * @param Logger $logger
      */
     public function setLogger($logger)
@@ -76,5 +96,48 @@ class ModelLoader
         $this->categoryModel->setLogger($this->logger);
         $this->categoryModel->setCache($this->cache);
         return $this->categoryModel;
+    }
+
+    /**
+     * @return OrdersModel
+     */
+    public function getOrderModel()
+    {
+        $this->orderModel = new OrdersModel();
+        $this->orderModel->setCache($this->cache);
+        $this->orderModel->setLogger($this->logger);
+        return $this->orderModel;
+    }
+
+    /**
+     * @return InvoicesModel
+     */
+    public function getInvoiceModel()
+    {
+        $this->invoiceModel = new InvoicesModel();
+        $this->invoiceModel->setCache($this->cache);
+        $this->invoiceModel->setLogger($this->logger);
+        return $this->invoiceModel;
+    }
+
+    /**
+     * @return InvoicesProductsModel
+     */
+    public function getInvoiceProductModel()
+    {
+        $this->invoiceProductModel = new InvoicesProductsModel();
+        $this->invoiceProductModel->setCache($this->cache);
+        $this->invoiceProductModel->setLogger($this->logger);
+        return $this->invoiceProductModel;
+    }
+
+    /**
+     * @return DownloadLinksModel
+     */
+    public function getDownloadLinkModel()
+    {
+        $this->downloadLinkModel = new DownloadLinksModel();
+        $this->downloadLinkModel->setLogger($this->logger);
+        return $this->downloadLinkModel;
     }
 }
