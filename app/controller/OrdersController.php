@@ -85,7 +85,8 @@ class OrdersController extends AppController
     {
         $invoiceDetails = $_SESSION['invoice_details'];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        var_dump($invoiceRender);
+        $sent = $this->loadComponent()->Email()->send($invoiceDetails['user']['email'], 'Order Confirm - Theme Vessel', $invoiceRender);
+        var_dump($sent);
         die();
     }
 
