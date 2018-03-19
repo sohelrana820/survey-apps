@@ -146,7 +146,7 @@ class OrdersModel extends Model
             if($created) {
                 $created = $created->toArray();
                 $order = $this->getDetails($created['uuid']);
-                $this->logger ? $this->logger->error('New Order Created', ['order_details' => $order]) : null;
+                $this->logger ? $this->logger->info('New Order Created', ['order_details' => $order]) : null;
                 unset($created, $data);
                 return $order;
             }
