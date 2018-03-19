@@ -175,7 +175,7 @@ class InvoicesModel extends Model
 
         if($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Invoice Returned From Cache', ['invoice_uuid' => $uuid]) : null;
-            return $details;
+            return $this->mappingInvoiceData($details);
         }
 
         try{
@@ -183,7 +183,7 @@ class InvoicesModel extends Model
             if($details) {
                 $this->logger ? $this->logger->info('Invoice Returned From DB', ['invoice_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
-                return $details->toArray();
+                return $this->mappingInvoiceData($details->toArray());
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
@@ -191,5 +191,18 @@ class InvoicesModel extends Model
         }
 
         return null;
+    }
+
+    /**
+     * @param $details
+     * @return mixed
+     */
+    private function mappingInvoiceData($details)
+    {
+        $invoiceProductsModel = new InvoicesProductsModel();
+        $invoiceProductsModel->setCache($this->cache);
+        $invoiceProductsModel->setLogger($this->logger);
+        $details['products'] = $invoiceProductsModel->getProductsByInvoiceId($details['id']);
+        return $details;
     }
 }
