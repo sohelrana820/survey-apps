@@ -67,6 +67,7 @@ class EmailComponent extends ComponentLoad
     {
         $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
             'from'    => $this->fromEmail,
+            /*'h:Reply-To'    => $this->fromEmail,*/
             'to'      => $to,
             'subject' => $subject,
             'html'    => $message
