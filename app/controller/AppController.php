@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\helpers\components\ComponentLoad;
+use App\components\ComponentLoad;
 use App\Model\ModelLoader;
 use Monolog\Logger;
 use Noodlehaus\Config;
@@ -120,10 +120,14 @@ class AppController
         return $models;
     }
 
+    /**
+     * @return ComponentLoad
+     */
     public function loadComponent()
     {
         $compoents = new ComponentLoad();
         $compoents->setConfig($this->config);
+        $compoents->setLogger($this->logger);
         return $compoents;
     }
 }
