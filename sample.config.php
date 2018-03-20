@@ -52,6 +52,8 @@ return [
         'email' => [
             'from_name' => 'Theme Vessel',
             'from_email' => 'no-reply@sohelrana.me',
+            'support_name' => 'Theme Vessel Support',
+            'support_email' => 'no-reply@sohelrana.me',
         ]
     ]
 ];
