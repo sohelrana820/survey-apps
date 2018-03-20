@@ -84,7 +84,7 @@ class DownloadLinksModel extends Model
                 'token' => $token,
                 'download_name' => $product['name'],
                 'download_completed' => false,
-                'expired_at' => date('Y-m-d H:i:s', strtotime("+15 minutes", strtotime(date('Y-m-d'))))
+                'expired_at' => date('Y-m-d H:i:s', strtotime("+20 minutes", strtotime(date('Y-m-d H:i:s'))))
             ];
             $created = $this->create($data);
             $result[] = $created->toArray();
