@@ -25,7 +25,7 @@ class OrdersController extends AppController
         $data = [
             'product_id' => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
             'amount' => rand(1, 15),
-            'email' => 'sohel@previewtechs.com',
+            'email' => 'me.sohelrana@gmail.com',
         ];
 
         /**
@@ -84,26 +84,22 @@ class OrdersController extends AppController
         $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
 
+        /**
+         * Send email to buyer
+         */
         $invoiceDetails = [
             'user' => $user,
             'order' => $order,
             'invoice' => $invoice,
             'downloadLinks' => $downloadLinks
         ];
-        $_SESSION['invoice_details'] = $invoiceDetails;
-        var_dump($_SESSION['invoice_details']);
-        die();
+        $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
+        $sent = $this->loadComponent()->Email()->send($user['email'], 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
     }
 
     public function email(Request $request, Response $response, $arfs)
     {
-        $invoiceDetails = $_SESSION['invoice_details'];
-        $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        echo $invoiceRender;
-        die();
-        $sent = $this->loadComponent()->Email()->send('me.sohelrana@gmail.com', 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
-        var_dump($sent);
-        die();
+
     }
 
     /**
