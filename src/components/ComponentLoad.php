@@ -1,11 +1,22 @@
 <?php
 
-namespace App\helpers\components;
+namespace App\components;
 
+
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 
 class ComponentLoad
 {
+    /**
+     * @var
+     */
     protected $config;
+
+    /**
+     * @var Logger
+     */
+    protected $logger;
 
     /**
      * @var EmailComponent
@@ -19,6 +30,12 @@ class ComponentLoad
     public function setConfig($config)
     {
         $this->config = $config;
+        return $this;
+    }
+
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
         return $this;
     }
 
