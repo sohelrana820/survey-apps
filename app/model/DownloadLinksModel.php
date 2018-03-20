@@ -71,6 +71,8 @@ class DownloadLinksModel extends Model
 
     /**
      * @param $invoiceProducts
+     * @param $home
+     * @return array
      */
     public function generateDownLinks($invoiceProducts, $home){
         $result = [];
@@ -91,5 +93,29 @@ class DownloadLinksModel extends Model
         }
 
         return $result;
+    }
+
+    /**
+     * @param $token
+     * @return null
+     */
+    public function getDetailsByToken($token){
+        try {
+            $details = $this->where('download_links.token', $token)
+                ->select('download_links.*', 'products.*')
+                ->leftjoin('products', function($products) {
+                    $products->on('download_links.product_id', '=', 'products.id');
+                })
+                ->first();
+            if($details) {
+                $this->logger ? $this->logger->info('Download Info Fetch', ['token' => $token, 'download_info' => $details->toArray()]) : null;
+                return $details->toArray();
+            }
+        } catch ( \Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return null;
     }
 }
