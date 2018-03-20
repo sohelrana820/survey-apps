@@ -1081,7 +1081,7 @@ a {
 }
 
 a:hover, a:focus, a:active {
-    color: #1ba449;
+    color: #0075b9;
 }
 
 .item-purchase-options {
@@ -1161,7 +1161,7 @@ a:hover, a:focus, a:active {
 }
 
 .meta-info span a:hover {
-    color: #1ba449;
+    color: #0075b9;
 }
 
 /** SINGLE PRODUCT COLOR **/
@@ -1493,8 +1493,8 @@ a:hover, a:focus, a:active {
 }
 
 .btn.btn-success:hover {
-    border-color: #1ba449;
-    background-color: #1ba449;
+    border-color: #0075b9;
+    background-color: #0075b9;
     color: #fff;
 }
 
