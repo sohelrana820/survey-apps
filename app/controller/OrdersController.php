@@ -28,8 +28,9 @@ class OrdersController extends AppController
             'email' => 'sohel@previewtechs.com',
         ];
 
-
-        //  Create or update user.
+        /**
+         * Create or update user.
+         */
         $userData  = [
             'email' => $data['email'],
             'is_auto_signup' => true
@@ -39,35 +40,47 @@ class OrdersController extends AppController
             $user = $this->loadModel()->getUserModel()->addUser($userData);
         }
 
-        // Return [false] if user failed to saved or getting user details.
+        /**
+         * Return [false] if user failed to saved or getting user details.
+         */
         if(!$user) {
             $this->getLogger()->info('User Not Created', ['user_details' => $userData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             return false;
         }
 
-        // Create new order
+        /**
+         * Create new order
+         * If failed to create order [return = false]
+         */
         $orderData = $this->prepareOrderData($data, $user);
         $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
-
-        // Return [false] if order not create.
         if(!$order) {
             $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             return false;
         }
 
-        // Create new invoice
+        /**
+         * Create new invoice
+         * If failed to create invoice [return = false]
+         */
         $invoiceData = $this->prepareInvoiceData($data, $user, $order);
         $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
-
-        // Return [false] if invoice not create.
         if(!$invoice) {
             $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             return false;
         }
 
+        /**
+         * Increment product sales
+         */
+        $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_id'], 'sales');
+
+        /**
+         * Generate download links
+         */
         $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
 
@@ -86,6 +99,8 @@ class OrdersController extends AppController
     {
         $invoiceDetails = $_SESSION['invoice_details'];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
+        echo $invoiceRender;
+        die();
         $sent = $this->loadComponent()->Email()->send('me.sohelrana@gmail.com', 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
         var_dump($sent);
         die();
