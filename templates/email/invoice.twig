@@ -10,26 +10,26 @@
 
     <br/>
     <h2>Payment Information:</h2>
-    <ul>
-        <li>Amount: <strong>${{ data.order.amount | number_format(2)}}</strong></li>
-        <li>Payment By: Paypal</li>
-        <li>Payment Email: {{ data.user.email }}</li>
-        <li>IP: {{ data.invoice.ip ? data.invoice.ip : 'N/A'}}</li>
-    </ul>
+    <div class="payment_info">
+        <p>Amount: <strong>${{ data.order.amount | number_format(2)}}</strong></p>
+        <p>Payment By: Paypal</p>
+        <p>Payment Email: {{ data.user.email }}</p>
+        <p>IP: {{ data.invoice.ip ? data.invoice.ip : 'N/A'}}</p>
+    </div>
 
     <br/>
     <h2>Download Links</h2>
-    <ul class="download_links">
+    <div class="download_links">
         {% for link in data.downloadLinks %}
-            <li>
+            <p>
                 Product Name: <strong class="product_name">{{ link.download_name }}</strong>
                 <br/>
                 Download Link: <a href="{{ link.link }}">{{ link.link }}</a>
                 <br/>
                 <span class="expire_notice">This link will be expire after 20 mins</span>
-            </li>
+            </p>
         {% endfor %}
-    </ul>
+    </div>
     <br/>
     <p>You can send us e-mail at themevessel.us@gmail.com For Any Query or Support Related Issue</p>
 {% endblock %}
