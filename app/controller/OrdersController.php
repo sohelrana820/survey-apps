@@ -17,7 +17,8 @@ class OrdersController extends AppController
      * @param Request $request
      * @param Response $response
      * @param $args
-     * @return $this
+     * @return bool
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function backTo(Request $request, Response $response, $args)
     {
@@ -85,7 +86,7 @@ class OrdersController extends AppController
     {
         $invoiceDetails = $_SESSION['invoice_details'];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        $sent = $this->loadComponent()->Email()->send($invoiceDetails['user']['email'], 'Order Confirm - Theme Vessel', $invoiceRender);
+        $sent = $this->loadComponent()->Email()->send('me.sohelrana@gmail.com', 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
         var_dump($sent);
         die();
     }
