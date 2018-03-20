@@ -181,6 +181,28 @@ class ProductsModel extends Model
     }
 
     /**
+     * @param $productUuid
+     * @param $field
+     * @return bool
+     */
+    public function singleFieldIncrement($productUuid, $field)
+    {
+        try{
+            $updated = $this->where('uuid', $productUuid)->increment($field);
+            if($updated > 0) {
+                $this->logger ? $this->logger->info('Product Product Field', ['product_uuid' => $productUuid, 'field' => $field]) : null;
+                $this->getProduct($productUuid, true);
+                return true;
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
+    }
+
+    /**
      * @param $details
      * @return mixed
      */
