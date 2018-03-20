@@ -102,6 +102,24 @@ class OrdersController extends AppController
 
     }
 
+    public function download(Request $request, Response $response, $arfs)
+    {
+        $token = $request->getParam('token');
+        if(!$token) {
+            return $response->withRedirect('/404');
+        }
+
+        $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
+        $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
+        if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s'))) {
+
+        } else {
+            $fileName = $productDetails['slug'] .'.zip';
+            header('Content-Disposition: attachment; filename=' . $fileName);
+            readfile($productDetails['download_path']);
+        }
+    }
+
     /**
      * @param $data
      * @param $user
