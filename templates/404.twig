@@ -1,19 +1,21 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-    <div class="error-template">
-        <h1>Oops!</h1>
-        <h2>404 Not Found</h2>
-        <div class="error-details">
-            Sorry, an error has occured, Requested page not found!<br>
-        </div>
-        <div class="error-actions">
-            <a href="{{ referrer_url ?: "/" }}" class="btn btn-primary">
-                <i class="icon-home icon-white"></i> Take Me Home
-            </a>
-            <a class="btn btn-info" href="#">
-                <i class="icon-envelope"></i> Contact Support
-            </a>
+    <div class="container">
+        <div class="single-block">
+            <h1 class="title">Oops!</h1>
+            <h2 class="subtitle">404 Not Found</h2>
+            <div class="content">
+                <p>Sorry, an error has occured, Requested page not found!</p>
+            </div>
+            <div class="buts">
+                <a href="{{ referrer_url ?: "/" }}" class="btn btn-primary">
+                    <i class="icon-home icon-white"></i> Take Me Home
+                </a>
+                <a class="btn btn-info" href="#">
+                    <i class="icon-envelope"></i> Contact Support
+                </a>
+            </div>
         </div>
     </div>
 {% endblock %}
