@@ -112,7 +112,7 @@ class OrdersController extends AppController
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s'))) {
-
+            return $this->getView()->render($response, 'products/download-error.twig');
         } else {
             $fileName = $productDetails['slug'] .'.zip';
             header('Content-Disposition: attachment; filename=' . $fileName);
