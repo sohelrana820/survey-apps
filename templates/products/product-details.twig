@@ -140,6 +140,7 @@
 {% endblock %}
 
 {% block jsBottom %}
+    <script src="/assets/js/sweetalert.min.js"></script>
     <script>
         paypal.Button.render({
             env: 'sandbox', // sandbox | production
@@ -183,9 +184,18 @@
             },
             onAuthorize: function(data, actions) {
                 return actions.payment.execute().then(function(res) {
-                    localStorage.setItem('paypal_basic_response', JSON.stringify(data));
-                    localStorage.setItem('paypal_response', JSON.stringify(res))
+                    //localStorage.setItem('paypal_basic_response', JSON.stringify(data));
+                    //localStorage.setItem('paypal_response', JSON.stringify(res))
+                    processOrder(data, res);
+                    confirmAlert();
                 });
+            },
+            onCancel: function(data, actions) {
+                cancelAlert();
+            },
+
+            onError: function(err) {
+                cancelAlert();
             }
         }, '#purchase_now');
 
@@ -211,7 +221,6 @@
                 email: paypalFull.payer.payer_info.email,
                 full_response: JSON.stringify(paypalFull),
             };
-
             $.ajax({
                 url: '/orders',
                 dataType: 'json',
@@ -219,11 +228,30 @@
                 contentType: 'application/x-www-form-urlencoded',
                 data: data,
                 success: function( data, textStatus, jQxhr ){
-                    console.log(data);
+
                 },
                 error: function( jqXhr, textStatus, errorThrown ){
-                    console.log( errorThrown );
+
                 }
+            });
+        }
+        
+        function confirmAlert() {
+            swal({
+                title: "Congratulations!",
+                text: "Thank for purchasing {{ product.title }}. Please check your email to get the download link",
+                icon: "success",
+                confirmButtonText: 'BAL',
+                button: "Thanks"
+            });
+        }
+
+        function cancelAlert() {
+            swal({
+                title: "Cancelled!",
+                text: "Sorry, for your bad experience!",
+                icon: "warning",
+                button: "Thanks"
             });
         }
     </script>

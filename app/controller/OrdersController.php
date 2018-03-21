@@ -24,6 +24,7 @@ class OrdersController extends AppController
      */
     public function order(Request $request, Response $response, $args)
     {
+        $return = ['success' => true];
         $data = $request->getParsedBody();
 
         /**
@@ -46,6 +47,7 @@ class OrdersController extends AppController
         if(!$user) {
             $this->getLogger()->info('User Not Created', ['user_details' => $userData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
+            $return = ['success' => false];
             /**
              * @TODO need to do something
              */
@@ -60,6 +62,7 @@ class OrdersController extends AppController
         if(!$order) {
             $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
+            $return = ['success' => false];
             /**
              * @TODO need to do something
              */
@@ -74,6 +77,7 @@ class OrdersController extends AppController
         if(!$invoice) {
             $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
+            $return = ['success' => false];
             /**
              * @TODO need to do something
              */
@@ -100,9 +104,9 @@ class OrdersController extends AppController
             'downloadLinks' => $downloadLinks
         ];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        $sent = $this->loadComponent()->Email()->send('me.sohelrana@gmail.com', 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
-
-        return $this->getView()->render($response, 'order/confirm.twig');
+        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], 'me.sohelrana@gmail.com');
+        $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
+        return $response->withStatus(200)->withJson($return);
     }
 
 
