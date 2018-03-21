@@ -49,7 +49,7 @@ class ProductsController extends AppController
         $productUuid = $this->loadModel()->getProductModel()->getProductUuidBySlug($productSlug);
         $product = $this->loadModel()->getProductModel()->getProduct($productUuid);
         $paypalEmail = 'billing-facilitator@previewtechs.us';
-        $confirmUrl = $request->getUri()->getBaseUrl() . '/order/confirm';
+        $confirmUrl = $request->getUri()->getBaseUrl() . '/order/confirm?tid_l='.session_id();
         $cancelCrl = $request->getUri()->getBaseUrl() . '/order/cancel';
         $data = [
             'businessEmail' => $paypalEmail,

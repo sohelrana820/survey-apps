@@ -1,6 +1,7 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
     <div class="main-body ptb-70-0">
         <div class="container">
             <div class="row">
@@ -62,7 +63,7 @@
                                 <h3 class="th-block-title">Tags</h3>
                                 <ul class="ul-tags">
                                     {% for tag in product.tags %}
-                                        <li><a href="/products?tag={{tag}}">{{ tag }}</a></li>
+                                        <li><a href="/products?tag={{ tag }}">{{ tag }}</a></li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -73,19 +74,22 @@
                     <div class="sidebars mb-50">
                         <h1 class="item-name mb-30">{{ product.title }}</h1>
                         <div class="item-price-container mb-30 clearfix">
-                            <div class="div price labels">Price</div><div class="div item-price">${{ product.price | number_format(2) }}</div>
+                            <div class="div price labels">Price</div>
+                            <div class="div item-price">${{ product.price | number_format(2) }}</div>
                         </div>
                         <div class="item-info mb-30">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <span class="rating-box">
-                                        <span class="rating" style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
+                                        <span class="rating"
+                                              style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
                                     </span>
                                     <span class="rating-number">({{ product.rating | number_format(2) }})</span>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <div class="div">
-                                        <i class="fa fa-cart-arrow-down"></i> Total Sales:<strong>{{ product.sales }}</strong>
+                                        <i class="fa fa-cart-arrow-down"></i> Total
+                                        Sales:<strong>{{ product.sales }}</strong>
                                     </div>
                                 </div>
                             </div>
@@ -97,42 +101,80 @@
                             <li><i class="fa fa-check"></i> Well documented</li>
                         </ul>
                         <div class="mb-20">
-                            <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
+                            <a href="{{ product.demo_url }}" target="_blank"
+                               class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
 
+                            <script>
+                                paypal.Button.render({
 
-                            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-                                <!-- Identify your business so that you can collect the payments. -->
-                                <input type="hidden" name="business" value="{{ businessEmail }}">
-                                <input type="hidden" name="cmd" value="_xclick">
+                                    env: 'sandbox', // sandbox | production
 
-                                <!-- Specify details about the item that buyers will purchase. -->
-                                <input type="hidden" name="item_name" value="{{ product.title }}">
-                                <input type="hidden" name="amount" value="{{ product.price }}">
-                                <input type="hidden" name="currency_code" value="USD">
+                                    // PayPal Client IDs - replace with your own
+                                    // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+                                    client: {
+                                        sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+                                        production: '<insert production client id>'
+                                    },
 
-                                <!-- Specify callback URLS. -->
-                                <input type="hidden" name="return" value="{{ returnUrl }}">
-                                <input type="hidden" name="cancel_return" value="{{ cancelUrl }}">
+                                    // Show the buyer a 'Pay Now' button in the checkout flow
+                                    commit: true,
 
-                                <button type="submit" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</button>
-                            </form>
+                                    // payment() is called when the button is clicked
+                                    payment: function(data, actions) {
+
+                                        // Make a call to the REST api to create the payment
+                                        return actions.payment.create({
+                                            payment: {
+                                                transactions: [
+                                                    {
+                                                        amount: { total: '0.01', currency: 'USD' }
+                                                    }
+                                                ]
+                                            }
+                                        });
+                                    },
+
+                                    // onAuthorize() is called when the buyer approves the payment
+                                    onAuthorize: function(data, actions) {
+
+                                        // Make a call to the REST api to execute the payment
+                                        return actions.payment.execute().then(function() {
+                                            window.alert('Payment Complete!');
+                                        });
+                                    }
+
+                                }, '#paypal-button-container');
+
+                            </script>
+
+                            <div id="paypal-button-container"></div>
+
 
                             <div class="purchase-intro mb-20">
-                                If you already purchase this product and want to get download link? Please <a href="">click here</a>
+                                If you already purchase this product and want to get download link? Please <a href="">click
+                                    here</a>
                             </div>
                             <div class="purchase-intro mb-20">
-                                All the items on ThemeHunt are guaranteed to have top notch quality and state of the art functionalities. Purchase and get started!
+                                All the items on ThemeHunt are guaranteed to have top notch quality and state of the art
+                                functionalities. Purchase and get started!
                             </div>
                         </div>
                         <div class="mb-30 clearfix">
                             <div class="social-share">Social Share</div>
                             <div class="social-list">
                                 <ul>
-                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="https://twitter.com/home?status={{ url }}"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="https://plus.google.com/share?url={{ url }}"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ product.title }}&summary={{ product.description }}"><i class="fa fa-linkedin"></i></a></li>
-                                    <li><a href="https://pinterest.com/pin/create/button/?url=&media={{ url }}&description={{ product.description }}"><i class="fa fa-pinterest"></i></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url }}"><i
+                                                    class="fa fa-facebook"></i></a></li>
+                                    <li><a href="https://twitter.com/home?status={{ url }}"><i
+                                                    class="fa fa-twitter"></i></a></li>
+                                    <li><a href="https://plus.google.com/share?url={{ url }}"><i
+                                                    class="fa fa-google-plus"></i></a></li>
+                                    <li>
+                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ url }}&title={{ product.title }}&summary={{ product.description }}"><i
+                                                    class="fa fa-linkedin"></i></a></li>
+                                    <li>
+                                        <a href="https://pinterest.com/pin/create/button/?url=&media={{ url }}&description={{ product.description }}"><i
+                                                    class="fa fa-pinterest"></i></a></li>
                                 </ul>
                             </div>
                         </div>
