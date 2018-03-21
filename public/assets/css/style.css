@@ -1527,7 +1527,7 @@ a:hover, a:focus, a:active {
     color: #fff;
 }
 
-.btn.btn-success {
+/*.btn.btn-success {
     border-color: #0079bf;
     background-color: #0079bf;
 }
@@ -1536,7 +1536,7 @@ a:hover, a:focus, a:active {
     border-color: #0075b9;
     background-color: #0075b9;
     color: #fff;
-}
+}*/
 
 .btn.btn-default {
     border-color: #C3C3C3;
