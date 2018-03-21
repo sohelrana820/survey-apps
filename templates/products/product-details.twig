@@ -106,6 +106,13 @@
                             <div ></div>
                             <div class="purchase-intro mb-20">
                                 If you already purchase this product and want to get download link? Please <a href="">click here</a>
+
+                                <form class="form-inline" id="sendLinkForm">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" required name="email" placeholder="Enter your email">
+                                    </div>
+                                    <button type="submit" class="btn btn-success">Send Link</button>
+                                </form>
                             </div>
                             <div class="purchase-intro mb-20">
                                 All the items on ThemeHunt are guaranteed to have top notch quality and state of the art
@@ -241,7 +248,6 @@
                 title: "Congratulations!",
                 text: "Thank for purchasing {{ product.title }}. Please check your email to get the download link",
                 icon: "success",
-                confirmButtonText: 'BAL',
                 button: "Thanks"
             });
         }
@@ -254,5 +260,74 @@
                 button: "Thanks"
             });
         }
+
+        function invalidOrEmptyEmail() {
+            swal({
+                title: "Sorry!",
+                text: "Please enter a valid email address",
+                icon: "warning",
+                button: "Thanks"
+            });
+        }
+
+
+        $(function() {
+            $("#sendLinkForm").submit(function(e) {
+                e.preventDefault();
+                var data = $(this).serializeFormJSON();
+                if(data.email) {
+                    data.product_uuid = '{{ product.uuid }}';
+                    console.log(data);
+                    $.ajax({
+                        url: '/orders/send-links',
+                        type: 'post',
+                        dataType: 'json',
+                        data: data,
+                        success: function(response) {
+                            if(response.success) {
+                                swal({
+                                    title: "Congratulations!",
+                                    text: response.message,
+                                    icon: "success",
+                                    button: "Thanks"
+                                });
+                            } else {
+                                swal({
+                                    title: "Sorry!",
+                                    text: response.message,
+                                    icon: "warning",
+                                    button: "Thanks"
+                                });
+                            }
+                        },
+                        error: function (err) {
+                            swal({
+                                title: "Sorry!",
+                                text: "Something went wrong! Please try later",
+                                icon: "warning",
+                                button: "Thanks"
+                            });
+                        }
+                    });
+                } else {
+                    invalidOrEmptyEmail()
+                }
+            });
+            $.fn.serializeFormJSON = function () {
+                var o = {};
+                var a = this.serializeArray();
+                $.each(a, function () {
+                    if (o[this.name]) {
+                        if (!o[this.name].push) {
+                            o[this.name] = [o[this.name]];
+                        }
+                        o[this.name].push(this.value || '');
+                    } else {
+                        o[this.name] = this.value || '';
+                    }
+                });
+                return o;
+            };
+        });
     </script>
 {% endblock %}
