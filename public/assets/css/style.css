@@ -881,6 +881,39 @@ a {
 
 /** CONTENT AREA END **/
 
+/** SINGLE AREA START **/
+.single-block {
+    max-width: 70%;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.single-block .title {
+    font-size: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #525252;
+}
+
+.single-block .subtitle{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.single-block .content{
+    font-size: 14px;
+    color: #777;
+}
+
+.single-block .btns{
+    font-size: 60px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+
+/** SINGLE AREA END **/
+
 /** FOOTER AREA START **/
 .footer {
     background-color: #0079bf;

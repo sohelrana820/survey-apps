@@ -1,14 +1,14 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-    <div class="single-block">
-        <div class="container">
-            <h1>Oops!</h1>
-            <h2>500 Server Error</h2>
-            <div class="error-details">
-                Sorry, something went wrong!<br>
+    <div class="container">
+        <div class="single-block">
+            <h1 class="title">Oops!</h1>
+            <h2 class="subtitle">500 Server Error</h2>
+            <div class="content">
+                <p>Sorry, something went wrong!</p>
             </div>
-            <div class="error-actions">
+            <div class="buts">
                 <a href="{{ referrer_url ?: "/" }}" class="btn btn-primary">
                     <i class="icon-home icon-white"></i> Take Me Home
                 </a>
