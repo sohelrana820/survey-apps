@@ -77,7 +77,7 @@ class InvoicesModel extends Model
      * @var array
      */
     protected $fillable = ['uuid', 'order_id', 'user_id', 'subtotal', 'vat', 'tax', 'discount', 'total', 'invoice_date',
-        'due_date', 'status', 'created_at', 'updated_at'];
+        'due_date', 'status', 'orderID', 'payerID', 'paymentID', 'paymentToken', 'payment_create_time', 'full_response', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -94,6 +94,12 @@ class InvoicesModel extends Model
         'invoice_date' => 'datetime',
         'due_date' => 'datetime',
         'status' => 'string',
+        'orderID' => 'string',
+        'payerID' => 'string',
+        'paymentID' => 'string',
+        'paymentToken' => 'string',
+        'payment_create_time' => 'string',
+        'full_response' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
