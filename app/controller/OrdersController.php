@@ -119,13 +119,22 @@ class OrdersController extends AppController
 
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
-        if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s'))) {
+        if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
             return $this->getView()->render($response, 'products/download-error.twig');
-        } else {
-            $fileName = $productDetails['slug'] .'.zip';
-            header('Content-Disposition: attachment; filename=' . $fileName);
-            readfile($productDetails['download_path']);
         }
+
+        // Update download link fields.
+        $data = [
+            'download_completed' => true,
+            'downloaded_at' => date('Y-m-d H:i:s'),
+        ];
+        $updated = $this->loadModel()->getDownloadLinkModel()->updateDownloadLinkd($productDetails['id'], $data);
+        if($updated) {
+            $this->getLogger() ? $this->getLogger()->info('Product Downloaded', ['product_details' => $productDetails]) : null;
+        }
+        $fileName = $productDetails['slug'] .'.zip';
+        header('Content-Disposition: attachment; filename=' . $fileName);
+        readfile($productDetails['download_path']);
     }
 
     /**

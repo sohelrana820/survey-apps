@@ -76,19 +76,24 @@ class DownloadLinksModel extends Model
      */
     public function generateDownLinks($invoiceProducts, $home){
         $result = [];
-        foreach ($invoiceProducts as $product) {
-            $token = Uuid::uuid4()->toString();
-            $link = sprintf('%s?token=%s', $home, $token);
-            $data = [
-                'invoices_products_id' => $product['id'],
-                'product_id' => $product['product_id'],
-                'link' => $link,
-                'token' => $token,
-                'download_completed' => false,
-                'expired_at' => date('Y-m-d H:i:s', strtotime("+20 minutes", strtotime(date('Y-m-d H:i:s'))))
-            ];
-            $created = $this->create($data);
-            $result[] = $created->toArray();
+        try {
+            foreach ($invoiceProducts as $product) {
+                $token = Uuid::uuid4()->toString();
+                $link = sprintf('%s?token=%s', $home, $token);
+                $data = [
+                    'invoices_products_id' => $product['id'],
+                    'product_id' => $product['product_id'],
+                    'link' => $link,
+                    'token' => $token,
+                    'download_completed' => false,
+                    'expired_at' => date('Y-m-d H:i:s', strtotime("+20 minutes", strtotime(date('Y-m-d H:i:s'))))
+                ];
+                $created = $this->create($data);
+                $result[] = $created->toArray();
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
 
         return $result;
@@ -116,5 +121,26 @@ class DownloadLinksModel extends Model
         }
 
         return null;
+    }
+
+    /**
+     * @param $id
+     * @param $fields
+     * @return bool
+     */
+    public function updateDownloadLinkd($id, $fields)
+    {
+        try{
+            $updated = $this->where('id', $id)->update($fields);
+            if($updated > 0) {
+                $this->logger ? $this->logger->info('Update Download Link', ['id' => $id, 'field' => $fields]) : null;
+                return true;
+            }
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return false;
     }
 }
