@@ -1,4 +1,9 @@
 /** COMMON CSS START **/
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -880,7 +885,10 @@ a {
 .footer {
     background-color: #0079bf;
     color: #fff;
-    padding: 25px 0px;
+    padding: 25px 0px 0px 0px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
 }
 
 .footer-logo {
@@ -971,6 +979,7 @@ a {
 }
 
 .footer-copyright {
+    margin-top: 25px;
     background-color: #fff;
     color: #565f73;
     padding: 20px 0;
