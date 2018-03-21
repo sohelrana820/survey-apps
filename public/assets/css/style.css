@@ -1527,6 +1527,14 @@ a:hover, a:focus, a:active {
     color: #fff;
 }
 
+.alert {
+    margin-bottom: 0px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    border-top: 0px;
+    border-radius: 0px;
+    font-size: 12px;
+}
 /*.btn.btn-success {
     border-color: #0079bf;
     background-color: #0079bf;

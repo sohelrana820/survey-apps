@@ -17,17 +17,15 @@ class OrdersController extends AppController
      * @param Request $request
      * @param Response $response
      * @param $arfs
+     * @throws \Interop\Container\Exception\ContainerException
      */
     public function order(Request $request, Response $response, $arfs)
     {
         $postData = $request->getParsedBody();
-        if(!array_key_exists('product_uuid', $postData) || $postData['product_uuid']) {
-           /**
-            * @TODO need to do something
-            */
+        if(!array_key_exists('product_uuid', $postData) || !$postData['product_uuid']) {
+            $this->getFlash()->addMessage('error', 'We Can\'t Process! Something went wrong ');
+            return $response->withRedirect($_SERVER['HTTP_REFERER']);
         }
-
-
 
         $uuid = $postData['product_uuid'];
         $productDetails = $this->loadModel()->getProductModel()->getProduct($uuid);
