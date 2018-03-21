@@ -16,6 +16,28 @@ class OrdersController extends AppController
     /**
      * @param Request $request
      * @param Response $response
+     * @param $arfs
+     */
+    public function order(Request $request, Response $response, $arfs)
+    {
+        $postData = $request->getParsedBody();
+        if(!array_key_exists('product_uuid', $postData) || $postData['product_uuid']) {
+           /**
+            * @TODO need to do something
+            */
+        }
+
+
+
+        $uuid = $postData['product_uuid'];
+        $productDetails = $this->loadModel()->getProductModel()->getProduct($uuid);
+        var_dump($productDetails);
+        die();
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
      * @param $args
      * @return bool
      * @throws \Interop\Container\Exception\ContainerException

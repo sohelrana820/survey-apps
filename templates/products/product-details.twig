@@ -97,9 +97,10 @@
                             <li><i class="fa fa-check"></i> Well documented</li>
                         </ul>
                         <div class="mb-20">
-                            <form action="index.html" method="GET" enctype="multipart/form-data">
-                                <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
-                                <a href="{{ product.demo_url }}" target="_parent" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</a>
+                            <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
+                            <form action="/order" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="product_uuid" value="{{ product.uuid }}">
+                                <button type="submit" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</button>
                             </form>
                             <div class="purchase-intro mb-20">
                                 If you already purchase this product and want to get download link? Please <a href="">click here</a>
