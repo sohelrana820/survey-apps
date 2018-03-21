@@ -912,6 +912,44 @@ a {
 }
 
 
+.swal-title {
+    font-weight: 600;
+    text-transform: none;
+    font-size: 25px;
+    /* text-transform: uppercase; */
+    font-family: 'Roboto', sans-serif;
+}
+
+.swal-button,
+.swal-button:hover,
+.swal-button:active,
+.swal-button:visited
+{
+    background-color: #0079bf;
+    border: none;
+    box-shadow: none;
+    border-radius: 3px;
+    outline: none;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.swal-text {
+    font-size: 14px;
+    position: relative;
+    float: none;
+    line-height: 22px;
+    vertical-align: top;
+    text-align: left;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+    font-weight: 400;
+    color: #777;
+    max-width: calc(100% - 20px);
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
 /** SINGLE AREA END **/
 
 /** FOOTER AREA START **/
