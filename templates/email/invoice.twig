@@ -22,7 +22,7 @@
     <div class="download_links">
         {% for link in data.downloadLinks %}
             <p>
-                Product Name: <strong class="product_name">{{ link.download_name }}</strong>
+                Product Name: <strong class="product_name">{{ data.product.title }}</strong>
                 <br/>
                 Download Link: <a href="{{ link.link }}">{{ link.link }}</a>
                 <br/>
