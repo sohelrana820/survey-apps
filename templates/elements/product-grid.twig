@@ -1,21 +1,23 @@
-<div class="item-grid">
-    {% if product.is_featured %}
-    <div class="ribbon ribbon-red"><span>Featured</span></div>
-    {% endif %}
-    <img src="{{ product.thumb_image }}" class="thumb" alt="{{ product.title }}">
-    <div class="intro">
-        <div class="pull-left">
+<a href="/products/{{ product.slug }}">
+    <div class="item-grid">
+        {% if product.is_featured %}
+            <div class="ribbon ribbon-red"><span>Featured</span></div>
+        {% endif %}
+        <img src="{{ product.thumb_image }}" class="thumb" alt="{{ product.title }}">
+        <div class="intro">
+            <div class="pull-left">
             <span class="rating-box">
                 <span class="rating" style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
             </span>
-            <span class="rating-number">({{ product.rating | number_format(2) }})</span>
+                <span class="rating-number">({{ product.rating | number_format(2) }})</span>
+            </div>
+            <a class="pull-right review-link">
+                Sales: {{ product.sales }}
+            </a>
+            <div class="clearfix"></div>
+            <h2 class="title"><a href="/products/{{ product.slug }}">{{ product.title |truncate(30) }}</a></h2>
+            <strong class="price">${{ product.price | number_format(2) }}</strong>
         </div>
-        <a class="pull-right review-link">
-            Sales: {{ product.sales }}
-        </a>
-        <div class="clearfix"></div>
-        <h2 class="title"><a href="/products/{{ product.slug }}">{{ product.title |truncate(30) }}</a></h2>
-        <strong class="price">${{ product.price | number_format(2) }}</strong>
+        {#<a href="/products/{{ product.slug }}" class="btn live-preview"><span>Live Preview</span></a>#}
     </div>
-    {#<a href="/products/{{ product.slug }}" class="btn live-preview"><span>Live Preview</span></a>#}
-</div>
+</a>
