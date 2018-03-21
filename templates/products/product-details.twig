@@ -99,7 +99,7 @@
                         <div class="mb-20">
                             <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
                             <form action="/order" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="product_auuid" value="{{ product.uuid }}">
+                                <input type="hidden" name="product_uuid" value="{{ product.uuid }}">
                                 <button type="submit" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</button>
                             </form>
                             <div class="purchase-intro mb-20">
