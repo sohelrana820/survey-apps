@@ -112,6 +112,7 @@
                                 functionalities. Purchase and get started!
                             </div>
                         </div>
+                        <button type="button" class="btn btn-danger" id="sell">Sell</button>
                         <div class="mb-30 clearfix">
                             <div class="social-share">Social Share</div>
                             <div class="social-list">
@@ -152,17 +153,78 @@
                     payment: {
                         transactions: [
                             {
-                                amount: { total: '{{ product.price }}', currency: 'USD' }
+                                "amount": {
+                                    "total": "{{ product.price }}",
+                                    "currency": "USD",
+                                    "details": {
+                                        "subtotal": "{{ product.price }}"
+                                    }
+                                },
+                                "description": "Product Purchase From Theme Vessel Shop",
+                                "custom": "{{ product.uuid }}",
+                                "payment_options": {
+                                    "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
+                                },
+                                "item_list": {
+                                    "items": [
+                                        {
+                                            "name": "{{ product.title }}",
+                                            "quantity": "1",
+                                            "price": "{{ product.price }}",
+                                            "sku": "{{ product.category.name }}",
+                                            "currency": "USD"
+                                        }
+                                    ]
+                                }
                             }
                         ]
                     }
                 });
             },
             onAuthorize: function(data, actions) {
-                return actions.payment.execute().then(function() {
-                    window.alert('Payment Complete!');
+                return actions.payment.execute().then(function(res) {
+                    localStorage.setItem('paypal_basic_response', JSON.stringify(data));
+                    localStorage.setItem('paypal_response', JSON.stringify(res))
                 });
             }
         }, '#purchase_now');
+
+        $('#sell').click(function () {
+            var paypalBasic = localStorage.getItem('paypal_basic_response');
+            paypalBasic = JSON.parse(paypalBasic);
+            var paypalResponse = localStorage.getItem('paypal_response');
+            paypalResponse = JSON.parse(paypalResponse);
+            processOrder(paypalBasic, paypalResponse);
+        });
+
+        function processOrder(paypalBasic, paypalFull) {
+            var data = {
+                orderID: paypalBasic.orderID,
+                payerID: paypalBasic.payerID,
+                paymentID: paypalBasic.paymentID,
+                paymentToken: paypalBasic.paymentToken,
+                payment_create_time: paypalFull.create_time,
+                product_uuid: paypalFull.transactions[0].custom,
+                amount: parseFloat(paypalFull.transactions[0].amount.total),
+                first_name: paypalFull.payer.payer_info.first_name,
+                last_name: paypalFull.payer.payer_info.last_name,
+                email: paypalFull.payer.payer_info.email,
+                full_response: JSON.stringify(paypalFull),
+            };
+
+            $.ajax({
+                url: '/orders',
+                dataType: 'json',
+                type: 'post',
+                contentType: 'application/x-www-form-urlencoded',
+                data: data,
+                success: function( data, textStatus, jQxhr ){
+                    console.log(data);
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    console.log( errorThrown );
+                }
+            });
+        }
     </script>
 {% endblock %}
