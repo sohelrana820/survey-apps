@@ -184,7 +184,7 @@ $container['cache'] = function ($container) {
 $container['notFoundHandler'] = function (Container $container) {
     return function (Request $request, Response $response) use ($container) {
         $container['logger']->error('Not Found', ['request_target' => $request->getRequestTarget()]);
-        return $container['view']->render($response->withStatus(404), '404.twig');
+        return $container['view']->render($response->withStatus(404), 'error/404.twig');
     };
 };
 
@@ -196,7 +196,7 @@ $container['errorHandler'] = function (Container $container) {
     return function (Request $request, Response $response, Exception $exception) use ($container) {
         $container['logger']->error($exception->getMessage(), [$request->getQueryParams()]);
         $container['logger']->debug($exception->getTraceAsString(), [$request->getQueryParams()]);
-        return $container['view']->render($response->withStatus(500), '500.twig');
+        return $container['view']->render($response->withStatus(500), 'error/500.twig');
     };
 };
 
