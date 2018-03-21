@@ -14,63 +14,24 @@ use Slim\Http\Response;
  */
 class OrdersController extends AppController
 {
+
     /**
      * @param Request $request
      * @param Response $response
      * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
      * @throws \Interop\Container\Exception\ContainerException
      */
     public function order(Request $request, Response $response, $args)
     {
-        $postData = $request->getParsedBody();
-        var_dump($postData);
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @param $args
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \Interop\Container\Exception\ContainerException
-     */
-    public function cancelOrder(Request $request, Response $response, $args)
-    {
-        return $this->getView()->render($response, 'order/cancel.twig');
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @param $args
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws \Interop\Container\Exception\ContainerException
-     */
-    public function confirmOrder(Request $request, Response $response, $args)
-    {
-        var_dump($request->getParsedBody());
-        die();
-        return $this->getView()->render($response, 'order/confirm.twig');
-    }
-
-    /**
-     * @param Request $request
-     * @param Response $response
-     * @param $args
-     * @return bool
-     * @throws \Interop\Container\Exception\ContainerException
-     */
-    public function backTo(Request $request, Response $response, $args)
-    {
-        $data = [
-            'product_id' => 'ae6366c1-d14b-4e6f-8d43-bfd3304b6121',
-            'amount' => rand(1, 15),
-            'email' => 'me.sohelrana@gmail.com',
-        ];
+        $data = $request->getParsedBody();
 
         /**
          * Create or update user.
          */
         $userData  = [
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'is_auto_signup' => true
         ];
@@ -85,7 +46,9 @@ class OrdersController extends AppController
         if(!$user) {
             $this->getLogger()->info('User Not Created', ['user_details' => $userData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
-            return false;
+            /**
+             * @TODO need to do something
+             */
         }
 
         /**
@@ -97,7 +60,9 @@ class OrdersController extends AppController
         if(!$order) {
             $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
-            return false;
+            /**
+             * @TODO need to do something
+             */
         }
 
         /**
@@ -109,13 +74,15 @@ class OrdersController extends AppController
         if(!$invoice) {
             $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
-            return false;
+            /**
+             * @TODO need to do something
+             */
         }
 
         /**
          * Increment product sales
          */
-        $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_id'], 'sales');
+        $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_uuid'], 'sales');
 
         /**
          * Generate download links
@@ -133,13 +100,11 @@ class OrdersController extends AppController
             'downloadLinks' => $downloadLinks
         ];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        $sent = $this->loadComponent()->Email()->send($user['email'], 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
+        $sent = $this->loadComponent()->Email()->send('me.sohelrana@gmail.com', 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
+
+        return $this->getView()->render($response, 'order/confirm.twig');
     }
 
-    public function email(Request $request, Response $response, $args)
-    {
-
-    }
 
     public function download(Request $request, Response $response, $args)
     {
@@ -188,7 +153,7 @@ class OrdersController extends AppController
      */
     private function prepareInvoiceData($data, $user, $order)
     {
-        $productDetails = $this->loadModel()->getProductModel()->getProduct($data['product_id']);
+        $productDetails = $this->loadModel()->getProductModel()->getProduct($data['product_uuid']);
         $invoiceData = [
             'order_id' => $order['id'],
             'user_id' => $user['id'],
@@ -200,6 +165,12 @@ class OrdersController extends AppController
             'invoice_date' => date('Y-m-d H:i:s'),
             'due_date' => date('Y-m-d H:i:s'),
             'status' => 'paid',
+            'orderID' => $data['orderID'],
+            'payerID' => $data['payerID'],
+            'paymentID' => $data['paymentID'],
+            'paymentToken' => $data['paymentToken'],
+            'payment_create_time' => $data['payment_create_time'],
+            'full_response' => $data['full_response'],
             'products' => [
                 'uuid' => Uuid::uuid4()->toString(),
                 'product_id' => $productDetails['id'],
