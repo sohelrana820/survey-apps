@@ -119,7 +119,6 @@
                                 functionalities. Purchase and get started!
                             </div>
                         </div>
-                        <button type="button" class="btn btn-danger" id="sell">Sell</button>
                         <div class="mb-30 clearfix">
                             <div class="social-share">Social Share</div>
                             <div class="social-list">
@@ -191,8 +190,6 @@
             },
             onAuthorize: function(data, actions) {
                 return actions.payment.execute().then(function(res) {
-                    //localStorage.setItem('paypal_basic_response', JSON.stringify(data));
-                    //localStorage.setItem('paypal_response', JSON.stringify(res))
                     processOrder(data, res);
                     successAlert('Thank for purchasing {{ product.title }}. Please check your email to get the download link');
                 });
@@ -205,14 +202,6 @@
                 warningAlert('Sorry, for your bad experience!');
             }
         }, '#purchase_now');
-
-        $('#sell').click(function () {
-            var paypalBasic = localStorage.getItem('paypal_basic_response');
-            paypalBasic = JSON.parse(paypalBasic);
-            var paypalResponse = localStorage.getItem('paypal_response');
-            paypalResponse = JSON.parse(paypalResponse);
-            processOrder(paypalBasic, paypalResponse);
-        });
 
         function processOrder(paypalBasic, paypalFull) {
             var data = {
@@ -242,25 +231,6 @@
                 }
             });
         }
-        
-        function successAlert(message) {
-            swal({
-                title: "Congratulations!",
-                text: message,
-                icon: "success",
-                button: "Thanks"
-            });
-        }
-
-        function warningAlert(message) {
-            swal({
-                title: "Cancelled!",
-                text: message,
-                icon: "warning",
-                button: "Thanks"
-            });
-        }
-
 
         $(function() {
             $("#sendLinkForm").submit(function(e) {
@@ -305,5 +275,24 @@
                 return o;
             };
         });
+
+        // Sweet alert messages
+        function successAlert(message) {
+            swal({
+                title: "Congratulations!",
+                text: message,
+                icon: "success",
+                button: "Thanks"
+            });
+        }
+
+        function warningAlert(message) {
+            swal({
+                title: "Cancelled!",
+                text: message,
+                icon: "warning",
+                button: "Thanks"
+            });
+        }
     </script>
 {% endblock %}
