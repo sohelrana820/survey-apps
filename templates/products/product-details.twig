@@ -194,15 +194,15 @@
                     //localStorage.setItem('paypal_basic_response', JSON.stringify(data));
                     //localStorage.setItem('paypal_response', JSON.stringify(res))
                     processOrder(data, res);
-                    confirmAlert();
+                    successAlert('Thank for purchasing {{ product.title }}. Please check your email to get the download link');
                 });
             },
             onCancel: function(data, actions) {
-                cancelAlert();
+                warningAlert('Sorry, for your bad experience!');
             },
 
             onError: function(err) {
-                cancelAlert();
+                warningAlert('Sorry, for your bad experience!');
             }
         }, '#purchase_now');
 
@@ -243,28 +243,19 @@
             });
         }
         
-        function confirmAlert() {
+        function successAlert(message) {
             swal({
                 title: "Congratulations!",
-                text: "Thank for purchasing {{ product.title }}. Please check your email to get the download link",
+                text: message,
                 icon: "success",
                 button: "Thanks"
             });
         }
 
-        function cancelAlert() {
+        function warningAlert(message) {
             swal({
                 title: "Cancelled!",
-                text: "Sorry, for your bad experience!",
-                icon: "warning",
-                button: "Thanks"
-            });
-        }
-
-        function invalidOrEmptyEmail() {
-            swal({
-                title: "Sorry!",
-                text: "Please enter a valid email address",
+                text: message,
                 icon: "warning",
                 button: "Thanks"
             });
@@ -285,32 +276,17 @@
                         data: data,
                         success: function(response) {
                             if(response.success) {
-                                swal({
-                                    title: "Congratulations!",
-                                    text: response.message,
-                                    icon: "success",
-                                    button: "Thanks"
-                                });
+                                successAlert(response.message)
                             } else {
-                                swal({
-                                    title: "Sorry!",
-                                    text: response.message,
-                                    icon: "warning",
-                                    button: "Thanks"
-                                });
+                                warningAlert(response.message)
                             }
                         },
                         error: function (err) {
-                            swal({
-                                title: "Sorry!",
-                                text: "Something went wrong! Please try later",
-                                icon: "warning",
-                                button: "Thanks"
-                            });
+                            warningAlert('Something went wrong! Please try later')
                         }
                     });
                 } else {
-                    invalidOrEmptyEmail()
+                    warningAlert('Please enter a valid email address')
                 }
             });
             $.fn.serializeFormJSON = function () {
