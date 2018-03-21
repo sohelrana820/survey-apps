@@ -10,4 +10,5 @@ $app->get('/download', \App\Controller\OrdersController::class . ':download');
 
 // Routes of orders
 $app->post('/orders', \App\Controller\OrdersController::class . ':order');
+$app->post('/orders/send-links', \App\Controller\OrdersController::class . ':sendLinks');
 
