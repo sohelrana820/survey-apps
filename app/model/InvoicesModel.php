@@ -211,4 +211,33 @@ class InvoicesModel extends Model
         $details['products'] = $invoiceProductsModel->getProductsByInvoiceId($details['id']);
         return $details;
     }
+
+    /**
+     * @param $userId
+     * @return array
+     */
+    public function getInvoiceProductsByUserId($userId)
+    {
+        try {
+            $invoices = $this->where('invoices.user_id', $userId)
+                ->select('invoices.id', 'invoices_products.*', 'products.slug', 'products.uuid')
+                ->rightjoin('invoices_products', function ($query) {
+                    $query->on('invoices_products.invoice_id', '=', 'invoices.id');
+                })
+                ->join('products', function ($query) {
+                    $query->on('products.id', '=', 'invoices_products.product_id');
+                })
+                ->get();
+            if($invoices) {
+                $this->logger ? $this->logger->info('Return Invoice Products', ['user_id' => $userId]) : null;
+                return $invoices->toArray();
+            }
+
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return [];
+    }
 }
