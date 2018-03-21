@@ -137,6 +137,66 @@ class OrdersController extends AppController
         readfile($productDetails['download_path']);
     }
 
+
+    public function sendLinks(Request $request, Response $response, $args)
+    {
+        // Check expected data is exist or not
+        $postData = $request->getParsedBody();
+        if(!array_key_exists('email', $postData) || !$postData['email']) {
+            $return = [
+                'success' => false,
+                'message' => 'Please provide the valid email input'
+            ];
+            return $response->withJson($return);
+        }
+
+        // Check user is exist or not
+        $user = $this->loadModel()->getUserModel()->getUserByEmail($postData['email']);
+        if(!$user) {
+            $return = [
+                'success' => false,
+                'message' => 'Sorry, we couldn\'t fetch this email address'
+            ];
+            return $response->withJson($return);
+        }
+
+        // Check this user purchased this item or not
+        $generateProduct = false;
+        $products = $this->loadModel()->getInvoiceModel()->getInvoiceProductsByUserId($user['id']);
+        foreach ( $products as $product)
+        {
+            if($product['uuid'] == $postData['product_uuid']) {
+                $generateProduct = $product;
+            }
+        }
+        if(!$generateProduct) {
+            $return = [
+                'success' => false,
+                'message' => 'Sorry, you didn\'t purchases this product'
+            ];
+            return $response->withJson($return);
+        }
+
+        /**
+         * Generate download links
+         */
+        $data = [
+            'product' => $generateProduct,
+            'user' => $user,
+        ];
+        $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
+        $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($data, $downloadUrl);
+        $data['downloadLinks'] = $downloadLinks;
+        $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
+        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], 'me.sohelrana@gmail.com');
+        $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
+        $return = [
+            'success' => true,
+            'message' => 'New Download link has been sent to your email address '
+        ];
+        return $response->withJson($return);
+    }
+
     /**
      * @param $data
      * @param $user
