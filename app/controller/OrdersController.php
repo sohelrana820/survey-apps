@@ -47,6 +47,8 @@ class OrdersController extends AppController
      */
     public function confirmOrder(Request $request, Response $response, $args)
     {
+        var_dump($request->getParsedBody());
+        die();
         return $this->getView()->render($response, 'order/confirm.twig');
     }
 
