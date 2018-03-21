@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use GuzzleHttp\Client;
 use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
 use Slim\Http\Response;
@@ -16,21 +17,37 @@ class OrdersController extends AppController
     /**
      * @param Request $request
      * @param Response $response
-     * @param $arfs
+     * @param $args
      * @throws \Interop\Container\Exception\ContainerException
      */
-    public function order(Request $request, Response $response, $arfs)
+    public function order(Request $request, Response $response, $args)
     {
         $postData = $request->getParsedBody();
-        if(!array_key_exists('product_uuid', $postData) || !$postData['product_uuid']) {
-            $this->getFlash()->addMessage('error', 'We Can\'t Process! Something went wrong ');
-            return $response->withRedirect($_SERVER['HTTP_REFERER']);
-        }
+        var_dump($postData);
+    }
 
-        $uuid = $postData['product_uuid'];
-        $productDetails = $this->loadModel()->getProductModel()->getProduct($uuid);
-        var_dump($productDetails);
-        die();
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function cancelOrder(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'order/cancel.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function confirmOrder(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'order/confirm.twig');
     }
 
     /**
@@ -117,12 +134,12 @@ class OrdersController extends AppController
         $sent = $this->loadComponent()->Email()->send($user['email'], 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
     }
 
-    public function email(Request $request, Response $response, $arfs)
+    public function email(Request $request, Response $response, $args)
     {
 
     }
 
-    public function download(Request $request, Response $response, $arfs)
+    public function download(Request $request, Response $response, $args)
     {
         $token = $request->getParam('token');
         if(!$token) {

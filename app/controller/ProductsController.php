@@ -48,7 +48,13 @@ class ProductsController extends AppController
         $productSlug = $request->getAttribute('slug');
         $productUuid = $this->loadModel()->getProductModel()->getProductUuidBySlug($productSlug);
         $product = $this->loadModel()->getProductModel()->getProduct($productUuid);
+        $paypalEmail = 'billing@previewtechs.us';
+        $confirmUrl = $request->getUri()->getBaseUrl() . '/order/confirm';
+        $cancelCrl = $request->getUri()->getBaseUrl() . '/order/cancel';
         $data = [
+            'businessEmail' => $paypalEmail,
+            'returnUrl' => $confirmUrl,
+            'cancelUrl' => $cancelCrl,
             'product' => $product,
             'url' => $request->getUri()->getBaseUrl() . $request->getUri()->getPath()
         ];

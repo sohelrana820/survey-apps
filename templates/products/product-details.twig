@@ -98,10 +98,24 @@
                         </ul>
                         <div class="mb-20">
                             <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
-                            <form action="/order" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="product_uuid" value="{{ product.uuid }}">
+
+
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                                <!-- Identify your business so that you can collect the payments. -->
+                                <input type="hidden" name="business" value="{{ businessEmail }}">
+                                <input type="hidden" name="cmd" value="_xclick">
+
+                                <!-- Specify details about the item that buyers will purchase. -->
+                                <input type="hidden" name="item_name" value="{{ product.title }}">
+                                <input type="hidden" name="amount" value="{{ product.price }}">
+                                <input type="hidden" name="currency_code" value="USD">
+
+                                <!-- Specify callback URLS. -->
+                                <input type="hidden" name="return" value="{{ returnUrl }}">
+                                <input type="hidden" name="cancel_return" value="{{ cancelUrl }}">
                                 <button type="submit" class="btn btn-success btn-md mb-20 btn-block">Purchase Now</button>
                             </form>
+
                             <div class="purchase-intro mb-20">
                                 If you already purchase this product and want to get download link? Please <a href="">click here</a>
                             </div>
