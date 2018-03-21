@@ -26,7 +26,7 @@ class DownloadLinksModel extends Model
     /**
      * @var array
      */
-    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'token', 'download_name', 'download_completed', 'expired_at', 'created_at', 'updated_at'];
+    protected $fillable = ['invoices_products_id', 'product_id', 'link', 'token', 'download_completed', 'downloaded_at', 'expired_at', 'created_at', 'updated_at'];
 
     /**
      * @var array
@@ -36,7 +36,7 @@ class DownloadLinksModel extends Model
         'product_id' => 'integer',
         'link' => 'string',
         'token' => 'string',
-        'download_name' => 'string',
+        'downloaded_at' => 'datetime',
         'download_completed' => 'boolean',
         'expired_at' => 'datetime',
         'created_at' => 'datetime',
@@ -84,7 +84,6 @@ class DownloadLinksModel extends Model
                 'product_id' => $product['product_id'],
                 'link' => $link,
                 'token' => $token,
-                'download_name' => $product['name'],
                 'download_completed' => false,
                 'expired_at' => date('Y-m-d H:i:s', strtotime("+20 minutes", strtotime(date('Y-m-d H:i:s'))))
             ];
@@ -102,8 +101,8 @@ class DownloadLinksModel extends Model
     public function getDetailsByToken($token){
         try {
             $details = $this->where('download_links.token', $token)
-                ->select('download_links.*', 'products.*')
-                ->leftjoin('products', function($products) {
+                ->select('download_links.*', 'products.slug', 'products.download_path')
+                ->join('products', function($products) {
                     $products->on('download_links.product_id', '=', 'products.id');
                 })
                 ->first();
