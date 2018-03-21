@@ -66,6 +66,7 @@ class AppController
     {
         $this->getView()['categories'] = $this->loadModel()->getCategoryModel()->getMostProductsCategories();
         $this->getView()['recent_products'] = $this->loadModel()->getProductModel()->getRecentProducts(9);
+        $this->getView()['message'] = $this->getFlash()->getMessages();
     }
 
     /**
