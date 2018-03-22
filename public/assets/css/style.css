@@ -328,6 +328,10 @@ a {
     display: table-cell;
     vertical-align: middle;
 }
+
+.page-content{
+    margin: 100px 0px;
+}
 /** COMMON CSS END **/
 
 /** TOP HEADER AREA START **/
@@ -1280,7 +1284,7 @@ a:hover, a:focus, a:active {
 
 /** FAQ **/
 #faq{
-    margin: 100px 0px;
+
 }
 .faq-box {
     border: 1px solid transparent;
@@ -1371,7 +1375,7 @@ a:hover, a:focus, a:active {
 
 /** CONTACT 1 STARTED **/
 .contact-1{
-    margin: 100px 0px;
+
 }
 
 .contact-1 .form-control {
@@ -1463,6 +1467,9 @@ a:hover, a:focus, a:active {
     font-size: 24px;
     font-weight: 600;
 }
+
+
+
 /** SINGLE PRODUCT COLOR **/
 .single-product .nav {
     background: #F1F1F1;
@@ -1859,14 +1866,9 @@ a:hover, a:focus, a:active {
         line-height: 25px;
     }
 
-    #faq {
+    #page-content {
         margin: 50px 0px;
     }
-
-    .contact-1 {
-        margin: 50px 0px;
-    }
-
 
     .contact-1 .contact-info h3{
         margin-top: 50px;
