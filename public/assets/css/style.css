@@ -559,7 +559,6 @@ a {
     margin-bottom: 30px;
     position: relative;
     cursor: pointer;
-    max-height: 280px;
 }
 
 
@@ -965,11 +964,6 @@ a {
 .send-link-form hr {
     margin-top: 15px;
     margin-bottom: 15px;
-}
-
-
-.send-link-form .form-group{
-    width: 70%;
 }
 
 .send-link-form .form-control{
@@ -1643,6 +1637,10 @@ a:hover, a:focus, a:active {
 
 /*============Media Quires=========*/
 @media (max-width: 767px) {
+    .ptb-70-0 {
+        padding: 25px 0;
+    }
+
     .header .navbar-brand {
         padding: 15px;
     }
@@ -1677,13 +1675,39 @@ a:hover, a:focus, a:active {
         line-height: 25px;
     }
 
+    .mb-30 {
+        margin-bottom: 10px;
+    }
+
     .single-product .nav {
         padding: 15px 10px;
+    }
+
+    .sidebars{
+        margin-top: 50px;
+    }
+
+    .item-name {
+        font-size: 20px;
+    }
+
+    .item-price-container .labels {
+        margin-right: 6px;
+    }
+
+    .item-price-container .item-price {
+        font-size: 30px;
     }
 }
 
 @media (min-width: 768px) {
+    .send-link-form .form-group {
+         width: 70%;
+    }
 
+    .item-grid {
+        max-height: 280px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
