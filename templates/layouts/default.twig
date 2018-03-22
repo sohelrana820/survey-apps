@@ -195,9 +195,9 @@
             <div class="col-md-3 col-sm-6">
                 <h2 class="footer-title">Newsletter</h2>
                 <p>arketplaces and platforms can use Stripe Connect to let sellers around the world get paid.</p>
-                <form class="newsletter">
+                <form class="newsletter" id="newsletter">
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Your email address">
+                        <input type="email" name="email" class="form-control" placeholder="Your email address" required>
                     </div>
                     <button type="submit" class="newsletter-submit btn">Subscribe</button>
                 </form>
@@ -255,8 +255,22 @@
 <script src="/assets/js/jquery.selectBox.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/assets/js/sweetalert.min.js"></script>
 <!-- Custom javascript -->
-<script src="/assets/js/app.js"></script>
+
+<script>
+    $("#newsletter").submit(function(e) {
+        e.preventDefault();
+        setTimeout(function () {
+            swal({
+                title: "Congratulations!",
+                text: 'Thanks for your subscription.',
+                icon: "success",
+                button: "Thanks"
+            });
+        }, 500)
+    });
+</script>
 
 {% block jsBottom %}
     <!-- Inject JS codes from template files here -->

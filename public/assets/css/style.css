@@ -1071,7 +1071,6 @@ a {
 .newsletter .form-control:focus,
 .newsletter .form-control:hover {
     outline: none;
-    border: none;
 }
 
 .newsletter-submit {
