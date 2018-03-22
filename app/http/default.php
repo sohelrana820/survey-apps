@@ -22,7 +22,7 @@ $app->group('/products', function () use ($app){
 
 // Routes of orders
 $app->group('/orders', function () use ($app){
-    $app->post('/', \App\Controller\OrdersController::class . ':order');
+    $app->post('', \App\Controller\OrdersController::class . ':order');
     $app->post('/send-links', \App\Controller\OrdersController::class . ':sendLinks');
 });
 
