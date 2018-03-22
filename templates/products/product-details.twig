@@ -105,8 +105,8 @@
                             <button id="purchase_now" type="button" class="btn btn-success btn-md mb-10 btn-block">Purchase Now</button>
                             <div ></div>
                             <div class="purchase-intro mb-20">
-                                If you already purchase this product and want to get download link? Please <a href="">click here</a>
-                                <div class="send-link-form">
+                                <div class="already_download_text">If you already purchase this product and want to get download link? Please <span id="alreadyDownBtn">click here</span></div>
+                                <div class="send-link-form" style="display: none;">
                                     <h4 class="link">Retrieve Download Link</h4>
                                     <hr/>
                                     <label>Email Address</label>
@@ -116,7 +116,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Send Link</button>
                                     </form>
-                                    <a class="text-muted">Cancel</a>
+                                    <small class="text-muted" id="cancelBtn">Cancel</small>
                                 </div>
                             </div>
                             <div class="purchase-intro mb-20">
@@ -299,5 +299,15 @@
                 button: "Thanks"
             });
         }
+
+        $('#alreadyDownBtn').on('click', function () {
+            $('.already_download_text').hide();
+            $('.send-link-form').show();
+        });
+
+        $('#cancelBtn').on('click', function () {
+            $('.send-link-form').hide();
+            $('.already_download_text').show();
+        })
     </script>
 {% endblock %}
