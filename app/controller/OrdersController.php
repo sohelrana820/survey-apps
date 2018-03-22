@@ -104,7 +104,7 @@ class OrdersController extends AppController
             'downloadLinks' => $downloadLinks
         ];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['first_name']);
+        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
         $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
         return $response->withStatus(200)->withJson($return);
     }
