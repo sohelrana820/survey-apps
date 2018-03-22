@@ -1,0 +1,23 @@
+{% extends '/layouts/email-admin.twig' %}
+
+{% block content %}
+    <p>
+        <strong>Dear Admin,</strong>
+    </p>
+    <p>
+        A new message has been sent from {{ data.name }}. Please review it.
+    </p>
+    <br/>
+    <h2>Message Information:</h2>
+    <div class="payment_info">
+        <p> <strong>Name:{{ data.name}}</strong></p>
+        <p><strong>Email:</strong> {{ data.email }}</p>
+        <p><strong>Purpose:</strong> {{ data.purpose }}</p>
+        <p><strong>Subject:</strong> {{ data.subject }}</p>
+        <p><strong>Message:</strong></p>
+        <p>
+            {{ data.subject }}
+        </p>
+    </div>
+    <br/>
+{% endblock %}
