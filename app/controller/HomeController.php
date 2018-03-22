@@ -89,7 +89,7 @@ class HomeController extends AppController
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
-            return $this->getView()->render($response, 'products/download-error.twig');
+            return $this->getView()->render($response, 'error/download-error.twig');
         }
 
         // Update download link fields.
