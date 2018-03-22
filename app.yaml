@@ -1,0 +1,29 @@
+runtime: php55
+api_version: 1
+
+service: themevessel-shop
+
+threadsafe: true
+
+default_expiration: "7d"
+
+handlers:
+- url: /assets
+  static_dir: public/assets
+
+- url: /attachments
+  static_dir: public/attachments
+
+- url: /*
+  script: public/index.php
+  secure: always
+
+- url: /.*
+  script: public/index.php
+  secure: always
+
+
+skip_files:
+- ^.git$
+- ^logs$
+- ^tmp$
