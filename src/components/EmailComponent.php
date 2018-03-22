@@ -81,12 +81,17 @@ class EmailComponent extends ComponentLoad
      */
     public function sendContactMesage($to, $replyTo, $subject, $message)
     {
-        $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
-            'from'    => $this->fromEmail,
-            'h:Reply-To'    => $replyTo,
-            'to'      => $to,
-            'subject' => $subject,
-            'html'    => $message
-        ]);
+        try {
+            $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
+                'from'    => $this->fromEmail,
+                'h:Reply-To'    => $replyTo,
+                'to'      => $to,
+                'subject' => $subject,
+                'html'    => $message
+            ]);
+        } catch (\Exception $ex) {
+            print_r($ex->getTrace());
+            //print_r($mg);
+        }
     }
 }
