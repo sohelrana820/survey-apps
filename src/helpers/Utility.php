@@ -2,10 +2,18 @@
 
 namespace App\helpers;
 
+/**
+ * Class Utility
+ * @package App\helpers
+ */
 class Utility
 {
-    public function test()
+    /**
+     * @return bool
+     */
+    public static function isAppEngine()
     {
-        return true;
+        return (isset($_SERVER['SERVER_SOFTWARE']) &&
+            strpos($_SERVER['SERVER_SOFTWARE'], 'Google App Engine') !== false);
     }
 }
