@@ -1278,6 +1278,91 @@ a:hover, a:focus, a:active {
     color: #0075b9;
 }
 
+/** FAQ **/
+#faq{
+    margin: 100px 0px;
+}
+.faq-box {
+    border: 1px solid transparent;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.faq-box h5 .btn-link{
+    padding: 25px 20px;
+    width: 100%;
+    text-align: left;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+    color: #535353;
+}
+
+.faq-box .card-header {
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    font-size: 14px;
+
+    border-bottom: solid 1px #d8d8d8;
+}
+
+.faq-box .card-body p{
+    line-height: 27px;
+}
+
+.faq-box .card-body span{
+    font-size: 14px;
+}
+
+.faq-box .card-body span a{
+    font-weight: 600;
+}
+
+.faq-accordion {
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.06);
+    box-shadow: 0 0 15px rgba(0,0,0,0.06);
+}
+
+.faq-accordion .card {
+    margin-bottom: 0;
+    border: none;
+    border-bottom: 1px solid #f1f2f3;
+    background-color: #FFF;
+}
+
+.faq-accordion .card-header {
+    padding: 25px 20px;
+    background: #fff;
+}
+
+.faq-accordion .card-title {
+    margin-bottom: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    letter-spacing: 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.faq-accordion .card-block {
+    padding: 25px 20px;
+}
+
+.faq-accordion .card-header:before {
+    font-family: 'FontAwesome';
+    content: "\f077";
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.faq-accordion .card-header.collapsed:before {
+    content: "\f078";
+    font-size: 13px;
+    font-weight: 300;
+}
+
 /** SINGLE PRODUCT COLOR **/
 .single-product .nav {
     background: #F1F1F1;
