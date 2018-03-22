@@ -43,6 +43,42 @@ class HomeController extends AppController
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Interop\Container\Exception\ContainerException
      */
+    public function faqs(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'general/faqs.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function privacy(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'general/privacy-policy.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function contact(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'general/contact-us.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
     public function notFoundPage(Request $request, Response $response, $args)
     {
         return $this->getView()->render($response->withStatus(404), 'error/404.twig');
