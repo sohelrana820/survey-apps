@@ -72,6 +72,47 @@ class HomeController extends AppController
         return $this->getView()->render($response, 'general/contact-us.twig');
     }
 
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function contactUs(Request $request, Response $response, $args)
+    {
+        /**
+         * Checking all expected fields is exist of not.
+         */
+        $postData = $request->getParsedBody();
+        $requiredFields = ['name', 'email', 'purpose', 'subject', 'message'];
+        foreach ($requiredFields as $key => $value) {
+            if(!array_key_exists($value, $postData)) {
+                $return = [
+                    'success' => false,
+                    'message' => 'All field is required'
+                ];
+                $this->getLogger() ? $this->getLogger()->info('Failed to Received Support Email', ['data' => $postData]) : null;
+                return $response->withStatus(200)->withJson($return);
+            }
+        }
+
+        /**
+         * Fetching email template and then sent to message to support
+         */
+        $emailRender = $this->getView()->fetch( '/email/contact.twig', ['data' => $postData]);
+        $supportEmail = sprintf('%s <%s>', $this->config['email']['support_name'], $this->config['email']['support_email']);
+        $replyTo = sprintf('%s <%s>', $postData['name'], $postData['email']);
+        $this->loadComponent()->Email()->sendContactMesage($supportEmail, $replyTo, 'New Message Received', $emailRender);
+        $this->getLogger() ? $this->getLogger()->info('Receive Support Email', ['data' => $postData]) : null;
+        $return = [
+            'success' => true,
+            'message' => 'Your message has been received successfully'
+        ];
+        return $response->withStatus(200)->withJson($return);
+    }
+
     /**
      * @param Request  $request
      * @param Response $response

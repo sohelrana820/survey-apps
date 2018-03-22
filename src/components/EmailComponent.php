@@ -73,4 +73,20 @@ class EmailComponent extends ComponentLoad
             'html'    => $message
         ]);
     }
+
+    /**
+     * @param $to
+     * @param $subject
+     * @param $message
+     */
+    public function sendContactMesage($to, $replyTo, $subject, $message)
+    {
+        $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
+            'from'    => $this->fromEmail,
+            'h:Reply-To'    => $replyTo,
+            'to'      => $to,
+            'subject' => $subject,
+            'html'    => $message
+        ]);
+    }
 }
