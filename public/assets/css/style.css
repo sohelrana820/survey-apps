@@ -1440,6 +1440,10 @@ a:hover, a:focus, a:active {
     color: #535353;
 }
 
+.contact-1 .contact-info .media p a:hover{
+    text-decoration: none;
+}
+
 .contact-1 .contact-info .media.mrg-btn-0{
     margin-bottom: 0;
 }
