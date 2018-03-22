@@ -1,5 +1,6 @@
 <?php
 
+use App\helpers\Utility;
 use Illuminate\Events\Dispatcher;
 use Monolog\Handler\StreamHandler;
 use Slim\Container;
@@ -146,7 +147,13 @@ $container['logger'] = function (Container $container) {
     $logger->pushProcessor(new \Monolog\Processor\ProcessIdProcessor());
     $logger->pushProcessor(new \Monolog\Processor\PsrLogMessageProcessor());
     $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
-    $logger->pushHandler(new StreamHandler($config['logger']['path'], $config['logger']['level']));
+
+
+    if (Utility::isAppEngine()) {
+        $logger->pushHandler(new \Monolog\Handler\SyslogHandler($container['config']['logger']['name']));
+    } else {
+        $logger->pushHandler(new StreamHandler($config['logger']['path'], $config['logger']['level']));
+    }
     return $logger;
 };
 
@@ -215,6 +222,12 @@ $container['errorHandler'] = function (Container $container) {
 // Connecting to database
 if ($container['config']['database_require']) {
     $databaseConf = $container['settings']['databases'];
+    if(Utility::isAppEngine()){
+        $databaseConf['host'] = null;
+    } else {
+        $databaseConf['unix_socket'] = null;
+    }
+
     $capsule = new Illuminate\Database\Capsule\Manager();
     $capsule->addConnection($databaseConf);
     $events = new Dispatcher(new Illuminate\Container\Container());
