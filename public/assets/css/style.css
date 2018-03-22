@@ -1346,7 +1346,9 @@ a:hover, a:focus, a:active {
     cursor: pointer;
 }
 
-.faq-accordion .card-title:hover{
+.faq-accordion .card-title:hover,
+.faq-accordion .card-title:focus
+{
     text-decoration: none;
 }
 
