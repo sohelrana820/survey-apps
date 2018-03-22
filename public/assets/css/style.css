@@ -950,6 +950,42 @@ a {
     overflow-wrap: break-word;
     box-sizing: border-box;
 }
+
+.send-link-form {
+    margin: 20px 0px 50px 0px
+}
+
+
+.send-link-form .link{
+    font-size: 19px;
+    font-weight: 600;
+    color: #484848;
+}
+
+.send-link-form hr {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.send-link-form .form-group{
+    width: 70%;
+}
+
+.send-link-form .form-control{
+    height: 40px;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+.send-link-form .btn{
+    padding: 9px 15px;
+}
+
+.send-link-form .text-muted{
+    font-size: 10px;
+}
 /** SINGLE AREA END **/
 
 /** FOOTER AREA START **/
