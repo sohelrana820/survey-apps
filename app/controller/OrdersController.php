@@ -104,7 +104,7 @@ class OrdersController extends AppController
             'downloadLinks' => $downloadLinks
         ];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
-        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], 'me.sohelrana@gmail.com');
+        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['first_name']);
         $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
         return $response->withStatus(200)->withJson($return);
     }
@@ -160,7 +160,7 @@ class OrdersController extends AppController
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($data, $downloadUrl);
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
-        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], 'me.sohelrana@gmail.com');
+        $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
         $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
         $return = [
             'success' => true,
