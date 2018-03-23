@@ -111,7 +111,7 @@ class HomeController extends AppController
         $this->getLogger() ? $this->getLogger()->info('Receive Support Email', ['data' => $postData]) : null;
         $return = [
             'success' => true,
-            'message' => 'Your message has been received successfully'
+            'message' => 'Thanks for getting in touch with us! We’ll get back to you shortly.'
         ];
         return $response->withStatus(200)->withJson($return);
     }
