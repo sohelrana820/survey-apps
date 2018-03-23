@@ -70,7 +70,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('layout', 'char', ['default' => 'Responsive'])
             ->addColumn('product_type', 'char', ['default' => 'paid'])
             ->addColumn('key_features', 'string', ['default' => null])
-            ->addColumn('browsers_compatible', 'string',  ['default' => null])
+            ->addColumn('browsers_compatible', 'string', ['default' => null])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
