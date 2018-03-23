@@ -177,7 +177,8 @@ class CategoriesModel extends Model
         try {
             $categoryObj = $this->selectRaw('categories.slug, count(products.id) as total_products')
                 ->leftjoin(
-                    'products', function ($join) {
+                    'products',
+                    function ($join) {
                         $join->on('categories.id', '=', 'products.category_id');
                     }
                 )
@@ -231,7 +232,7 @@ class CategoriesModel extends Model
         $cacheKey = 'all_category_list';
         $list = $this->cache ? $this->cache->get($cacheKey) : false;
         if ($list && $forceCacheGenerate == false) {
-            if(array_key_exists($categoryId, $list) && $list[$categoryId]) {
+            if (array_key_exists($categoryId, $list) && $list[$categoryId]) {
                 $this->logger ? $this->logger->info('Category Slug Returned from Cache') : null;
                 return $this->getCategory($list[$categoryId]);
             }
@@ -244,7 +245,7 @@ class CategoriesModel extends Model
                 $list[$category->id] = $category->slug;
             }
 
-            if(array_key_exists($categoryId, $list) && $list[$categoryId]) {
+            if (array_key_exists($categoryId, $list) && $list[$categoryId]) {
                 $this->logger ? $this->logger->info('Category Slug Returned from DB') : null;
                 $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_VERY_LONG) : null;
                 return $this->getCategory($list[$categoryId]);

@@ -38,14 +38,14 @@ class OrdersController extends AppController
             'is_auto_signup' => true
         ];
         $user = $this->loadModel()->getUserModel()->getUserByEmail($userData['email']);
-        if(!$user) {
+        if (!$user) {
             $user = $this->loadModel()->getUserModel()->addUser($userData);
         }
 
         /**
          * Return [false] if user failed to saved or getting user details.
          */
-        if(!$user) {
+        if (!$user) {
             $this->getLogger()->info('User Not Created', ['user_details' => $userData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             $return = ['success' => false];
@@ -60,7 +60,7 @@ class OrdersController extends AppController
          */
         $orderData = $this->prepareOrderData($data, $user);
         $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
-        if(!$order) {
+        if (!$order) {
             $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             $return = ['success' => false];
@@ -75,7 +75,7 @@ class OrdersController extends AppController
          */
         $invoiceData = $this->prepareInvoiceData($data, $user, $order);
         $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
-        if(!$invoice) {
+        if (!$invoice) {
             $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
             $this->getLogger()->info('Stooped The Ordering Flow');
             $return = ['success' => false];
@@ -115,7 +115,7 @@ class OrdersController extends AppController
     {
         // Check expected data is exist or not
         $postData = $request->getParsedBody();
-        if(!array_key_exists('email', $postData) || !$postData['email']) {
+        if (!array_key_exists('email', $postData) || !$postData['email']) {
             $return = [
                 'success' => false,
                 'message' => 'Please provide the valid email input'
@@ -125,7 +125,7 @@ class OrdersController extends AppController
 
         // Check user is exist or not
         $user = $this->loadModel()->getUserModel()->getUserByEmail($postData['email']);
-        if(!$user) {
+        if (!$user) {
             $return = [
                 'success' => false,
                 'message' => 'Sorry, we couldn\'t fetch this email address'
@@ -136,13 +136,12 @@ class OrdersController extends AppController
         // Check this user purchased this item or not
         $generateProduct = false;
         $products = $this->loadModel()->getInvoiceModel()->getInvoiceProductsByUserId($user['id']);
-        foreach ( $products as $product)
-        {
-            if($product['uuid'] == $postData['product_uuid']) {
+        foreach ($products as $product) {
+            if ($product['uuid'] == $postData['product_uuid']) {
                 $generateProduct = $product;
             }
         }
-        if(!$generateProduct) {
+        if (!$generateProduct) {
             $return = [
                 'success' => false,
                 'message' => 'Sorry, you didn\'t purchases this product'

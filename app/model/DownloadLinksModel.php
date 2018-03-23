@@ -74,7 +74,8 @@ class DownloadLinksModel extends Model
      * @param $home
      * @return array
      */
-    public function generateDownLinks($invoiceProducts, $home){
+    public function generateDownLinks($invoiceProducts, $home)
+    {
         $result = [];
         try {
             foreach ($invoiceProducts as $product) {
@@ -103,19 +104,20 @@ class DownloadLinksModel extends Model
      * @param $token
      * @return null
      */
-    public function getDetailsByToken($token){
+    public function getDetailsByToken($token)
+    {
         try {
             $details = $this->where('download_links.token', $token)
                 ->select('download_links.*', 'products.slug', 'products.download_path')
-                ->join('products', function($products) {
+                ->join('products', function ($products) {
                     $products->on('download_links.product_id', '=', 'products.id');
                 })
                 ->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Download Info Fetch', ['token' => $token, 'download_info' => $details->toArray()]) : null;
                 return $details->toArray();
             }
-        } catch ( \Exception $exception) {
+        } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
@@ -130,9 +132,9 @@ class DownloadLinksModel extends Model
      */
     public function updateDownloadLinkd($id, $fields)
     {
-        try{
+        try {
             $updated = $this->where('id', $id)->update($fields);
-            if($updated > 0) {
+            if ($updated > 0) {
                 $this->logger ? $this->logger->info('Update Download Link', ['id' => $id, 'field' => $fields]) : null;
                 return true;
             }

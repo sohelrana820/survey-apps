@@ -146,13 +146,13 @@ class InvoicesModel extends Model
      */
     public function createInvoice($data)
     {
-        if(!array_key_exists('uuid', $data) || !$data['uuid']) {
+        if (!array_key_exists('uuid', $data) || !$data['uuid']) {
             $data['uuid'] = Uuid::uuid4()->toString();
         }
 
         try {
             $created = $this->create($data);
-            if($created) {
+            if ($created) {
                 $created->products()->create($data['products']);
                 $created = $created->toArray();
                 $this->logger ? $this->logger->info('New Invoice Created', ['invoice_details' => $data]) : null;
@@ -179,14 +179,14 @@ class InvoicesModel extends Model
         $cacheKey = sprintf('invoice_uuid_%s', $uuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Invoice Returned From Cache', ['invoice_uuid' => $uuid]) : null;
             return $this->mappingInvoiceData($details);
         }
 
-        try{
+        try {
             $details = $this->where('uuid', $uuid)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Invoice Returned From DB', ['invoice_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $this->mappingInvoiceData($details->toArray());
@@ -228,11 +228,10 @@ class InvoicesModel extends Model
                     $query->on('products.id', '=', 'invoices_products.product_id');
                 })
                 ->get();
-            if($invoices) {
+            if ($invoices) {
                 $this->logger ? $this->logger->info('Return Invoice Products', ['user_id' => $userId]) : null;
                 return $invoices->toArray();
             }
-
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;

@@ -146,14 +146,14 @@ class InvoicesProductsModel extends Model
         $cacheKey = sprintf('invoice_product_uuid_%s', $uuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Invoice Product Returned From Cache', ['invoice_product_uuid' => $uuid]) : null;
             return $details;
         }
 
-        try{
+        try {
             $details = $this->where('uuid', $uuid)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Invoice Product Returned From DB', ['invoice_product_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $details->toArray();
@@ -179,7 +179,7 @@ class InvoicesProductsModel extends Model
         }
 
         $invoiceProducts = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
-        if($invoiceProducts && sizeof($invoiceProducts) === sizeof($uuids)) {
+        if ($invoiceProducts && sizeof($invoiceProducts) === sizeof($uuids)) {
             return array_values($invoiceProducts);
         }
 
@@ -199,7 +199,7 @@ class InvoicesProductsModel extends Model
         $products = [];
         try {
             $invoiceProductsObj = $this->select('uuid')->where('invoice_id', $invoiceId)->get();
-            if($invoiceProductsObj) {
+            if ($invoiceProductsObj) {
                 $products = $invoiceProductsObj->toArray();
             }
         } catch (\Exception $exception) {

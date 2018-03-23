@@ -160,14 +160,14 @@ class ProductsModel extends Model
         $cacheKey = sprintf('product_uuid_%s', $productUuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Product Returned From Cache', ['product_uuid' => $productUuid]) : null;
             return $this->mappingProductDetails($details);
         }
 
-        try{
+        try {
             $details = $this->where('uuid', $productUuid)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Product Returned From DB', ['product_uuid' => $productUuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $this->mappingProductDetails($details->toArray());
@@ -187,9 +187,9 @@ class ProductsModel extends Model
      */
     public function singleFieldIncrement($productUuid, $field)
     {
-        try{
+        try {
             $updated = $this->where('uuid', $productUuid)->increment($field);
-            if($updated > 0) {
+            if ($updated > 0) {
                 $this->logger ? $this->logger->info('Product Product Field', ['product_uuid' => $productUuid, 'field' => $field]) : null;
                 $this->getProduct($productUuid, true);
                 return true;
@@ -230,7 +230,7 @@ class ProductsModel extends Model
         }
 
         $products = $this->cache ? $this->cache->getMulti($cacheKeys) : [];
-        if($products && sizeof($products) === sizeof($productUuids)) {
+        if ($products && sizeof($products) === sizeof($productUuids)) {
             return array_values($products);
         }
 
@@ -253,24 +253,24 @@ class ProductsModel extends Model
         $orderBy = 'id';
         $sortBy = 'DESC';
 
-        if(array_key_exists('page', $queryParams)) {
+        if (array_key_exists('page', $queryParams)) {
             $page = intval($queryParams['page']);
         }
 
-        if(array_key_exists('perPage', $queryParams)) {
+        if (array_key_exists('perPage', $queryParams)) {
             $perPage = intval($queryParams['perPage']);
         }
 
-        if(array_key_exists('order', $queryParams)) {
+        if (array_key_exists('order', $queryParams)) {
             $orderBy = $queryParams['order'];
         }
 
-        if(array_key_exists('sort', $queryParams)) {
+        if (array_key_exists('sort', $queryParams)) {
             $sortBy = $queryParams['sort'];
         }
 
         $paginationSuffix = $queryParams;
-        if(array_key_exists('page')) {
+        if (array_key_exists('page')) {
             unset($paginationSuffix['page']);
         }
 
@@ -280,33 +280,33 @@ class ProductsModel extends Model
             $productsObj = $productsObj->select('products.uuid');
 
             // Search by product's title
-            if(array_key_exists('title', $queryParams)) {
+            if (array_key_exists('title', $queryParams)) {
                 $productsObj = $productsObj->where('title', 'LIKE', '%' .$queryParams['title']. '%');
             }
 
             // Search by featured
-            if(array_key_exists('featured', $queryParams)) {
+            if (array_key_exists('featured', $queryParams)) {
                 $productsObj = $productsObj->where('is_featured', 1);
             }
 
             // Search by recent
-            if(array_key_exists('recent', $queryParams)) {
+            if (array_key_exists('recent', $queryParams)) {
                 $orderBy = 'id';
             }
 
             // Search by popular
-            if(array_key_exists('popular', $queryParams)) {
+            if (array_key_exists('popular', $queryParams)) {
                 $productsObj = $productsObj->where('sales', '>', 0);
                 $orderBy = 'total_viewed';
             }
 
             // Search by product's tag
-            if(array_key_exists('tag', $queryParams)) {
+            if (array_key_exists('tag', $queryParams)) {
                 $productsObj = $productsObj->where('tags', 'LIKE', '%' .$queryParams['tag']. '%');
             }
 
             // Search by product's category
-            if(array_key_exists('cat', $queryParams)) {
+            if (array_key_exists('cat', $queryParams)) {
                 $catModel = new CategoriesModel();
                 $catModel->setCache($this->cache);
                 $catModel->setLogger($this->logger);
@@ -355,7 +355,7 @@ class ProductsModel extends Model
         $products = [];
         try {
             $productsObj = $this->select('uuid')->where('sales', '>', 0)->orderBy('total_viewed', 'DESC')->limit($limit)->get();
-            if($productsObj) {
+            if ($productsObj) {
                 $products = $productsObj->toArray();
             }
         } catch (\Exception $exception) {
@@ -379,7 +379,7 @@ class ProductsModel extends Model
         $products = [];
         try {
             $productsObj = $this->select('uuid')->orderBy('id', 'DESC')->limit($limit)->get();
-            if($productsObj) {
+            if ($productsObj) {
                 $products = $productsObj->toArray();
             }
         } catch (\Exception $exception) {
@@ -404,7 +404,7 @@ class ProductsModel extends Model
         $cacheKey = 'all_product_list';
         $list = $this->cache ? $this->cache->get($cacheKey) : false;
         if ($list && $forceCacheGenerate == false) {
-            if(array_key_exists($slug, $list) && $list[$slug]) {
+            if (array_key_exists($slug, $list) && $list[$slug]) {
                 $this->logger ? $this->logger->info('Product UUID Returned from Cache') : null;
                 return $list[$slug];
             }
@@ -417,7 +417,7 @@ class ProductsModel extends Model
                 $list[$product->slug] = $product->uuid;
             }
 
-            if(array_key_exists($slug, $list) && $list[$slug]) {
+            if (array_key_exists($slug, $list) && $list[$slug]) {
                 $this->logger ? $this->logger->info('Product UUID Returned from DB') : null;
                 $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_VERY_LONG) : null;
                 return $list[$slug];

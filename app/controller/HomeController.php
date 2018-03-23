@@ -91,7 +91,7 @@ class HomeController extends AppController
         $postData = $request->getParsedBody();
         $requiredFields = ['name', 'email', 'purpose', 'subject', 'message'];
         foreach ($requiredFields as $key => $value) {
-            if(!array_key_exists($value, $postData)) {
+            if (!array_key_exists($value, $postData)) {
                 $return = [
                     'success' => false,
                     'message' => 'All field is required'
@@ -104,7 +104,7 @@ class HomeController extends AppController
         /**
          * Fetching email template and then sent to message to support
          */
-        $emailRender = $this->getView()->fetch( '/email/contact.twig', ['data' => $postData]);
+        $emailRender = $this->getView()->fetch('/email/contact.twig', ['data' => $postData]);
         $supportEmail = sprintf('%s <%s>', $this->config['email']['support_name'], $this->config['email']['support_email']);
         $replyTo = sprintf('%s <%s>', $postData['name'], $postData['email']);
         $this->loadComponent()->Email()->sendContactMesage($supportEmail, $replyTo, 'New Message Received', $emailRender);
@@ -162,13 +162,13 @@ class HomeController extends AppController
     public function download(Request $request, Response $response, $args)
     {
         $token = $request->getParam('token');
-        if(!$token) {
+        if (!$token) {
             return $response->withRedirect('/error/404');
         }
 
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
-        if(strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
+        if (strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
             return $this->getView()->render($response, 'error/download-error.twig');
         }
 
@@ -178,7 +178,7 @@ class HomeController extends AppController
             'downloaded_at' => date('Y-m-d H:i:s'),
         ];
         $updated = $this->loadModel()->getDownloadLinkModel()->updateDownloadLinkd($productDetails['id'], $data);
-        if($updated) {
+        if ($updated) {
             $this->getLogger() ? $this->getLogger()->info('Product Downloaded', ['product_details' => $productDetails]) : null;
         }
         $fileName = $productDetails['slug'] .'.zip';

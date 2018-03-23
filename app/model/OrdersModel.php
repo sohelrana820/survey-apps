@@ -137,13 +137,13 @@ class OrdersModel extends Model
      */
     public function createOrder($data)
     {
-        if(!array_key_exists('uuid', $data) || !$data['uuid']) {
+        if (!array_key_exists('uuid', $data) || !$data['uuid']) {
             $data['uuid'] = Uuid::uuid4()->toString();
         }
 
         try {
             $created = $this->create($data);
-            if($created) {
+            if ($created) {
                 $created = $created->toArray();
                 $this->logger ? $this->logger->info('New Order Created', ['order_details' => $created]) : null;
                 $order = $this->getDetails($created['uuid']);
@@ -169,14 +169,14 @@ class OrdersModel extends Model
         $cacheKey = sprintf('order_uuid_%s', $uuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('Order Returned From Cache', ['order_uuid' => $uuid]) : null;
             return $details;
         }
 
-        try{
+        try {
             $details = $this->where('uuid', $uuid)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('Order Returned From DB', ['order_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $details->toArray();

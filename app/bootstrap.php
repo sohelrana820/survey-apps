@@ -30,82 +30,79 @@ $container['view'] = function (Container $container) {
 
     // Creating rating filter.
     $twigFilter = new Twig_SimpleFilter(
-        'rating_percentage', function ($rating, $totalRating = 5) {
-        $percentage = ($rating * 100) / $totalRating;
-        return $percentage;
-    }
+        'rating_percentage',
+        function ($rating, $totalRating = 5) {
+            $percentage = ($rating * 100) / $totalRating;
+            return $percentage;
+        }
     );
 
     $truncateFilter = (new Twig_SimpleFilter(
-        'truncate', function ($string, $length) {
-        if (strlen($string) < $length) {
-            return $string;
-        } else {
-            return array_shift(str_split($string, $length)) . "...";
+        'truncate',
+        function ($string, $length) {
+            if (strlen($string) < $length) {
+                return $string;
+            } else {
+                return array_shift(str_split($string, $length)) . "...";
+            }
         }
-    }
     ));
 
     $buildSortingLinkFilter = (new Twig_SimpleFilter(
-        'build_sorting_link', function ($pagination, $order = null, $sort = null) {
-        if ($order) {
-            $pagination['paginationSuffixRaw']['order'] = $order;
-        } else {
-            unset($pagination['paginationSuffixRaw']['order']);
-        }
+        'build_sorting_link',
+        function ($pagination, $order = null, $sort = null) {
+            if ($order) {
+                $pagination['paginationSuffixRaw']['order'] = $order;
+            } else {
+                unset($pagination['paginationSuffixRaw']['order']);
+            }
 
-        if ($sort) {
-            $pagination['paginationSuffixRaw']['sort'] = $sort;
-        } else {
-            unset($pagination['paginationSuffixRaw']['sort']);
-        }
+            if ($sort) {
+                $pagination['paginationSuffixRaw']['sort'] = $sort;
+            } else {
+                unset($pagination['paginationSuffixRaw']['sort']);
+            }
 
-        if(array_key_exists('featured', $pagination['paginationSuffixRaw'] )) {
-            unset($pagination['paginationSuffixRaw']['featured']);
-        }
+            if (array_key_exists('featured', $pagination['paginationSuffixRaw'])) {
+                unset($pagination['paginationSuffixRaw']['featured']);
+            }
 
-        if(array_key_exists('popular', $pagination['paginationSuffixRaw'] )) {
-            unset($pagination['paginationSuffixRaw']['popular']);
-        }
+            if (array_key_exists('popular', $pagination['paginationSuffixRaw'])) {
+                unset($pagination['paginationSuffixRaw']['popular']);
+            }
 
-        $link = sprintf('%s?%s', $pagination['pageName'], http_build_query($pagination['paginationSuffixRaw']));
-        return $link;
-    }
+            $link = sprintf('%s?%s', $pagination['pageName'], http_build_query($pagination['paginationSuffixRaw']));
+            return $link;
+        }
     ));
 
     $selectSortingFilter = (new Twig_SimpleFilter(
-        'select_sorting', function ($pagination, $selectValue) {
+        'select_sorting',
+        function ($pagination, $selectValue) {
             $selected = '';
             $query = $pagination['paginationSuffixRaw'];
-            if(array_key_exists('title', $query)) {
+            if (array_key_exists('title', $query)) {
                 unset($query['title']);
             }
-            if(array_key_exists('recent', $query)) {
+            if (array_key_exists('recent', $query)) {
                 unset($query['recent']);
             }
 
-            if(sizeof($query) == 0 && $selectValue == 'newest') {
+            if (sizeof($query) == 0 && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
-            }
-            else if(sizeof($query) == 1 && $query['sort'] == 'desc' && $selectValue == 'newest') {
+            } elseif (sizeof($query) == 1 && $query['sort'] == 'desc' && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
-            }
-            else if(sizeof($query) == 1 && $query['sort'] == 'asc' && $selectValue == 'oldest') {
+            } elseif (sizeof($query) == 1 && $query['sort'] == 'asc' && $selectValue == 'oldest') {
                 $selected = 'selected="selected"';
-            }
-            else if(sizeof($query) == 2 && $query['order'] == 'sales'  && $query['sort'] == 'desc' && $selectValue == 'most-sold') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'sales'  && $query['sort'] == 'desc' && $selectValue == 'most-sold') {
                 $selected = 'selected="selected"';
-            }
-            else if(array_key_exists('featured', $query) && $selectValue == 'featured') {
+            } elseif (array_key_exists('featured', $query) && $selectValue == 'featured') {
                 $selected = 'selected="selected"';
-            }
-            else if(array_key_exists('popular', $query) && $selectValue == 'popular') {
+            } elseif (array_key_exists('popular', $query) && $selectValue == 'popular') {
                 $selected = 'selected="selected"';
-            }
-            else if(sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'desc' && $selectValue == 'price_h_l') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'desc' && $selectValue == 'price_h_l') {
                 $selected = 'selected="selected"';
-            }
-            else if(sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'asc' && $selectValue == 'price_l_h') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'asc' && $selectValue == 'price_l_h') {
                 $selected = 'selected="selected"';
             }
             return $selected;
@@ -222,7 +219,7 @@ $container['errorHandler'] = function (Container $container) {
 // Connecting to database
 if ($container['config']['database_require']) {
     $databaseConf = $container['settings']['databases'];
-    if(Utility::isAppEngine()){
+    if (Utility::isAppEngine()) {
         $databaseConf['host'] = null;
     } else {
         $databaseConf['unix_socket'] = null;

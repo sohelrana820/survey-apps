@@ -149,13 +149,13 @@ class UsersModel extends Model
      */
     public function addUser($data)
     {
-        if(!array_key_exists('uuid', $data) || !$data['uuid']) {
+        if (!array_key_exists('uuid', $data) || !$data['uuid']) {
             $data['uuid'] = Uuid::uuid4()->toString();
         }
 
         try {
             $created = $this->create($data);
-            if($created) {
+            if ($created) {
                 $created = $created->toArray();
                 $user = $this->getDetails($created['uuid']);
                 $this->logger ? $this->logger->error('New User Created', ['user_details' => $user]) : null;
@@ -178,7 +178,7 @@ class UsersModel extends Model
     {
         try {
             $user = $this->select('uuid')->where('email', $email)->first();
-            if($user) {
+            if ($user) {
                 $user = $user->toArray();
                 return array_key_exists('uuid', $user) ? $this->getDetails($user['uuid']) : false;
             }
@@ -200,14 +200,14 @@ class UsersModel extends Model
         $cacheKey = sprintf('user_uuid_%s', $uuid);
         $details = $this->cache ? $this->cache->get($cacheKey) : null;
 
-        if($forceCacheGenerate === false && $details) {
+        if ($forceCacheGenerate === false && $details) {
             $this->logger ? $this->logger->info('User Returned From Cache', ['user_uuid' => $uuid]) : null;
             return $details;
         }
 
-        try{
+        try {
             $details = $this->where('uuid', $uuid)->first();
-            if($details) {
+            if ($details) {
                 $this->logger ? $this->logger->info('User Returned From DB', ['user_uuid' => $uuid]) : null;
                 $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
                 return $details->toArray();
