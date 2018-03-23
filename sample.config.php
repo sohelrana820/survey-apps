@@ -54,6 +54,10 @@ return [
             'from_email' => 'no-reply@sohelrana.me',
             'support_name' => 'Theme Vessel Support',
             'support_email' => 'themevessel.us@gmail.com',
+        ],
+        'google-re-captcha' => [
+            'site-key' => '6LegCjoUAAAAAJL_Jz-r4rDa_CTyH12aQ0dlzDVp',
+            'site-secret' => '6LegCjoUAAAAABfjPBTa6-Jqhay5Bi69hnkWMS3s'
         ]
     ]
 ];
