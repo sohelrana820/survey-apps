@@ -350,8 +350,14 @@ class ProductsModel extends Model
      * @param int $limit
      * @return array
      */
-    public function getPopularProducts($limit = 8)
+    public function getPopularProducts($limit = 8, $forceCacheGenerate = false)
     {
+        $cacheKey = 'most_popular_products';
+        $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
+        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+            return $this->getProductBatch($uuids);
+        }
+
         $products = [];
         try {
             $productsObj = $this->select('uuid')->where('sales', '>', 0)->orderBy('total_viewed', 'DESC')->limit($limit)->get();
@@ -367,6 +373,7 @@ class ProductsModel extends Model
         foreach ($products as $product) {
             array_push($uuids, $product['uuid']);
         }
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_LONG) : null;
         return $this->getProductBatch($uuids);
     }
 
