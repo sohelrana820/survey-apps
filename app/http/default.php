@@ -17,7 +17,7 @@ $app->group('/error', function () use ($app){
 
 // Routes of products
 $app->group('/products', function () use ($app){
-    $app->get('/', \App\Controller\ProductsController::class . ':products');
+    $app->get('', \App\Controller\ProductsController::class . ':products');
     $app->get('/{slug}', \App\Controller\ProductsController::class . ':productDetails');
 });
 
