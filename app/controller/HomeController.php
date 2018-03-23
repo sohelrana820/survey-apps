@@ -69,7 +69,10 @@ class HomeController extends AppController
      */
     public function contact(Request $request, Response $response, $args)
     {
-        return $this->getView()->render($response, 'general/contact-us.twig');
+        $data = [
+            'captcha' => $this->config['google-re-captcha']
+        ];
+        return $this->getView()->render($response, 'general/contact-us.twig', $data);
     }
 
 
