@@ -509,7 +509,7 @@ a {
     padding: 15px;
     font-size: 20px;
     line-height: 0px;
-    height: 60px;
+    height: 50px;
     font-weight: 300;
     border-radius: 3px;
     border: 1px solid #DDD;
@@ -524,7 +524,7 @@ a {
     color: white !important;
     border-radius: 3px;
     border: none;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
     padding: 16px 15px;
@@ -1828,6 +1828,7 @@ a:hover, a:focus, a:active {
 
 /*============Media Quires=========*/
 @media (max-width: 767px) {
+
     .ptb-70-0 {
         padding: 25px 0;
     }
@@ -1909,9 +1910,23 @@ a:hover, a:focus, a:active {
     }
 }
 
+@media (min-width: 1200px) {
+    .search-form .form-control {
+        height: 60px;
+    }
+
+    .search-item-btn {
+        font-size: 20px;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     .pl-20 {
         padding: 0;
     }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+
 }
 /*===========/Media Quires=========*/
