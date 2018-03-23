@@ -1,6 +1,7 @@
 <?php
 
 namespace App\components;
+
 use Mailgun\Mailgun;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;

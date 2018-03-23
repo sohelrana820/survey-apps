@@ -2,7 +2,6 @@
 
 namespace App\components;
 
-
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
