@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\helpers\Utility;
 use GuzzleHttp\Client;
 use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
@@ -91,7 +92,7 @@ class OrdersController extends AppController
         /**
          * Generate download links
          */
-        $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
+        $downloadUrl = Utility::baseURL() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
 
         /**
@@ -156,7 +157,7 @@ class OrdersController extends AppController
             'product' => $generateProduct,
             'user' => $user,
         ];
-        $downloadUrl = $request->getUri()->getBaseUrl() . '/download';
+        $downloadUrl = Utility::baseURL() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($data, $downloadUrl);
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);

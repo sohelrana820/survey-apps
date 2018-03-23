@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\helpers\Utility;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -48,15 +49,9 @@ class ProductsController extends AppController
         $productSlug = $request->getAttribute('slug');
         $productUuid = $this->loadModel()->getProductModel()->getProductUuidBySlug($productSlug);
         $product = $this->loadModel()->getProductModel()->getProduct($productUuid);
-        $paypalEmail = 'billing-facilitator@previewtechs.us';
-        $confirmUrl = $request->getUri()->getBaseUrl() . '/order/confirm?tid_l='.session_id();
-        $cancelCrl = $request->getUri()->getBaseUrl() . '/order/cancel';
         $data = [
-            'businessEmail' => $paypalEmail,
-            'returnUrl' => $confirmUrl,
-            'cancelUrl' => $cancelCrl,
             'product' => $product,
-            'url' => $request->getUri()->getBaseUrl() . $request->getUri()->getPath()
+            'url' => Utility::baseURL() . $request->getUri()->getPath()
         ];
         return $this->getView()->render($response, 'products/product-details.twig', $data);
     }
