@@ -373,7 +373,7 @@ class ProductsModel extends Model
         foreach ($products as $product) {
             array_push($uuids, $product['uuid']);
         }
-        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_LONG) : null;
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_1DAY) : null;
         return $this->getProductBatch($uuids);
     }
 
@@ -404,7 +404,7 @@ class ProductsModel extends Model
         foreach ($products as $product) {
             array_push($uuids, $product['uuid']);
         }
-        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_LONG) : null;
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_1DAY) : null;
         return $this->getProductBatch($uuids);
     }
 
