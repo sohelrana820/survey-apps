@@ -374,8 +374,14 @@ class ProductsModel extends Model
      * @param int $limit
      * @return array
      */
-    public function getRecentProducts($limit = 9)
+    public function getRecentProducts($limit = 9, $forceCacheGenerate = false)
     {
+        $cacheKey = 'most_recent_products';
+        $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
+        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+            return $this->getProductBatch($uuids);
+        }
+
         $products = [];
         try {
             $productsObj = $this->select('uuid')->orderBy('id', 'DESC')->limit($limit)->get();
@@ -391,6 +397,7 @@ class ProductsModel extends Model
         foreach ($products as $product) {
             array_push($uuids, $product['uuid']);
         }
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_LONG) : null;
         return $this->getProductBatch($uuids);
     }
 
