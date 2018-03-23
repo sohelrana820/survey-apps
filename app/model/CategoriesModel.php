@@ -171,8 +171,14 @@ class CategoriesModel extends Model
     /**
      * @return array|mixed
      */
-    public function getMostProductsCategories()
+    public function getMostProductsCategories($forceCacheGenerate = false)
     {
+        $cacheKey = 'most_products_categories';
+        $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
+        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+            return $this->getCategoryBatch($uuids);
+        }
+
         $categories = [];
         try {
             $categoryObj = $this->selectRaw('categories.slug, count(products.id) as total_products')
@@ -195,6 +201,7 @@ class CategoriesModel extends Model
             array_push($uuids, $category['slug']);
         }
 
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_LONG) : null;
         return $this->getCategoryBatch($uuids);
     }
 
