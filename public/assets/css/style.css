@@ -996,6 +996,7 @@ a {
     color: #fff;
     padding: 25px 0px 0px 0px;
     width: 100%;
+    font-size: 13px;
 }
 
 .footer-logo {
@@ -1018,6 +1019,10 @@ a {
     font-size: 24px;
     font-weight: 300;
     margin-bottom: 20px;
+}
+
+.footer p{
+    line-height: 23px;
 }
 
 .contact-nav {
