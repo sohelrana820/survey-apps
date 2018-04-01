@@ -201,7 +201,7 @@ class CategoriesModel extends Model
             array_push($uuids, $category['slug']);
         }
 
-        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_1WEEK) : null;
+        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_VERY_LONG) : null;
         return $this->getCategoryBatch($uuids);
     }
 
