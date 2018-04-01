@@ -1,70 +1,80 @@
-(function () {
-    'use strict';
+'use strict';
 
-    // Sweet alert messages
-    function successAlert(message) {
+// Sweet alert messages
+function successAlert(message) {
+    swal({
+        title: "Success!",
+        text: message,
+        icon: "success",
+        button: "Thanks"
+    });
+}
+
+function warningAlert(message) {
+    swal({
+        title: "Oops!",
+        text: message,
+        icon: "warning",
+        button: "Thanks"
+    });
+}
+
+$("#newsletter").submit(function(e) {
+    e.preventDefault();
+    setTimeout(function () {
         swal({
-            title: "Success!",
-            text: message,
+            title: "Congratulations!",
+            text: 'Thanks for your subscription.',
             icon: "success",
             button: "Thanks"
         });
-    }
+    }, 500)
+});
 
-    function warningAlert(message) {
-        swal({
-            title: "Oops!",
-            text: message,
-            icon: "warning",
-            button: "Thanks"
-        });
-    }
-
-    $(function() {
-        $("#contactUs").submit(function(e) {
-            e.preventDefault();
-            var data = $(this).serializeFormJSON();
-            if(data.name && data.email && data.subject && data.purpose && data.message) {
-                $.ajax({
-                    url: '/contact-us',
-                    type: 'post',
-                    dataType: 'json',
-                    data: data,
-                    success: function(response) {
-                        if(response.success) {
-                            successAlert(response.message)
-                        } else {
-                            warningAlert(response.message)
-                        }
-                    },
-                    error: function (err) {
-                        warningAlert('Something went wrong! Please try later')
+$(function() {
+    $("#contactUs").submit(function(e) {
+        e.preventDefault();
+        var data = $(this).serializeFormJSON();
+        if(data.name && data.email && data.subject && data.purpose && data.message) {
+            $.ajax({
+                url: '/contact-us',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                success: function(response) {
+                    if(response.success) {
+                        successAlert(response.message)
+                    } else {
+                        warningAlert(response.message)
                     }
-                });
-            } else {
-                warningAlert('All field is required')
-            }
-        });
-        $.fn.serializeFormJSON = function () {
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function () {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
+                },
+                error: function (err) {
+                    warningAlert('Something went wrong! Please try later')
                 }
             });
-            return o;
-        };
+        } else {
+            warningAlert('All field is required')
+        }
     });
-
-    var bodyHeight = $('body').height();
-    var docHeight = $(window).height();
-    if(bodyHeight < docHeight) {
-        $('.footer').addClass('abs-footer');
-    }
+    $.fn.serializeFormJSON = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
 });
+
+var bodyHeight = $('body').height();
+var docHeight = $(window).height();
+if(bodyHeight < docHeight) {
+    $('.footer').addClass('abs-footer');
+}

@@ -250,20 +250,6 @@
 <script src="/assets/js/app.js"></script>
 <!-- Custom javascript -->
 
-<script>
-    $("#newsletter").submit(function(e) {
-        e.preventDefault();
-        setTimeout(function () {
-            swal({
-                title: "Congratulations!",
-                text: 'Thanks for your subscription.',
-                icon: "success",
-                button: "Thanks"
-            });
-        }, 500)
-    });
-</script>
-
 <!--- Added Live Chat -->
 {#<script>var onboardify = {obOrg:"Theme Vessel",obEmail:"anonymous"};function OBgetCookie(a){a+="=";for(var c=document.cookie.split(";"),b=0;b<c.length;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1);if(-1!=d.indexOf(a))return d.substring(a.length,d.length)}return""}function OBloadScript(a,c){var b=document.createElement("SCRIPT");b.src=a;b.onload=c;document.body.appendChild(b)}
     function OBcookieObj(){var a={},c=OBgetCookie("obEmail");void 0!=c&&null!=c&&(a.obEmail=c,a.obOrg=OBgetCookie("obOrg"),a.obAccount=OBgetCookie("obAccount"),a.obTimestamp=OBgetCookie("obTimeStamp"),a.obAuthCode=OBgetCookie("obAuthCode"),a.obFname=OBgetCookie("obFname"),a.obLname=OBgetCookie("obLname"),a.obIsCampaign=OBgetCookie("obIsCampaign"));return a}
