@@ -58,3 +58,9 @@ $(function() {
         return o;
     };
 });
+
+var bodyHeight = $('body').height();
+var docHeight = $(window).height();
+if(bodyHeight < docHeight) {
+    $('.footer').addClass('abs-footer');
+}

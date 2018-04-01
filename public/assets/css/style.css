@@ -999,6 +999,11 @@ a {
     font-size: 13px;
 }
 
+.abs-footer{
+    position: absolute;
+    bottom: 0;
+}
+
 .footer-logo {
     font-size: 25px;
     margin-bottom: 25px;
