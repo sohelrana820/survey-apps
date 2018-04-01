@@ -67,6 +67,18 @@ class HomeController extends AppController
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Interop\Container\Exception\ContainerException
      */
+    public function termsAndConditions(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'general/terms-and-conditions.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
     public function contact(Request $request, Response $response, $args)
     {
         $data = [

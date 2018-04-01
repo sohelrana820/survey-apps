@@ -4,6 +4,7 @@
 $app->get('/', \App\Controller\HomeController::class . ':home');
 $app->get('/faqs', \App\Controller\HomeController::class . ':faqs');
 $app->get('/privacy-policy', \App\Controller\HomeController::class . ':privacy');
+$app->get('/terms-and-conditions', \App\Controller\HomeController::class . ':termsAndConditions');
 $app->get('/contact-us', \App\Controller\HomeController::class . ':contact');
 $app->post('/contact-us', \App\Controller\HomeController::class . ':contactUs');
 $app->get('/download', \App\Controller\HomeController::class . ':download');
