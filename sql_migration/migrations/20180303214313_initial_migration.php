@@ -75,9 +75,9 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
             ->addColumn('status', 'boolean', ['default' => 1, 'comment' => 'status: 0 = Inactive, 1 = Active'])
-            ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
-            ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['category_id'], 'categories', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
+            ->addIndex('slug', ['unique' => true, 'name' => 'idx_product_slug'])
+            ->addForeignKey(['user_id'], 'users', 'id', ['delete' => 'RESTRICT', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['category_id'], 'categories', 'id', ['delete' => 'RESTRICT', 'update' => 'NO_ACTION'])
             ->create();
 
         $orderTable = $this->table('orders')
@@ -92,7 +92,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addIndex('user_id', ['name' => 'iux_invoice_user_id'])
-            ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['user_id'], 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
 
         $invoiceTable = $this->table('invoices')
@@ -117,8 +117,8 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->addIndex('order_id', ['name' => 'iux_invoice_order_id'])
             ->addIndex('user_id', ['name' => 'iux_invoice_user_id'])
-            ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['order_id'], 'orders', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['user_id'], 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['order_id'], 'orders', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
 
         $invoiceProductsTable = $this->table('invoices_products')
@@ -135,8 +135,8 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->addIndex('invoice_id', ['name' => 'iux_products_invoice_id'])
             ->addIndex('product_id', ['name' => 'iux_products_product_id'])
-            ->addForeignKey(['invoice_id'], 'invoices', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['product_id'], 'products', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['invoice_id'], 'invoices', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['product_id'], 'products', 'id', ['delete' => 'RESTRICT', 'update' => 'NO_ACTION'])
             ->create();
 
         $downloadLinksTable = $this->table('download_links')
@@ -151,8 +151,8 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->addIndex('invoices_products_id', ['name' => 'iux_download_invoices_products_id'])
             ->addIndex('product_id', ['name' => 'iux_download_products_id'])
-            ->addForeignKey(['invoices_products_id'], 'invoices_products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
-            ->addForeignKey(['product_id'], 'products', 'id', ['delete'=> 'CASCADE', 'update'=> 'NO_ACTION'])
+            ->addForeignKey(['invoices_products_id'], 'invoices_products', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['product_id'], 'products', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
     }
 }
