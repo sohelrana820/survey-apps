@@ -451,8 +451,8 @@ class ProductsModel extends Model
             foreach ($productsObj as $product) {
                 $list[$product->slug] = $product->uuid;
             }
-
-            $this->logger ? $this->logger->info('Product UUID & Slug List Returned from Cache') : null;
+            $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_1WEEK) : null;
+            $this->logger ? $this->logger->info('Product UUID & Slug List Returned from DB') : null;
             return $list;
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
