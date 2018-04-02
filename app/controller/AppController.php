@@ -70,6 +70,15 @@ class AppController
     }
 
     /**
+     * @return mixed
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function getSettings()
+    {
+        return $this->container->get('settings');
+    }
+
+    /**
      * @return mixed|Twig
      * @throws \Interop\Container\Exception\ContainerException
      */
