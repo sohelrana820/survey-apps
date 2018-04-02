@@ -34,7 +34,6 @@
     "ramsey/uuid": "^2.9",
     "mailgun/mailgun-php": "^2.4",
     "php-http/curl-client": "^1.7",
-    "guzzlehttp/psr7": "^1.4",
     "previewtechs/website-utilities": "dev-master",
     "previewtechs/php-utilities": "^1.0"
   },
