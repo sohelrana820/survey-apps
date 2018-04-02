@@ -181,6 +181,17 @@ class ProductsModel extends Model
     }
 
     /**
+     * @param $slug
+     * @param bool $forceCacheGenerate
+     * @return array|null|string
+     */
+    public function getProductBySlug($slug, $forceCacheGenerate = false)
+    {
+        $uuid = $this->getProductUuidBySlug($slug, $forceCacheGenerate);
+        return $this->getProduct($uuid, $forceCacheGenerate);
+    }
+
+    /**
      * @param $productUuid
      * @param $field
      * @return bool
@@ -413,7 +424,7 @@ class ProductsModel extends Model
      * @param bool $forceCacheGenerate
      * @return bool|mixed
      */
-    public function getProductUuidBySlug($slug, $forceCacheGenerate = false)
+    protected function getProductUuidBySlug($slug, $forceCacheGenerate = false)
     {
         $list = $this->getActiveProductLists($forceCacheGenerate);
         if (array_key_exists($slug, $list) && $list[$slug]) {
