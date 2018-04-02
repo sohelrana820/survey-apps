@@ -90,7 +90,11 @@ class DownloadLinksModel extends Model
                     'expired_at' => date('Y-m-d H:i:s', strtotime("+20 minutes", strtotime(date('Y-m-d H:i:s'))))
                 ];
                 $created = $this->create($data);
-                $result[] = $created->toArray();
+                if($created) {
+                    $downloadData = $created->toArray();
+                    $downloadData['download_name'] = $product['name'];
+                    $result[] = $downloadData;
+                }
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
