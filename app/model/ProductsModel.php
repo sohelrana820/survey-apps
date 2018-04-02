@@ -365,7 +365,7 @@ class ProductsModel extends Model
     {
         $cacheKey = 'most_popular_products';
         $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
-        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+        if (is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
             return $this->getProductBatch($uuids);
         }
 
@@ -396,7 +396,7 @@ class ProductsModel extends Model
     {
         $cacheKey = 'most_recent_products';
         $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
-        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+        if (is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
             return $this->getProductBatch($uuids);
         }
 

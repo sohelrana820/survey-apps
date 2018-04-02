@@ -175,7 +175,7 @@ class CategoriesModel extends Model
     {
         $cacheKey = 'most_products_categories';
         $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
-        if(is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
+        if (is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
             return $this->getCategoryBatch($uuids);
         }
 

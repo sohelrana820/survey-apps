@@ -230,8 +230,10 @@ if ($container['config']['database_require']) {
     $events = new Dispatcher(new Illuminate\Container\Container());
     $events->listen('Illuminate\Database\Events\QueryExecuted', function ($query) use ($container) {
         $logger = $container->get('logger');
-        $logger->info(sprintf("[mysql_query] %s executed in %f seconds", $query->sql, $query->time),
-            ['pdo_bindings' => $query->bindings]);
+        $logger->info(
+            sprintf("[mysql_query] %s executed in %f seconds", $query->sql, $query->time),
+            ['pdo_bindings' => $query->bindings]
+        );
     });
     $capsule->setEventDispatcher($events);
     $capsule->setAsGlobal();
