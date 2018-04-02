@@ -32,14 +32,9 @@ class DefaultController extends AppController
     {
         $rulesOne = new RobotsDotTxtRules('*');
         $rulesOne->allow('/')
-            ->allow('/jobs/*')
             ->allow('/pages/*')
             ->allow('/sitemap.xml')
-            ->allow('/robots.txt')
-            ->allow('/archive')
-            ->disallow('/admin/*')
-            ->disallow('/logout')
-            ->disallow('/auth');
+            ->allow('/robots.txt');
 
         $robotGenerator = new RobotsDotTxtGenerator();
         $robotGenerator->setNewLine("\n");
@@ -66,13 +61,27 @@ class DefaultController extends AppController
                 'priority' => 1,
                 'lastmod' => date('Y-m-d')
             ],
+            $this->getSettings()['site_url'] . '/pages/faq' => [
+                'changefreq' => 'weekly',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
+            $this->getSettings()['site_url'] . '/pages/privacy-policy' => [
+                'changefreq' => 'weekly',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
+            $this->getSettings()['site_url'] . '/pages/terms-and-conditions' => [
+                'changefreq' => 'weekly',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
         ];
 
-        /*try {
-            $jobsModel = new JobsModel();
-            $jobs = $jobsModel->getActiveJobs();
-            foreach ($jobs as $job) {
-                $urls[$this->getSettings()['site_url'] . '/jobs/' . $job['slug']] = [
+        try {
+            $products = $this->loadModel()->getProductModel()->getActiveProductLists();
+            foreach ($products as $key => $product) {
+                $urls[$this->getSettings()['site_url'] . '/products/' . $key] = [
                     'changefreq' => 'weekly',
                     'priority' => 1,
                     'lastmod' => date('Y-m-d')
@@ -80,7 +89,7 @@ class DefaultController extends AppController
             }
         } catch (\Exception $exception) {
             $this->getLogger()->info('Failed to Fetch Job List');
-        }*/
+        }
 
         $gen = new SitemapGenerator();
         $gen->loadUrls($urls);
