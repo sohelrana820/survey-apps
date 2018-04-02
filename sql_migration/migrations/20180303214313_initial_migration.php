@@ -125,6 +125,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('uuid', 'string')
             ->addColumn('invoice_id', 'integer')
             ->addColumn('product_id', 'integer')
+            ->addColumn('license_id', 'string')
             ->addColumn('name', 'string')
             ->addColumn('file_path', 'string')
             ->addColumn('unit_price', 'float', ['default' => 0.00])
