@@ -2,6 +2,8 @@
 
 // Home page
 $app->get('/', \App\Controller\HomeController::class . ':home');
+$app->get('/robots.txt', \App\Controller\HomeController::class . ':robotsTXT');
+$app->get('/sitemap.xml', \App\Controller\HomeController::class . ':sitemapXML');
 $app->get('/faqs', \App\Controller\HomeController::class . ':faqs');
 $app->get('/privacy-policy', \App\Controller\HomeController::class . ':privacy');
 $app->get('/terms-and-conditions', \App\Controller\HomeController::class . ':termsAndConditions');
