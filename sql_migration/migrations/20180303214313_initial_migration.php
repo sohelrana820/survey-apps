@@ -74,6 +74,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addColumn('is_featured', 'boolean', ['default' => 0])
+            ->addColumn('status', 'boolean', ['default' => 1, 'comment' => 'status: 0 = Inactive, 1 = Active'])
             ->addIndex('slug', ['unique' =>  true, 'name' => 'idx_product_slug'])
             ->addForeignKey(['user_id'], 'users', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
             ->addForeignKey(['category_id'], 'categories', 'id', ['delete'=> 'RESTRICT', 'update'=> 'NO_ACTION'])
