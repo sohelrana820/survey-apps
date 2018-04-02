@@ -6,27 +6,28 @@ ONE REGULAR LICENSE
 as defined in our standard terms and conditions on Theme Vessel Shop.
 
 Licensor's Author Username:
-{{ buyer }}
+{{ data.first_name }} {{ data.last_name }} ({{ data.email }})
 
 Licensee:
 Theme Vessel
 
 Product Title:
-{{ ProductName }}
+{{ data.title }}
 
 Product URL:
-{{ ProductLnk }}
+{{ config.site_url }}/products/{{ data.slug }}
 
 Product ID:
-5028881
+{{ data.product_id }}
 
-Product Purchase Code:
-67444c16-5cd6-4ad1-8dfd-b1747d32beb1
+License ID:
+{{ data.license_id }}
 
 Purchase Date:
+{{ data.purchase_date }}
 2013-07-09 17:49:06 UTC
 
-For any queries related to this document or license please contact Support Team via {{ supportUrl }}
+For any queries related to this document or license please contact us {{ config.site_url }}/pages/contact-us
 
 Theme Vessel
 196 Green Road, Dhanmondi, Dhaka - 1205, Bangladesh
