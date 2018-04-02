@@ -3,13 +3,17 @@
 // Home page
 $app->get('/', \App\Controller\HomeController::class . ':home');
 $app->get('/robots.txt', \App\Controller\HomeController::class . ':robotsTXT');
-$app->get('/sitemap.xml', \App\Controller\HomeController::class . ':sitemapXML');
-$app->get('/faqs', \App\Controller\HomeController::class . ':faqs');
-$app->get('/privacy-policy', \App\Controller\HomeController::class . ':privacy');
-$app->get('/terms-and-conditions', \App\Controller\HomeController::class . ':termsAndConditions');
-$app->get('/contact-us', \App\Controller\HomeController::class . ':contact');
-$app->post('/contact-us', \App\Controller\HomeController::class . ':contactUs');
-$app->get('/download', \App\Controller\HomeController::class . ':download');
+$app->get('/sitemap', \App\Controller\HomeController::class . ':sitemapXML');
+
+// Routes of pages
+$app->group('/pages', function () use ($app) {
+    $app->get('/faqs', \App\Controller\HomeController::class . ':faqs');
+    $app->get('/privacy-policy', \App\Controller\HomeController::class . ':privacy');
+    $app->get('/terms-and-conditions', \App\Controller\HomeController::class . ':termsAndConditions');
+    $app->get('/contact-us', \App\Controller\HomeController::class . ':contact');
+    $app->post('/contact-us', \App\Controller\HomeController::class . ':contactUs');
+    $app->get('/download', \App\Controller\HomeController::class . ':download');
+});
 
 // Routes of error
 $app->group('/error', function () use ($app) {

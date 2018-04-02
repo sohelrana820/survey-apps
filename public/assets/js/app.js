@@ -37,7 +37,7 @@ $(function() {
         var data = $(this).serializeFormJSON();
         if(data.name && data.email && data.subject && data.purpose && data.message) {
             $.ajax({
-                url: '/contact-us',
+                url: '/pages/contact-us',
                 type: 'post',
                 dataType: 'json',
                 data: data,
