@@ -6,7 +6,7 @@ use App\Controller\ProductsController;
 
 // Default pages
 $app->get('/', DefaultController::class . ':home');
-$app->get('/robots.txt', DefaultController::class . ':robotsTXT');
+$app->get('/robots', DefaultController::class . ':robotsTXT');
 $app->get('/sitemap', DefaultController::class . ':sitemapXML');
 
 // Routes of pages
