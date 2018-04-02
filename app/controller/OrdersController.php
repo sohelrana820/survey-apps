@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\helpers\Utility;
+use Cake\Utility\Text;
 use GuzzleHttp\Client;
 use Rhumsaa\Uuid\Uuid;
 use Slim\Http\Request;
@@ -219,6 +220,7 @@ class OrdersController extends AppController
             'products' => [
                 'uuid' => Uuid::uuid4()->toString(),
                 'product_id' => $productDetails['id'],
+                'license_id' => Text::uuid(),
                 'name' => $productDetails['title'],
                 'file_path' => $this->config['download_path'] .'/' .$productDetails['uuid'],
                 'unit_price' => $productDetails['price'],
