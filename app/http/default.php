@@ -8,6 +8,7 @@ use App\Controller\ProductsController;
 $app->get('/', DefaultController::class . ':home');
 $app->get('/robots', DefaultController::class . ':robotsTXT');
 $app->get('/sitemap', DefaultController::class . ':sitemapXML');
+$app->get('/download', DefaultController::class . ':download');
 
 // Routes of pages
 $app->group('/pages', function () use ($app) {
@@ -16,7 +17,6 @@ $app->group('/pages', function () use ($app) {
     $app->get('/terms-and-conditions', DefaultController::class . ':termsAndConditions');
     $app->get('/contact-us', DefaultController::class . ':contact');
     $app->post('/contact-us', DefaultController::class . ':contactUs');
-    $app->get('/download', DefaultController::class . ':download');
 });
 
 // Routes of error
