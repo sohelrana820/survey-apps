@@ -9,11 +9,11 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 /**
- * Class HomeController
+ * Class DefaultController
  *
  * @package App\Controller
  */
-class HomeController extends AppController
+class DefaultController extends AppController
 {
     /**
      * @throws \Interop\Container\Exception\ContainerException
@@ -86,6 +86,7 @@ class HomeController extends AppController
         $gen->loadUrls($urls);
         return $gen->respondAsXML($response);
     }
+
     /**
      * @param Request  $request
      * @param Response $response

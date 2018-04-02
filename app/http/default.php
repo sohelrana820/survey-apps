@@ -1,25 +1,25 @@
 <?php
 
-// Home page
-$app->get('/', \App\Controller\HomeController::class . ':home');
-$app->get('/robots.txt', \App\Controller\HomeController::class . ':robotsTXT');
-$app->get('/sitemap', \App\Controller\HomeController::class . ':sitemapXML');
+// Default pages
+$app->get('/', \App\Controller\DefaultController::class . ':home');
+$app->get('/robots.txt', \App\Controller\DefaultController::class . ':robotsTXT');
+$app->get('/sitemap', \App\Controller\DefaultController::class . ':sitemapXML');
 
 // Routes of pages
 $app->group('/pages', function () use ($app) {
-    $app->get('/faqs', \App\Controller\HomeController::class . ':faqs');
-    $app->get('/privacy-policy', \App\Controller\HomeController::class . ':privacy');
-    $app->get('/terms-and-conditions', \App\Controller\HomeController::class . ':termsAndConditions');
-    $app->get('/contact-us', \App\Controller\HomeController::class . ':contact');
-    $app->post('/contact-us', \App\Controller\HomeController::class . ':contactUs');
-    $app->get('/download', \App\Controller\HomeController::class . ':download');
+    $app->get('/faqs', \App\Controller\DefaultController::class . ':faqs');
+    $app->get('/privacy-policy', \App\Controller\DefaultController::class . ':privacy');
+    $app->get('/terms-and-conditions', \App\Controller\DefaultController::class . ':termsAndConditions');
+    $app->get('/contact-us', \App\Controller\DefaultController::class . ':contact');
+    $app->post('/contact-us', \App\Controller\DefaultController::class . ':contactUs');
+    $app->get('/download', \App\Controller\DefaultController::class . ':download');
 });
 
 // Routes of error
 $app->group('/error', function () use ($app) {
-    $app->get('/404', \App\Controller\HomeController::class . ':notFoundPage');
-    $app->get('/500', \App\Controller\HomeController::class . ':serverErrorPage');
-    $app->get('/403', \App\Controller\HomeController::class . ':forbiddenPage');
+    $app->get('/404', \App\Controller\DefaultController::class . ':notFoundPage');
+    $app->get('/500', \App\Controller\DefaultController::class . ':serverErrorPage');
+    $app->get('/403', \App\Controller\DefaultController::class . ':forbiddenPage');
 });
 
 // Routes of products
