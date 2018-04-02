@@ -1,6 +1,7 @@
 <?php
 return [
     'app' => [
+        'site_url' => 'http://localhost:8081',
         'determineRouteBeforeAppMiddleware' => true,
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
