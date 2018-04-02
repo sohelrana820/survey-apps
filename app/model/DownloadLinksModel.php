@@ -112,9 +112,19 @@ class DownloadLinksModel extends Model
     {
         try {
             $details = $this->where('download_links.token', $token)
-                ->select('download_links.*', 'products.slug', 'products.download_path')
+                ->select('download_links.*', 'products.title', 'products.slug', 'products.download_path',
+                    'invoices_products.license_id', 'invoices_products.created_at as purchase_date', 'users.email', 'users.first_name', 'users.last_name')
                 ->join('products', function ($products) {
                     $products->on('download_links.product_id', '=', 'products.id');
+                })
+                ->join('invoices_products', function ($products) {
+                    $products->on('download_links.product_id', '=', 'invoices_products.product_id');
+                })
+                ->join('invoices', function ($products) {
+                    $products->on('invoices_products.invoice_id', '=', 'invoices.id');
+                })
+                ->join('users', function ($products) {
+                    $products->on('invoices.user_id', '=', 'users.id');
                 })
                 ->first();
             if ($details) {
