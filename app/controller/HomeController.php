@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use Previewtechs\WebsiteUtilities\RobotsDotTxtGenerator\RobotsDotTxtGenerator;
+use Previewtechs\WebsiteUtilities\RobotsDotTxtGenerator\RobotsDotTxtRules;
+use Previewtechs\WebsiteUtilities\SitemapGenerator\SitemapGenerator;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
@@ -20,6 +23,69 @@ class HomeController extends AppController
         parent::beforeRender();
     }
 
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     */
+    public function robotsTXT(Request $request, Response $response)
+    {
+        $rulesOne = new RobotsDotTxtRules('*');
+        $rulesOne->allow('/')
+            ->allow('/jobs/*')
+            ->allow('/pages/*')
+            ->allow('/sitemap.xml')
+            ->allow('/robots.txt')
+            ->allow('/archive')
+            ->disallow('/admin/*')
+            ->disallow('/logout')
+            ->disallow('/auth');
+
+        $robotGenerator = new RobotsDotTxtGenerator();
+        $robotGenerator->setNewLine("\n");
+        $robotGenerator->addRules($rulesOne);
+        return $robotGenerator->respondAsTextFile($response);
+    }
+
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @return mixed
+     * @throws \Interop\Container\Exception\ContainerException
+     */
+    public function sitemapXML(Request $request, Response $response)
+    {
+        $urls = [
+            $this->getSettings()['site_url'] => [
+                'changefreq' => 'daily',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
+            $this->getSettings()['site_url'] . '/pages/contact-us' => [
+                'changefreq' => 'weekly',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
+        ];
+
+        /*try {
+            $jobsModel = new JobsModel();
+            $jobs = $jobsModel->getActiveJobs();
+            foreach ($jobs as $job) {
+                $urls[$this->getSettings()['site_url'] . '/jobs/' . $job['slug']] = [
+                    'changefreq' => 'weekly',
+                    'priority' => 1,
+                    'lastmod' => date('Y-m-d')
+                ];
+            }
+        } catch (\Exception $exception) {
+            $this->getLogger()->info('Failed to Fetch Job List');
+        }*/
+
+        $gen = new SitemapGenerator();
+        $gen->loadUrls($urls);
+        return $gen->respondAsXML($response);
+    }
     /**
      * @param Request  $request
      * @param Response $response
