@@ -72,20 +72,19 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="sidebars mb-50">
-                        <h1 class="item-name mb-30">{{ product.title }}</h1>
-                        <div class="item-price-container mb-30 clearfix">
+                        <h1 class="item-name mb-20">{{ product.title }}</h1>
+                        <div class="item-price-container mb-20 clearfix">
                             <div class="div price labels">Price</div>
                             <div class="div item-price">${{ product.price | number_format(2) }}</div>
                         </div>
-                        <div class="item-info mb-30">
+                        <div class="item-info mb-20">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6">
+                                {#<div class="col-md-6 col-sm-6">
                                     <span class="rating-box">
-                                        <span class="rating"
-                                              style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
+                                        <span class="rating"style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
                                     </span>
                                     <span class="rating-number">({{ product.rating | number_format(2) }})</span>
-                                </div>
+                                </div>#}
                                 <div class="col-md-6 col-sm-6">
                                     <div class="div">
                                         <i class="fa fa-cart-arrow-down"></i> Total
