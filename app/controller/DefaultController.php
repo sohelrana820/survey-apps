@@ -255,12 +255,6 @@ class DefaultController extends AppController
         }
 
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
-
-
-        $licenseRender = $this->getView()->fetch('general/license-format.twig', ['data' => $productDetails]);
-        var_dump($productDetails);
-        var_dump($licenseRender);
-        die();
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if (strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
             return $this->getView()->render($response, 'error/download-error.twig');
@@ -275,8 +269,36 @@ class DefaultController extends AppController
         if ($updated) {
             $this->getLogger() ? $this->getLogger()->info('Product Downloaded', ['product_details' => $productDetails]) : null;
         }
-        $fileName = $productDetails['slug'] .'.zip';
-        header('Content-Disposition: attachment; filename=' . $fileName);
-        readfile($productDetails['download_path']);
+
+        // Fetch and create license file
+        $licenseContent = $this->getView()->fetch('general/license-format.twig', ['data' => $productDetails]);
+        $tmpPath = $this->getSettings()['tmp_path'];
+        $fp = fopen($tmpPath . "/LICENSE.txt","wb");
+        fwrite($fp,$licenseContent);
+        fclose($fp);
+
+
+        $downloadDocumentPath = $tmpPath . '/' . $productDetails['slug']. '.zip';
+        $downloadDocumentName = $productDetails['slug']. '.zip';
+
+        $zip = new \ZipArchive();
+        if ($zip->open($downloadDocumentPath, \ZipArchive::CREATE) !== TRUE) {
+            exit("cannot open <$downloadDocumentPath>\n");
+        }
+        $zip->addFile($productDetails['download_path'], 'template.zip');
+        $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
+        $zip->close();
+
+        // Download the created zip file
+        header("Content-type: application/zip");
+        header("Content-Disposition: attachment; filename = $downloadDocumentName");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        readfile("$downloadDocumentPath");
+
+        // Remove some files
+        unlink($downloadDocumentPath);
+        unlink($tmpPath . "/LICENSE.txt");
+        exit;
     }
 }
