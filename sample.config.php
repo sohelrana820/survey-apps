@@ -20,6 +20,7 @@ return [
         ],
         'attachment_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'public/attachments',
         'download_path' => ROOT_DIR . DIRECTORY_SEPARATOR . 'templates/download_items',
+        'tmp_path' => ROOT_DIR . DIRECTORY_SEPARATOR . "tmp",
         // Monolog settings
         'logger' => [
             'name' => 'logger_name',
