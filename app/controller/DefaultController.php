@@ -257,7 +257,9 @@ class DefaultController extends AppController
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if (strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
-            return $this->getView()->render($response, 'error/download-error.twig');
+            //return $this->getView()->render($response, 'error/download-error.twig');
+        } else {
+            $this->getView()->render($response, 'general/download-success.twig');
         }
 
         // Update download link fields.
@@ -299,6 +301,6 @@ class DefaultController extends AppController
         // Remove some files
         unlink($downloadDocumentPath);
         unlink($tmpPath . "/LICENSE.txt");
-        exit;
+       // exit();
     }
 }
