@@ -111,7 +111,13 @@ class OrdersController extends AppController
         return $response->withStatus(200)->withJson($return);
     }
 
-
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $args
+     * @return static
+     * @throws \Interop\Container\Exception\ContainerException
+     */
     public function sendLinks(Request $request, Response $response, $args)
     {
         // Check expected data is exist or not
