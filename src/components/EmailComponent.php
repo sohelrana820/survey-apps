@@ -63,16 +63,28 @@ class EmailComponent extends ComponentLoad
      * @param $to
      * @param $subject
      * @param $message
+     * @return bool
      */
     public function send($to, $subject, $message)
     {
-        $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
-            'from'    => $this->fromEmail,
-            /*'h:Reply-To'    => $this->fromEmail,*/
-            'to'      => $to,
-            'subject' => $subject,
-            'html'    => $message
-        ]);
+        try {
+            $this->mailgun->messages()->send($this->config['mailgun']['domain'], [
+                'from'    => $this->fromEmail,
+                /*'h:Reply-To'    => $this->fromEmail,*/
+                'to'      => $to,
+                'subject' => $subject,
+                'html'    => $message
+            ]);
+            $this->logger ? $this->logger->info('Email Send Successful', ['recipient' => $to, 'subject' => $subject]) : null;
+            return true;
+
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+            $this->logger ? $this->logger->error('Email Send Error', ['recipient' => $to, 'subject' => $subject]) : null;
+        }
+
+        return false;
     }
 
     /**
