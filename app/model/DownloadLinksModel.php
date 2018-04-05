@@ -97,10 +97,14 @@ class DownloadLinksModel extends Model
                 }
             }
         } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error('Could\'nt Stored Download Links', ['invoice_products' => $invoiceProducts]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
 
+        if(count($result) > 0) {
+            $this->logger ? $this->logger->info('Stored Download Links', ['invoice_products' => $invoiceProducts]) : null;
+        }
         return $result;
     }
 
