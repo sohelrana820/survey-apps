@@ -158,11 +158,12 @@ class UsersModel extends Model
             if ($created) {
                 $created = $created->toArray();
                 $user = $this->getDetails($created['uuid']);
-                $this->logger ? $this->logger->error('New User Created', ['user_details' => $user]) : null;
+                $this->logger ? $this->logger->info('New User Created', ['user_details' => $user]) : null;
                 unset($created, $data);
                 return $user;
             }
         } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error('Failed to Create User', ['data' => $data]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
