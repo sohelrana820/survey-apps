@@ -288,7 +288,7 @@ class DefaultController extends AppController
         $zip->addFile($productDetails['download_path'], 'template.zip');
         $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
         $zip->close();
-        $this->getLogger() ? $this->getLogger()->error('Prepared Download Products', ['token' => $token, 'product_details' => $productDetails]) : null;
+        $this->getLogger() ? $this->getLogger()->info('Prepared Download Products', ['token' => $token, 'product_details' => $productDetails]) : null;
 
         // Update download link fields.
         $data = [
