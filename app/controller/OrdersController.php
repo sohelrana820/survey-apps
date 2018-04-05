@@ -28,6 +28,7 @@ class OrdersController extends AppController
     {
         $return = ['success' => true];
         $data = $request->getParsedBody();
+        $this->getLogger() ? $this->getLogger()->info('Order Process Started', ['data' => $data]) : null;
 
         /**
          * Create or update user.
@@ -47,12 +48,13 @@ class OrdersController extends AppController
          * Return [false] if user failed to saved or getting user details.
          */
         if (!$user) {
-            $this->getLogger()->info('User Not Created', ['user_details' => $userData]);
-            $this->getLogger()->info('Stooped The Ordering Flow');
+            $this->getLogger() ? $this->getLogger()->error('Failed to Manage Order\'s User', ['user' => $user]) : null;
             $return = ['success' => false];
             /**
              * @TODO need to do something
              */
+        } else {
+            $this->getLogger() ? $this->getLogger()->info('Order\'s User Managed', ['user' => $user]) : null;
         }
 
         /**
@@ -62,12 +64,13 @@ class OrdersController extends AppController
         $orderData = $this->prepareOrderData($data, $user);
         $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
         if (!$order) {
-            $this->getLogger()->info('Order Not Created', ['order_details' => $orderData]);
-            $this->getLogger()->info('Stooped The Ordering Flow');
+            $this->getLogger()->error('Failed to Store Order Data', ['order_details' => $orderData]);
             $return = ['success' => false];
             /**
              * @TODO need to do something
              */
+        } else {
+            $this->getLogger()->info('Store Order Data', ['order_details' => $orderData]);
         }
 
         /**
