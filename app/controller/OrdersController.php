@@ -161,12 +161,21 @@ class OrdersController extends AppController
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($data, $downloadUrl);
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
+
         $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
-        $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
-        $return = [
-            'success' => true,
-            'message' => 'New Download link has been sent to your email address '
-        ];
+        $send = $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
+        if($send) {
+            $return = [
+                'success' => true,
+                'message' => 'New Download link has been sent to your email address '
+            ];
+        } else {
+            $return = [
+                'success' => false,
+                'message' => 'Sorry, Something went wrong Download link Does\'nt Sent. Please try later'
+            ];
+        }
+
         return $response->withJson($return);
     }
 
