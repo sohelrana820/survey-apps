@@ -148,7 +148,8 @@ class OrdersController extends AppController
         $products = $this->loadModel()->getInvoiceModel()->getInvoiceProductsByUserId($user['id']);
         foreach ($products as $product) {
             if ($product['uuid'] == $postData['product_uuid']) {
-                $generateProduct = $product;
+                $generateProduct[] = $product;
+                break;
             }
         }
         if (!$generateProduct) {
@@ -164,11 +165,10 @@ class OrdersController extends AppController
          * Generate download links
          */
         $data = [
-            'product' => $generateProduct,
             'user' => $user,
         ];
         $downloadUrl = Utility::baseURL() . '/download';
-        $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($data, $downloadUrl);
+        $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($generateProduct, $downloadUrl);
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
 
