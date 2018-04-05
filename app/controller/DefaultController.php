@@ -272,10 +272,10 @@ class DefaultController extends AppController
         $fp = fopen($tmpPath . "/LICENSE.txt","wb");
         $written = fwrite($fp,$licenseContent);
         if(!$written) {
-            $this->getLogger() ? $this->getLogger()->error('Generate Licence File Failed', ['token' => $token, 'product_details' => $productDetails]) : null;
+            $this->getLogger() ? $this->getLogger()->error('Failed to Generate Licence File', ['token' => $token, 'product_details' => $productDetails]) : null;
         }
         fclose($fp);
-        $this->getLogger() ? $this->getLogger()->info('Generate Licence File Success', ['token' => $token, 'product_details' => $productDetails]) : null;
+        $this->getLogger() ? $this->getLogger()->info('Licence File Generate', ['token' => $token, 'product_details' => $productDetails]) : null;
 
         $downloadDocumentPath = $tmpPath . '/' . $productDetails['slug']. '.zip';
         $downloadDocumentName = $productDetails['slug']. '.zip';
@@ -288,7 +288,7 @@ class DefaultController extends AppController
         $zip->addFile($productDetails['download_path'], 'template.zip');
         $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
         $zip->close();
-        $this->getLogger() ? $this->getLogger()->error('Product Ready For Download', ['token' => $token, 'product_details' => $productDetails]) : null;
+        $this->getLogger() ? $this->getLogger()->error('Prepared Download Products', ['token' => $token, 'product_details' => $productDetails]) : null;
 
         // Update download link fields.
         $data = [
