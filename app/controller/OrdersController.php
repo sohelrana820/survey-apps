@@ -172,7 +172,7 @@ class OrdersController extends AppController
         if(count($downloadLinks) < 1) {
             $return = [
                 'success' => false,
-                'message' => 'Sorry, something went wrong download link Does\'nt sent. Please try later'
+                'message' => 'Sorry, something went wrong download link does\'nt sent. Please try later'
             ];
             $this->getLogger() ? $this->getLogger()->error('Failed to Generate Download Link') : null;
             return $response->withJson($return);
@@ -187,13 +187,13 @@ class OrdersController extends AppController
         if($send) {
             $return = [
                 'success' => true,
-                'message' => 'New Download link has been sent to your email address '
+                'message' => 'New download link has been sent to your email address '
             ];
             $this->getLogger() ? $this->getLogger()->info('Download Link Sent!', ['content' => $data]) : null;
         } else {
             $return = [
                 'success' => false,
-                'message' => 'Sorry, something went wrong download link Does\'nt sent. Please try later'
+                'message' => 'Sorry, something went wrong download link does\'nt sent. Please try later'
             ];
             $this->getLogger() ? $this->getLogger()->error('Failed To Sent Download Link', ['content' => $data]) : null;
         }
