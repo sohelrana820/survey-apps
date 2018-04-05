@@ -124,6 +124,8 @@ class OrdersController extends AppController
             return $response->withJson($return);
         }
 
+        $this->getLogger() ? $this->getLogger()->info('Sent Download Link Process Started') : null;
+
         // Check user is exist or not
         $user = $this->loadModel()->getUserModel()->getUserByEmail($postData['email']);
         if (!$user) {
@@ -131,6 +133,7 @@ class OrdersController extends AppController
                 'success' => false,
                 'message' => 'Sorry, we couldn\'t fetch this email address'
             ];
+            $this->getLogger() ? $this->getLogger()->warning('Purchases Email Could\'nt Fetched', ['email_address' => $postData['email']]) : null;
             return $response->withJson($return);
         }
 
@@ -147,6 +150,7 @@ class OrdersController extends AppController
                 'success' => false,
                 'message' => 'Sorry, you didn\'t purchases this product'
             ];
+            $this->getLogger() ? $this->getLogger()->warning('Product Didn\'t Purchases By Email', ['email_address' => $postData['email']]) : null;
             return $response->withJson($return);
         }
 
@@ -162,6 +166,7 @@ class OrdersController extends AppController
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
 
+        $this->getLogger() ? $this->getLogger()->info('Content Ready For Send Link', ['content' => $data]) : null;
         $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
         $send = $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
         if($send) {
@@ -169,13 +174,16 @@ class OrdersController extends AppController
                 'success' => true,
                 'message' => 'New Download link has been sent to your email address '
             ];
+            $this->getLogger() ? $this->getLogger()->info('Download Link Sent!', ['content' => $data]) : null;
         } else {
             $return = [
                 'success' => false,
                 'message' => 'Sorry, Something went wrong Download link Does\'nt Sent. Please try later'
             ];
+            $this->getLogger() ? $this->getLogger()->error('Failed To Sent Download Link', ['content' => $data]) : null;
         }
 
+        $this->getLogger() ? $this->getLogger()->info('Sent Download Link Process Ended Successfully!') : null;
         return $response->withJson($return);
     }
 
