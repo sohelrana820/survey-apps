@@ -70,7 +70,7 @@ class OrdersController extends AppController
              * @TODO need to do something
              */
         } else {
-            $this->getLogger()->info('Store Order Data', ['order_details' => $orderData]);
+            $this->getLogger()->info('Stored Order Data', ['order_details' => $orderData]);
         }
 
         /**
@@ -80,24 +80,31 @@ class OrdersController extends AppController
         $invoiceData = $this->prepareInvoiceData($data, $user, $order);
         $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
         if (!$invoice) {
-            $this->getLogger()->info('Invoice Not Created', ['invoice_details' => $invoiceData]);
-            $this->getLogger()->info('Stooped The Ordering Flow');
+            $this->getLogger()->error('Failed to Store Order Data', ['invoice_details' => $invoiceData]);
             $return = ['success' => false];
             /**
              * @TODO need to do something
              */
+        } else {
+            $this->getLogger()->info('Stored Order Data', ['invoice_details' => $invoiceData]);
         }
 
         /**
          * Increment product sales
          */
-        $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_uuid'], 'sales');
+        $updated = $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_uuid'], 'sales');
+        if($updated) {
+            $this->getLogger()->info('Product Sales Updated');
+        }
 
         /**
          * Generate download links
          */
         $downloadUrl = Utility::baseURL() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
+        if(count($downloadLinks) < 1) {
+            $this->getLogger() ? $this->getLogger()->error('Failed to Generate Download Link') : null;
+        }
 
         /**
          * Send email to buyer
