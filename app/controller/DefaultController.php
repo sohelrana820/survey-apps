@@ -250,17 +250,45 @@ class DefaultController extends AppController
     public function download(Request $request, Response $response, $args)
     {
         $token = $request->getParam('token');
+        $this->getLogger() ? $this->getLogger()->info('Someone Trying to Download Product', ['token' => $token]) : null;
         if (!$token) {
+            $this->getLogger() ? $this->getLogger()->warning('Trying Download Without Token', ['token' => $token]) : null;
             return $response->withRedirect('/error/404');
         }
 
         $productDetails = $this->loadModel()->getDownloadLinkModel()->getDetailsByToken($token);
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if (strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
-            //return $this->getView()->render($response, 'error/download-error.twig');
+            $this->getLogger() ? $this->getLogger()->warning('Invalid or Expired Download Link', ['token' => $token, 'product_details' => $productDetails]) : null;
+            return $this->getView()->render($response, 'error/download-error.twig');
         } else {
             $this->getView()->render($response, 'general/download-success.twig');
         }
+        $this->getLogger() ? $this->getLogger()->info('Download Link Verified', ['token' => $token, 'product_details' => $productDetails]) : null;
+
+        // Fetch and create license file
+        $licenseContent = $this->getView()->fetch('general/license-format.twig', ['data' => $productDetails]);
+        $tmpPath = $this->getSettings()['tmp_path'];
+        $fp = fopen($tmpPath . "/LICENSE.txt","wb");
+        $written = fwrite($fp,$licenseContent);
+        if(!$written) {
+            $this->getLogger() ? $this->getLogger()->error('Generate Licence File Failed', ['token' => $token, 'product_details' => $productDetails]) : null;
+        }
+        fclose($fp);
+        $this->getLogger() ? $this->getLogger()->info('Generate Licence File Success', ['token' => $token, 'product_details' => $productDetails]) : null;
+
+        $downloadDocumentPath = $tmpPath . '/' . $productDetails['slug']. '.zip';
+        $downloadDocumentName = $productDetails['slug']. '.zip';
+
+        $zip = new \ZipArchive();
+        if ($zip->open($downloadDocumentPath, \ZipArchive::CREATE) !== TRUE) {
+            $this->getLogger() ? $this->getLogger()->error('Failed To Prepare Download Product', ['token' => $token, 'product_details' => $productDetails]) : null;
+            exit("cannot open <$downloadDocumentPath>\n");
+        }
+        $zip->addFile($productDetails['download_path'], 'template.zip');
+        $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
+        $zip->close();
+        $this->getLogger() ? $this->getLogger()->error('Product Ready For Download', ['token' => $token, 'product_details' => $productDetails]) : null;
 
         // Update download link fields.
         $data = [
@@ -269,27 +297,8 @@ class DefaultController extends AppController
         ];
         $updated = $this->loadModel()->getDownloadLinkModel()->updateDownloadLinkd($productDetails['id'], $data);
         if ($updated) {
-            $this->getLogger() ? $this->getLogger()->info('Product Downloaded', ['product_details' => $productDetails]) : null;
+            $this->getLogger() ? $this->getLogger()->info('Product Download Completed', ['product_details' => $productDetails]) : null;
         }
-
-        // Fetch and create license file
-        $licenseContent = $this->getView()->fetch('general/license-format.twig', ['data' => $productDetails]);
-        $tmpPath = $this->getSettings()['tmp_path'];
-        $fp = fopen($tmpPath . "/LICENSE.txt","wb");
-        fwrite($fp,$licenseContent);
-        fclose($fp);
-
-
-        $downloadDocumentPath = $tmpPath . '/' . $productDetails['slug']. '.zip';
-        $downloadDocumentName = $productDetails['slug']. '.zip';
-
-        $zip = new \ZipArchive();
-        if ($zip->open($downloadDocumentPath, \ZipArchive::CREATE) !== TRUE) {
-            exit("cannot open <$downloadDocumentPath>\n");
-        }
-        $zip->addFile($productDetails['download_path'], 'template.zip');
-        $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
-        $zip->close();
 
         // Download the created zip file
         header("Content-type: application/zip");
@@ -301,6 +310,6 @@ class DefaultController extends AppController
         // Remove some files
         unlink($downloadDocumentPath);
         unlink($tmpPath . "/LICENSE.txt");
-       // exit();
+        exit();
     }
 }
