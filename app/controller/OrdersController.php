@@ -169,6 +169,15 @@ class OrdersController extends AppController
         ];
         $downloadUrl = Utility::baseURL() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($generateProduct, $downloadUrl);
+        if(count($downloadLinks) < 1) {
+            $return = [
+                'success' => false,
+                'message' => 'Sorry, Something went wrong Download link Does\'nt Sent. Please try later'
+            ];
+            $this->getLogger() ? $this->getLogger()->error('Failed to Generate Download Link') : null;
+            return $response->withJson($return);
+        }
+
         $data['downloadLinks'] = $downloadLinks;
         $invoiceRender = $this->getView()->fetch('email/send-link.twig', ['data' => $data]);
 
