@@ -317,3 +317,13 @@
         })
     </script>
 {% endblock %}
+
+{% block page_title %}
+    {% if product.meta_title is not empty %}
+        {{ product.meta_title }}
+    {% elseif product.title is not empty %}
+        {{ product.title }} - Theme Vessel
+    {% else %}
+        Website Templates & Themes - Theme Vessel
+    {% endif %}
+{% endblock %}

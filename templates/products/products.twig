@@ -76,3 +76,25 @@
         });
     </script>
 {% endblock %}
+
+{% block page_title %}
+    {% if queryParams.title is not empty %}
+        {{ queryParams.title }} Website Template - Theme Vessel
+    {% elseif queryParams.order == 'sales' and queryParams.sort == 'desc' %}
+        Best Selling Website Template - Theme Vessel
+    {% elseif queryParams.order is empty and queryParams.sort == 'desc' %}
+        Latest Website Template - Theme Vessel
+    {% elseif queryParams.order is empty and queryParams.sort == 'asc' %}
+        Oldest Website Template - Theme Vessel
+    {% elseif queryParams.featured == 'true' %}
+        Featured Website Template - Theme Vessel
+    {% elseif queryParams.popular == 'true' %}
+        Popular Website Template - Theme Vessel
+    {% elseif queryParams.order == 'price' and queryParams.sort == 'desc' %}
+        High Price Website Template - Theme Vessel
+    {% elseif queryParams.order == 'price' and queryParams.sort == 'asc' %}
+        Low Price Website Template - Theme Vessel
+    {% else %}
+        Website Templates & Themes - Theme Vessel
+    {% endif %}
+{% endblock %}
