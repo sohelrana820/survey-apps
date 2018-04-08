@@ -27,13 +27,14 @@ class OrdersController extends AppController
     public function order(Request $request, Response $response, $args)
     {
         $return = ['success' => true];
+        $orderSuccess = true;
         $data = $request->getParsedBody();
         $this->getLogger() ? $this->getLogger()->info('Order Process Started', ['data' => $data]) : null;
 
         /**
          * Create or update user.
          */
-        $userData  = [
+        $userData = [
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -49,52 +50,43 @@ class OrdersController extends AppController
          */
         if (!$user) {
             $this->getLogger() ? $this->getLogger()->error('Failed to Manage Order\'s User', ['user' => $user]) : null;
-            $return = ['success' => false];
-            /**
-             * @TODO need to do something
-             */
+            $orderSuccess = false;
         } else {
             $this->getLogger() ? $this->getLogger()->info('Order\'s User Managed', ['user' => $user]) : null;
         }
 
         /**
          * Create new order
-         * If failed to create order [return = false]
+         * If failed to create order [$orderSuccess = false]
          */
         $orderData = $this->prepareOrderData($data, $user);
         $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
         if (!$order) {
-            $this->getLogger()->error('Failed to Store Order Data', ['order_details' => $orderData]);
-            $return = ['success' => false];
-            /**
-             * @TODO need to do something
-             */
+            $this->getLogger() ? $this->getLogger()->error('Failed to Store Order Data', ['order_details' => $orderData]) : null;
+            $orderSuccess = false;
         } else {
-            $this->getLogger()->info('Stored Order Data', ['order_details' => $orderData]);
+            $this->getLogger() ? $this->getLogger()->info('Stored Order Data', ['order_details' => $orderData]) : null;
         }
 
         /**
          * Create new invoice
-         * If failed to create invoice [return = false]
+         * If failed to create invoice [$orderSuccess = false]
          */
         $invoiceData = $this->prepareInvoiceData($data, $user, $order);
         $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
         if (!$invoice) {
-            $this->getLogger()->error('Failed to Store Order Data', ['invoice_details' => $invoiceData]);
-            $return = ['success' => false];
-            /**
-             * @TODO need to do something
-             */
+            $this->getLogger() ? $this->getLogger()->error('Failed to Store Invoice Data', ['invoice_details' => $invoiceData]) : null;
+            $orderSuccess = false;
         } else {
-            $this->getLogger()->info('Stored Order Data', ['invoice_details' => $invoiceData]);
+            $this->getLogger() ? $this->getLogger()->info('Stored Invoice Data', ['invoice_details' => $invoiceData]) : null;
         }
 
         /**
          * Increment product sales
          */
         $updated = $this->loadModel()->getProductModel()->singleFieldIncrement($data['product_uuid'], 'sales');
-        if($updated) {
-            $this->getLogger()->info('Product Sales Updated');
+        if ($updated) {
+            $this->getLogger() ? $this->getLogger()->info('Product Sales Updated') : null;
         }
 
         /**
@@ -102,12 +94,14 @@ class OrdersController extends AppController
          */
         $downloadUrl = Utility::baseURL() . '/download';
         $downloadLinks = $this->loadModel()->getDownloadLinkModel()->generateDownLinks($invoice['products'], $downloadUrl);
-        if(count($downloadLinks) < 1) {
+        if (count($downloadLinks) < 1) {
             $this->getLogger() ? $this->getLogger()->error('Failed to Generate Download Link') : null;
+        } else {
+            $this->getLogger() ? $this->getLogger()->info('Generate Download Link') : null;
         }
 
         /**
-         * Send email to buyer
+         * Send email to buyer with download product link!
          */
         $invoiceDetails = [
             'user' => $user,
@@ -118,6 +112,21 @@ class OrdersController extends AppController
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
         $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
         $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
+        if ($sent) {
+            $this->getLogger() ? $this->getLogger()->info('Send Order Confirmation Email', ['to' => $to]) : null;
+        }
+
+        /**
+         * Send Support admin id the ordr process failed!
+         */
+        if (!$orderSuccess) {
+            $content = $this->getView()->fetch('email/admin-order-failed.twig', ['data' => $data]);
+            $this->loadComponent()->Email()->send($this->config['email']['support_email'], '[Urgent] Order Execution Failed - Theme Vessel', $content);
+            $this->getLogger() ? $this->getLogger()->error('Order Process Ended With Error', ['data' => $invoiceDetails]) : null;
+        } else {
+            $this->getLogger() ? $this->getLogger()->info('Order Process Ended With Success', ['data' => $invoiceDetails]) : null;
+        }
+
         return $response->withStatus(200)->withJson($return);
     }
 
