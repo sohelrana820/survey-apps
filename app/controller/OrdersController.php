@@ -49,10 +49,7 @@ class OrdersController extends AppController
          * Return [false] if user failed to saved or getting user details.
          */
         if (!$user) {
-            $this->getLogger() ? $this->getLogger()->error('Failed to Manage Order\'s User', ['user' => $user]) : null;
             $orderSuccess = false;
-        } else {
-            $this->getLogger() ? $this->getLogger()->info('Order\'s User Managed', ['user' => $user]) : null;
         }
 
         /**
@@ -62,10 +59,7 @@ class OrdersController extends AppController
         $orderData = $this->prepareOrderData($data, $user);
         $order = $this->loadModel()->getOrderModel()->createOrder($orderData);
         if (!$order) {
-            $this->getLogger() ? $this->getLogger()->error('Failed to Store Order Data', ['order_details' => $orderData]) : null;
             $orderSuccess = false;
-        } else {
-            $this->getLogger() ? $this->getLogger()->info('Stored Order Data', ['order_details' => $orderData]) : null;
         }
 
         /**
@@ -75,10 +69,7 @@ class OrdersController extends AppController
         $invoiceData = $this->prepareInvoiceData($data, $user, $order);
         $invoice = $this->loadModel()->getInvoiceModel()->createInvoice($invoiceData);
         if (!$invoice) {
-            $this->getLogger() ? $this->getLogger()->error('Failed to Store Invoice Data', ['invoice_details' => $invoiceData]) : null;
             $orderSuccess = false;
-        } else {
-            $this->getLogger() ? $this->getLogger()->info('Stored Invoice Data', ['invoice_details' => $invoiceData]) : null;
         }
 
         /**
