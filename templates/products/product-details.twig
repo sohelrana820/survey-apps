@@ -327,3 +327,17 @@
         Website Templates & Themes - Theme Vessel
     {% endif %}
 {% endblock %}
+
+
+{% block meta_block %}
+    <meta property="og:type" content="article"/>
+    <meta property="og:title" content="{{ product.meta_title }}"/>
+    <meta property="og:description" content="{{ product.meta_description }}"/>
+    <meta property="og:url" content="{{ viewconfig.app.current_url }}"/>
+    <meta property="og:site_name" content="Theme Vessel"/>
+    <meta property="og:image" content="{{ product.meta_image }}"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="{{ product.meta_description }}"/>
+    <meta name="twitter:title" content="{{ product.meta_title }}"/>
+    <meta name="twitter:image" content="{{ product.meta_image }}"/>
+{% endblock %}
