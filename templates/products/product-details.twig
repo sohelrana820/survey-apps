@@ -133,10 +133,10 @@
                                     <li><a href="https://plus.google.com/share?url={{ config.site_url }}/products/{{product.slug}}"><i
                                                     class="fa fa-google-plus"></i></a></li>
                                     <li>
-                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ config.site_url }}/products/{{product.slug}}&title={{ product.title }}&summary={{ product.description }}"><i
+                                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ config.site_url }}/products/{{product.slug}}&title={{ product.meta_title ? product.meta_title : product.title }}&summary={{ product.meta_description ? product.meta_description : product.title }}"><i
                                                     class="fa fa-linkedin"></i></a></li>
                                     <li>
-                                        <a href="https://pinterest.com/pin/create/button/?url=&media={{ config.site_url }}/products/{{product.slug}}&description={{ product.description }}"><i
+                                        <a href="https://pinterest.com/pin/create/button/?url=&media={{ config.site_url }}/products/{{product.slug}}&description={{ product.meta_description ? product.meta_description : product.title }}"><i
                                                     class="fa fa-pinterest"></i></a></li>
                                 </ul>
                             </div>
