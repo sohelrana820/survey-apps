@@ -155,12 +155,13 @@ class InvoicesModel extends Model
             if ($created) {
                 $created->products()->create($data['products']);
                 $created = $created->toArray();
-                $this->logger ? $this->logger->info('New Invoice Created', ['invoice_details' => $data]) : null;
+                $this->logger ? $this->logger->info('New Invoice Created', ['invoice_details' => $created]) : null;
                 $invoice = $this->getDetails($created['uuid']);
                 unset($created, $data);
                 return $invoice;
             }
         } catch (\Exception $exception) {
+            $this->logger ? $this->logger->info('Couldn\'t Create Invoice ', ['invoice_details' => $data]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
