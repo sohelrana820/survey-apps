@@ -208,7 +208,7 @@ class OrdersController extends AppController
             $this->getLogger() ? $this->getLogger()->error('Failed To Sent Download Link', ['content' => $data]) : null;
         }
 
-        $this->getLogger() ? $this->getLogger()->info('Sent Download Link Process Ended Successfully!') : null;
+        $this->getLogger() ? $this->getLogger()->info('Sent Download Link Process Ended!') : null;
         return $response->withJson($return);
     }
 
