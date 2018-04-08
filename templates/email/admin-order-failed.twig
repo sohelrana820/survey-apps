@@ -1,0 +1,12 @@
+{% extends '/layouts/email.twig' %}
+
+{% block content %}
+    <p>
+        <strong>Dear {Admin,</strong>
+    </p>
+    <p>
+        Someone purchase product but system failed to execute the order. Please review the purchase data and take action ASAP
+    </p>
+    <br/>
+    {{ dump(data) }}
+{% endblock %}
