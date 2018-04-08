@@ -163,7 +163,7 @@ class UsersModel extends Model
                 return $user;
             }
         } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error('Failed to Create User', ['data' => $data]) : null;
+            $this->logger ? $this->logger->error('Coundn\'t Create User', ['data' => $data]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
@@ -184,6 +184,7 @@ class UsersModel extends Model
                 return array_key_exists('uuid', $user) ? $this->getDetails($user['uuid']) : false;
             }
         } catch (\Exception $exception) {
+            $this->logger ? $this->logger->info('Failed to Retrieve User', ['email' => $email]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
