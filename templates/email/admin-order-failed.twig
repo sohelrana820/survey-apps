@@ -2,11 +2,15 @@
 
 {% block content %}
     <p>
-        <strong>Dear {Admin,</strong>
+        <strong>Dear Admin,</strong>
     </p>
     <p>
         Someone purchase product but system failed to execute the order. Please review the purchase data and take action ASAP
     </p>
     <br/>
-    {{ dump(data) }}
+    <ul>
+        {% for key, value in data %}
+            <li>{{ key }}:<strong></strong> {{ value }}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
