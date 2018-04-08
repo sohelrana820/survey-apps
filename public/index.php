@@ -3,7 +3,7 @@
 session_start();
 
 // Set default timezone
-date_default_timezone_set('Asia/Dhaka');
+date_default_timezone_set('UTC');
 
 // Define ROOT directory
 define('ROOT_DIR', dirname(__DIR__));
