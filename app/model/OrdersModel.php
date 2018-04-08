@@ -151,6 +151,7 @@ class OrdersModel extends Model
                 return $order;
             }
         } catch (\Exception $exception) {
+            $this->logger ? $this->logger->info('Couldn\'t Create Order ', ['order_details' => $data]) : null;
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
         }
