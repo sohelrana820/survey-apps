@@ -94,6 +94,8 @@
         High Price Website Template - Theme Vessel
     {% elseif queryParams.order == 'price' and queryParams.sort == 'asc' %}
         Low Price Website Template - Theme Vessel
+    {% elseif queryParams.cat is not empty %}
+        {{ queryParams.cat | slug_to_str }} - Category - Theme Vessel
     {% else %}
         Website Templates & Themes - Theme Vessel
     {% endif %}

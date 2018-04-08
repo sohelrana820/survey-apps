@@ -49,6 +49,13 @@ $container['view'] = function (Container $container) {
         }
     ));
 
+    $slugToStr = (new Twig_SimpleFilter(
+        'slug_to_str',
+        function ($string) {
+            return ucwords(str_replace('-', ' ', $string));
+        }
+    ));
+
     $buildSortingLinkFilter = (new Twig_SimpleFilter(
         'build_sorting_link',
         function ($pagination, $order = null, $sort = null) {
@@ -114,6 +121,7 @@ $container['view'] = function (Container $container) {
     $view->getEnvironment()->addFilter($truncateFilter);
     $view->getEnvironment()->addFilter($buildSortingLinkFilter);
     $view->getEnvironment()->addFilter($selectSortingFilter);
+    $view->getEnvironment()->addFilter($slugToStr);
     return $view;
 };
 
