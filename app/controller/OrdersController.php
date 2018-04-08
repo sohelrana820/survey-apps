@@ -111,9 +111,9 @@ class OrdersController extends AppController
          * Send Support admin id the ordr process failed!
          */
         if (!$orderSuccess) {
-            $content = $this->getView()->fetch('email/admin-order-failed.twig', ['data' => $data]);
+            $content = $this->getView()->fetch('email/admin-order-failed.twig', ['data' => $request->getParsedBody()]);
             $this->loadComponent()->Email()->send($this->config['email']['support_email'], '[Urgent] Order Execution Failed - Theme Vessel', $content);
-            $this->getLogger() ? $this->getLogger()->error('Order Process Ended With Error', ['data' => $invoiceDetails]) : null;
+            $this->getLogger() ? $this->getLogger()->error('Order Process Ended With Error', ['post_data' => $request->getParsedBody(), 'invoice_data' => $invoiceDetails]) : null;
         } else {
             $this->getLogger() ? $this->getLogger()->info('Order Process Ended With Success', ['data' => $invoiceDetails]) : null;
         }
