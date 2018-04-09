@@ -153,7 +153,7 @@
 
     <script>
         paypal.Button.render({
-            env: 'sandbox', // sandbox | production
+            env: '{{ config.paypal.mode }}', // sandbox | production
             locale: 'en_US',
             style: {
                 size: 'responsive',
@@ -163,8 +163,8 @@
                 branding: true
             },
             client: {
-                sandbox:    'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
-                production: '<insert production client id>'
+                sandbox:    '{{ config.paypal.sandbox_key }}',
+                production: '{{ config.paypal.production_key }}'
             },
             commit: true,
             payment: function(data, actions) {
