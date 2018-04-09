@@ -25,7 +25,7 @@ class CarZoneProduct extends AbstractSeed
                 'sales' => 5,
                 'rating' => 4.5,
                 'total_viewed' => 100,
-                'download_path' => '/var/www/html/themevessel-shop/templates/download_items/car-zone-car-dealer-html-template.zip',
+                'download_path' => 'templates/download_items/car-zone-car-dealer-html-template.zip',
                 'version' => '1.0.1',
                 'tags' => 'bootstrap, bootstrap 4, car dealer, automotive, auto car, car',
                 'layout' => 'Responsive',
