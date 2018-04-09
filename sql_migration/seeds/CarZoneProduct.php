@@ -9,6 +9,47 @@ class CarZoneProduct extends AbstractSeed
 {
     public function run()
     {
+        $description = <<<EOF
+    Car Zone is a premium HTML5 template for car dealer related websites which is built with the
+    twitter bootstrap (version: 3.3.6). This template is suitable for any agency, agent, car,
+    car dealer, car listing, vehicle listing, car dealership, car tread, etc The whole template
+    is made with excellent responsiveness.It provides Four different layouts of HOME page.
+    It also contains 38 individual HTML files with 100% responsive & W3C HTML validate coding.
+    All HTML & CSS codes are commented properly so it’s easily customizable.
+    <br/>
+<h2>Core Features:</h2>
+    <hr/>
+    <ul>
+        <li>100% Responsive Layout</li>
+        <li>38 HTML file</li>
+        <li>4 Different HOME page</li>
+        <li>3 Single Property page</li>
+        <li>12 Available Color Schema</li>
+        <li>Carousel Slider</li>
+        <li>Simple Dropdown Navigation</li>
+        <li>List / Grid / Map view on home listing</li>
+        <li>Google Fonts used</li>
+        <li>WOW animation used</li>
+        <li>Font Awesome Icons & FlatIcon used</li>
+        <li>Using Twitter Bootstrap (version 3.3.6)</li>
+        <li>Easy to Customize.</li>
+        <li>Properly commented in HTML & CSS codes.</li>
+    </ul>
+
+    <br/>
+    <h2>Browser Compatibility</h2>
+    <hr/>
+    Works and looks good on all major browsers, tablets and phones
+
+    <h2>Google Fonts:</h2>
+    <hr/>
+    Auto Dealer is using google fonts (Open Sans:400,300,600,700,800), (Playfair Display:400,700) & (Roboto:100,300,400,400,500,700)
+
+    <h2>Important Note:</h2>
+    <hr/>
+    <p>All images are available only DEMO are not it download package.</p>
+EOF;
+
         parent::run();
         $products = [
             [
@@ -19,15 +60,15 @@ class CarZoneProduct extends AbstractSeed
                 'user_id' => null,
                 'thumb_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/thumb.jpg',
                 'main_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/main.jpg',
-                'demo_url' => 'http://demo.themevessel.com/car-shop',
-                'description' => 'Some methods in this library have requirements due to integer size restrictions on 32-bit and 64-bit builds of PHP. A 64-bit build of PHP and the Moontoast\Math library are recommended. However, this library is designed to work on 32-bit builds of PHP without Moontoast\Math, with some degraded functionality. Please check the API documentation for more information.',
-                'price' => 2.20,
+                'demo_url' => 'https://template.themevessel.com/car-zone/index.html',
+                'description' => $description,
+                'price' => 2.00,
                 'sales' => 5,
                 'rating' => 4.5,
                 'total_viewed' => 100,
                 'download_path' => 'templates/download_items/car-zone-car-dealer-html-template.zip',
                 'version' => '1.0.1',
-                'tags' => 'bootstrap, bootstrap 4, car dealer, automotive, auto car, car',
+                'tags' => 'car dealer, car, car dealer, Responsive, HTML template, car dealer template, car house, car listing, car selling, car template, motor template',
                 'layout' => 'Responsive',
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
