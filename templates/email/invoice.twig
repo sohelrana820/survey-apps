@@ -11,10 +11,10 @@
     <br/>
     <h2>Payment Information:</h2>
     <div class="payment_info">
+        <p>Invoice ID: <strong>INV-{{ data.invoice.id}}</strong></p>
         <p>Amount: <strong>${{ data.order.amount | number_format(2)}}</strong></p>
         <p>Payment By: Paypal</p>
         <p>Payment Email: {{ data.user.email }}</p>
-        <p>IP: {{ data.invoice.ip ? data.invoice.ip : 'N/A'}}</p>
     </div>
 
     <br/>
