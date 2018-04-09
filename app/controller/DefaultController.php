@@ -155,6 +155,18 @@ class DefaultController extends AppController
      * @return \Psr\Http\Message\ResponseInterface
      * @throws \Interop\Container\Exception\ContainerException
      */
+    public function license(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'general/license.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws \Interop\Container\Exception\ContainerException
+     */
     public function contact(Request $request, Response $response, $args)
     {
         $data = [

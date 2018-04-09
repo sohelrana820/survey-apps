@@ -15,6 +15,7 @@ $app->group('/pages', function () use ($app) {
     $app->get('/faqs', DefaultController::class . ':faqs');
     $app->get('/privacy-policy', DefaultController::class . ':privacy');
     $app->get('/terms-and-conditions', DefaultController::class . ':termsAndConditions');
+    $app->get('/license', DefaultController::class . ':license');
     $app->get('/contact-us', DefaultController::class . ':contact');
     $app->post('/contact-us', DefaultController::class . ':contactUs');
 });

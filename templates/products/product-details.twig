@@ -79,22 +79,23 @@
                         </div>
                         <div class="item-info mb-20">
                             <div class="row">
-                                {#<div class="col-md-6 col-sm-6">
-                                    <span class="rating-box">
-                                        <span class="rating"style="width:{{ product.rating | rating_percentage(5) }}%;"></span>
-                                    </span>
-                                    <span class="rating-number">({{ product.rating | number_format(2) }})</span>
-                                </div>#}
                                 <div class="col-md-6 col-sm-6">
                                     <div class="div">
                                         <i class="fa fa-cart-arrow-down"></i> Total
                                         Sales:<strong>{{ product.sales }}</strong>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="div">
+                                        License: <a class="license_type" href="/pages/license" target="_blank" title="Single Application License">
+                                            Single application
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <ul class="item-purchase-options mb-30">
-                            <li><i class="fa fa-check"></i> <strong>1 Year</strong> support from the ThemeVessel</li>
+                            <li><i class="fa fa-check"></i> <strong>6 Month</strong> support from the ThemeVessel</li>
                             <li><i class="fa fa-check"></i> Future updates</li>
                             <li><i class="fa fa-check"></i> Quality checked by ThemeVessel</li>
                             <li><i class="fa fa-check"></i> Well documented</li>
