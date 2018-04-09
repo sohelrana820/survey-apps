@@ -60,6 +60,11 @@ return [
         'google-re-captcha' => [
             'site-key' => '6LegCjoUAAAAAJL_Jz-r4rDa_CTyH12aQ0dlzDVp',
             'site-secret' => '6LegCjoUAAAAABfjPBTa6-Jqhay5Bi69hnkWMS3s'
+        ],
+        'paypal' => [
+            'mode' => 'sandbox', // sandbox | production
+            'sandbox_key' => 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            'production_key' => '',
         ]
     ]
 ];
