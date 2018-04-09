@@ -1294,17 +1294,13 @@ a:hover, a:focus, a:active {
 }
 
 /** FAQ **/
-#faq {
-
-}
-
 .faq-box {
     border: 1px solid transparent;
     border-radius: 0;
     margin-bottom: 0;
 }
 
-.faq-box h5 .btn-link {
+.faq-box h5 .btn-link{
     padding: 25px 20px;
     width: 100%;
     text-align: left;
@@ -1324,21 +1320,21 @@ a:hover, a:focus, a:active {
     border-bottom: solid 1px #d8d8d8;
 }
 
-.faq-box .card-body p {
+.faq-box .card-body p{
     line-height: 27px;
 }
 
-.faq-box .card-body span {
+.faq-box .card-body span{
     font-size: 14px;
 }
 
-.faq-box .card-body span a {
+.faq-box .card-body span a{
     font-weight: 600;
 }
 
 .faq-accordion {
-    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.06);
+    box-shadow: 0 0 15px rgba(0,0,0,0.06);
 }
 
 .faq-accordion .card {
@@ -1349,41 +1345,81 @@ a:hover, a:focus, a:active {
 }
 
 .faq-accordion .card-header {
-    padding: 25px 20px;
+    padding: 25px 20px 20px 20px;
     background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.125);
 }
 
 .faq-accordion .card-title {
     margin-bottom: 0;
-    padding-left: 15px;
     padding-right: 20px;
     letter-spacing: 0;
     font-size: 14px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .faq-accordion .card-title:hover,
-.faq-accordion .card-title:focus {
+.faq-accordion .card-title:focus,
+.faq-accordion .card-title:visited,
+.faq-accordion .card-title:active
+{
     text-decoration: none;
 }
 
 .faq-accordion .card-block {
-    padding: 25px 20px;
+    padding: 25px 20px 20px 20px;
 }
 
-.faq-accordion .card-header:before {
+.faq-accordion .card-header a:before {
     font-family: 'FontAwesome';
     content: "\f077";
     font-size: 13px;
     font-weight: 300;
+    margin-right: 20px;
 }
 
-.faq-accordion .card-header.collapsed:before {
+.faq-accordion .card-header a.collapsed:before {
     content: "\f078";
     font-size: 13px;
     font-weight: 300;
+    margin-right: 20px;
 }
 
+.faq-accordion .answer-helpful {
+    font-size: 12px;
+}
+
+.faq-accordion .answer-helpful .yes{
+    margin-left: 5px;
+    color: #155724;
+    font-size: 14px;
+}
+
+.faq-accordion .answer-helpful .no{
+    margin-left: 5px;
+    color: #721c24;
+    font-size: 14px;
+}
+
+.collapse.in {
+    background: #f5f5f5;
+}
+
+.card-block{
+    text-align: center;
+}
+
+.card-block p {
+    text-align: left;
+    font-size: 13px;
+    color: #515151;
+}
+
+.card-block img{
+    margin: 15px 0;
+    border: 1px solid #d5d5d5;
+}
 /** CONTACT 1 STARTED **/
 .contact-1 {
 
