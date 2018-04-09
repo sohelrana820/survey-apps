@@ -1,12 +1,18 @@
 <?php
 
+
 use Phinx\Seed\AbstractSeed;
 
-/**
- * Class CarZoneProduct
- */
-class CarZoneProduct extends AbstractSeed
+class CarZoneProductSeeder extends AbstractSeed
 {
+    /**
+     * Run Method.
+     *
+     * Write your database seeder using this method.
+     *
+     * More information on writing seeders is available here:
+     * http://docs.phinx.org/en/latest/seeding.html
+     */
     public function run()
     {
         $description = <<<EOF
@@ -50,7 +56,6 @@ class CarZoneProduct extends AbstractSeed
     <p>All images are available only DEMO are not it download package.</p>
 EOF;
 
-        parent::run();
         $products = [
             [
                 'uuid'    => 'ae6366cc-d14b-4e6f-8d43-bfd330eb6141',

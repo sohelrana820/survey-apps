@@ -70,7 +70,7 @@ class CategoriesModel extends Model
     /**
      * @var string
      */
-    protected $table = 'categories';
+    protected $table = 'CategoriesSeeder';
 
     /**
      * @var array
