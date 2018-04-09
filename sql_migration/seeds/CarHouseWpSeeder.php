@@ -77,7 +77,7 @@ EOF;
                 'sales' => 12,
                 'rating' => 4.5,
                 'total_viewed' => 100,
-                'download_path' => 'templates/download_items/car-house-wordpress-car-dealer-theme.zip',
+                'download_path' => 'car-house-wordpress-car-dealer-theme.zip',
                 'version' => '1.0.1',
                 'tags' => 'car, car dealer, auto, automobile, auto dealer, car shop, car listing theme, car dealer wordpress, cab dealer, vehicles, car dealership, automotive wordpress theme, vehicle search, car wordpress',
                 'layout' => 'Responsive',

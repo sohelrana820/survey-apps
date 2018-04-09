@@ -297,7 +297,7 @@ class DefaultController extends AppController
             $this->getLogger() ? $this->getLogger()->error('Failed To Prepare Download Product', ['token' => $token, 'product_details' => $productDetails]) : null;
             exit("cannot open <$downloadDocumentPath>\n");
         }
-        $zip->addFile($this->getSettings()['download_path'] . $productDetails['download_path'], 'template.zip');
+        $zip->addFile($this->getSettings()['download_path'] . $productDetails['download_path'], 'main.zip');
         $zip->addFile($tmpPath . "LICENSE.txt", 'LICENSE.txt');
         $zip->close();
         $this->getLogger() ? $this->getLogger()->info('Prepared Download Products', ['token' => $token, 'product_details' => $productDetails]) : null;
