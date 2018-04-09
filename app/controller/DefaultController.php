@@ -76,6 +76,11 @@ class DefaultController extends AppController
                 'priority' => 1,
                 'lastmod' => date('Y-m-d')
             ],
+            $this->getSettings()['site_url'] . '/pages/license' => [
+                'changefreq' => 'weekly',
+                'priority' => 1,
+                'lastmod' => date('Y-m-d')
+            ],
         ];
 
         try {
@@ -88,7 +93,7 @@ class DefaultController extends AppController
                 ];
             }
         } catch (\Exception $exception) {
-            $this->getLogger()->info('Failed to Fetch Job List');
+            $this->getLogger()->info('Failed to Fetch Product List');
         }
 
         $gen = new SitemapGenerator();
