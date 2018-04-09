@@ -1,7 +1,7 @@
 runtime: php55
 api_version: 1
 
-service: themevessel-shop
+service: shop
 
 threadsafe: true
 
