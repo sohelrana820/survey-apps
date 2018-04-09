@@ -334,7 +334,18 @@ a {
 
 .page-content p{
     line-height: 25px;
+}
 
+.page-content ul{
+    padding: 0px;
+    margin: 0px;
+}
+
+.page-content ul li{
+    margin-bottom: 15px;
+    font-size: 13px;
+    list-style: none;
+    color: #515151;
 }
 
 /** COMMON CSS END **/
