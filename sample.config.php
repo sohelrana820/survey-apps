@@ -31,11 +31,11 @@ return [
         "database_require" => false,
         'databases' => [
             'driver' => 'mysql',
-            'host' => 'DATABASE_HOST',
-            'database' => 'DATABASE_NAME',
-            'username' => 'DATABASE_USER',
-            'password' => 'DATABASE_PASSWORD',
-            'unix_socket' => '',
+            'host' => '35.188.118.82',
+            'database' => 'themevessel_shop',
+            'username' => 'sohel',
+            'password' => 'Preview@Dev!@#',
+            'unix_socket' => '/cloudsql/themevessel-200614:us-central1:themevessel;dbname=themevessel_shop',
             'charset' => 'Utf8',
             'collation' => 'utf8_general_ci',
             'prefix' => ''
