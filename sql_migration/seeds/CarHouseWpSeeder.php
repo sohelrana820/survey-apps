@@ -22,7 +22,7 @@ class CarHouseWpSeeder extends AbstractSeed
     Perfect for buyers to look after various Cars or Vehicle Models available. This theme is available with theme option, several page templates, fonts, custom widgets,
     shortcodes and much more for your all classifieds business requirement
     <br/>
-    <h2>Core Features:</h2>
+    <h4>Core Features:</h4>
     <hr/>
     <ul>
         <li>100% <strong>Responsive Layout</strong></li>
@@ -49,17 +49,17 @@ class CarHouseWpSeeder extends AbstractSeed
     </ul>
     <br/>
 
-    <h2>Browser Compatibility</h2>
+    <h4>Browser Compatibility</h4>
     <hr/>
     Works and looks good on all major browsers, tablets and phones
 
-    <h2>Google Fonts:</h2>
+    <h4>Google Fonts:</h4>
     <hr/>
     Auto Dealer is using google fonts (Open Sans:400,300,600,700,800), (PT Sans Narrow:400,700)
 
-    <h2>Important Note:</h2>
+    <h4>Important Note:</h4>
     <hr/>
-    <p>All images are available only DEMO are not it download package.</p>
+    <p><strong>All images are available only DEMO are not it download package.</strong></p>
 EOF;
 
         $products = [

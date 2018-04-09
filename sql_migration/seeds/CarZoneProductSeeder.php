@@ -23,7 +23,7 @@ class CarZoneProductSeeder extends AbstractSeed
     It also contains 38 individual HTML files with 100% responsive & W3C HTML validate coding.
     All HTML & CSS codes are commented properly so it’s easily customizable.
     <br/>
-<h2>Core Features:</h2>
+<h4>Core Features:</h4>
     <hr/>
     <ul>
         <li>100% Responsive Layout</li>
@@ -43,17 +43,17 @@ class CarZoneProductSeeder extends AbstractSeed
     </ul>
 
     <br/>
-    <h2>Browser Compatibility</h2>
+    <h4>Browser Compatibility</h4>
     <hr/>
     Works and looks good on all major browsers, tablets and phones
 
-    <h2>Google Fonts:</h2>
+    <h4>Google Fonts:</h4>
     <hr/>
     Auto Dealer is using google fonts (Open Sans:400,300,600,700,800), (Playfair Display:400,700) & (Roboto:100,300,400,400,500,700)
 
-    <h2>Important Note:</h2>
+    <h4>Important Note:</h4>
     <hr/>
-    <p>All images are available only DEMO are not it download package.</p>
+    <p><strong>All images are available only DEMO are not it download package.</strong></p>
 EOF;
 
         $products = [
