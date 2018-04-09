@@ -78,7 +78,7 @@ EOF;
                 'product_type' => 'paid',
                 'key_features' => 'Responsive Layout,  Documentation, Bootstrap 3.x, Retina Ready',
                 'browsers_compatible' => ' IE10, IE11, Edge, Chrome Firefox, Safari, Opera',
-                'is_featured' => 1,
+                'is_featured' => 0,
                 'status' => 1,
                 'meta_title' => 'Car House - Car Dealer Template | ThemeVessel',
                 'meta_description' => 'Buy Car Zone is a premium HTML5 template for car dealer related websites which is built with the twitter bootstrap. This template is suitable for car dealer ...',
