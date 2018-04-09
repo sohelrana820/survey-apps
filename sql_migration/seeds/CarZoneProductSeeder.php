@@ -71,7 +71,7 @@ EOF;
                 'sales' => 5,
                 'rating' => 4.5,
                 'total_viewed' => 100,
-                'download_path' => 'templates/download_items/car-zone-car-dealer-html-template.zip',
+                'download_path' => 'car-zone-car-dealer-html-template.zip',
                 'version' => '1.0.1',
                 'tags' => 'car dealer, car, car dealer, Responsive, HTML template, car dealer template, car house, car listing, car selling, car template, motor template',
                 'layout' => 'Responsive',

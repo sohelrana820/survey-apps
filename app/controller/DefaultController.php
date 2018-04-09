@@ -272,7 +272,7 @@ class DefaultController extends AppController
         $expiredAt = date('Y-m-d H:i:s', strtotime($productDetails['expired_at']));
         if (strtotime($expiredAt) < strtotime(date('Y-m-d H:i:s')) || $productDetails['download_completed'] == true) {
             $this->getLogger() ? $this->getLogger()->warning('Invalid or Expired Download Link', ['token' => $token, 'product_details' => $productDetails]) : null;
-            return $this->getView()->render($response, 'error/download-error.twig');
+            //return $this->getView()->render($response, 'error/download-error.twig');
         } else {
             $this->getView()->render($response, 'general/download-success.twig');
         }
@@ -281,7 +281,7 @@ class DefaultController extends AppController
         // Fetch and create license file
         $licenseContent = $this->getView()->fetch('general/license-format.twig', ['data' => $productDetails]);
         $tmpPath = $this->getSettings()['tmp_path'];
-        $fp = fopen($tmpPath . "/LICENSE.txt","wb");
+        $fp = fopen($tmpPath . "LICENSE.txt","wb");
         $written = fwrite($fp,$licenseContent);
         if(!$written) {
             $this->getLogger() ? $this->getLogger()->error('Failed to Generate Licence File', ['token' => $token, 'product_details' => $productDetails]) : null;
@@ -289,7 +289,7 @@ class DefaultController extends AppController
         fclose($fp);
         $this->getLogger() ? $this->getLogger()->info('Licence File Generate', ['token' => $token, 'product_details' => $productDetails]) : null;
 
-        $downloadDocumentPath = $tmpPath . '/' . $productDetails['slug']. '.zip';
+        $downloadDocumentPath = $tmpPath . $productDetails['slug']. '.zip';
         $downloadDocumentName = $productDetails['slug']. '.zip';
 
         $zip = new \ZipArchive();
@@ -297,8 +297,8 @@ class DefaultController extends AppController
             $this->getLogger() ? $this->getLogger()->error('Failed To Prepare Download Product', ['token' => $token, 'product_details' => $productDetails]) : null;
             exit("cannot open <$downloadDocumentPath>\n");
         }
-        $zip->addFile($productDetails['download_path'], 'template.zip');
-        $zip->addFile($tmpPath . "/LICENSE.txt", 'LICENSE.txt');
+        $zip->addFile($this->getSettings()['download_path'] . $productDetails['download_path'], 'template.zip');
+        $zip->addFile($tmpPath . "LICENSE.txt", 'LICENSE.txt');
         $zip->close();
         $this->getLogger() ? $this->getLogger()->info('Prepared Download Products', ['token' => $token, 'product_details' => $productDetails]) : null;
 
@@ -321,7 +321,7 @@ class DefaultController extends AppController
 
         // Remove some files
         unlink($downloadDocumentPath);
-        unlink($tmpPath . "/LICENSE.txt");
+        unlink($tmpPath . "LICENSE.txt");
         exit();
     }
 }
