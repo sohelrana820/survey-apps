@@ -108,21 +108,50 @@
                 {#<ul class="nav navbar-nav">
 
                 </ul>#}
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/products">Products</a></li>
+                <ul class="nav navbar-nav navbar-right" itemscope itemtype="http://schema.org/BreadcrumbList">
+                    <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/">
+                            <span itemprop="name">Home</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/products">
+                            <span itemprop="name">Products</span>
+                        </a>
+                        <meta itemprop="position" content="2" />
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             Choose Categories <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            {% set position = 2 %}
                             {% for category in categories %}
-                                <li><a href="/products?cat={{ category.slug }}">{{ category.name }}</a></li>
+                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                    <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/products?cat={{ category.slug }}">
+                                        <span itemprop="name">{{ category.name }}</span>
+                                    </a>
+                                    {% set position = position + 1 %}
+                                    <meta itemprop="position" content="{{ position }}" />
+                                </li>
                             {% endfor %}
                         </ul>
                     </li>
-                    <li><a href="/pages/faqs">FAQs</a></li>
-                    <li><a href="/pages/contact-us">Contact Us</a></li>
+
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/pages/faqs">
+                            <span itemprop="name">FAQs</span>
+                        </a>
+                        <meta itemprop="position" content="{{ position + 1}}" />
+                    </li>
+
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/pages/contact-us">
+                            <span itemprop="name">Contact Us</span>
+                        </a>
+                        <meta itemprop="position" content="{{ position + 2}}" />
+                    </li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -220,21 +249,25 @@
                     </span>
                 </div>
                 <div class="col-lg-4 col-sm-4">
-                    <ul class="footer-menus">
-                        <li>
-                            <a href="/pages/terms-and-conditions">
-                                Terms and Conditions
+                    <ul class="footer-menus" itemscope itemtype="http://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/terms-and-conditions">
+                                <span itemprop="name">Terms and Conditions</span>
                             </a>
+                            <meta itemprop="position" content="1" />
                         </li>
-                        <li>
-                            <a href="/pages/privacy-policy">
-                                Privacy Policy
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/privacy-policy">
+                                <span itemprop="name">Privacy Policy</span>
                             </a>
+                            <meta itemprop="position" content="2" />
                         </li>
-                        <li>
-                            <a href="/pages/contact-us">
-                                Contact Us
+
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/contact-us">
+                                <span itemprop="name">Contact US</span>
                             </a>
+                            <meta itemprop="position" content="3" />
                         </li>
                     </ul>
                 </div>
