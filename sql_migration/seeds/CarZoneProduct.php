@@ -37,7 +37,7 @@ class CarZoneProduct extends AbstractSeed
                 'meta_title' => 'Car House - Car Dealer Template | ThemeVessel',
                 'meta_description' => 'Buy Car Zone is a premium HTML5 template for car dealer related websites which is built with the twitter bootstrap. This template is suitable for car dealer ...',
                 'meta_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/main.jpg',
-                'created_at' => '2018-01-30 16:30:45',
+                'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ]
         ];
