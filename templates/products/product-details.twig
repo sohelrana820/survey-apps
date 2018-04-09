@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                             <div class="purchase-intro mb-20">
-                                Theme Vessel create and maintain their all items. So all the items on Theme Vessel are guaranteed to
+                                ThemeVessel create and maintain their all items. So all the items on ThemeVessel are guaranteed to
                                 have top qualities and functionalities. Purchase and get started!
                             </div>
                         </div>
@@ -179,7 +179,7 @@
                                         "subtotal": "{{ product.price }}"
                                     }
                                 },
-                                "description": "Product Purchase From Theme Vessel Shop",
+                                "description": "Product Purchase From ThemeVessel Shop",
                                 "custom": "{{ product.uuid }}",
                                 "payment_options": {
                                     "allowed_payment_method": "INSTANT_FUNDING_SOURCE"
@@ -323,9 +323,9 @@
     {% if product.meta_title is not empty %}
         {{ product.meta_title }}
     {% elseif product.title is not empty %}
-        {{ product.title }} - Theme Vessel
+        {{ product.title }} - ThemeVessel
     {% else %}
-        Website Templates & Themes - Theme Vessel
+        Website Templates & Themes - ThemeVessel
     {% endif %}
 {% endblock %}
 
@@ -335,7 +335,7 @@
     <meta property="og:title" content="{{ product.meta_title }}"/>
     <meta property="og:description" content="{{ product.meta_description }}"/>
     <meta property="og:url" content="{{ viewconfig.app.current_url }}"/>
-    <meta property="og:site_name" content="Theme Vessel"/>
+    <meta property="og:site_name" content="ThemeVessel"/>
     <meta property="og:image" content="{{ product.meta_image }}"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:description" content="{{ product.meta_description }}"/>

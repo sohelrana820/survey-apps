@@ -52,9 +52,9 @@ return [
             'domain' => 'sohelrana.me'
         ],
         'email' => [
-            'from_name' => 'Theme Vessel',
+            'from_name' => 'ThemeVessel',
             'from_email' => 'no-reply@sohelrana.me',
-            'support_name' => 'Theme Vessel Support',
+            'support_name' => 'ThemeVessel Support',
             'support_email' => 'support@themevessel.com',
         ],
         'google-re-captcha' => [
