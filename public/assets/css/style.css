@@ -332,6 +332,11 @@ a {
     margin: 50px 0px;
 }
 
+.page-content p{
+    line-height: 25px;
+
+}
+
 /** COMMON CSS END **/
 
 /** TOP HEADER AREA START **/
