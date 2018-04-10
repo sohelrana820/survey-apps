@@ -11,6 +11,15 @@ use Slim\Http\Response;
 $container = $app->getContainer();
 $settings = $container->get('settings');
 
+$app->add(function (Request $request, Response $response, $next){
+    $response = $response->withHeader('X-XSS-Protection', '1; mode=block');
+    $response = $response->withHeader('X-Frame-Options', 'SAMEORIGIN');
+    $response = $response->withHeader('X-Content-Type-Options', 'nosniff');
+    $response = $response->withHeader('Referrer-Policy', 'origin');
+    $response = $response->withHeader('Strict-Transport-Security', 'max-age=604800');
+    return $next($request, $response);
+});
+
 /**
  * @param Container $container
  * @return \Slim\Views\Twig
