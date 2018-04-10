@@ -49,7 +49,7 @@ return [
         ],
         'mailgun' => [
             'api_key' => 'key-8cef2210bed7c5c71ce94a1f5480b4f9',
-            'domain' => 'sohelrana.me'
+            'domain' => 'mg.themevessel.com'
         ],
         'email' => [
             'from_name' => 'ThemeVessel',
