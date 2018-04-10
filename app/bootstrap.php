@@ -16,7 +16,9 @@ $app->add(function (Request $request, Response $response, $next){
     $response = $response->withHeader('X-Frame-Options', 'SAMEORIGIN');
     $response = $response->withHeader('X-Content-Type-Options', 'nosniff');
     $response = $response->withHeader('Referrer-Policy', 'origin');
-    $response = $response->withHeader('Strict-Transport-Security', 'max-age=604800');
+    $response = $response->withAddedHeader('Cache-Control', 'max-age=86400, public');
+    $response = $response->withHeader('Strict-Transport-Security', 'max-age=2592000');
+    $response = $response->withHeader('Content-Security-Policy', "default-src 'self' data: *.googleapis.com *.gstatic.com ");
     return $next($request, $response);
 });
 
