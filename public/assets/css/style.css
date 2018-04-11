@@ -14,6 +14,15 @@ a {
     color: #434955;
 }
 
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+ul li{
+    list-style: none;
+}
+
 /* CSS colors **/
 .theme-color {
     color: #0079bf !important;
@@ -1283,7 +1292,7 @@ a:hover, a:focus, a:active {
     border: 1px solid rgba(73, 37, 37, 0.1);
     color: #AEAEAE;
     line-height: 1;
-    border-radius: 8px;
+    border-radius: 3px;
     text-align: center;
 }
 
@@ -1558,7 +1567,7 @@ a:hover, a:focus, a:active {
 }
 
 .single-product .item-details {
-    margin-top: 50px;
+    margin-top: 35px;
 }
 
 .single-product .item-description {
@@ -1566,6 +1575,10 @@ a:hover, a:focus, a:active {
     color: #525252;
     font-size: 14px;
     line-height: 25px;
+}
+
+.single-product .item-description li{
+    font-size: 13px;
 }
 
 .single-product .th-block .ul-check {
