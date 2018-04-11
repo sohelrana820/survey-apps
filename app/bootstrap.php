@@ -18,7 +18,7 @@ $app->add(function (Request $request, Response $response, $next){
     $response = $response->withHeader('Referrer-Policy', 'origin');
     $response = $response->withAddedHeader('Cache-Control', 'max-age=86400, public');
     $response = $response->withHeader('Strict-Transport-Security', 'max-age=2592000');
-    $response = $response->withHeader('Content-Security-Policy', "default-src 'self' data: *.googleapis.com *.gstatic.com ");
+    $response = $response->withHeader('Content-Security-Policy', "default-src 'self' data: *.googleapis.com *.gstatic.com *.paypalobjects.com *.paypal.com");
     return $next($request, $response);
 });
 
