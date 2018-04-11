@@ -11,7 +11,7 @@
                             <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
 
-                        <div class="sidebars mb-50 visible-sm visible-xs">
+                        <div class="sidebars mb-50 visible-sm visible-">
                             <h1 class="item-name mb-20">{{ product.title }}</h1>
                             <div class="item-price-container mb-20 clearfix">
                                 <div class="div price labels">Price</div>
@@ -96,7 +96,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="meta-info meta-category">
                                         <p>Category</p>
-                                        <span><a href="#">{{ product.category.name }}</a></span>
+                                        <span><a href="/products?cat={{ product.category.slug }}">{{ product.category.name }}</a></span>
                                     </div>
                                 </div>
 
