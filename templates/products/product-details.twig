@@ -10,6 +10,80 @@
                         <div class="thumbnail-single mb-30">
                             <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
+
+                        <div class="sidebars mb-50 visible-sm visible-xs">
+                            <h1 class="item-name mb-20">{{ product.title }}</h1>
+                            <div class="item-price-container mb-20 clearfix">
+                                <div class="div price labels">Price</div>
+                                <div class="div item-price">${{ product.price | number_format(2) }}</div>
+                            </div>
+                            <div class="item-info mb-20">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="div">
+                                            <i class="fa fa-cart-arrow-down"></i> Total
+                                            Sales:<strong>{{ product.sales }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="div">
+                                            License: <a class="license_type" href="/pages/license" target="_blank" title="Single Application License">
+                                                Single Application
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="item-purchase-options mb-30">
+                                <li><i class="fa fa-check"></i> <strong>6 Month</strong> support from the ThemeVessel</li>
+                                <li><i class="fa fa-check"></i> Future updates</li>
+                                <li><i class="fa fa-check"></i> Quality checked by ThemeVessel</li>
+                                <li><i class="fa fa-check"></i> Well documented</li>
+                            </ul>
+                            <div class="mb-20">
+                                <a href="{{ product.demo_url }}" target="_blank" class="btn btn-primary btn-md mb-10 btn-block">Live Preview</a>
+                                <div id="purchase_now" class="mb-10"></div>
+                                <div class="purchase-intro mb-20">
+                                    <div class="already_download_text">If you already purchase this product and want to get download link? Please <span id="alreadyDownBtn">click here</span></div>
+                                    <div class="send-link-form" style="display: none;">
+                                        <h4 class="link">Retrieve Download Link</h4>
+                                        <hr/>
+                                        <label>Email Address</label>
+                                        <form class="form-inline" id="sendLinkForm">
+                                            <div class="form-group">
+                                                <input type="email" id="email" class="form-control" required name="email" placeholder="Enter your email">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Send Link</button>
+                                        </form>
+                                        <small class="text-muted" id="cancelBtn">Cancel</small>
+                                    </div>
+                                </div>
+                                <div class="purchase-intro mb-20">
+                                    ThemeVessel create and maintain their all items. So all the items on ThemeVessel are guaranteed to
+                                    have top qualities and functionalities. Purchase and get started!
+                                </div>
+                            </div>
+                            <div class="mb-30 clearfix">
+                                <div class="social-share">Social Share</div>
+                                <div class="social-list">
+                                    <ul>
+                                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ config.site_url }}/products/{{product.slug}}"><i
+                                                        class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://twitter.com/home?status={{ config.site_url }}/products/{{product.slug}}"><i
+                                                        class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://plus.google.com/share?url={{ config.site_url }}/products/{{product.slug}}"><i
+                                                        class="fa fa-google-plus"></i></a></li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ config.site_url }}/products/{{product.slug}}&title={{ product.meta_title ? product.meta_title : product.title }}&summary={{ product.meta_description ? product.meta_description : product.title }}"><i
+                                                        class="fa fa-linkedin"></i></a></li>
+                                        <li>
+                                            <a href="https://pinterest.com/pin/create/button/?url=&media={{ config.site_url }}/products/{{product.slug}}&description={{ product.meta_description ? product.meta_description : product.title }}"><i
+                                                        class="fa fa-pinterest"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="item-details">
                             <div class="item-meta row mb-30">
                                 <div class="col-md-3 col-sm-3 col-xs-6">
@@ -71,7 +145,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
-                    <div class="sidebars mb-50">
+                    <div class="sidebars mb-50 hidden-sm hidden-xs">
                         <h1 class="item-name mb-20">{{ product.title }}</h1>
                         <div class="item-price-container mb-20 clearfix">
                             <div class="div price labels">Price</div>
