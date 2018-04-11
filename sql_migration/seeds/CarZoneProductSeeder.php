@@ -67,7 +67,7 @@ EOF;
                 'main_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6141/main.jpg',
                 'demo_url' => 'https://template.themevessel.com/car-zone/index.html',
                 'description' => $description,
-                'price' => 2.00,
+                'price' => 9.00,
                 'sales' => 5,
                 'rating' => 4.5,
                 'total_viewed' => 100,
