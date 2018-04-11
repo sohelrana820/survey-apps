@@ -102,7 +102,7 @@ class OrdersController extends AppController
         ];
         $invoiceRender = $this->getView()->fetch('email/invoice.twig', ['data' => $invoiceDetails]);
         $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
-        $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - Theme Vessel', $invoiceRender);
+        $sent = $this->loadComponent()->Email()->send($to, 'Order Has Been Confirm - ThemeVessel', $invoiceRender);
         if ($sent) {
             $this->getLogger() ? $this->getLogger()->info('Send Order Confirmation Email', ['to' => $to]) : null;
         }
@@ -112,7 +112,7 @@ class OrdersController extends AppController
          */
         if (!$orderSuccess) {
             $content = $this->getView()->fetch('email/admin-order-failed.twig', ['data' => $request->getParsedBody()]);
-            $this->loadComponent()->Email()->send($this->config['email']['support_email'], '[Urgent] Order Execution Failed - Theme Vessel', $content);
+            $this->loadComponent()->Email()->send($this->config['email']['support_email'], '[Urgent] Order Execution Failed - ThemeVessel', $content);
             $this->getLogger() ? $this->getLogger()->error('Order Process Ended With Error', ['post_data' => $request->getParsedBody(), 'invoice_data' => $invoiceDetails]) : null;
         } else {
             $this->getLogger() ? $this->getLogger()->info('Order Process Ended With Success', ['data' => $invoiceDetails]) : null;
@@ -193,7 +193,7 @@ class OrdersController extends AppController
 
         $this->getLogger() ? $this->getLogger()->info('Content Ready For Send Link', ['content' => $data]) : null;
         $to = sprintf('%s %s <%s>', $user['first_name'], $user['last_name'], $user['email']);
-        $send = $this->loadComponent()->Email()->send($to, 'New Download Link - Theme Vessel', $invoiceRender);
+        $send = $this->loadComponent()->Email()->send($to, 'New Download Link - ThemeVessel', $invoiceRender);
         if($send) {
             $return = [
                 'success' => true,

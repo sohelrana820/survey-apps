@@ -31,11 +31,11 @@ return [
         "database_require" => false,
         'databases' => [
             'driver' => 'mysql',
-            'host' => 'DATABASE_HOST',
-            'database' => 'DATABASE_NAME',
-            'username' => 'DATABASE_USER',
-            'password' => 'DATABASE_PASSWORD',
-            'unix_socket' => '',
+            'host' => '35.188.118.82',
+            'database' => 'themevessel_shop',
+            'username' => 'sohel',
+            'password' => 'Preview@Dev!@#',
+            'unix_socket' => '/cloudsql/themevessel-200614:us-central1:themevessel;dbname=themevessel_shop',
             'charset' => 'Utf8',
             'collation' => 'utf8_general_ci',
             'prefix' => ''
@@ -49,17 +49,22 @@ return [
         ],
         'mailgun' => [
             'api_key' => 'key-8cef2210bed7c5c71ce94a1f5480b4f9',
-            'domain' => 'sohelrana.me'
+            'domain' => 'mg.themevessel.com'
         ],
         'email' => [
-            'from_name' => 'Theme Vessel',
+            'from_name' => 'ThemeVessel',
             'from_email' => 'no-reply@sohelrana.me',
-            'support_name' => 'Theme Vessel Support',
+            'support_name' => 'ThemeVessel Support',
             'support_email' => 'support@themevessel.com',
         ],
         'google-re-captcha' => [
             'site-key' => '6LegCjoUAAAAAJL_Jz-r4rDa_CTyH12aQ0dlzDVp',
             'site-secret' => '6LegCjoUAAAAABfjPBTa6-Jqhay5Bi69hnkWMS3s'
+        ],
+        'paypal' => [
+            'mode' => 'sandbox', // sandbox | production
+            'sandbox_key' => 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R',
+            'production_key' => '',
         ]
     ]
 ];

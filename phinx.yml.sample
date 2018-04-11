@@ -7,10 +7,10 @@ environments:
     default_database: development
     production:
         adapter: mysql
-        host: localhost
-        name: xxxxxxxxxxxxxx
-        user: xxxxxxxxxxxx
-        pass: 'xxxxxxx'
+        host: 35.188.118.82
+        name: themevessel_shop
+        user: sohel
+        pass: 'Preview@Dev!@#'
         unix_socket: xxxxxxxxxxxxxxxxxxxx
         port: 3306
         charset: utf8

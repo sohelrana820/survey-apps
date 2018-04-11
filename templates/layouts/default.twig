@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TT6KWNW');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {% block meta_block %}
-    <meta name="author" content="Theme Vessel">
+    <meta name="author" content="ThemeVessel">
     <meta name="description" content="ThemeVessel Shop is a small Marketplace to buy Bootstrap templates, HTML5 & CSS3 templates, WordPress Themes, UI kits, etc.">
 {% endblock %}
 
     <link rel="icon" href="img/favicon.ico">
-    <title>{% block page_title %}Website Templates & Themes - Theme Vessel {% endblock %}</title>
+    <title>{% block page_title %}Website Templates & Themes - ThemeVessel {% endblock %}</title>
 
     <!-- CSS libraries-->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -245,29 +252,35 @@
             <div class="row">
                 <div class="col-lg-8 col-sm-8">
                     <span class="copyright">
-                        &copy;  {{ now | date('Y') }} <a href="https://themevessel.com/" target="_blank">Theme Vessel</a>. Trademarks and brands are the property of their respective owners.
+                        &copy;  {{ now | date('Y') }} <a href="https://themevessel.com/" target="_blank">ThemeVessel</a>. Trademarks and brands are the property of their respective owners.
                     </span>
                 </div>
                 <div class="col-lg-4 col-sm-4">
                     <ul class="footer-menus" itemscope itemtype="http://schema.org/BreadcrumbList">
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/license">
+                                <span itemprop="name">License</span>
+                            </a>
+                            <meta itemprop="position" content="1" />
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/terms-and-conditions">
                                 <span itemprop="name">Terms and Conditions</span>
                             </a>
-                            <meta itemprop="position" content="1" />
+                            <meta itemprop="position" content="2" />
                         </li>
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/privacy-policy">
                                 <span itemprop="name">Privacy Policy</span>
                             </a>
-                            <meta itemprop="position" content="2" />
+                            <meta itemprop="position" content="3" />
                         </li>
 
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/contact-us">
                                 <span itemprop="name">Contact US</span>
                             </a>
-                            <meta itemprop="position" content="3" />
+                            <meta itemprop="position" content="4" />
                         </li>
                     </ul>
                 </div>
@@ -287,7 +300,7 @@
 <!-- Custom javascript -->
 
 <!--- Added Live Chat -->
-{#<script>var onboardify = {obOrg:"Theme Vessel",obEmail:"anonymous"};function OBgetCookie(a){a+="=";for(var c=document.cookie.split(";"),b=0;b<c.length;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1);if(-1!=d.indexOf(a))return d.substring(a.length,d.length)}return""}function OBloadScript(a,c){var b=document.createElement("SCRIPT");b.src=a;b.onload=c;document.body.appendChild(b)}
+{#<script>var onboardify = {obOrg:"ThemeVessel",obEmail:"anonymous"};function OBgetCookie(a){a+="=";for(var c=document.cookie.split(";"),b=0;b<c.length;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1);if(-1!=d.indexOf(a))return d.substring(a.length,d.length)}return""}function OBloadScript(a,c){var b=document.createElement("SCRIPT");b.src=a;b.onload=c;document.body.appendChild(b)}
     function OBcookieObj(){var a={},c=OBgetCookie("obEmail");void 0!=c&&null!=c&&(a.obEmail=c,a.obOrg=OBgetCookie("obOrg"),a.obAccount=OBgetCookie("obAccount"),a.obTimestamp=OBgetCookie("obTimeStamp"),a.obAuthCode=OBgetCookie("obAuthCode"),a.obFname=OBgetCookie("obFname"),a.obLname=OBgetCookie("obLname"),a.obIsCampaign=OBgetCookie("obIsCampaign"));return a}
     function OBLaunch(){var a=getParameterByName("utm_org"),c=getParameterByName("utm_email"),b=getParameterByName("utm_campaign");if(a&&""!==a&&c&&""!==c&&b&&""!==b){var d=getParameterByName("utm_firstname"),f=getParameterByName("utm_lastname");setCookie("obOrg",a,1);setCookie("obEmail",c,1);a=getParameterByName("utm_custname");setCookie("obAccount",a?a:b,1);setCookie("obFname",d,1);setCookie("obLname",f,1);setCookie("obIsCampaign",!0,1);b=window.location.href.indexOf("?");window.location=window.location.href.substr(0,
         b)}var e="undefined"!=typeof window.onboardify?window.onboardify:OBcookieObj();e.obEmail&&OBloadScript("https://webapp.onboardify.com/js/apploader.min.js",function(){OBvalidateLaunch(e)})}document.addEventListener("readystatechange",function(){"complete"==document.readyState&&OBLaunch()},!1);function getParameterByName(a){a=a.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");a=(new RegExp("[\\?&]"+a+"=([^&#]*)")).exec(location.href);return null==a?"":decodeURIComponent(a[1].replace(/\+/g," "))}
@@ -297,5 +310,10 @@
 {% block jsBottom %}
     <!-- Inject JS codes from template files here -->
 {% endblock %}
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT6KWNW"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 </body>
 </html>
