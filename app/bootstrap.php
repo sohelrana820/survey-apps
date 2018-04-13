@@ -109,19 +109,19 @@ $container['view'] = function (Container $container) {
 
             if (sizeof($query) == 0 && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
-            } elseif (sizeof($query) == 1 && $query['sort'] == 'desc' && $selectValue == 'newest') {
+            } elseif (sizeof($query) == 1 && isset($query['sort']) && $query['sort'] == 'desc' && $selectValue == 'newest') {
                 $selected = 'selected="selected"';
-            } elseif (sizeof($query) == 1 && $query['sort'] == 'asc' && $selectValue == 'oldest') {
+            } elseif (sizeof($query) == 1 && isset($query['sort']) && $query['sort'] == 'asc' && $selectValue == 'oldest') {
                 $selected = 'selected="selected"';
-            } elseif (sizeof($query) == 2 && $query['order'] == 'sales'  && $query['sort'] == 'desc' && $selectValue == 'most-sold') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'sales' && isset($query['sort']) &&  $query['sort'] == 'desc' && $selectValue == 'most-sold') {
                 $selected = 'selected="selected"';
             } elseif (array_key_exists('featured', $query) && $selectValue == 'featured') {
                 $selected = 'selected="selected"';
             } elseif (array_key_exists('popular', $query) && $selectValue == 'popular') {
                 $selected = 'selected="selected"';
-            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'desc' && $selectValue == 'price_h_l') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && isset($query['sort']) &&  $query['sort'] == 'desc' && $selectValue == 'price_h_l') {
                 $selected = 'selected="selected"';
-            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && $query['sort'] == 'asc' && $selectValue == 'price_l_h') {
+            } elseif (sizeof($query) == 2 && $query['order'] == 'price'  && isset($query['sort']) && $query['sort'] == 'asc' && $selectValue == 'price_l_h') {
                 $selected = 'selected="selected"';
             }
             return $selected;
