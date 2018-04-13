@@ -1422,6 +1422,25 @@ a:hover, a:focus, a:active {
     font-size: 14px;
 }
 
+.faq-accordion ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+.faq-accordion ul li{
+    text-align: left;
+}
+
+
+.faq-accordion .note{
+    text-align: left;
+    color: #721c24;
+    font-weight: 600;
+    display: inherit;
+}
+
+
+
 .collapse.in {
     background: #f5f5f5;
 }
@@ -1578,7 +1597,7 @@ a:hover, a:focus, a:active {
 }
 
 .single-product .item-description li{
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .single-product .th-block .ul-check {
