@@ -281,7 +281,7 @@ class ProductsModel extends Model
         }
 
         $paginationSuffix = $queryParams;
-        if (array_key_exists($paginationSuffix,'page')) {
+        if (array_key_exists('page', $paginationSuffix)) {
             unset($paginationSuffix['page']);
         }
 
