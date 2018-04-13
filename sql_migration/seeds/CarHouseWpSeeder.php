@@ -87,7 +87,7 @@ EOF;
                 'is_featured' => 1,
                 'status' => 1,
                 'meta_title' => 'Car House - WordPress Car Dealer Theme | ThemeVessel',
-                'meta_description' => 'Buy Car Car House is a modern and full featured automotive car dealer wordpress theme to acquire your all auto dealer business needs.',
+                'meta_description' => 'Buy Car House is a modern and full featured automotive car dealer wordpress theme to acquire your all auto dealer business needs.',
                 'meta_image' => 'attachments/ae6366cc-d14b-4e6f-8d43-bfd330eb6142/main.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
