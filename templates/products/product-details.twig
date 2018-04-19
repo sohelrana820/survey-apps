@@ -10,6 +10,7 @@
                         <div class="thumbnail-single mb-30">
                             <img src="/{{ product.main_image }}" alt="{{ product.name }}" class="img-responsive">
                         </div>
+
                         <div class="item-details">
                             <div class="item-meta row mb-30">
                                 <div class="col-md-3 col-sm-3 col-xs-6">
@@ -22,7 +23,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="meta-info meta-category">
                                         <p>Category</p>
-                                        <span><a href="#">{{ product.category.name }}</a></span>
+                                        <span><a href="/products?cat={{ product.category.slug }}">{{ product.category.name }}</a></span>
                                     </div>
                                 </div>
 
@@ -71,7 +72,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
-                    <div class="sidebars mb-50">
+                    <div class="sidebars mb-50 hidden-sm hidden-x">
                         <h1 class="item-name mb-20">{{ product.title }}</h1>
                         <div class="item-price-container mb-20 clearfix">
                             <div class="div price labels">Price</div>
@@ -331,14 +332,14 @@
 
 
 {% block meta_block %}
-    <meta property="og:type" content="article"/>
+    <meta property="og:type" content="product"/>
     <meta property="og:title" content="{{ product.meta_title }}"/>
     <meta property="og:description" content="{{ product.meta_description }}"/>
-    <meta property="og:url" content="{{ viewconfig.app.current_url }}"/>
+    <meta property="og:url" content="{{ config.site_url }}/products/{{product.slug}}"/>
     <meta property="og:site_name" content="ThemeVessel"/>
-    <meta property="og:image" content="{{ product.meta_image }}"/>
+    <meta property="og:image" content="{{ config.site_url }}/{{ product.meta_image }}"/>
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:description" content="{{ product.meta_description }}"/>
     <meta name="twitter:title" content="{{ product.meta_title }}"/>
-    <meta name="twitter:image" content="{{ product.meta_image }}"/>
+    <meta name="twitter:image" content="{{ config.site_url }}/{{ product.meta_image }}"/>
 {% endblock %}
