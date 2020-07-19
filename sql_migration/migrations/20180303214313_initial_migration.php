@@ -44,6 +44,16 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->create();
 
+        $usersSurveys = $this->table('users_surveys')
+            ->addColumn('survey_id', 'integer')
+            ->addColumn('user_id', 'integer')
+            ->addColumn('score', 'string')
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
+            ->addForeignKey(['user_id'], 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['survey_id'], 'surveys', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->create();
+
         $questions = $this->table('questions')
             ->addColumn('survey_id', 'integer')
             ->addColumn('question', 'string')
