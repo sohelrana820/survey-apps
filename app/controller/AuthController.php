@@ -31,7 +31,16 @@ class AuthController extends AppController
      */
     public function login(Request $request, Response $response, $args)
     {
-        var_dump($request->getParsedBody());
-        die();
+        $requestData = $request->getParsedBody();
+        $user = $this->loadModel()->getUserModel()->getUserByEmail($requestData['email']);
+        $passwordMatched = password_verify($requestData['password'], $user['password']);
+        if($passwordMatched)
+        {
+            $_SESSION['auth'] = $user;
+            return $response->withRedirect('/survey/start');
+        }
+
+        $this->flash->addMessage('error', 'Sorry, invalid email or password');
+        return $response->withRedirect('/login');
     }
 }

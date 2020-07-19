@@ -83,7 +83,6 @@ class UsersModel extends Model
      * @var array
      */
     protected $casts = [
-        'uuid' => 'string',
         'first_name' => 'string',
         'last_name' => 'string',
         'email' => 'string',
@@ -95,7 +94,7 @@ class UsersModel extends Model
     /**
      * @var array
      */
-    protected $hidden = ['password'];
+    //protected $hidden = ['password'];
 
     /**
      * @param $logger
@@ -141,10 +140,9 @@ class UsersModel extends Model
     public function getUserByEmail($email)
     {
         try {
-            $user = $this->select('uuid')->where('email', $email)->first();
+            $user = $this->where('email', $email)->first();
             if ($user) {
-                $user = $user->toArray();
-                return array_key_exists('uuid', $user) ? $this->getDetails($user['uuid']) : false;
+                return $user->toArray();
             }
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->info('Failed to Retrieve User', ['email' => $email]) : null;
@@ -153,35 +151,5 @@ class UsersModel extends Model
         }
 
         return false;
-    }
-
-    /**
-     * @param $uuid
-     * @param bool $forceCacheGenerate
-     * @return array|null|string
-     */
-    public function getDetails($uuid, $forceCacheGenerate = false)
-    {
-        $cacheKey = sprintf('user_uuid_%s', $uuid);
-        $details = $this->cache ? $this->cache->get($cacheKey) : null;
-
-        if ($forceCacheGenerate === false && $details) {
-            $this->logger ? $this->logger->info('User Returned From Cache', ['user_uuid' => $uuid]) : null;
-            return $details;
-        }
-
-        try {
-            $details = $this->where('uuid', $uuid)->first();
-            if ($details) {
-                $this->logger ? $this->logger->info('User Returned From DB', ['user_uuid' => $uuid]) : null;
-                $this->cache ? $this->cache->set($cacheKey, $details->toArray(), self::CACHE_VALIDITY_1WEEK) : null;
-                return $details->toArray();
-            }
-        } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error($exception->getMessage()) : null;
-            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
-        }
-
-        return null;
     }
 }
