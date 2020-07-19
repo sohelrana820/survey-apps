@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Monolog\Logger;
 
 /**
- * Class ProductsModel
+ * Class QuestionsModel
  *
  * @package App\Model
  */
-class ProductsModel extends Model
+class AnswersModel extends Model
 {
     /**
      *  1 Hour cache validity period in seconds
@@ -70,7 +70,7 @@ class ProductsModel extends Model
     /**
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'questions';
 
     /**
      * @var array
@@ -137,15 +137,7 @@ class ProductsModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
-    {
-        return $this->belongsTo(UsersModel::class, 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function category()
+    public function answers()
     {
         return $this->belongsTo(CategoriesModel::class, 'category_id');
     }
@@ -355,110 +347,5 @@ class ProductsModel extends Model
                 'paginationSuffixRaw' => $paginationSuffix,
             ]
         ];
-    }
-
-    /**
-     * @param int $limit
-     * @return array
-     */
-    public function getPopularProducts($limit = 8, $forceCacheGenerate = false)
-    {
-        $cacheKey = 'most_popular_products';
-        $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
-        if (is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
-            return $this->getProductBatch($uuids);
-        }
-
-        $products = [];
-        try {
-            $productsObj = $this->select('uuid')->where('sales', '>', 0)->orderBy('total_viewed', 'DESC')->limit($limit)->get();
-            if ($productsObj) {
-                $products = $productsObj->toArray();
-            }
-        } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error($exception->getMessage()) : null;
-            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
-        }
-
-        $uuids = [];
-        foreach ($products as $product) {
-            array_push($uuids, $product['uuid']);
-        }
-        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_1DAY) : null;
-        return $this->getProductBatch($uuids);
-    }
-
-    /**
-     * @param int $limit
-     * @return array
-     */
-    public function getRecentProducts($limit = 9, $forceCacheGenerate = false)
-    {
-        $cacheKey = 'most_recent_products';
-        $uuids = $this->cache ? $this->cache->get($cacheKey) : null;
-        if (is_array($uuids) && count($uuids) > 0 && $forceCacheGenerate == false) {
-            return $this->getProductBatch($uuids);
-        }
-
-        $products = [];
-        try {
-            $productsObj = $this->select('uuid')->orderBy('id', 'DESC')->limit($limit)->get();
-            if ($productsObj) {
-                $products = $productsObj->toArray();
-            }
-        } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error($exception->getMessage()) : null;
-            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
-        }
-
-        $uuids = [];
-        foreach ($products as $product) {
-            array_push($uuids, $product['uuid']);
-        }
-        $this->cache ? $this->cache->set($cacheKey, $uuids, self::CACHE_VALIDITY_1WEEK) : null;
-        return $this->getProductBatch($uuids);
-    }
-
-    /**
-     * @param $slug
-     * @param bool $forceCacheGenerate
-     * @return bool|mixed
-     */
-    protected function getProductUuidBySlug($slug, $forceCacheGenerate = false)
-    {
-        $list = $this->getActiveProductLists($forceCacheGenerate);
-        if (array_key_exists($slug, $list) && $list[$slug]) {
-            return $list[$slug];
-        }
-    }
-
-    /**
-     * @param bool $forceCacheGenerate
-     * @return bool|mixed
-     */
-    public function getActiveProductLists($forceCacheGenerate = false)
-    {
-        $cacheKey = 'all_product_list';
-        $list = $this->cache ? $this->cache->get($cacheKey) : false;
-        if ($list && $forceCacheGenerate == false) {
-            $this->logger ? $this->logger->info('Product UUID & Slug List Returned from Cache') : null;
-            return $list;
-        }
-
-        try {
-            $productsObj = $this->where('status', 1)->select('uuid', 'slug')->get();
-            $list = [];
-            foreach ($productsObj as $product) {
-                $list[$product->slug] = $product->uuid;
-            }
-            $this->cache ? $this->cache->set($cacheKey, $list, self::CACHE_VALIDITY_1WEEK) : null;
-            $this->logger ? $this->logger->info('Product UUID & Slug List Returned from DB') : null;
-            return $list;
-        } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error($exception->getMessage()) : null;
-            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
-        }
-
-        return [];
     }
 }

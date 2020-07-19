@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Monolog\Logger;
-use Rhumsaa\Uuid\Uuid;
 
 /**
  * Class UsersModel
@@ -121,17 +120,9 @@ class UsersModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function products()
+    public function answers()
     {
-        return $this->hasMany(ProductsModel::class, 'users_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function orders()
-    {
-        return $this->hasMany(OrdersModel::class, 'users_id');
+        return $this->hasMany(AnswersModel::class, 'users_id');
     }
 
     /**
@@ -141,34 +132,6 @@ class UsersModel extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-    }
-
-    /**
-     * @param $data
-     * @return array|bool|null|string
-     */
-    public function addUser($data)
-    {
-        if (!array_key_exists('uuid', $data) || !$data['uuid']) {
-            $data['uuid'] = Uuid::uuid4()->toString();
-        }
-
-        try {
-            $created = $this->create($data);
-            if ($created) {
-                $created = $created->toArray();
-                $user = $this->getDetails($created['uuid']);
-                $this->logger ? $this->logger->info('New User Created', ['user_details' => $user]) : null;
-                unset($created, $data);
-                return $user;
-            }
-        } catch (\Exception $exception) {
-            $this->logger ? $this->logger->error('Coundn\'t Create User', ['data' => $data]) : null;
-            $this->logger ? $this->logger->error($exception->getMessage()) : null;
-            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
-        }
-
-        return false;
     }
 
     /**

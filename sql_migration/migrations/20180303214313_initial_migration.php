@@ -32,12 +32,20 @@ class InitialMigration extends AbstractMigration
             ->addColumn('name', 'string', ['default' => null, 'null' => true])
             ->addColumn('email', 'string')
             ->addColumn('password', 'string', ['default' => null, 'null' => true])
+            ->addColumn('role', 'string', ['default' => null, 'null' => true])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addIndex('email', ['unique' => true, 'name' => 'iux_users_email'])
             ->create();
 
+        $surveys = $this->table('surveys')
+            ->addColumn('name', 'string')
+            ->addColumn('created_at', 'datetime')
+            ->addColumn('updated_at', 'datetime')
+            ->create();
+
         $questions = $this->table('questions')
+            ->addColumn('survey_id', 'integer')
             ->addColumn('question', 'string')
             ->addColumn('impact_group_size', 'integer')
             ->addColumn('occurrence_frequency', 'integer')
@@ -47,10 +55,12 @@ class InitialMigration extends AbstractMigration
             ->addColumn('technical_feasibility', 'integer')
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
+            ->addForeignKey(['survey_id'], 'surveys', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
 
         $answers = $this->table('answers')
             ->addColumn('user_id', 'integer')
+            ->addColumn('survey_id', 'integer')
             ->addColumn('question_id', 'integer')
             ->addColumn('impact_group_size', 'string')
             ->addColumn('occurrence_frequency', 'string')
@@ -63,6 +73,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('updated_at', 'datetime')
             ->addForeignKey(['user_id'], 'users', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->addForeignKey(['question_id'], 'questions', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
+            ->addForeignKey(['survey_id'], 'surveys', 'id', ['delete' => 'CASCADE', 'update' => 'NO_ACTION'])
             ->create();
     }
 }

@@ -12,9 +12,17 @@ use Slim\Http\Response;
  */
 class AuthMiddleware
 {
+    /**
+     * @param Request $request
+     * @param Response $response
+     * @param $next
+     * @return Response
+     */
     public function __invoke(Request $request, Response $response, $next)
     {
-        // Write your business logic here
+        if(!$_SESSION['auth']){
+            return $response->withRedirect('/login');
+        }
 
         $response = $next($request, $response);
         return $response;
