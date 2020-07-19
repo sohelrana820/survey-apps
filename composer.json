@@ -33,9 +33,7 @@
     "ircmaxell/password-compat": "^1.0",
     "ramsey/uuid": "^2.9",
     "mailgun/mailgun-php": "^2.4",
-    "php-http/curl-client": "^1.7",
-    "previewtechs/website-utilities": "dev-master",
-    "previewtechs/php-utilities": "^1.0"
+    "php-http/curl-client": "^1.7"
   },
   "require-dev": {
     "phpunit/phpunit": "4.8.0",
