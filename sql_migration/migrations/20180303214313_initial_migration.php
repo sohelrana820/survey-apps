@@ -32,7 +32,7 @@ class InitialMigration extends AbstractMigration
             ->addColumn('name', 'string', ['default' => null, 'null' => true])
             ->addColumn('email', 'string')
             ->addColumn('password', 'string', ['default' => null, 'null' => true])
-            ->addColumn('role', 'string', ['default' => null, 'null' => true])
+            ->addColumn('role', 'string', ['default' => 2, 'null' => true, 'comment' => 'role: 1 = Admin, 2 = General'])
             ->addColumn('created_at', 'datetime')
             ->addColumn('updated_at', 'datetime')
             ->addIndex('email', ['unique' => true, 'name' => 'iux_users_email'])
