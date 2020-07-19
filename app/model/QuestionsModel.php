@@ -73,48 +73,6 @@ class QuestionsModel extends Model
     protected $table = 'questions';
 
     /**
-     * @var array
-     */
-    protected $fillable = ['uuid', 'title', 'slug', 'user_id', 'category_id', 'thumb_image', 'main_image',
-        'demo_url', 'description', 'price', 'sales', 'rating', 'total_viewed', 'download_path',
-        'version', 'tags', 'layout', 'product_type', 'key_features', 'browsers_compatible', 'is_featured',
-        'created_at', 'updated_at'];
-
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'uuid' => 'string',
-        'title'    => 'string',
-        'slug'    => 'string',
-        'user_id' => 'integer',
-        'category_id' => 'integer',
-        'thumb_image' => 'string',
-        'main_image' => 'string',
-        'demo_url' => 'string',
-        'description' => 'string',
-        'price' => 'float',
-        'sales' => 'integer',
-        'rating' => 'float',
-        'total_viewed' => 'integer',
-        'download_path' => 'string',
-        'version' => 'string',
-        'tags' => 'string',
-        'layout' => 'string',
-        'product_type' => 'string',
-        'key_features' => 'string',
-        'browsers_compatible' => 'string',
-        'is_featured' => 'boolean',
-        'create_at' => 'datetime',
-        'updated_at' => 'datetime'
-    ];
-
-    /**
-     * @var array
-     */
-    protected $hidden = ['password'];
-
-    /**
      * @param $logger
      * @return $this
      */
@@ -245,5 +203,21 @@ class QuestionsModel extends Model
                 'paginationSuffixRaw' => $paginationSuffix,
             ]
         ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllQuestions()
+    {
+        try {
+            $questions = $this->get();
+            return $questions->toArray();
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return [];
     }
 }

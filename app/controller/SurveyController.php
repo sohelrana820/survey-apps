@@ -29,8 +29,9 @@ class SurveyController extends AppController
      */
     public function start(Request $request, Response $response, $args)
     {
+        $questions = $this->loadModel()->getQuestionsModel()->getAllQuestions();
         $data = [
-            'products' => [],
+            'questions' => $questions,
         ];
         return $this->getView()->render($response, 'survey/start.twig', $data);
     }

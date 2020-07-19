@@ -24,32 +24,12 @@ class ModelLoader
     /**
      * @var QuestionsModel
      */
-    private $productsModel;
+    private $questionModel;
 
     /**
-     * @var CategoriesModel
+     * @var AnswersModel
      */
-    private $categoryModel;
-
-    /**
-     * @var OrdersModel
-     */
-    private $orderModel;
-
-    /**
-     * @var InvoicesModel
-     */
-    private $invoiceModel;
-
-    /**
-     * @var InvoicesProductsModel
-     */
-    private $invoiceProductModel;
-
-    /**
-     * @var DownloadLinksModel
-     */
-    private $downloadLinkModel;
+    private $answerModel;
 
     /**
      * @param Logger $logger
@@ -79,11 +59,22 @@ class ModelLoader
     /**
      * @return QuestionsModel
      */
-    public function getProductModel()
+    public function getQuestionsModel()
     {
-        $this->productsModel = new QuestionsModel();
-        $this->productsModel->setLogger($this->logger);
-        $this->productsModel->setCache($this->cache);
-        return $this->productsModel;
+        $this->questionModel = new QuestionsModel();
+        $this->questionModel->setLogger($this->logger);
+        $this->questionModel->setCache($this->cache);
+        return $this->questionModel;
+    }
+
+    /**
+     * @return AnswersModel
+     */
+    public function getAnswerModel()
+    {
+        $this->answerModel = new AnswersModel();
+        $this->answerModel->setLogger($this->logger);
+        $this->answerModel->setCache($this->cache);
+        return $this->answerModel;
     }
 }
