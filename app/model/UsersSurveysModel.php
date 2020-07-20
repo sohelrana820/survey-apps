@@ -167,7 +167,7 @@ class UsersSurveysModel extends Model
     public function searchUsers($queryParams = [], $options = [])
     {
         $page = 1;
-        $perPage = 8;
+        $perPage = 10;
         $orderBy = 'id';
         $sortBy = 'ASC';
 
@@ -194,10 +194,16 @@ class UsersSurveysModel extends Model
 
         try {
             $usersObj = $this;
+
+            // Search by user's title
+            if (array_key_exists('term', $queryParams)) {
+                $term = $queryParams['term'];
+            }
+
             $usersObj = $usersObj->orderBy($orderBy, $sortBy)->paginate(
                 $perPage,
                 ['*'],
-                'survey',
+                'survey/users',
                 $page
             );
         } catch (\Exception $exception) {
