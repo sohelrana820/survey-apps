@@ -32,6 +32,11 @@ class ModelLoader
     private $answerModel;
 
     /**
+     * @var UsersSurveysModel
+     */
+    private $usersSurveysModel;
+
+    /**
      * @param Logger $logger
      */
     public function setLogger($logger)
@@ -76,5 +81,16 @@ class ModelLoader
         $this->answerModel->setLogger($this->logger);
         $this->answerModel->setCache($this->cache);
         return $this->answerModel;
+    }
+
+    /**
+     * @return UsersSurveysModel
+     */
+    public function getUsersSurveysModel()
+    {
+        $this->usersSurveysModel = new UsersSurveysModel();
+        $this->usersSurveysModel->setLogger($this->logger);
+        $this->usersSurveysModel->setCache($this->cache);
+        return $this->usersSurveysModel;
     }
 }

@@ -45,7 +45,23 @@ class SurveyController extends AppController
     public function collect(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
-        var_dump($data);
-        die();
+        $processedData = Utility::processSurveyInputData($data['data'], $this->userId, $this->surveyId);
+        $saved = $this->loadModel()->getAnswerModel()->manageSurveyAnswer($processedData, $this->userId, $this->surveyId);
+        $complete = $this->loadModel()->getUsersSurveysModel()->isUserCompleteSurvey($this->userId, $this->surveyId);
+        if($saved){
+            $this->flash->addMessage('success', 'Survey has been completed');
+            return $response->withRedirect('/survey/complete');
+        }
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function complete(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'survey/complete.twig');
     }
 }

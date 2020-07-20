@@ -70,44 +70,7 @@ class AnswersModel extends Model
     /**
      * @var string
      */
-    protected $table = 'questions';
-
-    /**
-     * @var array
-     */
-    protected $fillable = ['uuid', 'title', 'slug', 'user_id', 'category_id', 'thumb_image', 'main_image',
-        'demo_url', 'description', 'price', 'sales', 'rating', 'total_viewed', 'download_path',
-        'version', 'tags', 'layout', 'product_type', 'key_features', 'browsers_compatible', 'is_featured',
-        'created_at', 'updated_at'];
-
-    /**
-     * @var array
-     */
-    protected $casts = [
-        'uuid' => 'string',
-        'title'    => 'string',
-        'slug'    => 'string',
-        'user_id' => 'integer',
-        'category_id' => 'integer',
-        'thumb_image' => 'string',
-        'main_image' => 'string',
-        'demo_url' => 'string',
-        'description' => 'string',
-        'price' => 'float',
-        'sales' => 'integer',
-        'rating' => 'float',
-        'total_viewed' => 'integer',
-        'download_path' => 'string',
-        'version' => 'string',
-        'tags' => 'string',
-        'layout' => 'string',
-        'product_type' => 'string',
-        'key_features' => 'string',
-        'browsers_compatible' => 'string',
-        'is_featured' => 'boolean',
-        'create_at' => 'datetime',
-        'updated_at' => 'datetime'
-    ];
+    protected $table = 'answers';
 
     /**
      * @var array
@@ -347,5 +310,32 @@ class AnswersModel extends Model
                 'paginationSuffixRaw' => $paginationSuffix,
             ]
         ];
+    }
+
+    /**
+     * @param $answers
+     * @param $userId
+     * @param $surveyId
+     * @return bool
+     */
+    public function manageSurveyAnswer($answers, $userId, $surveyId)
+    {
+        try {
+            /**
+             * Delete all previous answer if the user has already complete this survey.
+             */
+            $previousAnswers = $this->where('user_id', $userId)->where('survey_id', $surveyId)->delete();
+
+            $stored = $this->insert($answers);
+            if($stored)
+            {
+                return true;
+            }
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return false;
     }
 }

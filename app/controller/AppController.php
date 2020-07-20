@@ -18,6 +18,16 @@ use Slim\Views\Twig;
 class AppController
 {
     /**
+     * @var int
+     */
+    public $surveyId = 1;
+
+    /**
+     * @var null
+     */
+    public $userId = null;
+
+    /**
      * @var Container
      */
     protected $container;
@@ -56,6 +66,10 @@ class AppController
     {
         $this->container = $container;
         $this->config = $this->container['config'];
+        if(array_key_exists('auth', $_SESSION) && $_SESSION['auth']['id']){
+            $this->userId = $_SESSION['auth']['id'];
+        }
+
         $this->beforeRender();
     }
 
