@@ -29,7 +29,10 @@ class SurveyController extends AppController
      */
     public function menu(Request $request, Response $response, $args)
     {
-        return $this->getView()->render($response, 'survey/menu.twig');
+        if(!$this->isAuthorized()){
+            return $response->withRedirect('/survey');
+        }
+        return $this->getView()->render($response, 'survey/.twig');
     }
 
     /**
@@ -144,6 +147,10 @@ class SurveyController extends AppController
      */
     public function users(Request $request, Response $response, $args)
     {
+        if(!$this->isAuthorized()){
+            return $response->withRedirect('/survey');
+        }
+
         $users = $this->loadModel()->getUsersSurveysModel()->searchUsers($request->getQueryParams());
         return $this->getView()->render($response, 'survey/users.twig', ['users' => $users]);
     }
@@ -156,7 +163,12 @@ class SurveyController extends AppController
      */
     public function questions(Request $request, Response $response, $args)
     {
+        if(!$this->isAuthorized()){
+            return $response->withRedirect('/survey');
+        }
+
         $questions = $this->loadModel()->getAnswerModel()->searchAnswers($request->getQueryParams());
         return $this->getView()->render($response, 'survey/questions.twig', ['answers' => $questions]);
     }
+
 }

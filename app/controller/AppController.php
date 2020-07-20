@@ -173,4 +173,16 @@ class AppController
 
         return false;
     }
+
+    /**
+     * @return bool
+     */
+    public function isAuthorized()
+    {
+        if($this->isAdmin() == 1) {
+            return true;
+        }
+
+        return false;
+    }
 }
