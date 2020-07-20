@@ -62,6 +62,22 @@ class SurveyController extends AppController
      */
     public function complete(Request $request, Response $response, $args)
     {
+        $message = $this->getFlash()->getMessages();
+        if(empty($message)){
+            return $response->withRedirect('/survey/list');
+        }
+
+        return $this->getView()->render($response, 'survey/complete.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function listPage(Request $request, Response $response, $args)
+    {
         return $this->getView()->render($response, 'survey/complete.twig');
     }
 }

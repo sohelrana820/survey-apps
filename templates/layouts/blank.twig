@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta_block %}
+        <meta name="author" content="ThemeVessel">
+        <meta name="description" content="Survey Application - Grameenphone Limited.">
+    {% endblock %}
+
+    <link rel="icon" href="img/favicon.ico">
+    <title>{% block page_title %}Survey Application - Grameenphone Limited. {% endblock %}</title>
+
+    <!-- CSS libraries-->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/animate.min.css" rel="stylesheet">
+    <link href="/assets/css/jquery.selectBox.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.css" rel="stylesheet">
+    <link href="/assets/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7COswald:200,300,400,500,600%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600" rel="stylesheet">
+
+    <!-- Custom stylesheet -->
+    <link href="/assets/css/style.css" rel="stylesheet">
+    {% block cssBottom %}
+        <!-- Inject CSS codes from template files here -->
+    {% endblock %}
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/assets/js/html5shiv.min.js"></script>
+    <script src="/assets/js/respond.min.js"></script>
+    <![endif]-->
+    {% block jsTop %}
+        <!-- Inject JS codes from template files here -->
+    {% endblock %}
+</head>
+<body>
+
+{% block banner %}
+    <!-- Inject banner content from template file here -->
+{% endblock %}
+
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">Home</a></li>
+                <li role="presentation"><a href="#">About</a></li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">Survery Application</h3>
+    </div>
+
+    {% block content %}
+        <!-- Inject template content here -->
+    {% endblock %}
+
+    <footer class="footer">
+        <p>&copy; 2020 Grameenphone Limited.</p>
+    </footer>
+</div> <!-- /container -->
+
+
+<script src="/assets/js/jquery-2.2.0.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.selectBox.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/assets/js/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<!-- Custom javascript -->
+
+{% block jsBottom %}
+    <!-- Inject JS codes from template files here -->
+{% endblock %}
+</body>
+</html>
