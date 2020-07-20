@@ -1,4 +1,12 @@
 /** Content form box STARTED **/
+body{
+    background: #f8f8f8;
+}
+.signup-box{
+    margin: 100px auto;
+    width: 350px;
+}
+
 .content-box{
     background: #fff;
 }
