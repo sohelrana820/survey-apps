@@ -2,12 +2,12 @@
 
 {% block content %}
     {% if answers.answers is not empty %}
-    <form class="pull-right form-inline" action="/survey/questions">
+   {# <form class="pull-right form-inline" action="/survey/questions">
         <div class="form-group">
             <input name="term" type="text" class="form-control">
         </div>
         <button type="submit" class="btn btn-default">Search</button>
-    </form>
+    </form>#}
     <div class="clearfix"></div><br/>
     {% for key, answer in answers.answers %}
         <div class="panel-group" id="accordion">
