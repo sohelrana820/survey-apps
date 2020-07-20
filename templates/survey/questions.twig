@@ -1,6 +1,7 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
+    {% if answers.answers is not empty %}
     <form class="pull-right form-inline" action="/survey/questions">
         <div class="form-group">
             <input name="term" type="text" class="form-control">
@@ -79,6 +80,10 @@
     {% endfor %}
 
     {% include 'elements/pagination.twig' with {'pagination': answers.pagination} %}
+    {% else %}
+        {% include 'elements/empty.twig' %}
+    {% endif %}
+
 {% endblock %}
 
 
