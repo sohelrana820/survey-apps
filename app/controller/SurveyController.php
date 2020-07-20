@@ -80,4 +80,26 @@ class SurveyController extends AppController
     {
         return $this->getView()->render($response, 'survey/complete.twig');
     }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function view(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'survey/view.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function change(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'survey/change.twig');
+    }
 }
