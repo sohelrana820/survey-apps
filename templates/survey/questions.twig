@@ -1,0 +1,40 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+    <form class="pull-right form-inline" action="/survey/questions">
+        <div class="form-group">
+            <input name="term" type="text" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <div class="clearfix"></div><br/>
+    {% for key, question in questions.questions %}
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <strong>{{question.question}}</strong>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% include 'elements/pagination.twig' with {'pagination': users.pagination} %}
+{% endblock %}
+
+
+{% block jsBottom %}
+<script>
+    $(document).ready(function(){
+        $('.star-rating').rating({
+            size: 'sm',
+            min: 0,
+            max: 10,
+            step: 1,
+            stars: 10,
+            showClear:false,
+            disabled:true
+        });
+    });
+</script>
+{% endblock %}

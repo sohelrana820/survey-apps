@@ -145,7 +145,7 @@ class SurveyController extends AppController
      */
     public function questions(Request $request, Response $response, $args)
     {
-        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
-        return $this->getView()->render($response, 'survey/questions.twig', ['answers' => $answers]);
+        $questions = $this->loadModel()->getQuestionsModel()->searchQuestions($request->getQueryParams());
+        return $this->getView()->render($response, 'survey/questions.twig', ['questions' => $questions]);
     }
 }

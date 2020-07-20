@@ -220,4 +220,72 @@ class QuestionsModel extends Model
 
         return [];
     }
+
+    /**
+     * @param array $queryParams
+     * @param array $options
+     * @return array
+     */
+    public function searchQuestions($queryParams = [], $options = [])
+    {
+        $page = 1;
+        $perPage = 10;
+        $orderBy = 'id';
+        $sortBy = 'ASC';
+
+        if (array_key_exists('page', $queryParams)) {
+            $page = intval($queryParams['page']);
+        }
+
+        if (array_key_exists('perPage', $queryParams)) {
+            $perPage = intval($queryParams['perPage']);
+        }
+
+        if (array_key_exists('order', $queryParams)) {
+            $orderBy = $queryParams['order'];
+        }
+
+        if (array_key_exists('sort', $queryParams)) {
+            $sortBy = $queryParams['sort'];
+        }
+
+        $paginationSuffix = $queryParams;
+        if (array_key_exists('page', $paginationSuffix)) {
+            unset($paginationSuffix['page']);
+        }
+
+        try {
+            $usersObj = $this;
+
+            // Search by user's title
+            if (array_key_exists('term', $queryParams)) {
+                $term = $queryParams['term'];
+            }
+
+            $usersObj = $usersObj->orderBy($orderBy, $sortBy)->paginate(
+                $perPage,
+                ['*'],
+                'survey/users',
+                $page
+            );
+        } catch (\Exception $exception) {
+            $this->logger ? $this->logger->error($exception->getMessage()) : null;
+            $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;
+        }
+
+        return [
+            'questions' => $usersObj,
+            'searchedParams' => $queryParams,
+            'pagination' => [
+                'total' => $usersObj->total(),
+                'page' => $page,
+                'totalPage' => $usersObj->lastPage(),
+                'perPage' => $usersObj->perPage(),
+                'currentPage' => $usersObj->currentPage(),
+                'pageName' => $usersObj->getPageName(),
+                'paginationSuffix' => http_build_query($paginationSuffix),
+                'paginationSuffixRaw' => $paginationSuffix,
+            ]
+        ];
+    }
 }
