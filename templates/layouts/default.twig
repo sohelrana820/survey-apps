@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{% block meta_block %}
-    <meta name="author" content="ThemeVessel">
-    <meta name="description" content="ThemeVessel Shop is a small Marketplace to buy Bootstrap templates, HTML5 & CSS3 templates, WordPress Themes, UI kits, etc.">
-{% endblock %}
+    {% block meta_block %}
+        <meta name="author" content="ThemeVessel">
+        <meta name="description" content="Survey Application - Grameenphone Limited.">
+    {% endblock %}
 
     <link rel="icon" href="img/favicon.ico">
-    <title>{% block page_title %}Website Templates & Themes - ThemeVessel {% endblock %}</title>
+    <title>{% block page_title %}Survey Application - Grameenphone Limited. {% endblock %}</title>
 
     <!-- CSS libraries-->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -45,120 +45,6 @@
 </head>
 <body>
 
-<!-- TOP HEADER AREA START -->
-<header class="top-header hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="clearfix">
-                    <ul class="list-inline">
-                        <li>
-                            <a href="https://join.skype.com/qP01Tf6Xl7cc"><i class="fa fa-skype pr-5 pl-10"></i> Skype</a>
-                        </li>
-                        <li>
-                            <a href="mailto:support@themevessel.com">
-                                <i class="fa fa-envelope-o pr-5 pl-10"></i> support@themevessel.com
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                <div class="clearfix">
-                    <div class="top-buttons">
-                        <ul class="top-social-media pull-right">
-                            <li>
-                                <a href="#">Follow Us</a>
-                            </li>
-                            <li>
-                                <a href="https://www.facebook.com/ThemeVessel" class="facebook"><i class="fa fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/theme_vessel" class="twitter"><i class="fa fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://plus.google.com/104339660136115239484" class="google"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://www.linkedin.com/company/theme-vessel" class="linkedin"><i class="fa fa-linkedin"></i> </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- TOP HEADER AREA END -->
-
-<!-- HEADER AREA START -->
-<header class="header">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand theme-color" href="/">Theme<span class="grey-color">Shop</span></a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                {#<ul class="nav navbar-nav">
-
-                </ul>#}
-                <ul class="nav navbar-nav navbar-right" itemscope itemtype="http://schema.org/BreadcrumbList">
-                    <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/">
-                            <span itemprop="name">Home</span>
-                        </a>
-                        <meta itemprop="position" content="1" />
-                    </li>
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/products">
-                            <span itemprop="name">Products</span>
-                        </a>
-                        <meta itemprop="position" content="2" />
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            Choose Categories <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            {% set position = 2 %}
-                            {% for category in categories %}
-                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                                    <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/products?cat={{ category.slug }}">
-                                        <span itemprop="name">{{ category.name }}</span>
-                                    </a>
-                                    {% set position = position + 1 %}
-                                    <meta itemprop="position" content="{{ position }}" />
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/pages/faqs">
-                            <span itemprop="name">FAQs</span>
-                        </a>
-                        <meta itemprop="position" content="{{ position + 1}}" />
-                    </li>
-
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                        <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/pages/contact-us">
-                            <span itemprop="name">Contact Us</span>
-                        </a>
-                        <meta itemprop="position" content="{{ position + 2}}" />
-                    </li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-</header>
-<!-- HEADER AREA END -->
-
 {% include '/elements/flash.twig' %}
 
 {% block banner %}
@@ -169,120 +55,6 @@
     <!-- Inject template content here -->
 {% endblock %}
 
-<!-- FOOTER AREA START -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
-                <h2 class="footer-logo">
-                    <a href="/" class="white-color">
-                        Theme<span class="grey2-color">Shop</span>
-                    </a>
-                </h2>
-                <p>
-                    ThemeVessel Shop is a tiny marketplace to buy Bootstrap templates, HTML5 & CSS3 templates, WordPress Themes,
-                    UI kits, etc. Purchases your desired web template and theme from our best collection.
-                </p>
-            </div>
-
-            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
-                <h2 class="footer-title">Contact Us</h2>
-                <address>
-                    <ul class="contact-nav">
-                        <li>
-                            <i class="fa fa-map-marker"></i>
-                            <span>
-                            Dhaka, Bangladesh
-                        </span>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope"></i>
-                            <span>
-                            <a href="mailto:support@themevessel.com">support@themevessel.com</a>
-                        </span>
-                        </li>
-                        <li>
-                            <i class="fa fa-skype"></i>
-                            <span>
-                            <a href="https://join.skype.com/qP01Tf6Xl7cc"> https://join.skype.com/qP01Tf6Xl7cc</a>
-                        </span>
-                        </li>
-                        <li>
-                            <i class="fa fa-globe"></i>
-                            <span>
-                            <a href="https://themevessel.com">https://themevessel.com</a>
-                        </span>
-                        </li>
-                    </ul>
-                </address>
-            </div>
-            <div class="col-ls-3 col-md-3 col-sm-6 footer-widget">
-                <h2 class="footer-title">Recent Items</h2>
-                <div class="footer-items">
-                    {% for thumb in recent_products %}
-                        <a href="/products/{{ thumb.slug }}">
-                            <img src="/{{ thumb.thumb_image }}" alt="{{ thumb.title }}" class="footer-item">
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <h2 class="footer-title">Newsletter</h2>
-                <p>
-                    Want more templates, themes & UI kits? Subscribe to our mailing list to receive an update when new items published!
-                </p>
-                <form class="newsletter" id="newsletter">
-                    <div class="form-group">
-                        <input type="email" name="email" class="form-control" placeholder="Your email address" required>
-                    </div>
-                    <button type="submit" class="newsletter-submit btn">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <footer class="footer-copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-sm-8">
-                    <span class="copyright">
-                        &copy;  {{ now | date('Y') }} <a href="https://themevessel.com/" target="_blank">ThemeVessel</a>. Trademarks and brands are the property of their respective owners.
-                    </span>
-                </div>
-                <div class="col-lg-4 col-sm-4">
-                    <ul class="footer-menus" itemscope itemtype="http://schema.org/BreadcrumbList">
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/license">
-                                <span itemprop="name">License</span>
-                            </a>
-                            <meta itemprop="position" content="1" />
-                        </li>
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/terms-and-conditions">
-                                <span itemprop="name">Terms and Conditions</span>
-                            </a>
-                            <meta itemprop="position" content="2" />
-                        </li>
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/privacy-policy">
-                                <span itemprop="name">Privacy Policy</span>
-                            </a>
-                            <meta itemprop="position" content="3" />
-                        </li>
-
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemprop itemtype="http://schema.org/Thing" itemprop="item" href="/pages/contact-us">
-                                <span itemprop="name">Contact US</span>
-                            </a>
-                            <meta itemprop="position" content="4" />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-</footer>
-<!-- FOOTER AREA END -->
-
 <script src="/assets/js/jquery-2.2.0.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/jquery.selectBox.js"></script>
@@ -292,21 +64,8 @@
 <script src="/assets/js/app.js"></script>
 <!-- Custom javascript -->
 
-<!--- Added Live Chat -->
-{#<script>var onboardify = {obOrg:"ThemeVessel",obEmail:"anonymous"};function OBgetCookie(a){a+="=";for(var c=document.cookie.split(";"),b=0;b<c.length;b++){for(var d=c[b];" "==d.charAt(0);)d=d.substring(1);if(-1!=d.indexOf(a))return d.substring(a.length,d.length)}return""}function OBloadScript(a,c){var b=document.createElement("SCRIPT");b.src=a;b.onload=c;document.body.appendChild(b)}
-    function OBcookieObj(){var a={},c=OBgetCookie("obEmail");void 0!=c&&null!=c&&(a.obEmail=c,a.obOrg=OBgetCookie("obOrg"),a.obAccount=OBgetCookie("obAccount"),a.obTimestamp=OBgetCookie("obTimeStamp"),a.obAuthCode=OBgetCookie("obAuthCode"),a.obFname=OBgetCookie("obFname"),a.obLname=OBgetCookie("obLname"),a.obIsCampaign=OBgetCookie("obIsCampaign"));return a}
-    function OBLaunch(){var a=getParameterByName("utm_org"),c=getParameterByName("utm_email"),b=getParameterByName("utm_campaign");if(a&&""!==a&&c&&""!==c&&b&&""!==b){var d=getParameterByName("utm_firstname"),f=getParameterByName("utm_lastname");setCookie("obOrg",a,1);setCookie("obEmail",c,1);a=getParameterByName("utm_custname");setCookie("obAccount",a?a:b,1);setCookie("obFname",d,1);setCookie("obLname",f,1);setCookie("obIsCampaign",!0,1);b=window.location.href.indexOf("?");window.location=window.location.href.substr(0,
-        b)}var e="undefined"!=typeof window.onboardify?window.onboardify:OBcookieObj();e.obEmail&&OBloadScript("https://webapp.onboardify.com/js/apploader.min.js",function(){OBvalidateLaunch(e)})}document.addEventListener("readystatechange",function(){"complete"==document.readyState&&OBLaunch()},!1);function getParameterByName(a){a=a.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");a=(new RegExp("[\\?&]"+a+"=([^&#]*)")).exec(location.href);return null==a?"":decodeURIComponent(a[1].replace(/\+/g," "))}
-    function setCookie(a,c,b){var d=new Date;d.setTime(d.getTime()+864E5*b);b="expires="+d.toUTCString();document.cookie=a+"="+c+";"+b+";path=/"};
-</script>#}
-
 {% block jsBottom %}
     <!-- Inject JS codes from template files here -->
 {% endblock %}
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT6KWNW"
-                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 </body>
 </html>
