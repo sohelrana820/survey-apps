@@ -35,4 +35,17 @@ class SurveyController extends AppController
         ];
         return $this->getView()->render($response, 'survey/start.twig', $data);
     }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function collect(Request $request, Response $response, $args)
+    {
+        $data = $request->getParsedBody();
+        var_dump($data);
+        die();
+    }
 }

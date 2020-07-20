@@ -7,4 +7,5 @@ $app->post('/login', AuthController::class . ':login');
 
 $app->group('/survey', function () use ($app) {
     $app->get('/start', SurveyController::class . ':start');
+    $app->post('/collect', SurveyController::class . ':collect');
 })->add(\App\Middleware\AuthMiddleware::class);
