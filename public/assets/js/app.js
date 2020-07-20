@@ -19,17 +19,6 @@ function warningAlert(message) {
     });
 }
 
-$("#newsletter").submit(function(e) {
-    e.preventDefault();
-    setTimeout(function () {
-        swal({
-            title: "Congratulations!",
-            text: 'Thanks for your subscription.',
-            icon: "success",
-            button: "Thanks"
-        });
-    }, 500)
-});
 
 $(function() {
     $("#contactUs").submit(function(e) {
