@@ -220,3 +220,7 @@ body {
 #accordion .panel-heading{
     cursor: pointer;
 }
+
+.panel-heading img{
+    width: 20px;
+}

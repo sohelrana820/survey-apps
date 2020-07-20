@@ -1,0 +1,34 @@
+{% extends 'layouts/default.twig' %}
+
+{% block content %}
+    {% for key, answer in answers %}
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <strong>Sohel Rana</strong> me.sohelrana@gmail.com
+                    <div class="score">
+                        <a href="/survey/view/2">View Answer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block jsBottom %}
+<script>
+    $(document).ready(function(){
+        $('.star-rating').rating({
+            size: 'sm',
+            min: 0,
+            max: 10,
+            step: 1,
+            stars: 10,
+            showClear:false,
+            disabled:true
+        });
+    });
+</script>
+{% endblock %}

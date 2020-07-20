@@ -15,4 +15,6 @@ $app->group('/survey', function () use ($app) {
     $app->get('/list', SurveyController::class . ':listPage');
     $app->get('/view[/{id}]', SurveyController::class . ':view');
     $app->get('/change', SurveyController::class . ':change');
+    $app->get('/users', SurveyController::class . ':users');
+    $app->get('/questions', SurveyController::class . ':questions');
 })->add(\App\Middleware\AuthMiddleware::class);

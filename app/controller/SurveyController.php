@@ -124,4 +124,28 @@ class SurveyController extends AppController
         $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
         return $this->getView()->render($response, 'survey/change.twig', ['answers' => $answers]);
     }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function users(Request $request, Response $response, $args)
+    {
+        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
+        return $this->getView()->render($response, 'survey/users.twig', ['answers' => $answers]);
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function questions(Request $request, Response $response, $args)
+    {
+        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
+        return $this->getView()->render($response, 'survey/questions.twig', ['answers' => $answers]);
+    }
 }
