@@ -369,10 +369,10 @@ class AnswersModel extends Model
      * @param array $options
      * @return array
      */
-    public function searchQuestions($queryParams = [], $options = [])
+    public function searchAnswers($queryParams = [], $options = [])
     {
-        $page = 1;
-        $perPage = 10;
+        $page = 10;
+        $perPage = 3;
         $orderBy = 'id';
         $sortBy = 'ASC';
 
@@ -398,17 +398,17 @@ class AnswersModel extends Model
         }
 
         try {
-            $usersObj = $this;
+            $answerObj = $this;
 
             // Search by user's title
             if (array_key_exists('term', $queryParams)) {
                 $term = $queryParams['term'];
             }
 
-            $usersObj = $usersObj->orderBy($orderBy, $sortBy)->paginate(
+            $answerObj = $answerObj->orderBy($orderBy, $sortBy)->paginate(
                 $perPage,
                 ['*'],
-                'survey/users',
+                'survey/questions',
                 $page
             );
         } catch (\Exception $exception) {
@@ -417,15 +417,15 @@ class AnswersModel extends Model
         }
 
         return [
-            'answers' => $usersObj,
+            'answers' => $answerObj,
             'searchedParams' => $queryParams,
             'pagination' => [
-                'total' => $usersObj->total(),
+                'total' => $answerObj->total(),
                 'page' => $page,
-                'totalPage' => $usersObj->lastPage(),
-                'perPage' => $usersObj->perPage(),
-                'currentPage' => $usersObj->currentPage(),
-                'pageName' => $usersObj->getPageName(),
+                'totalPage' => $answerObj->lastPage(),
+                'perPage' => $answerObj->perPage(),
+                'currentPage' => $answerObj->currentPage(),
+                'pageName' => $answerObj->getPageName(),
                 'paginationSuffix' => http_build_query($paginationSuffix),
                 'paginationSuffixRaw' => $paginationSuffix,
             ]
