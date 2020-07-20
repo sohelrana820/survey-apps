@@ -1,11 +1,20 @@
 {% extends 'layouts/blank.twig' %}
 
 {% block content %}
-    {{ is_admin }}
-    <div class="thank-you-pop">
-        <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
-        <h1>Thank You!</h1>
-        <p>Your submission has been received.</p>
-    </div>
+    {% if survey_completed == true %}
+        <div class="thank-you-pop">
+            <h1>Hello, {{ session.auth.name }}</h1>
+            <p>You already complete this survey, but still you can change your answer!</p>
+            <a href="/survey/view" class="btn btn-success">Review Answer</a>
+        </div>
+    {% else %}
+        <div class="thank-you-pop">
+            <h1>Hello, {{ session.auth.name }}</h1>
+            <p>Welcome to our survey. It will take 5 min to complete the survey</p>
+            <a href="/survey/start" class="btn btn-success">Get Started</a>
+        </div>
+    {% endif %}
+
     <br/><br/><br/><br/>
 {% endblock %}
+

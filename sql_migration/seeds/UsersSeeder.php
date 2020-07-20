@@ -26,7 +26,7 @@ class UsersSeeder extends AbstractSeed
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name'    => 'Survey Admin',
+                'name'    => 'Survey User 01',
                 'email'    => 'survey_user_01@gmail.com',
                 'password' => $password,
                 'role' => 2,
@@ -34,7 +34,7 @@ class UsersSeeder extends AbstractSeed
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name'    => 'Survey Admin',
+                'name'    => 'Survey User 02',
                 'email'    => 'survey_user_02@gmail.com',
                 'password' => $password,
                 'role' => 2,

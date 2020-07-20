@@ -98,7 +98,7 @@ class UsersSurveysModel extends Model
      * @param $surveyId
      * @return bool
      */
-    public function isUserCompleteSurvey($userId, $surveyId)
+    public function makeSurveyComplete($userId, $surveyId)
     {
         try {
             /**
@@ -116,6 +116,30 @@ class UsersSurveysModel extends Model
             $stored = $this->insert($data);
             if($stored)
             {
+                return true;
+            }
+
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $userId
+     * @param $surveyId
+     * @return bool
+     */
+    public function isUserCompleteSurvey($userId, $surveyId)
+    {
+        try {
+            /**
+             * Delete all previous answer if the user has already complete this survey.
+             */
+            $completed = $this->where('user_id', $userId)->where('survey_id', $surveyId)->first();
+            if($completed){
                 return true;
             }
 

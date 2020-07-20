@@ -29,9 +29,9 @@ class SurveyController extends AppController
      */
     public function home(Request $request, Response $response, $args)
     {
-        $questions = $this->loadModel()->getQuestionsModel()->getAllQuestions();
+        $surveyCompleted = $this->loadModel()->getUsersSurveysModel()->isUserCompleteSurvey($this->userId, $this->surveyId);
         $data = [
-            'questions' => $questions,
+            'survey_completed' => $surveyCompleted,
         ];
         return $this->getView()->render($response, 'survey/home.twig', $data);
     }
@@ -62,7 +62,7 @@ class SurveyController extends AppController
         $data = $request->getParsedBody();
         $processedData = Utility::processSurveyInputData($data['data'], $this->userId, $this->surveyId);
         $saved = $this->loadModel()->getAnswerModel()->manageSurveyAnswer($processedData, $this->userId, $this->surveyId);
-        $complete = $this->loadModel()->getUsersSurveysModel()->isUserCompleteSurvey($this->userId, $this->surveyId);
+        $complete = $this->loadModel()->getUsersSurveysModel()->makeSurveyComplete($this->userId, $this->surveyId);
         if($saved){
             $this->flash->addMessage('success', 'Survey has been completed');
             return $response->withRedirect('/survey/complete');

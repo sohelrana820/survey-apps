@@ -57,6 +57,11 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
+
+                {% if session %}
+                    <li role="presentation"><a href="#">Hi, {{ session.auth.name }}</a></li>
+                {% endif %}
+
                 {% if is_admin == false %}
                     <li role="presentation"><a href="/survey/change">Change Answer</a></li>
                 {% endif %}
