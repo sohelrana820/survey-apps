@@ -32,7 +32,8 @@ class SurveyController extends AppController
         if(!$this->isAuthorized()){
             return $response->withRedirect('/survey');
         }
-        return $this->getView()->render($response, 'survey/.twig');
+
+        return $this->getView()->render($response, 'survey/menu.twig');
     }
 
     /**
