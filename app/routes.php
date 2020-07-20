@@ -2,6 +2,7 @@
 use App\Controller\AuthController;
 use App\Controller\SurveyController;
 
+$app->get('/', AuthController::class . ':loginPage')->add(\App\Middleware\AuthMiddleware::class);
 $app->get('/login', AuthController::class . ':loginPage');
 $app->post('/login', AuthController::class . ':login');
 

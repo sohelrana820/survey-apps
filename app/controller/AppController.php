@@ -28,6 +28,11 @@ class AppController
     public $userId = null;
 
     /**
+     *
+     */
+    public $isAdmin = null;
+
+    /**
      * @var Container
      */
     protected $container;
@@ -68,6 +73,7 @@ class AppController
         $this->config = $this->container['config'];
         if(array_key_exists('auth', $_SESSION) && $_SESSION['auth']['id']){
             $this->userId = $_SESSION['auth']['id'];
+            $this->isAdmin = $_SESSION['auth']['role'] == 1 ? true : false;
         }
 
         $this->beforeRender();
@@ -79,6 +85,7 @@ class AppController
     public function beforeRender()
     {
         $this->getView()['message'] = $this->getFlash()->getMessages();
+        $this->getView()['is_admin'] = $this->isAdmin;
     }
 
     /**
