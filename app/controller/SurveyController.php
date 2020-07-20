@@ -133,8 +133,8 @@ class SurveyController extends AppController
      */
     public function users(Request $request, Response $response, $args)
     {
-        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
-        return $this->getView()->render($response, 'survey/users.twig', ['answers' => $answers]);
+        $users = $this->loadModel()->getUsersSurveysModel()->searchUsers($this->surveyId );
+        return $this->getView()->render($response, 'survey/users.twig', ['users' => $users]);
     }
 
     /**

@@ -1,14 +1,14 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-    {% for key, answer in answers %}
+    {% for key, user in users.users %}
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
-                    <strong>Sohel Rana</strong> me.sohelrana@gmail.com
+                    <strong>{{user.user.name}}</strong> ({{user.user.email}})
                     <div class="score">
-                        <a href="/survey/view/2">View Answer</a>
+                        <a href="/survey/view/{{user.user.id}}">View Answer</a>
                     </div>
                 </div>
             </div>
