@@ -13,6 +13,6 @@ $app->group('/survey', function () use ($app) {
     $app->post('/collect', SurveyController::class . ':collect');
     $app->get('/complete', SurveyController::class . ':complete');
     $app->get('/list', SurveyController::class . ':listPage');
-    $app->get('/view', SurveyController::class . ':view');
+    $app->get('/view[/{id}]', SurveyController::class . ':view');
     $app->get('/change', SurveyController::class . ':change');
 })->add(\App\Middleware\AuthMiddleware::class);

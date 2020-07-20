@@ -59,7 +59,7 @@
             <ul class="nav nav-pills pull-right">
 
                 {% if session %}
-                    <li role="presentation"><a href="#">Hi, {{ session.auth.name }}</a></li>
+                    <li role="presentation"><a href="/survey">Hi, {{ session.auth.name }}</a></li>
                 {% endif %}
 
                 {% if is_admin == false %}
