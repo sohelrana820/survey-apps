@@ -105,7 +105,7 @@ class SurveyController extends AppController
     public function view(Request $request, Response $response, $args)
     {
         $userId = $this->userId;
-        if(array_key_exists('id', $args) && $args['id']) {
+        if(array_key_exists('id', $args) && $args['id'] && $this->isAdmin) {
             $userId = $args['id'];
         }
 
