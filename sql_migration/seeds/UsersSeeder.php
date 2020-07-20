@@ -15,7 +15,7 @@ class UsersSeeder extends AbstractSeed
      */
     public function run()
     {
-        $password = password_hash('acb@123', PASSWORD_BCRYPT);;
+        $password = password_hash('abc@123', PASSWORD_BCRYPT);;
         $users = [
             [
                 'name'    => 'Survey Admin',
