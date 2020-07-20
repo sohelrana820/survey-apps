@@ -5,14 +5,74 @@
         <div class="form-group">
             <input name="term" type="text" class="form-control">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default">Search</button>
     </form>
     <div class="clearfix"></div><br/>
     {% for key, answer in answers.answers %}
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <strong>{{answer.question.question}}</strong>
+                    <h4 class="panel-title" data-toggle="collapse" data-target="#{{ key }}">
+                        <strong>Question {{ key + 1 }}:</strong> {{ answer.question.question}}
+                        <div class="score">(Average Rate {{ answer | score_analysis('score') }})</div>
+                    </h4>
+                </div>
+                <div id="{{ key }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Impact group size</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('impact_group_size_score') }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
+
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Occurrence frequency</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('occurrence_frequency_score') }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
+
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Experience impact</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('experience_impact_score') }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
+
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Business impact</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('business_impact_score') }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
+
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Financial feasibility</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('financial_feasibility_score') }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
+
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Technical feasibility</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer | score_analysis('technical_feasibility_score') }}"  class="star-rating rating-loading">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

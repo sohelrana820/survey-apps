@@ -68,7 +68,9 @@
                 {% endif %}
 
                 {% if session %}
+                    {% if survey_completed == true %}
                     <li role="presentation"><a href="/survey/change">Change My Answer</a></li>
+                    {% endif %}
                     <li role="presentation"><a href="/logout">Logout</a></li>
                 {% endif %}
             </ul>

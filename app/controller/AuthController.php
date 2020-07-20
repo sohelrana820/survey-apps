@@ -37,6 +37,9 @@ class AuthController extends AppController
         if($passwordMatched)
         {
             $_SESSION['auth'] = $user;
+            if($this->isAdmin()){
+                return $response->withRedirect('/survey/menu');
+            }
             return $response->withRedirect('/survey');
         }
 

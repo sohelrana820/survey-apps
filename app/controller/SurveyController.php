@@ -27,6 +27,17 @@ class SurveyController extends AppController
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
      */
+    public function menu(Request $request, Response $response, $args)
+    {
+        return $this->getView()->render($response, 'survey/menu.twig');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function home(Request $request, Response $response, $args)
     {
         $surveyCompleted = $this->loadModel()->getUsersSurveysModel()->isUserCompleteSurvey($this->userId, $this->surveyId);

@@ -67,6 +67,14 @@ $container['view'] = function (Container $container) {
         }
     ));
 
+    $scoreAnalysis = (new Twig_SimpleFilter(
+        'score_analysis',
+        function ($singleScore, $type) {
+            $ratedBy = $singleScore['rated_by'];
+            return number_format($singleScore[$type] / $ratedBy, 2);
+        }
+    ));
+
     $buildSortingLinkFilter = (new Twig_SimpleFilter(
         'build_sorting_link',
         function ($pagination, $order = null, $sort = null) {
@@ -133,6 +141,7 @@ $container['view'] = function (Container $container) {
     $view->getEnvironment()->addFilter($buildSortingLinkFilter);
     $view->getEnvironment()->addFilter($selectSortingFilter);
     $view->getEnvironment()->addFilter($slugToStr);
+    $view->getEnvironment()->addFilter($scoreAnalysis);
     return $view;
 };
 

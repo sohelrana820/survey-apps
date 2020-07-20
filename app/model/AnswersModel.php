@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Monolog\Logger;
 
 /**
@@ -372,9 +373,9 @@ class AnswersModel extends Model
     public function searchAnswers($queryParams = [], $options = [])
     {
         $page = 1;
-        $perPage = 10;
-        $orderBy = 'id';
-        $sortBy = 'ASC';
+        $perPage = 30;
+        $orderBy = 'score';
+        $sortBy = 'DESC';
 
         if (array_key_exists('page', $queryParams)) {
             $page = intval($queryParams['page']);
@@ -398,19 +399,24 @@ class AnswersModel extends Model
         }
 
         try {
-            $answerObj = $this;
-
-            // Search by user's title
-            if (array_key_exists('term', $queryParams)) {
-                $term = $queryParams['term'];
-            }
-
-            $answerObj = $answerObj->orderBy($orderBy, $sortBy)->paginate(
-                $perPage,
-                ['*'],
-                'survey/questions',
-                $page
-            );
+            $answerObj = AnswersModel::with('question')
+                ->selectRaw(
+                    'question_id, 
+                SUM(total_score) as score, 
+                SUM(impact_group_size) as impact_group_size_score, 
+                SUM(occurrence_frequency) as occurrence_frequency_score,
+                SUM(experience_impact) as experience_impact_score,
+                SUM(business_impact) as business_impact_score,
+                SUM(financial_feasibility) as financial_feasibility_score,
+                SUM(technical_feasibility) as technical_feasibility_score,
+                COUNT(user_id) as rated_by'
+                )
+                ->groupBy('question_id')->orderBy($orderBy, $sortBy)->paginate(
+                    $perPage,
+                    ['*'],
+                    'survey/questions',
+                    $page
+                );
         } catch (\Exception $exception) {
             $this->logger ? $this->logger->error($exception->getMessage()) : null;
             $this->logger ? $this->logger->debug($exception->getTraceAsString()) : null;

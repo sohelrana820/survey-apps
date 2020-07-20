@@ -73,7 +73,7 @@ class AppController
         $this->config = $this->container['config'];
         if(array_key_exists('auth', $_SESSION) && $_SESSION['auth']['id']){
             $this->userId = $_SESSION['auth']['id'];
-            $this->isAdmin = $_SESSION['auth']['role'] == 1 ? true : false;
+            $this->isAdmin = $this->isAdmin();
         }
 
         $this->beforeRender();
@@ -84,8 +84,10 @@ class AppController
      */
     public function beforeRender()
     {
+        $surveyCompleted = $this->loadModel()->getUsersSurveysModel()->isUserCompleteSurvey($this->userId, $this->surveyId);
         $this->getView()['message'] = $this->getFlash()->getMessages();
         $this->getView()['is_admin'] = $this->isAdmin;
+        $this->getView()['survey_completed'] = $surveyCompleted;
     }
 
     /**
@@ -158,5 +160,17 @@ class AppController
         $compoents->setConfig($this->config);
         $compoents->setLogger($this->logger);
         return $compoents;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        if($_SESSION['auth']['role'] == 1) {
+            return true;
+        }
+
+        return false;
     }
 }
