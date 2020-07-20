@@ -15,7 +15,12 @@
                 <div class="panel-heading">
                     <h4 class="panel-title" data-toggle="collapse" data-target="#{{ key }}">
                         <strong>Question {{ key + 1 }}:</strong> {{ answer.question.question}}
-                        <div class="score">(Average Rate {{ answer | score_analysis('score') }})</div>
+                        <div class="score">
+                            (Average Rating {{ answer | score_analysis('score') }})
+                        </div>
+                        <span class="participants">
+                            (Participants  {{ answer.rated_by }})
+                        </span>
                     </h4>
                 </div>
                 <div id="{{ key }}" class="panel-collapse collapse">

@@ -199,9 +199,9 @@ body {
 .panel-title::after {
     content: "\f107";
     color: #333;
-    top: 8px;
+    top: 20px;
     right: 0px;
-    font-size: 24px;
+    font-size: 30px;
     position: absolute;
     font-family: "FontAwesome"
 }
@@ -258,4 +258,11 @@ body {
 
 .pagination .next {
     text-align: right;
+}
+
+.participants{
+    margin-top: 12px;
+    display: inline-block;
+    color: #777;
+    font-size: 12px;
 }
