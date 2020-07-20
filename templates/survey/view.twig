@@ -2,64 +2,73 @@
 
 {% block content %}
     {% for key, answer in answers %}
-        <div class="panel panel-default">
-        <div class="panel-heading"><strong>Question 1:</strong> {{ answer.question.question}} </div>
-        <div class="panel-body">
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Impact group size</label>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title" data-toggle="collapse" data-target="#{{ key }}">
+                        <strong>Question {{ key + 1 }}:</strong> {{ answer.question.question}}
+                        <div class="score">(Total Rate {{ answer.total_score }})</div>
+                    </h4>
                 </div>
-                <div class="question-rating">
-                    <input value="{{ answer.impact_group_size }}" class="star-rating rating-loading">
-                </div>
-            </div>
+                <div id="{{ key }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Impact group size</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.impact_group_size }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
 
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Occurrence frequency</label>
-                </div>
-                <div class="question-rating">
-                    <input value="{{ answer.occurrence_frequency }}" class="star-rating rating-loading">
-                </div>
-            </div>
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Occurrence frequency</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.occurrence_frequency }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
 
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Experience impact</label>
-                </div>
-                <div class="question-rating">
-                    <input value="{{ answer.experience_impact }}" class="star-rating rating-loading">
-                </div>
-            </div>
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Experience impact</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.experience_impact }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
 
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Business impact</label>
-                </div>
-                <div class="question-rating">
-                    <input value="{{ answer.business_impact }}" class="star-rating rating-loading">
-                </div>
-            </div>
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Business impact</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.business_impact }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
 
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Financial feasibility</label>
-                </div>
-                <div class="question-rating">
-                    <input value="{{ answer.financial_feasibility }}" class="star-rating rating-loading">
-                </div>
-            </div>
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Financial feasibility</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.financial_feasibility }}" class="star-rating rating-loading">
+                            </div>
+                        </div>
 
-            <div class="rating-raw">
-                <div class="question-option">
-                    <label class="control-label">Technical feasibility</label>
-                </div>
-                <div class="question-rating">
-                    <input value="{{ answer.technical_feasibility }}"  class="star-rating rating-loading">
+                        <div class="rating-raw">
+                            <div class="question-option">
+                                <label class="control-label">Technical feasibility</label>
+                            </div>
+                            <div class="question-rating">
+                                <input value="{{ answer.technical_feasibility }}"  class="star-rating rating-loading">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     {% endfor %}
 {% endblock %}
 

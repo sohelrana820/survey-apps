@@ -187,3 +187,36 @@ body {
 }
 /*--thank you pop ends here--*/
 
+.panel,
+.panel h4{
+    font-family:"Open Sans",Arial,sans-serif;
+}
+
+.panel-title {
+    position: relative;
+}
+
+.panel-title::after {
+    content: "\f107";
+    color: #333;
+    top: 8px;
+    right: 0px;
+    font-size: 24px;
+    position: absolute;
+    font-family: "FontAwesome"
+}
+
+.panel-title[aria-expanded="true"]::after {
+    content: "\f106";
+}
+
+.score{
+    color: #8BC34A;
+    font-size: 15px;
+    margin-top: 10px;
+    font-weight: 700;
+}
+
+#accordion .panel-heading{
+    cursor: pointer;
+}
