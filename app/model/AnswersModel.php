@@ -371,8 +371,8 @@ class AnswersModel extends Model
      */
     public function searchAnswers($queryParams = [], $options = [])
     {
-        $page = 10;
-        $perPage = 3;
+        $page = 1;
+        $perPage = 10;
         $orderBy = 'id';
         $sortBy = 'ASC';
 
