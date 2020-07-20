@@ -100,9 +100,9 @@ class AnswersModel extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function answers()
+    public function question()
     {
-        return $this->belongsTo(CategoriesModel::class, 'category_id');
+        return $this->belongsTo(QuestionsModel::class, 'question_id');
     }
 
     /**
@@ -337,5 +337,30 @@ class AnswersModel extends Model
         }
 
         return false;
+    }
+
+    /**
+     * @param $answers
+     * @param $userId
+     * @param $surveyId
+     * @return bool
+     */
+    public function getAnswers($userId, $surveyId)
+    {
+        try {
+            /**
+             * Delete all previous answer if the user has already complete this survey.
+             */
+            $answers = $this->where('user_id', $userId)->where('survey_id', $surveyId)->get();
+            if($answers){
+                return $answers;
+            }
+
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return [];
     }
 }

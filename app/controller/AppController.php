@@ -73,7 +73,6 @@ class AppController
         $this->config = $this->container['config'];
         if(array_key_exists('auth', $_SESSION) && $_SESSION['auth']['id']){
             $this->userId = $_SESSION['auth']['id'];
-            var_dump($_SESSION['auth']['role']);
             $this->isAdmin = $_SESSION['auth']['role'] == 1 ? true : false;
         }
 

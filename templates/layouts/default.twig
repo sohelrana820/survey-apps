@@ -57,8 +57,13 @@
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a></li>
-                <li role="presentation"><a href="#">About</a></li>
+                {% if is_admin == false %}
+                    <li role="presentation"><a href="/survey/change">Change Answer</a></li>
+                {% endif %}
+
+                {% if session %}
+                    <li role="presentation"><a href="/logout">Logout</a></li>
+                {% endif %}
             </ul>
         </nav>
         <h3 class="text-muted">Survery Application</h3>

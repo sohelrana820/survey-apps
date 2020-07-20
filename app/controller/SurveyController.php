@@ -104,7 +104,8 @@ class SurveyController extends AppController
      */
     public function view(Request $request, Response $response, $args)
     {
-        return $this->getView()->render($response, 'survey/view.twig');
+        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
+        return $this->getView()->render($response, 'survey/view.twig', ['answers' => $answers]);
     }
 
     /**
@@ -115,6 +116,7 @@ class SurveyController extends AppController
      */
     public function change(Request $request, Response $response, $args)
     {
-        return $this->getView()->render($response, 'survey/change.twig');
+        $answers = $this->loadModel()->getAnswerModel()->getAnswers($this->userId, $this->surveyId);
+        return $this->getView()->render($response, 'survey/change.twig', ['answers' => $answers]);
     }
 }

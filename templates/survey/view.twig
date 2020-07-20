@@ -1,18 +1,16 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-<form action="/survey/collect" method="POST">
-    {% for key, question in questions %}
+    {% for key, answer in answers %}
         <div class="panel panel-default">
-        <div class="panel-heading"><strong>Question 1:</strong> {{ question.question}} </div>
+        <div class="panel-heading"><strong>Question 1:</strong> {{ answer.question.question}} </div>
         <div class="panel-body">
-            <input name="data[{{ key }}][question_id]" value="{{ question.id }}" type="hidden">
             <div class="rating-raw">
                 <div class="question-option">
                     <label class="control-label">Impact group size</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][impact_group_size]" class="star-rating rating-loading">
+                    <input value="{{ answer.impact_group_size }}" class="star-rating rating-loading">
                 </div>
             </div>
 
@@ -21,7 +19,7 @@
                     <label class="control-label">Occurrence frequency</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][occurrence_frequency]" class="star-rating rating-loading">
+                    <input value="{{ answer.occurrence_frequency }}" class="star-rating rating-loading">
                 </div>
             </div>
 
@@ -30,7 +28,7 @@
                     <label class="control-label">Experience impact</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][experience_impact]" class="star-rating rating-loading">
+                    <input value="{{ answer.experience_impact }}" class="star-rating rating-loading">
                 </div>
             </div>
 
@@ -39,7 +37,7 @@
                     <label class="control-label">Business impact</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][business_impact]" class="star-rating rating-loading">
+                    <input value="{{ answer.business_impact }}" class="star-rating rating-loading">
                 </div>
             </div>
 
@@ -48,7 +46,7 @@
                     <label class="control-label">Financial feasibility</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][financial_feasibility]" class="star-rating rating-loading">
+                    <input value="{{ answer.financial_feasibility }}" class="star-rating rating-loading">
                 </div>
             </div>
 
@@ -57,16 +55,12 @@
                     <label class="control-label">Technical feasibility</label>
                 </div>
                 <div class="question-rating">
-                    <input name="data[{{ key }}][technical_feasibility]"  class="star-rating rating-loading">
+                    <input value="{{ answer.technical_feasibility }}"  class="star-rating rating-loading">
                 </div>
             </div>
         </div>
     </div>
     {% endfor %}
-
-<button type="submit" class="btn btn-success">Submit</button>
-</form>
-    <br>
 {% endblock %}
 
 
