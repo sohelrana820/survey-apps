@@ -37,10 +37,22 @@ class AuthController extends AppController
         if($passwordMatched)
         {
             $_SESSION['auth'] = $user;
-            return $response->withRedirect('/survey/start');
+            return $response->withRedirect('/survey');
         }
 
         $this->flash->addMessage('error', 'Sorry, invalid email or password');
+        return $response->withRedirect('/login');
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     */
+    public function logout(Request $request, Response $response, $args)
+    {
+        session_destroy();
+        unset($_SESSION['auth']);
         return $response->withRedirect('/login');
     }
 }

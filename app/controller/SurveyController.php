@@ -27,6 +27,21 @@ class SurveyController extends AppController
      * @param $args
      * @return \Psr\Http\Message\ResponseInterface
      */
+    public function home(Request $request, Response $response, $args)
+    {
+        $questions = $this->loadModel()->getQuestionsModel()->getAllQuestions();
+        $data = [
+            'questions' => $questions,
+        ];
+        return $this->getView()->render($response, 'survey/home.twig', $data);
+    }
+
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
     public function start(Request $request, Response $response, $args)
     {
         $questions = $this->loadModel()->getQuestionsModel()->getAllQuestions();
