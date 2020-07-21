@@ -4,7 +4,7 @@
 <form action="/survey/collect" method="POST">
     {% for key, answer in answers %}
         <div class="panel panel-default">
-        <div class="panel-heading"><strong>Question {{ key + 1 }}:</strong> {{ answer.question.question}} </div>
+        <div class="panel-heading"><strong>Question {{ answer.question_id}}:</strong> {{ answer.question.question}} </div>
         <div class="panel-body">
             <input name="data[{{ key }}][question_id]" value="{{ answer.question_id }}" type="hidden">
             <div class="rating-raw">
