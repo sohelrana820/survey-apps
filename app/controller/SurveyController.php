@@ -152,7 +152,7 @@ class SurveyController extends AppController
             return $response->withRedirect('/survey');
         }
 
-        $users = $this->loadModel()->getUsersSurveysModel()->searchUsers($request->getQueryParams());
+        $users = $this->loadModel()->getUserModel()->searchUsers($request->getQueryParams());
         return $this->getView()->render($response, 'survey/users.twig', ['users' => $users]);
     }
 
