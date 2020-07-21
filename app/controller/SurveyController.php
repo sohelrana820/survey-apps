@@ -172,4 +172,27 @@ class SurveyController extends AppController
         return $this->getView()->render($response, 'survey/questions.twig', ['answers' => $questions]);
     }
 
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param $args
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function download(Request $request, Response $response, $args)
+    {
+        if(!$this->isAuthorized()){
+            return $response->withRedirect('/survey');
+        }
+
+        $questions = $this->loadModel()->getAnswerModel()->searchAnswers($request->getQueryParams());
+        $f = fopen('php://output', 'w');
+        fputcsv($f, ['question', 'Average Rating']);
+        foreach ($questions['answers'] as $question) {
+            $questionNo = $question->question->question;
+            $score = $question->score / $question->rated_by;
+            fputcsv($f, [$questionNo, $score]);
+        }
+        header('Content-Disposition: attachment; filename="survey-report.csv";');
+    }
+
 }
