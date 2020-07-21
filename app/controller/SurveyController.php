@@ -189,7 +189,7 @@ class SurveyController extends AppController
         fputcsv($f, ['question', 'Average Rating']);
         foreach ($questions['answers'] as $question) {
             $questionNo = $question->question->question;
-            $score = $question->score / $question->rated_by;
+            $score = number_format($question->score / $question->rated_by, 2);
             fputcsv($f, [$questionNo, $score]);
         }
         header('Content-Disposition: attachment; filename="survey-report.csv";');
