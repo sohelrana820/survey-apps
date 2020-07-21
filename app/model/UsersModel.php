@@ -169,7 +169,7 @@ class UsersModel extends Model
     public function searchUsers($queryParams = [], $options = [])
     {
         $page = 1;
-        $perPage = 10;
+        $perPage = 100;
         $orderBy = 'id';
         $sortBy = 'ASC';
 

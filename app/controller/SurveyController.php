@@ -186,11 +186,11 @@ class SurveyController extends AppController
 
         $questions = $this->loadModel()->getAnswerModel()->searchAnswers($request->getQueryParams());
         $f = fopen('php://output', 'w');
-        fputcsv($f, ['question', 'Average Rating']);
+        fputcsv($f, ['ID', 'Question', 'Average Rating']);
         foreach ($questions['answers'] as $question) {
             $questionNo = $question->question->question;
             $score = number_format($question->score / $question->rated_by, 2);
-            fputcsv($f, [$questionNo, $score]);
+            fputcsv($f, [$question->question_id, $questionNo, $score]);
         }
         header('Content-Disposition: attachment; filename="survey-report.csv";');
     }
