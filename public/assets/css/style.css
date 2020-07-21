@@ -221,10 +221,12 @@ body {
     cursor: pointer;
 }
 
-.panel-heading img{
-    width: 20px;
+.panel-heading img {
+    width: 25px;
+    position: absolute;
+    right: 18px;
+    top: 27px;
 }
-
 
 .pagination {
     width: 100%;
@@ -268,4 +270,9 @@ body {
 }
 .color{
     color: #00ace8;
+}
+
+
+.panel-group .panel{
+    position: relative;
 }
