@@ -226,4 +226,27 @@ class UsersSurveysModel extends Model
             ]
         ];
     }
+
+    /**
+     * @param $surveyId
+     * @return bool
+     */
+    public function clearAllSurvey($surveyId)
+    {
+        try {
+            /**
+             * Delete all previous answer if the user has already complete this survey.
+             */
+            $deleted = $this->where('survey_id', $surveyId)->delete();
+            if($deleted)
+            {
+                return true;
+            }
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return false;
+    }
 }

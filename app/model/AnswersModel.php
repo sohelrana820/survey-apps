@@ -437,4 +437,23 @@ class AnswersModel extends Model
             ]
         ];
     }
+
+    public function clearAllAnswer($surveyId)
+    {
+        try {
+            /**
+             * Delete all previous answer if the user has already complete this survey.
+             */
+            $deleted = $this->where('survey_id', $surveyId)->delete();
+            if($deleted)
+            {
+                return true;
+            }
+        } catch (\Exception $exception)
+        {
+
+        }
+
+        return false;
+    }
 }

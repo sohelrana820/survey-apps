@@ -195,4 +195,14 @@ class SurveyController extends AppController
         header('Content-Disposition: attachment; filename="survey-report.csv";');
     }
 
+    public function clear(Request $request, Response $response, $args)
+    {
+        $questionDeleted = $this->loadModel()->getAnswerModel()->clearAllAnswer($this->surveyId);
+        $questionSurvey = $this->loadModel()->getUsersSurveysModel()->clearAllSurvey($this->surveyId);
+        if($questionDeleted || $questionSurvey){
+            $this->flash->addMessage('success', 'Result has been cleared successfully');
+            return $response->withRedirect('/survey/questions');
+        }
+    }
+
 }

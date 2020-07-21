@@ -8,7 +8,10 @@
         </div>
         <button type="submit" class="btn btn-default">Search</button>
     </form>#}
-    <a href="/survey/download" class="btn btn-success pull-right">Export Result</a>
+    <div class="pull-right">
+        <a href="/survey/download" class="btn btn-success">Export Result</a>
+        <a href="/survey/clear" class="btn btn-danger">Clear Result</a>
+    </div>
     <div class="clearfix"></div><br/>
     {% for key, answer in answers.answers %}
         <div class="panel-group" id="accordion">
