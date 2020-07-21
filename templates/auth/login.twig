@@ -1,22 +1,25 @@
 {% extends 'layouts/auth.twig' %}
 
 {% block content %}
-
-    <div class="signup-box well">
-        <h2>Login</h2>
-        <hr/>
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="email_address"></label>
-                <input class="form-control" id="email_address" name="email" placeholder="Email address">
+    <div class="signup-box">
+        <h1 class="title">Digital Employee Experience 2.0 Survey</h1>
+        <div class="login-area">
+            <div class="logo">
+                <img src="https://cdn.emojidex.com/emoji/seal/grameenphone.png?1513891283">
             </div>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="email_address"></label>
+                    <input class="form-control" id="email_address" name="email" placeholder="Email address">
+                </div>
 
-            <div class="form-group">
-                <label for="password"></label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            </div>
-            <br/>
-            <button type="submit" class="btn btn-success">Login</button>
-        </form>
+                <div class="form-group">
+                    <label for="password"></label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+                <br/>
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+        </div>
     </div>
 {% endblock %}

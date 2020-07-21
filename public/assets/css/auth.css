@@ -1,6 +1,7 @@
 .signup-box{
     margin: 100px auto;
     width: 350px;
+    font-family:"Open Sans",Arial,sans-serif
 }
 
 .content-box{
@@ -179,3 +180,34 @@
     background: #fff;
     padding: 50px;
 }
+
+
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    width: 60px;
+}
+
+.title{
+    font-size: 16px;
+}
+
+.title {
+    font-size: 16px;
+    text-align: center;
+    line-height: 34px;
+    color: #00ace8;
+    /* text-transform: uppercase; */
+    font-weight: 600;
+}
+
+.login-area{
+    background: #f8f8f8;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+
+
