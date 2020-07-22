@@ -277,7 +277,20 @@ body {
     position: relative;
 }
 
-
 .jumbotron{
     margin-top: 25px;
+}
+
+label.error {
+    color: red;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+input.error {
+    border: 1px dashed red;
+    font-weight: 300;
+    color: red;
 }

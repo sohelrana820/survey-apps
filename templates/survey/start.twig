@@ -1,7 +1,7 @@
 {% extends 'layouts/default.twig' %}
 
 {% block content %}
-<form action="/survey/collect" method="POST">
+<form action="/survey/collect" method="POST" id="surveyForm">
     {% for key, question in questions %}
         <div class="panel panel-default">
         <div class="panel-heading"><strong>Question {{ question.id }}:</strong> {{ question.question}} </div>
@@ -71,8 +71,11 @@
 
 
 {% block jsBottom %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
     $(document).ready(function(){
+        $("#surveyForm").validate();
+
         $('.star-rating').rating({
             size: 'sm',
             min: 0,
