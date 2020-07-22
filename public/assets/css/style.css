@@ -283,14 +283,27 @@ body {
 
 label.error {
     color: red;
-    font-size: 12px;
+    font-size: 11px;
     display: block;
     margin-top: 5px;
     font-weight: 400;
+    position: absolute;
+    bottom: 0px;
+    line-height: 0px;
 }
 
 input.error {
     border: 1px dashed red;
     font-weight: 300;
     color: red;
+}
+
+.rating-container .rating-stars {
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 42px;
 }

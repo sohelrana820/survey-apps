@@ -95,6 +95,8 @@
                 9: 'label label-success',
                 10: 'label label-success'
             }
+        }).on("rating:change", function(event, value, caption) {
+            $(this).parent().find('label').remove();
         });
     });
 </script>
