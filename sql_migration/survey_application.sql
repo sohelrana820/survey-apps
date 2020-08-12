@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 20, 2020 at 01:51 PM
+-- Generation Time: Jul 22, 2020 at 04:37 AM
 -- Server version: 5.7.30-0ubuntu0.16.04.1
 -- PHP Version: 7.3.19-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -62,7 +62,7 @@ CREATE TABLE `phinxlog` (
 --
 
 INSERT INTO `phinxlog` (`version`, `migration_name`, `start_time`, `end_time`, `breakpoint`) VALUES
-(20180303214313, 'InitialMigration', '2020-07-20 07:50:44', '2020-07-20 07:50:47', 0);
+(20180303214313, 'InitialMigration', '2020-07-21 22:35:51', '2020-07-21 22:35:54', 0);
 
 -- --------------------------------------------------------
 
@@ -89,39 +89,32 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `survey_id`, `question`, `impact_group_size`, `occurrence_frequency`, `experience_impact`, `business_impact`, `financial_feasibility`, `technical_feasibility`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Office entry without ID card (Retina scan, proximity sensor etc.]', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(2, 1, 'Virtual personal assistant for every employees', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(3, 1, 'Deep Curated learning based on role, skill and aspiration', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(4, 1, 'Washroom clean-up based on censors', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(5, 1, 'Meeting minutes on voice command and sent to recipients', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(6, 1, 'Online employee community for different reference & recommendations', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(7, 1, 'Gamification in employee onboarding', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(8, 1, 'Gamification to cultivate collaboration', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(9, 1, 'Contextual rewards for employees', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(10, 1, 'Critical reminders through voice-overs', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(11, 1, 'AI driven eCommerce for employees', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(12, 1, 'Online support groups to share best practices & learning', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(13, 1, 'Office should be converted to communal facilities', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(14, 1, 'Eliminating hiring bias with AI', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(15, 1, 'Wearable tech to monitor Workplace health', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(16, 1, 'AI-based analytics tools to monitor meetings and emails overload', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(17, 1, 'Putting more focus on cognitive diversity in a Team', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(18, 1, 'AI based job suggestion pop-up', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(19, 1, 'An internal online platform where employees can invest their skills', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(20, 1, 'Git hub like software development platform', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(21, 1, 'Build AI chatbot', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(22, 1, 'Gamification of KPIs', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(23, 1, 'Holographic meeting room', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(24, 1, 'Smart integration of Collaboration, meassaging, ideation & learning tools', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(25, 1, 'Online tests and assessments', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(26, 1, 'Pulse survey tools', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(27, 1, 'Online gaming', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(28, 1, 'Modern ideation platforms', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(29, 1, 'having fluid teams and workers with broad skill sets', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(30, 1, 'Gamification For Goal Tracking', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(31, 1, 'Real time feedback and performance management tools', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(32, 1, 'Permenantly flexible future', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56'),
-(33, 1, 'Full Digitalization B2B sales', 10, 10, 10, 10, 10, 10, '2020-07-20 13:50:56', '2020-07-20 13:50:56');
+(1, 1, 'Office entry without ID card (Retina scan or proximity sensor etc.)', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(2, 1, 'Virtual personal assistant for every employee', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(3, 1, 'Create meeting minutes on voice command, send to intended recipients and make archives for quick reference', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(4, 1, 'Online employee community for different references & recommendations', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(5, 1, 'Contextual/personalized rewards for employees using analytics', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(6, 1, 'AI-powered talent tool to predict future talent demands, search talent and eliminate hiring bias', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(7, 1, 'Wearable tech to monitor Workplace wellbeing and keep social distancing', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(8, 1, 'Build AI chatbot which will answer all types of employee queries', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(9, 1, 'Gamification of KPIs & goal tracking', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(10, 1, 'Modern ideation platforms to promote innovation', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(11, 1, 'Employee data warehouse to take informed decisions about our people by using real time data and analytics', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(12, 1, 'Interpreting employee emotions during virtual collaboration via a webcam', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(13, 1, 'Augmented and Virtual reality (AR/VR) to turn any space into employee\'s own customizable workspace and gives him/her an immersive learning experience', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(14, 1, 'AI-led video analysis to identify work style, collaboration potential, and general cognitive ability of an applicant during pre-hire assessments', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(15, 1, 'Instead of one-time annual surveys, allow for frequent two-way conversations and real-time feedback between employee & machine (AI) to measure employee engagement.', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(16, 1, 'A central go-to location for all employee information, resources and communication which is intuitive and easy to search', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(17, 1, 'Get AI assisted research (internal/external) insights and automated document review and analysis', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(18, 1, 'Allow crowdsourcing to obtain needed services, ideas, or content by soliciting contributions from a large group of people, especially from the online community rather than from traditional employees', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(19, 1, 'Use sensors, AI software, and data analytics to track employees’ interactions to better understand the relationship between team-building and productivity', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(20, 1, 'Connect the community of healthcare between employees, physicians and care teams with a cloud-based Virtual Care Management solution', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(21, 1, 'Using video analytics software for CCTV and thermal cameras to determine whether social distancing is being maintained and monitor employee body temperature in real time, etc.', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(22, 1, 'Using the lift by calling ahead and indicate the floor employee wants to go to using smartphone app.', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(23, 1, 'Arrange multiplayer online role-playing games to build engagement as well as promoting ideal workplace behavior simulations', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(24, 1, 'Virtual Room Collaboration Platform where team members can use holography, use whiteboard with editing tools, virtual brainstorming etc. in one convenient online location', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(25, 1, 'Use sensor technology in Elevator buttons, washroom etc. to help curb the spread of bacteria and to reduce the need for employees to touch surfaces', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22'),
+(26, 1, 'Real time recognition and performance feedback via digital and automated technology', 10, 10, 10, 10, 10, 10, '2020-07-22 04:37:22', '2020-07-22 04:37:22');
 
 -- --------------------------------------------------------
 
@@ -141,7 +134,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Survey Number 01', '2020-07-20 13:50:52', '2020-07-20 13:50:52');
+(1, 'Survey Number 01', '2020-07-22 04:37:10', '2020-07-22 04:37:10');
 
 -- --------------------------------------------------------
 
@@ -164,28 +157,26 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Survey Admin', 'survey_admin@gmail.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '1', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(2, 'Survey User 01', 'survey_user_01@gmail.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(3, 'Survey User 02', 'survey_user_02@gmail.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(4, 'arifuddin', 'arifuddin@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(5, 'smhaque', 'smhaque@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(6, 'ejaz', 'ejaz@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(7, 'tkhan', 'tkhan@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(8, 'farhana.islam', 'farhana.islam@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(9, 'saiful_alam', 'saiful_alam@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(10, 'shaila.rahman', 'shaila.rahman@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(11, 'zahid_zaman', 'zahid_zaman@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(12, 'aem.saidur', 'aem.saidur@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(13, 'sanat', 'sanat@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(14, 'shabbir', 'shabbir@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(15, 'ashfaqur', 'ashfaqur@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(16, 'naureen.quayum', 'naureen.quayum@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(17, 'khairul.basher', 'khairul.basher@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(18, 'shareef', 'shareef@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(19, 'tanvir.husain', 'tanvir.husain@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(20, 'aneeq', 'aneeq@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(21, 'sizaman', 'sizaman@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00'),
-(22, 'mehadi.ghani', 'mehadi.ghani@grameenphone.com', '$2y$10$SqB0CCuDAvLosIebikcGOeieM7JcARdmMM/Z6UDrmOVmowUv0lXFa', '2', '2020-07-20 13:51:00', '2020-07-20 13:51:00');
+(1, 'Survey Admin', 'survey_admin@gpsurvey.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '1', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(2, 'arifuddin', 'arifuddin@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(3, 'smhaque', 'smhaque@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(4, 'ejaz', 'ejaz@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(5, 'tkhan', 'tkhan@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(6, 'farhana.islam', 'farhana.islam@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(7, 'saiful_alam', 'saiful_alam@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(8, 'shaila.rahman', 'shaila.rahman@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(9, 'zahid_zaman', 'zahid_zaman@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(10, 'aem.saidur', 'aem.saidur@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(11, 'sanat', 'sanat@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(12, 'shabbir', 'shabbir@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(13, 'ashfaqur', 'ashfaqur@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(14, 'naureen.quayum', 'naureen.quayum@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(15, 'khairul.basher', 'khairul.basher@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(16, 'shareef', 'shareef@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(17, 'tanvir.husain', 'tanvir.husain@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(18, 'aneeq', 'aneeq@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(19, 'sizaman', 'sizaman@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39'),
+(20, 'mehadi.ghani', 'mehadi.ghani@grameenphone.com', '$2y$10$fdv1XRqn//hMNR2TytXjcuHf2tennFhhjC4YuFDnR28eeH9.GNZ0.', '2', '2020-07-22 04:37:39', '2020-07-22 04:37:39');
 
 -- --------------------------------------------------------
 
@@ -261,7 +252,7 @@ ALTER TABLE `answers`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `surveys`
 --
@@ -271,7 +262,7 @@ ALTER TABLE `surveys`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `users_surveys`
 --
